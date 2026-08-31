@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>МОЙ мебельный — Производство мебели и точный распил ЛДСП в Омске</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png?v=3">
+  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png?v=3">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=3">
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico?v=3">
+  <link rel="shortcut icon" href="images/favicon.ico?v=3">
+  <link rel="apple-touch-icon" href="images/favicon.png?v=3">
+  <script>(function(){try{var l=document.createElement('link');l.type='image/png';l.rel='icon';l.href='images/favicon.png?t='+Date.now();document.head.appendChild(l);}catch(e){}})();</script>
+
+  <link rel="stylesheet" href="css/montserrat.css?v=1788209058" type="text/css">
+  <link rel="stylesheet" href="css/fonts-tildasans.css?v=1788209058" type="text/css">
+  <link rel="stylesheet" href="css/unified-design-system.css?v=1788209058" type="text/css">
+
+  <style>
+    body {
+      background-color: #0a0604;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .portal-main {
+      min-height: calc(100vh - 74px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Fullscreen ambient background */
+    .portal-bg-wrap {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .portal-bg-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) contrast(1.1);
+      transform: scale(1.02);
+    }
+    .portal-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(14, 9, 6, 0.45) 0%, rgba(10, 6, 4, 0.82) 75%, rgba(5, 3, 2, 0.95) 100%);
+    }
+
+    /* Central Portal Content */
+    .portal-main {
+      position: relative;
+      z-index: 5;
+      max-width: 1080px;
+      margin: auto;
+      padding: 60px clamp(16px, 4vw, 40px);
+      text-align: center;
+      width: 100%;
+    }
+
+    .portal-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 138, 60, 0.12);
+      border: 1px solid rgba(255, 138, 60, 0.35);
+      backdrop-filter: blur(12px);
+      padding: 7px 18px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ff9e58;
+      margin-bottom: 24px;
+    }
+
+    .portal-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(34px, 4.5vw, 56px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 18px;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
+    }
+    .portal-title span {
+      background: linear-gradient(135deg, #ffd991 0%, #ff8a3c 50%, #e05206 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .portal-desc {
+      font-size: clamp(15px, 1.3vw, 17px);
+      color: #b89f8a;
+      max-width: 640px;
+      margin: 0 auto 44px;
+      line-height: 1.6;
+    }
+
+    /* 2 Big Impact Buttons */
+    .portal-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .portal-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 36px 32px;
+      border-radius: 20px;
+      text-decoration: none;
+      color: #ffffff;
+      overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+    }
+
+    .portal-card--raspil {
+      background: linear-gradient(135deg, #ff7a18 0%, #d64700 60%, #8a2a00 100%);
+      border: 1.5px solid rgba(255, 200, 140, 0.5);
+    }
+    .portal-card--raspil:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(255, 107, 26, 0.6), 0 0 30px rgba(255, 107, 26, 0.4);
+      border-color: #ffffff;
+    }
+
+    .portal-card--mebel {
+      background: linear-gradient(135deg, #c98214 0%, #9e5b04 60%, #5e3200 100%);
+      border: 1.5px solid rgba(255, 220, 150, 0.5);
+    }
+    .portal-card--mebel:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 50px rgba(212, 175, 110, 0.6), 0 0 30px rgba(255, 170, 51, 0.4);
+      border-color: #ffffff;
+    }
+
+    .portal-card__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .portal-card__icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.28);
+      display: grid;
+      place-items: center;
+    }
+    .portal-card__icon img {
+      width: 26px;
+      height: 26px;
+      filter: brightness(0) invert(1);
+    }
+
+    .portal-card__arrow {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      font-weight: 800;
+      transition: all 0.3s ease;
+    }
+    .portal-card:hover .portal-card__arrow {
+      transform: translateX(6px);
+      background: #ffffff;
+      color: #0a0604;
+    }
+
+    .portal-card__title {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      text-align: left;
+    }
+    .portal-card__desc {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.5;
+      text-align: left;
+      font-weight: 500;
+    }
+
+    /* Clean Bottom Bar */
+    .portal-bottom-bar {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      border-top: 1px solid rgba(212, 175, 110, 0.2);
+      background: rgba(10, 6, 4, 0.95);
+      padding: 18px clamp(16px, 4vw, 40px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: #b89f8a;
+    }
+
+    @media (max-width: 768px) {
+      .portal-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .portal-card {
+        padding: 24px 20px;
+      }
+      .portal-bottom-bar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Video Background -->
+  <div class="portal-bg-wrap">
+    <video autoplay loop muted playsinline poster="images/main_video_poster.jpg">
+      <source src="images/main_bg_video.mp4" type="video/mp4">
+    </video>
+    <div class="portal-bg-overlay"></div>
+  </div>
+
+  <!-- UNIFIED MASTER HEADER -->
+    <!-- CLEAN PORTAL HEADER (WITHOUT REDUNDANT SWITCHER BUTTONS) -->
+  <header class="site-header">
+    <div class="site-header__inner" style="justify-content: space-between;">
+      <a class="site-header__brand" href="index.html" aria-label="Мой Мебельный — Главная" style="position:static !important; transform:none !important;">
+        <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ мебельный">
+        <div class="site-header__brand-text">
+          <span class="site-header__brand-title">МОЙ</span>
+          <span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
+        </div>
+      </a>
+
+      <div class="site-header__nav-right">
+        <div class="site-header__contacts">
+          <a class="site-header__phone" href="tel:+73812480153">
+            <img src="images/phone_contact_call_ring.svg" alt="">
+            +7 (3812) 480-153
+          </a>
+          <span class="site-header__hours">Омск, ул. 22 Партсъезда, 51Б · 09:00–17:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Central Portal Content -->
+  <main class="portal-main">
+    <div class="portal-eyebrow">
+      <span class="ui-eyebrow__dot"></span>
+      ★ 4.9 на 2ГИС · Производство SCM
+    </div>
+
+    <h1 class="portal-title">
+      Производство мебели<br>
+      <span>и точный распил ЛДСП</span>
+    </h1>
+
+    <p class="portal-desc">
+      Выберите интересующее вас направление для перехода в интерактивный онлайн-калькулятор или каталог мебели:
+    </p>
+
+    <!-- 2 BIG CARDS -->
+    <div class="portal-cards-grid">
+      <!-- CARD 1: РАСПИЛ -->
+      <a class="portal-card portal-card--raspil" href="raspil.html">
+        <div class="portal-card__top">
+          <div class="portal-card__icon">
+            <img src="images/saw.svg" alt="Распил">
+          </div>
+          <div class="portal-card__arrow">→</div>
+        </div>
+        <div class="portal-card__title">Распил ЛДСП</div>
+        <div class="portal-card__desc">
+          Онлайн-калькулятор раскроя, кромление 0.4–2 мм, присадка и радиусы. Точность до 1 мм.
+        </div>
+      </a>
+
+      <!-- CARD 2: МЕБЕЛЬ -->
+      <a class="portal-card portal-card--mebel" href="mebel.html">
+        <div class="portal-card__top">
+          <div class="portal-card__icon">
+            <img src="images/tile_stowage.svg" alt="Мебель">
+          </div>
+          <div class="portal-card__arrow">→</div>
+        </div>
+        <div class="portal-card__title">Мебель на заказ</div>
+        <div class="portal-card__desc">
+          Кухни с витринами, шкафы-купе под потолок, гардеробные и Loft. 3D-проект в подарок.
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <!-- Bottom Bar -->
+    <!-- UNIFIED MASTER FOOTER (IDENTICAL ON ALL 3 PAGES) -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <a class="site-header__brand" href="index.html" style="justify-self:flex-start; margin-bottom:14px;">
+          <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ мебельный">
+          <div class="site-header__brand-text">
+            <span class="site-header__brand-title">МОЙ</span>
+            <span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
+          </div>
+        </a>
+        <p class="site-footer__brand-p">
+          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия). Гарантия качества по договору.
+        </p>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>Услуги распила</h4>
+        <ul class="site-footer__links">
+          <li><a href="raspil.html#rec3089023401">Онлайн-калькулятор</a></li>
+          <li><a href="raspil.html#rec3089027501">Оборудование SCM</a></li>
+          <li><a href="raspil.html#rec3089013901">Декоры ЛДСП Lamarty</a></li>
+          <li><a href="raspil.html#rec3147085901">Отзывы 2ГИС (4.9)</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>Мебель на заказ</h4>
+        <ul class="site-footer__links">
+          <li><a href="mebel.html#categories">Кухни по размерам</a></li>
+          <li><a href="mebel.html#categories">Встроенные шкафы</a></li>
+          <li><a href="mebel.html#categories">Гардеробные системы</a></li>
+          <li><a href="mebel.html#categories">Мебель в стиле Loft</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h4>Контакты цеха</h4>
+        <ul class="site-footer__links">
+          <li><a href="tel:+73812480153" style="color:#ffffff; font-weight:800;">+7 (3812) 480-153</a></li>
+          <li><span>г. Омск, ул. 22 Партсъезда, 51Б</span></li>
+          <li><span>Пн — Пт с 09:00 до 17:00</span></li>
+          <li><a href="https://vk.ru/moymb" target="_blank" style="color:var(--c-orange);">Группа ВКонтакте</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__bottom">
+      <div>© 2026 «МОЙ мебельный». Все права защищены. Производство в Омске.</div>
+      <div style="display:flex; align-items:center; gap:20px;">
+        <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" target="_blank" style="color:#ffaa33; text-decoration:none; font-weight:700;">★ 4.9 на 2ГИС</a>
+        <a href="https://vk.ru/moymb" target="_blank" style="color:#d4af6e; text-decoration:none;">VK</a>
+        <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" target="_blank" style="color:#d4af6e; text-decoration:none;">Max</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

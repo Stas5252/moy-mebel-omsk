@@ -1,0 +1,9 @@
+# Client draft media and raw videos
+фотки и видео с правками и тем что хочет клиент/
+images/portal_video.mp4
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
