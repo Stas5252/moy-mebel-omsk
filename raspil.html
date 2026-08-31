@@ -3899,10 +3899,11 @@ html, body {
           p.y += p.vy;
           p.vy += 0.16;
           p.life--;
-          var alpha = p.life / p.maxLife;
+          var alpha = Math.max(0, p.life / p.maxLife);
+          var rad = Math.max(0.1, p.size * alpha);
           ctx.fillStyle = 'rgba(255, 170, 51, ' + alpha + ')';
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
+          ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
           ctx.fill();
         }
       });

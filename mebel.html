@@ -1815,7 +1815,7 @@ html, body {
   }
 })();
 </script>
-<script>
+<script id="standalone-mebel-3d">
 // === AWWWARDS-GRADE 3D ISOMETRIC FURNITURE WIREFRAME ENGINE ===
 (function() {
   const canvas = document.getElementById('mebel-hero-canvas');
@@ -1925,12 +1925,22 @@ html, body {
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, width, height);
 
-    const isMobile = width < 768;
-    const cx = isMobile ? width * 0.5 : width * 0.72 + (mouse.x - 0.5) * 35;
-    const cy = height * 0.48 + (mouse.y - 0.5) * 25;
+    const isMobile = width < 960;
+    let cx, cy, scale;
+    const stageEl = document.querySelector('.mebel-hero__stage');
+    if (isMobile && stageEl) {
+      const heroRect = canvas.getBoundingClientRect();
+      const stageRect = stageEl.getBoundingClientRect();
+      cx = width * 0.5;
+      cy = Math.max(height * 0.5, (stageRect.top - heroRect.top) + stageRect.height * 0.38);
+      scale = Math.min(width * 0.0013, 0.75);
+    } else {
+      cx = width * 0.72 + (mouse.x - 0.5) * 35;
+      cy = height * 0.48 + (mouse.y - 0.5) * 25;
+      scale = Math.min(width * 0.0012, 1.35);
+    }
     const rotY = 0.42 + (mouse.x - 0.5) * 0.4 + Math.sin(time * 0.5) * 0.06;
     const rotX = -0.22 + (mouse.y - 0.5) * 0.22;
-    const scale = isMobile ? Math.min(width * 0.0016, 0.95) : Math.min(width * 0.0012, 1.35);
 
     // 0. Blueprint Floor Grid
     ctx.strokeStyle = 'rgba(212, 175, 110, 0.08)';
