@@ -1628,6 +1628,7 @@ html, body {
       </p>
 <!-- Form -->
 <form id="exact-lead-form" onsubmit="event.preventDefault(); alert('Спасибо! Ваша заявка успешно принята. Мы свяжемся с вами в течение 15 минут.');">
+<input type="hidden" name="mebel_type" id="form-mebel-type" value="Кухня">
 <!-- Row 1: Name and Phone -->
 <div class="exact-form-row">
 <input class="exact-form-input" placeholder="Как вас зовут" required="" type="text"/>
@@ -1638,7 +1639,7 @@ html, body {
 <input class="exact-form-input" placeholder="Email (по желанию)" type="email"/>
 <div class="exact-select-wrap">
 <span class="exact-select-badge">Какая услуга интересует</span>
-<select class="exact-form-select">
+<select class="exact-form-select" id="exact-service-select">
 <option selected="" value="raspil">Распил и кромление ЛДСП</option>
 <option value="kitchen">Кухня по индивидуальным размерам</option>
 <option value="wardrobe">Встроенный шкаф / гардеробная</option>
@@ -1651,6 +1652,7 @@ html, body {
 <!-- Row 3: File Attachment Box (Matching screenshot) -->
 <div class="exact-file-box">
 <input id="exact-form-file" multiple="" onchange="const f = this.files[0]; if(f) document.getElementById('exact-file-name-label').innerText = 'Выбран файл: ' + f.name;" type="file"/>
+<input type="file" id="mebel-file" style="display:none" onchange="const f = this.files[0]; if(f) document.getElementById('exact-file-name-label').innerText = 'Выбран файл: ' + f.name;"/>
 <div class="exact-file-left">
 <div class="exact-file-icon">
 <img alt="" onerror="this.innerHTML='📎';" src="images/attachment.svg"/>
@@ -1755,7 +1757,7 @@ html, body {
     dropzones.forEach(function(zone) {
       if (zone._hasDrop) return;
       zone._hasDrop = true;
-      var fileInput = zone.querySelector('input[type="file"]') || document.getElementById('sawFileInput') || document.getElementById('mebel-file');
+      var fileInput = zone.querySelector('input[type="file"]') || document.getElementById('exact-form-file') || document.getElementById('mebel-file');
       
       ['dragenter', 'dragover'].forEach(function(eventName) {
         zone.addEventListener(eventName, function(e) {

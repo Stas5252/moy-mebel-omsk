@@ -3660,228 +3660,281 @@ html, body {
 </script>
 <script id="standalone-saw-engine">
 (function() {
-  let isStarted = false;
-  function startSaw() {
+  var isStarted = false;
+  function initSaw() {
     if (isStarted) return;
-    const canvas = document.getElementById('saw-cutting-canvas');
+    var canvas = document.getElementById('saw-cutting-canvas');
     if (!canvas) return;
     isStarted = true;
 
-    const ctx = canvas.getContext('2d');
-    const W = 620;
-    const H = 420;
+    var ctx = canvas.getContext('2d');
+    var W = 620;
+    var H = 420;
     canvas.width = W;
     canvas.height = H;
 
-    let time = 0;
-    let mouse = { x: 0.5, y: 0.5, tx: 0.5, ty: 0.5 };
+    var progress = 0.1;
+    var state = 0; // 0 = cutting, 1 = completed, 2 = return
+    var timer = 0;
+    var cutPosIndex = 0;
+    var cutPositions = [220, 340, 180, 420, 290];
+    var bladeAngle = 0;
+    var split = 0;
 
-    canvas.addEventListener('mousemove', function(e) {
-      const r = canvas.getBoundingClientRect();
-      mouse.tx = (e.clientX - r.left) / r.width;
-      mouse.ty = (e.clientY - r.top) / r.height;
-    });
-    canvas.addEventListener('mouseleave', function() {
-      mouse.tx = 0.5;
-      mouse.ty = 0.5;
-    });
+    var sparks = [];
+    for (var i = 0; i < 20; i++) {
+      sparks.push({ x: 0, y: 0, vx: 0, vy: 0, life: 0, maxLife: 20, size: 2 });
+    }
 
-    // Particle Sparks
-    const sparks = [];
-    for (let i = 0; i < 45; i++) {
-      sparks.push({ x: 0, y: 0, vx: 0, vy: 0, life: 0, maxLife: 30, size: 2.5 });
+    function drawRoundRect(c, x, y, w, h, r) {
+      c.beginPath();
+      c.moveTo(x + r, y);
+      c.lineTo(x + w - r, y);
+      c.quadraticCurveTo(x + w, y, x + w, y + r);
+      c.lineTo(x + w, y + h - r);
+      c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      c.lineTo(x + r, y + h);
+      c.quadraticCurveTo(x, y + h, x, y + h - r);
+      c.lineTo(x, y + r);
+      c.quadraticCurveTo(x, y, x + r, y);
+      c.closePath();
     }
 
     function render() {
       requestAnimationFrame(render);
-      time += 0.024;
-      mouse.x += (mouse.tx - mouse.x) * 0.06;
-      mouse.y += (mouse.ty - mouse.y) * 0.06;
+
+      bladeAngle += 0.38;
+
+      var bX = 45;
+      var bY = 45;
+      var bW = 530;
+      var bH = 290;
+      var bThick = 22;
+
+      var targetX = cutPositions[cutPosIndex];
+      var cutX = bX + targetX;
+      var cutStartY = bY + 10;
+      var cutEndY = bY + bH - 10;
+      var sawY = cutStartY + progress * (cutEndY - cutStartY);
+
+      if (state === 0) {
+        progress += 0.0075;
+        split = Math.max(0, split - 0.2);
+        if (progress >= 1) {
+          progress = 1;
+          state = 1;
+          timer = 0;
+        }
+      } else if (state === 1) {
+        timer++;
+        split = Math.min(3, split + 0.15);
+        if (timer > 25) {
+          state = 2;
+        }
+      } else if (state === 2) {
+        progress -= 0.045;
+        if (progress <= 0) {
+          progress = 0;
+          state = 0;
+          cutPosIndex = (cutPosIndex + 1) % cutPositions.length;
+          split = 0;
+        }
+      }
 
       ctx.clearRect(0, 0, W, H);
 
-      // Background subtle workshop grid
+      // Background
+      ctx.fillStyle = '#0f0a07';
+      ctx.fillRect(0, 0, W, H);
+
+      // Grid
       ctx.strokeStyle = 'rgba(212, 175, 110, 0.04)';
       ctx.lineWidth = 1;
-      for (let x = 0; x < W; x += 30) {
-        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      for (var gx = 0; gx < W; gx += 30) {
+        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
       }
-      for (let y = 0; y < H; y += 30) {
-        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      for (var gy = 0; gy < H; gy += 30) {
+        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
       }
 
-      // Board Dimensions
-      const bX = 40 + (mouse.x - 0.5) * 15;
-      const bY = 45 + (mouse.y - 0.5) * 15;
-      const bW = 540;
-      const bH = 280;
-      const bThick = 24;
+      // Top Ruler
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+      ctx.font = '600 8px Montserrat, sans-serif';
+      for (var rx = 50; rx < W - 50; rx += 25) {
+        ctx.fillRect(rx, 14, 1, 6);
+        if (rx % 50 === 0) {
+          ctx.fillText((rx * 5).toString(), rx - 8, 10);
+        }
+      }
 
-      // 1. 3D Wood Plate (ЛДСП Egger / Lamarty)
-      // Shadow
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.9)';
-      ctx.shadowBlur = 30;
-      ctx.fillStyle = '#050302';
-      ctx.fillRect(bX + 10, bY + 10, bW, bH);
-      ctx.shadowBlur = 0;
+      // Wood Board
+      var leftW = targetX;
+      var rightW = bW - targetX;
+      var leftShift = -split * 0.5;
+      var rightShift = split * 0.5;
 
-      // Top Wood Surface (Warm Walnut Grain)
-      const woodGrad = ctx.createLinearGradient(bX, bY, bX + bW, bY + bH);
-      woodGrad.addColorStop(0, '#5a3820');
-      woodGrad.addColorStop(0.35, '#3b2214');
-      woodGrad.addColorStop(0.7, '#4e2d19');
-      woodGrad.addColorStop(1, '#2c160b');
-      ctx.fillStyle = woodGrad;
-      ctx.fillRect(bX, bY, bW, bH);
+      // Slabs
+      ctx.fillStyle = '#4a2d18';
+      ctx.fillRect(bX + leftShift, bY, leftW, bH);
+      ctx.fillStyle = '#3f2513';
+      ctx.fillRect(bX + targetX + rightShift, bY, rightW, bH);
 
       // Wood Grain Texture Lines
-      ctx.strokeStyle = 'rgba(212, 175, 110, 0.12)';
-      ctx.lineWidth = 1.2;
-      for (let g = 0; g < 10; g++) {
-        const gy = bY + 22 + g * 26;
+      ctx.strokeStyle = 'rgba(212, 175, 110, 0.1)';
+      ctx.lineWidth = 1;
+      for (var g = 0; g < 9; g++) {
+        var gy = bY + 20 + g * 30;
         ctx.beginPath();
-        ctx.moveTo(bX, gy);
-        ctx.bezierCurveTo(
-          bX + bW * 0.3, gy + Math.sin(g * 1.4) * 12,
-          bX + bW * 0.7, gy - Math.cos(g * 1.4) * 14,
-          bX + bW, gy + 3
-        );
+        ctx.moveTo(bX + leftShift, gy);
+        ctx.bezierCurveTo(bX + leftShift + leftW * 0.4, gy + 8, bX + leftShift + leftW * 0.8, gy - 8, bX + leftShift + leftW, gy);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(bX + targetX + rightShift, gy);
+        ctx.bezierCurveTo(bX + targetX + rightShift + rightW * 0.4, gy - 8, bX + targetX + rightShift + rightW * 0.8, gy + 8, bX + bW + rightShift, gy + 2);
         ctx.stroke();
       }
 
-      // Edge Banding Face (3D Front Edge 2.0 mm)
+      // Edge banding
       ctx.fillStyle = '#8f532b';
-      ctx.fillRect(bX, bY + bH, bW, bThick);
-      ctx.strokeStyle = 'rgba(255, 170, 51, 0.45)';
-      ctx.strokeRect(bX, bY + bH, bW, bThick);
+      ctx.fillRect(bX + leftShift, bY + bH, leftW, bThick);
+      ctx.fillRect(bX + targetX + rightShift, bY + bH, rightW, bThick);
 
-      // 2. Animated Laser-Guided Saw Cut
-      const cutProgress = (Math.sin(time * 0.95) + 1) / 2; // back and forth
-      const cutX = bX + 50 + cutProgress * (bW - 100);
-      const cutStartY = bY + 15;
-      const cutEndY = bY + bH - 15;
+      // Laser guide line
+      if (state === 0 || state === 1) {
+        ctx.strokeStyle = 'rgba(255, 107, 26, 0.7)';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(cutX, Math.max(sawY, cutStartY));
+        ctx.lineTo(cutX, cutEndY + 15);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
 
-      // Laser Tracking Guide (Dashed Orange Line)
-      ctx.strokeStyle = 'rgba(255, 107, 26, 0.5)';
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([5, 5]);
-      ctx.beginPath();
-      ctx.moveTo(cutX, bY - 20);
-      ctx.lineTo(cutX, bY + bH + 30);
-      ctx.stroke();
-      ctx.setLineDash([]);
+      // Kerf cut line (behind blade)
+      if (progress > 0.02) {
+        ctx.strokeStyle = '#050302';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(cutX, cutStartY);
+        ctx.lineTo(cutX, sawY);
+        ctx.stroke();
 
-      // Cut Groove (Dark cut line with laser glow)
-      ctx.strokeStyle = '#050302';
-      ctx.lineWidth = 4.5;
-      ctx.beginPath();
-      ctx.moveTo(cutX, cutStartY);
-      ctx.lineTo(cutX, cutEndY);
-      ctx.stroke();
+        ctx.strokeStyle = 'rgba(255, 138, 60, 0.6)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
 
-      ctx.strokeStyle = 'rgba(255, 138, 60, 0.75)';
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      // 3. Fast Rotating Diamond Blade
-      const sawY = bY + bH * 0.5 + Math.sin(time * 1.8) * 35;
-      const sawRadius = 68;
-      const sawAngle = time * 18; // fast spin
-
+      // Saw Blade
+      var sawRadius = 60;
       ctx.save();
       ctx.translate(cutX, sawY);
 
-      // Core Blade Glow
-      ctx.shadowColor = '#ff6b1a';
-      ctx.shadowBlur = 24;
-
-      ctx.rotate(sawAngle);
-
-      // 32 Diamond Teeth
-      const teeth = 32;
-      const toothAngle = (Math.PI * 2) / teeth;
+      // Glow circle (lightweight fast gradient)
+      var glowGrad = ctx.createRadialGradient(0, 0, 10, 0, 0, sawRadius + 14);
+      glowGrad.addColorStop(0, 'rgba(255, 107, 26, 0.25)');
+      glowGrad.addColorStop(1, 'rgba(255, 107, 26, 0)');
+      ctx.fillStyle = glowGrad;
       ctx.beginPath();
-      for (let i = 0; i < teeth; i++) {
-        const a = i * toothAngle;
-        const r1 = sawRadius * 0.84;
-        const r2 = sawRadius;
-        ctx.lineTo(Math.cos(a) * r1, Math.sin(a) * r1);
-        ctx.lineTo(Math.cos(a + toothAngle * 0.6) * r2, Math.sin(a + toothAngle * 0.6) * r2);
+      ctx.arc(0, 0, sawRadius + 14, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.rotate(bladeAngle);
+
+      // 28 Teeth
+      var teeth = 28;
+      var toothAngle = (Math.PI * 2) / teeth;
+      ctx.beginPath();
+      for (var t = 0; t < teeth; t++) {
+        var a = t * toothAngle;
+        var rInner = sawRadius * 0.86;
+        var rTip = sawRadius;
+        ctx.lineTo(Math.cos(a) * rInner, Math.sin(a) * rInner);
+        ctx.lineTo(Math.cos(a + toothAngle * 0.6) * rTip, Math.sin(a + toothAngle * 0.6) * rTip);
       }
       ctx.closePath();
 
-      // Steel & Gold Gradient Blade Disc
-      const bladeGrad = ctx.createRadialGradient(0, 0, 8, 0, 0, sawRadius);
+      // Blade disc
+      var bladeGrad = ctx.createRadialGradient(0, 0, 5, 0, 0, sawRadius);
       bladeGrad.addColorStop(0, '#ffffff');
-      bladeGrad.addColorStop(0.25, '#ffe0a3');
-      bladeGrad.addColorStop(0.65, '#525760');
+      bladeGrad.addColorStop(0.2, '#ffe0a8');
+      bladeGrad.addColorStop(0.65, '#4f555f');
       bladeGrad.addColorStop(1, '#ff9e58');
       ctx.fillStyle = bladeGrad;
       ctx.fill();
 
-      ctx.shadowBlur = 0;
-      ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Center Arbor Hub
+      // Center Hub
       ctx.fillStyle = '#140d08';
       ctx.beginPath();
       ctx.arc(0, 0, 16, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = '#ffaa33';
-      ctx.lineWidth = 2.5;
-      ctx.stroke();
-
-      // 4 Expansion Slots
-      ctx.strokeStyle = 'rgba(0, 0, 0, 0.75)';
       ctx.lineWidth = 2;
-      for (let s = 0; s < 4; s++) {
-        const sa = (s / 4) * Math.PI * 2;
-        ctx.beginPath();
-        ctx.moveTo(Math.cos(sa) * 20, Math.sin(sa) * 20);
-        ctx.lineTo(Math.cos(sa) * 52, Math.sin(sa) * 52);
-        ctx.stroke();
-      }
+      ctx.stroke();
 
       ctx.restore();
 
-      // 4. Glowing Orange Cutting Sparks
-      sparks.forEach(p => {
-        if (p.life <= 0) {
-          p.x = cutX;
-          p.y = sawY;
-          const angle = Math.PI * 0.5 + (Math.random() - 0.5) * 1.8;
-          const speed = Math.random() * 6 + 2.5;
-          p.vx = Math.cos(angle) * speed;
-          p.vy = Math.sin(angle) * speed;
-          p.life = Math.random() * 24 + 10;
-          p.maxLife = p.life;
-          p.size = Math.random() * 2.5 + 1.2;
+      // Sparks (only 1-2 new per frame when cutting)
+      if (state === 0) {
+        for (var s = 0; s < 2; s++) {
+          var sp = sparks.find(function(p) { return p.life <= 0; });
+          if (sp) {
+            sp.x = cutX + (Math.random() - 0.5) * 4;
+            sp.y = sawY + (Math.random() - 0.5) * 6;
+            var angle = Math.PI * 0.5 + (Math.random() - 0.5) * 1.8;
+            var speed = Math.random() * 6 + 2;
+            sp.vx = Math.cos(angle) * speed;
+            sp.vy = Math.sin(angle) * speed;
+            sp.life = Math.random() * 18 + 8;
+            sp.maxLife = sp.life;
+            sp.size = Math.random() * 2 + 1;
+          }
         }
-        p.x += p.vx;
-        p.y += p.vy;
-        p.life--;
+      }
 
-        const alpha = p.life / p.maxLife;
-        ctx.fillStyle = `rgba(255, ${Math.floor(130 + alpha * 125)}, 45, ${alpha})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
-        ctx.fill();
+      sparks.forEach(function(p) {
+        if (p.life > 0) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.16;
+          p.life--;
+          var alpha = p.life / p.maxLife;
+          ctx.fillStyle = 'rgba(255, 170, 51, ' + alpha + ')';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size * alpha, 0, Math.PI * 2);
+          ctx.fill();
+        }
       });
 
-      // 5. Live CNC Coordinate HUD Label
+      // Bottom HUD
+      var mmPos = Math.round(progress * 2720);
+      ctx.fillStyle = 'rgba(10, 6, 4, 0.9)';
+      ctx.strokeStyle = 'rgba(255, 138, 60, 0.3)';
+      ctx.lineWidth = 1;
+      drawRoundRect(ctx, bX + 8, H - 38, 380, 26, 6);
+      ctx.fill();
+      ctx.stroke();
+
       ctx.fillStyle = '#ffaa33';
       ctx.font = '800 11px Montserrat, sans-serif';
-      ctx.fillText(`SCM ЧПУ · ЧИСТЫЙ РЕЗ: ${((cutProgress) * 2720).toFixed(0)} ММ`, bX + 10, H - 24);
+      ctx.fillText('SCM SI 400 EP · ЧПУ РАСКРОЙ:', bX + 18, H - 21);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '700 11px Montserrat, sans-serif';
+      ctx.fillText(mmPos + ' / 2720 ММ', bX + 205, H - 21);
+
+      ctx.fillStyle = state === 1 ? '#55ff77' : '#ff9e58';
+      ctx.font = '800 10px Montserrat, sans-serif';
+      ctx.fillText(state === 1 ? '✔ ЧИСТЫЙ РЕЗ 100%' : '● ПОДРЕЗНОЙ ДИСК', bX + 285, H - 21);
     }
 
     render();
   }
 
-  startSaw();
+  initSaw();
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startSaw);
+    document.addEventListener('DOMContentLoaded', initSaw);
   }
 })();
 </script>
