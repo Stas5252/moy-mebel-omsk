@@ -68,10 +68,10 @@ body {
   width: 100% !important;
   height: 74px !important;
   z-index: 1000 !important;
-  background: rgba(14, 9, 6, 0.98) !important;
+  background: rgba(28, 17, 10, 0.98) !important;
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  border-bottom: 1px solid rgba(212, 175, 110, 0.2) !important;
+  border-bottom: 1px solid rgba(212, 175, 110, 0.28) !important;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7) !important;
   padding: 0 !important;
   margin: 0 !important;
@@ -144,12 +144,11 @@ body {
 
 /* Center Logo ABSOLUTELY ANCHORED AT 50% (NEVER SHIFTS BY 1PX) */
 
-
 .site-header__logo-img {
   width: 44px !important;
   height: 48px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 12px rgba(255, 170, 51, 0.5)) !important;
+  filter: drop-shadow(0 0 12px rgba(255, 107, 26, 0.7)) !important;
 }
 
 .site-header__brand-title {
@@ -488,10 +487,10 @@ body {
 .site-footer {
   position: relative;
   z-index: 10;
-  background: #080503 !important;
-  border-top: 1px solid var(--border-subtle) !important;
+  background: linear-gradient(180deg, #24160d 0%, #1a0f08 100%) !important;
+  border-top: 1px solid rgba(212, 175, 110, 0.28) !important;
   padding: 48px clamp(16px, 4vw, 48px) 32px;
-  color: var(--text-muted);
+  color: #c4ab97;
   font-size: 13px;
 }
 .site-footer__inner {

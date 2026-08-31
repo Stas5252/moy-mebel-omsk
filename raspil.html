@@ -1081,6 +1081,201 @@ html, body {
     border-radius: 20px !important;
   }
 }
+
+/* === DEDICATED CALCULATOR ORDER MODAL === */
+.saw-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(14, 9, 6, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.saw-modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.saw-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  background: linear-gradient(160deg, #28170d 0%, #1a0f08 100%);
+  border: 1px solid rgba(255, 138, 60, 0.4);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 36px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85), 0 0 40px rgba(255, 107, 26, 0.2);
+  color: #f5ede4;
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.saw-modal-overlay.is-open .saw-modal-card {
+  transform: translateY(0) scale(1);
+}
+.saw-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5ede4;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.saw-modal-close:hover {
+  background: rgba(255, 107, 26, 0.3);
+  border-color: #ff8a3c;
+  color: #ffffff;
+}
+.saw-modal-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ff8a3c;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.saw-modal-title {
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px 0;
+}
+.saw-modal-subtitle {
+  font-size: 13.5px;
+  color: #c4ab99;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+}
+.saw-modal-summary {
+  background: rgba(14, 9, 5, 0.7);
+  border: 1px solid rgba(255, 138, 60, 0.25);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.saw-modal-summary-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.saw-modal-summary-left b {
+  font-size: 15px;
+  color: #ffffff;
+}
+.saw-modal-summary-left span {
+  font-size: 12px;
+  color: #ffd991;
+}
+.saw-modal-summary-price {
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffaa33;
+}
+.saw-modal-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+@media (max-width: 580px) {
+  .saw-modal-row { grid-template-columns: 1fr; }
+}
+.saw-modal-field {
+  margin-bottom: 14px;
+}
+.saw-modal-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffd991;
+  margin-bottom: 6px;
+}
+.saw-modal-input, .saw-modal-textarea {
+  width: 100%;
+  background: rgba(10, 6, 4, 0.85);
+  border: 1px solid rgba(255, 138, 60, 0.3);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.saw-modal-input:focus, .saw-modal-textarea:focus {
+  border-color: #ff8a3c;
+  box-shadow: 0 0 10px rgba(255, 107, 26, 0.3);
+}
+.saw-modal-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.saw-modal-dropzone {
+  background: rgba(10, 6, 4, 0.6);
+  border: 1.5px dashed rgba(255, 138, 60, 0.35);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  margin-bottom: 22px;
+  transition: all 0.2s ease;
+}
+.saw-modal-dropzone:hover {
+  background: rgba(255, 107, 26, 0.1);
+  border-color: #ff8a3c;
+}
+.saw-modal-drop-icon {
+  font-size: 22px;
+}
+.saw-modal-drop-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffffff;
+}
+.saw-modal-drop-hint {
+  font-size: 11px;
+  color: #8c7b70;
+}
+.saw-modal-btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #ff8a3c 0%, #e05206 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(255, 107, 26, 0.4);
+  transition: all 0.25s ease;
+}
+.saw-modal-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(255, 107, 26, 0.55);
+}
 </style>
 </head> <body class="t-body" style="margin:0;"> <!--allrecords--> <div class="t-records" data-hook="blocks-collection-content-node" data-tilda-cookie="no" data-tilda-formskey="6d1d6a096bd2d9911bc4e24b32238409" data-tilda-lazy="yes" data-tilda-page-id="191860309" data-tilda-project-country="RU" data-tilda-project-id="32238409" data-tilda-root-zone="com" id="allrecords"> <!-- UNIFIED MASTER HEADER -->
 <!-- UNIFIED MASTER SITE HEADER -->
@@ -1180,21 +1375,40 @@ html, body {
 <div class="saw-calc-field">
 <label>МАТЕРИАЛ</label>
 <select id="calc-material-select">
-<optgroup label="ЛДСП 16 мм Lamarty">
+<optgroup label="ЛДСП 16 мм Lamarty · Базовые и древесные (850 ₽/м²)">
 <option data-name="Венге Линум 16мм" selected="" value="850">Венге Линум 16мм · 850 ₽/м²</option>
 <option data-name="Дуб Сонома 16мм" value="850">Дуб Сонома 16мм · 850 ₽/м²</option>
 <option data-name="Белый Шагрень 16мм" value="850">Белый Шагрень 16мм · 850 ₽/м²</option>
 <option data-name="Серый Графит 16мм" value="850">Серый Графит 16мм · 850 ₽/м²</option>
 <option data-name="Ясень Шимо Светлый 16мм" value="850">Ясень Шимо Светлый 16мм · 850 ₽/м²</option>
+<option data-name="Ясень Шимо Тёмный 16мм" value="850">Ясень Шимо Тёмный 16мм · 850 ₽/м²</option>
 <option data-name="Кашемир 16мм" value="850">Кашемир 16мм · 850 ₽/м²</option>
+<option data-name="Дуб Вотан 16мм" value="850">Дуб Вотан 16мм · 850 ₽/м²</option>
+<option data-name="Бетон Светлый 16мм" value="850">Бетон Светлый 16мм · 850 ₽/м²</option>
+<option data-name="Чёрный Шагрень 16мм" value="850">Чёрный Шагрень 16мм · 850 ₽/м²</option>
+<option data-name="Орех Невада 16мм" value="850">Орех Невада 16мм · 850 ₽/м²</option>
+<option data-name="Дуб Крафт Золотой 16мм" value="850">Дуб Крафт Золотой 16мм · 850 ₽/м²</option>
 </optgroup>
-<optgroup label="ЛДСП 16 мм Egger">
-<option data-name="Egger Дуб Галифакс 16мм" value="1150">Egger Дуб Галифакс 16мм · 1 150 ₽/м²</option>
+<optgroup label="ЛДСП 16 мм Egger · Премиум синхропоры (1 150 ₽/м²)">
+<option data-name="Egger Дуб Галифакс Натуральный 16мм" value="1150">Egger Дуб Галифакс Натуральный 16мм · 1 150 ₽/м²</option>
+<option data-name="Egger Дуб Галифакс Табак 16мм" value="1150">Egger Дуб Галифакс Табак 16мм · 1 150 ₽/м²</option>
 <option data-name="Egger Белый Альпийский 16мм" value="1150">Egger Белый Альпийский 16мм · 1 150 ₽/м²</option>
+<option data-name="Egger Серый Пыльный 16мм" value="1150">Egger Серый Пыльный 16мм · 1 150 ₽/м²</option>
+<option data-name="Egger Орех Дикаприо 16мм" value="1150">Egger Орех Дикаприо 16мм · 1 150 ₽/м²</option>
 </optgroup>
-<optgroup label="МДФ Фасады">
+<optgroup label="ЛДСП 22–25 мм · Утолщённые столешницы и полки">
+<option data-name="Lamarty 22мм Дуб Сонома" value="1250">Lamarty 22мм Дуб Сонома · 1 250 ₽/м²</option>
+<option data-name="Lamarty 22мм Белый Гладкий" value="1250">Lamarty 22мм Белый Гладкий · 1 250 ₽/м²</option>
+<option data-name="Lamarty 25мм Венге" value="1450">Lamarty 25мм Венге · 1 450 ₽/м²</option>
+</optgroup>
+<optgroup label="МДФ Фасады и Детали">
 <option data-name="МДФ 16мм шлифованный" value="1450">МДФ 16мм шлифованный · 1 450 ₽/м²</option>
 <option data-name="МДФ 19мм шлифованный" value="1750">МДФ 19мм шлифованный · 1 750 ₽/м²</option>
+<option data-name="МДФ 16мм влагостойкий глубокая фрезеровка" value="1950">МДФ 16мм влагостойкий фрезерованный · 1 950 ₽/м²</option>
+</optgroup>
+<optgroup label="ХДФ / ДВП · Задние стенки и донья ящиков">
+<option data-name="ХДФ Белый 3.2мм" value="380">ХДФ Белый 3.2мм · 380 ₽/м²</option>
+<option data-name="ХДФ Венге / Серый 3.2мм" value="420">ХДФ Венге / Серый 3.2мм · 420 ₽/м²</option>
 </optgroup>
 </select>
 </div>
@@ -1294,8 +1508,60 @@ html, body {
           </button>
 </div>
 </div>
-</div>
 </section>
+<!-- DEDICATED CALCULATOR ORDER MODAL (Direct submit without scrolling down) -->
+<div id="calc-order-modal" class="saw-modal-overlay" onclick="if(event.target===this) closeCalcModal()">
+  <div class="saw-modal-card">
+    <button type="button" class="saw-modal-close" onclick="closeCalcModal()" aria-label="Закрыть модальное окно">✕</button>
+    <div class="saw-modal-badge">✦ ОФОРМЛЕНИЕ ЗАКАЗА НА РАСПИЛ</div>
+    <h3 class="saw-modal-title">Отправить расчёт на производство</h3>
+    <p class="saw-modal-subtitle">Все добавленные детали, площади и метраж кромки автоматически передаются мастеру цеха.</p>
+    
+    <!-- Calculation Live Summary Box -->
+    <div class="saw-modal-summary" id="calc-modal-summary-box">
+      <div class="saw-modal-summary-left">
+        <b id="calc-modal-parts-count">Деталей: 0 шт</b>
+        <span id="calc-modal-m2-info">Площадь: 0.00 м² · Кромка: 0 м</span>
+      </div>
+      <div class="saw-modal-summary-price" id="calc-modal-total-price">0 ₽</div>
+    </div>
+
+    <!-- Direct Order Form -->
+    <form id="calc-dedicated-form" onsubmit="submitCalcOrder(event)">
+      <div class="saw-modal-row">
+        <div class="saw-modal-field">
+          <label>Ваше имя *</label>
+          <input type="text" id="calc-order-name" required placeholder="Как вас зовут" class="saw-modal-input">
+        </div>
+        <div class="saw-modal-field">
+          <label>Номер телефона *</label>
+          <input type="tel" id="calc-order-phone" required placeholder="+7 (___) ___-__-__" class="saw-modal-input">
+        </div>
+      </div>
+
+      <div class="saw-modal-field">
+        <label>Комментарий / направление текстуры (по желанию)</label>
+        <textarea id="calc-order-comment" placeholder="Направление древесной текстуры, присадка петель, срочность..." class="saw-modal-textarea"></textarea>
+      </div>
+
+      <!-- File Attachment Dropzone -->
+      <div class="saw-modal-dropzone" onclick="document.getElementById('calc-order-file').click()">
+        <input type="file" id="calc-order-file" style="display:none" onchange="handleCalcFileSelect(this)">
+        <div class="saw-modal-drop-icon">📎</div>
+        <div>
+          <div class="saw-modal-drop-title" id="calc-file-status">Прикрепить карту раскроя / файл проекта</div>
+          <div class="saw-modal-drop-hint">PDF, DXF, CSV, Excel, JPG, PNG до 20 МБ</div>
+        </div>
+      </div>
+
+      <div class="saw-modal-actions">
+        <button type="submit" class="saw-modal-btn-submit">
+          <span>Отправить заказ на производство →</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
 <div class="r t-rec" data-record-type="1370" id="rec3089027501" style=" "> <!-- T1370 --> <div class="t1370"> <!-- nominify begin --> <link href="https://fonts.googleapis.com" rel="preconnect"/> <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/> <link href="css/montserrat.css?v=1788209058" rel="stylesheet"/> <style>
   .ch-about *,
@@ -3345,7 +3611,7 @@ html, body {
         transform: none;
       }
     }
-  </style> <div class="rv-block__container"> <div class="rv-block__header"> <div> <h2 class="rv-block__title">Что говорят <span class="rv-block__title-accent">клиенты</span> о нашей работе</h2> <p class="rv-block__subtitle">Реальные отзывы с 2ГИС — без редактуры и приукрашиваний. Каждый проект заканчивается обратной связью от заказчика.</p> </div> <div class="rv-block__summary"> <div class="rv-block__summary-score">4.9</div> <div class="rv-block__summary-text"> <div aria-label="5 из 5" class="rv-block__summary-stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-block__summary-label">на основе 79 оценок</span> </div> </div> </div> <div class="rv-block__grid"> <!-- Review 1 - Mitrich --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">М</div> <div class="rv-card__author"> <p class="rv-card__name">Митрич</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Уже не первый раз заказываю распил ЛДСП здесь. Нравится, что можно оформить всё онлайн и не тратить времени на поездки. Всегда чёткие размеры, приятные цены и вежливое общение.</p> </article> <!-- Review 2 - Maria Darpkunaite --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--green">MD</div> <div class="rv-card__author"> <p class="rv-card__name">Maria Darpkunaite</p> <span class="rv-card__count">8 отзывов</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__photo-wrap"> <img alt="Столешница в офисе крупно" loading="lazy" src="images/__2026-08-19__141417.png"/> <div aria-hidden="true" class="rv-card__preview"> <img alt="Полный вид столешницы" src="images/__2026-08-19__140939.png"/> </div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">7 марта 2024</span> </div> <p class="rv-card__text">Заказываю распил не первый раз, это прекрасная возможность сэкономить на стоимости мебели, всегда быстро и качественно, идут на встречу клиенту. Удобно что можно взять домой образцы, упрощает муки выбора цвета.</p> </article> <!-- Review 3 - Aleksei Volin --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">АВ</div> <div class="rv-card__author"> <p class="rv-card__name">Алексей Волин</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Нужно было несколько радиусных деталей для проекта — выполнили идеально, геометрия точная, кромка ровная. Видно, что работают на хорошем оборудовании. Остался доволен.</p> </article> </div> <div class="rv-block__cta-wrap"> <a class="rv-block__cta" href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883/73.350829%2C55.026615?m=73.350829%2C55.026615%2F11.85" rel="noopener noreferrer" target="_blank"> <span class="rv-block__cta-icon">2</span> <span class="rv-block__cta-text"> <strong>Смотреть все отзывы</strong> <span>на странице 2ГИС</span> </span> <svg class="rv-block__cta-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </div> </div> <!-- nominify end --> </div> </div> 
+  </style> <div class="rv-block__container"> <div class="rv-block__header"> <div> <h2 class="rv-block__title">Что говорят <span class="rv-block__title-accent">клиенты</span> о нашей работе</h2> <p class="rv-block__subtitle">Реальные отзывы с 2ГИС — без редактуры и приукрашиваний. Каждый проект заканчивается обратной связью от заказчика.</p> </div> <div class="rv-block__summary"> <div class="rv-block__summary-score">4.9</div> <div class="rv-block__summary-text"> <div aria-label="5 из 5" class="rv-block__summary-stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-block__summary-label">на основе 79 оценок</span> </div> </div> </div> <div class="rv-block__grid"> <!-- Review 1 - Mitrich --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">М</div> <div class="rv-card__author"> <p class="rv-card__name">Митрич</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Уже не первый раз заказываю распил ЛДСП здесь. Нравится, что можно оформить всё онлайн и не тратить времени на поездки. Всегда чёткие размеры, приятные цены и вежливое общение.</p> </article> <!-- Review 2 - Maria Darpkunaite --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--green">MD</div> <div class="rv-card__author"> <p class="rv-card__name">Maria Darpkunaite</p> <span class="rv-card__count">8 отзывов</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__photo-wrap"> <img alt="Столешница в офисе крупно" loading="lazy" src="images/review_table_crop.png"/> <div aria-hidden="true" class="rv-card__preview"> <img alt="Полный вид столешницы" src="images/review_table_full.png"/> </div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">7 марта 2024</span> </div> <p class="rv-card__text">Заказываю распил не первый раз, это прекрасная возможность сэкономить на стоимости мебели, всегда быстро и качественно, идут на встречу клиенту. Удобно что можно взять домой образцы, упрощает муки выбора цвета.</p> </article> <!-- Review 3 - Aleksei Volin --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">АВ</div> <div class="rv-card__author"> <p class="rv-card__name">Алексей Волин</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Нужно было несколько радиусных деталей для проекта — выполнили идеально, геометрия точная, кромка ровная. Видно, что работают на хорошем оборудовании. Остался доволен.</p> </article> </div> <div class="rv-block__cta-wrap"> <a class="rv-block__cta" href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883/73.350829%2C55.026615?m=73.350829%2C55.026615%2F11.85" rel="noopener noreferrer" target="_blank"> <span class="rv-block__cta-icon">2</span> <span class="rv-block__cta-text"> <strong>Смотреть все отзывы</strong> <span>на странице 2ГИС</span> </span> <svg class="rv-block__cta-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </div> </div> <!-- nominify end --> </div> </div> 
 <div class="r t-rec" data-record-type="1370" id="rec3213771601">
 <section class="exact-form-section" id="order-form">
 <div class="exact-form-card">
@@ -3646,15 +3912,65 @@ html, body {
     }
   };
 
-  submitBtn.onclick = function() {
+  // Dedicated Modal Handlers
+  window.openCalcModal = function() {
     if (items.length === 0) {
-      alert('Добавьте хотя бы одну деталь в расчёт!');
+      alert('Добавьте хотя бы одну деталь в расчёт перед отправкой!');
       return;
     }
-    const formSection = document.getElementById('rec3213771601');
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: 'smooth' });
+    
+    let totalArea = 0;
+    let totalEdgeMeters = 0;
+    let grandTotal = 0;
+
+    items.forEach(function(itm) {
+      totalArea += (itm.length * itm.width) / 1000000;
+      totalEdgeMeters += itm.edgeRoundedMeters;
+      grandTotal += itm.cost;
+    });
+
+    var partsCountEl = document.getElementById('calc-modal-parts-count');
+    var m2InfoEl = document.getElementById('calc-modal-m2-info');
+    var totalPriceEl = document.getElementById('calc-modal-total-price');
+    var modal = document.getElementById('calc-order-modal');
+
+    if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + items.length + ' шт';
+    if (m2InfoEl) m2InfoEl.innerText = 'Площадь: ' + totalArea.toFixed(2) + ' м² · Кромка: ' + totalEdgeMeters + ' пог. м';
+    if (totalPriceEl) totalPriceEl.innerText = grandTotal.toLocaleString('ru-RU') + ' ₽';
+
+    if (modal) modal.classList.add('is-open');
+  };
+
+  window.closeCalcModal = function() {
+    var modal = document.getElementById('calc-order-modal');
+    if (modal) modal.classList.remove('is-open');
+  };
+
+  window.handleCalcFileSelect = function(input) {
+    var file = input.files[0];
+    var label = document.getElementById('calc-file-status');
+    if (file && label) {
+      label.innerHTML = '📁 <b>' + file.name + '</b> (' + (file.size / 1024 / 1024).toFixed(2) + ' МБ)';
     }
+  };
+
+  window.submitCalcOrder = function(e) {
+    e.preventDefault();
+    var name = document.getElementById('calc-order-name').value;
+    var phone = document.getElementById('calc-order-phone').value;
+    
+    alert('Спасибо, ' + name + '! Ваш заказ на распил и спецификация деталей приняты. Мы свяжемся с вами по телефону ' + phone + ' в течение 15 минут.');
+    
+    window.closeCalcModal();
+    items.length = 0;
+    renderTable();
+    document.getElementById('calc-dedicated-form').reset();
+    var statusEl = document.getElementById('calc-file-status');
+    if (statusEl) statusEl.innerText = 'Прикрепить карту раскроя / файл проекта';
+  };
+
+  submitBtn.onclick = function() {
+    window.openCalcModal();
   };
 })();
 </script>

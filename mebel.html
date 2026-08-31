@@ -572,16 +572,197 @@
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .mebel-hero__inner { grid-template-columns: 1fr; }
-      .mebel-hero__showcase { display: none; }
       .mebel-catalog-grid { grid-template-columns: repeat(2, 1fr); }
       .mebel-steps-grid { grid-template-columns: repeat(2, 1fr); }
-      .mebel-header__nav-menu { display: none; }
     }
     @media (max-width: 640px) {
       .mebel-catalog-grid { grid-template-columns: 1fr; }
       .mebel-steps-grid { grid-template-columns: 1fr; }
       .mebel-hero__badges { grid-template-columns: 1fr; }
-      .mebel-header__contact { display: none; }
+    }
+
+    /* === SECTION COLOR ALTERNATION (MILKY VS DARK BROWN) === */
+    .mebel-hero {
+      background: radial-gradient(circle at 75% 30%, rgba(255, 107, 26, 0.12) 0%, transparent 60%),
+                  linear-gradient(180deg, #1c110a 0%, #25160d 100%) !important;
+      border-bottom: 1px solid rgba(212, 175, 110, 0.2) !important;
+    }
+    .mebel-section--milky {
+      background-color: #f8f4ec !important;
+      color: #1c110a !important;
+      border-top: 1px solid rgba(139, 90, 43, 0.12) !important;
+      border-bottom: 1px solid rgba(139, 90, 43, 0.12) !important;
+    }
+    .mebel-section--milky .mebel-section-title {
+      color: #1c110a !important;
+    }
+    .mebel-section--milky .mebel-section-desc {
+      color: #6b4e39 !important;
+    }
+    .mebel-section--milky .mebel-card {
+      background: #ffffff !important;
+      border: 1px solid rgba(139, 90, 43, 0.15) !important;
+      box-shadow: 0 10px 30px rgba(74, 44, 26, 0.06) !important;
+    }
+    .mebel-section--milky .mebel-card:hover {
+      border-color: #ff6b1a !important;
+      box-shadow: 0 18px 40px rgba(255, 107, 26, 0.15) !important;
+    }
+    .mebel-section--milky .mebel-card__title {
+      color: #1c110a !important;
+    }
+    .mebel-section--milky .mebel-card__desc {
+      color: #6b4e39 !important;
+    }
+    .mebel-section--milky .mebel-card__specs {
+      border-top: 1px solid rgba(139, 90, 43, 0.12) !important;
+    }
+    .mebel-section--milky .mebel-card__spec-item span {
+      color: #8c6e58 !important;
+    }
+    .mebel-section--milky .mebel-card__spec-item b {
+      color: #1c110a !important;
+    }
+    .mebel-section--milky .mebel-step-card {
+      background: #ffffff !important;
+      border: 1px solid rgba(139, 90, 43, 0.15) !important;
+      box-shadow: 0 10px 30px rgba(74, 44, 26, 0.06) !important;
+    }
+    .mebel-section--milky .mebel-step-card h4 {
+      color: #1c110a !important;
+    }
+    .mebel-section--milky .mebel-step-card p {
+      color: #6b4e39 !important;
+    }
+
+    .mebel-section--dark {
+      background-color: #1c110a !important;
+      color: #ffffff !important;
+    }
+
+    /* === LUXURY INTERACTIVE 3D FURNITURE SHOWCASE === */
+    .mebel-interactive-showcase {
+      position: relative;
+      width: 100%;
+      max-width: 580px;
+      margin: 0 auto;
+      border-radius: 20px;
+      background: linear-gradient(145deg, #2a1a10 0%, #1a0f08 100%);
+      border: 1px solid rgba(255, 138, 60, 0.35);
+      padding: 16px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 107, 26, 0.15);
+    }
+    .mebel-showcase-view {
+      position: relative;
+      width: 100%;
+      height: 360px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+    .mebel-showcase-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.4s ease, transform 0.6s ease;
+      display: block;
+    }
+    .mebel-showcase-view:hover .mebel-showcase-img {
+      transform: scale(1.04);
+    }
+    /* Hotspot markers */
+    .mebel-hotspot {
+      position: absolute;
+      z-index: 5;
+      cursor: pointer;
+    }
+    .mebel-hotspot__dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(255, 107, 26, 0.9);
+      border: 2px solid #ffffff;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 16px rgba(255, 107, 26, 0.85);
+      animation: hotspotPulse 2s infinite;
+      transition: transform 0.25s ease;
+    }
+    @keyframes hotspotPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 12px rgba(255, 107, 26, 0.8); }
+      50% { transform: scale(1.15); box-shadow: 0 0 22px rgba(255, 107, 26, 1); }
+    }
+    .mebel-hotspot__tooltip {
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(20, 12, 7, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid #ff8a3c;
+      padding: 8px 14px;
+      border-radius: 10px;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      z-index: 10;
+    }
+    .mebel-hotspot__tooltip span {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 500;
+      color: #ffd991;
+      margin-top: 2px;
+    }
+    .mebel-hotspot:hover .mebel-hotspot__tooltip,
+    .mebel-hotspot.is-open .mebel-hotspot__tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    /* Material Switcher Bar */
+    .mebel-showcase-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 14px;
+      gap: 8px;
+    }
+    .mebel-mat-btn {
+      flex: 1;
+      padding: 9px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 138, 60, 0.25);
+      background: rgba(255, 255, 255, 0.05);
+      color: #f5ede4;
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .mebel-mat-btn:hover, .mebel-mat-btn.is-active {
+      background: rgba(255, 107, 26, 0.22);
+      border-color: #ff8a3c;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(255, 107, 26, 0.35);
+    }
+    .mebel-mat-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
     }
   </style>
 <meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный 3D-проект." name="description"/>
@@ -1257,7 +1438,6 @@ html, body {
 </header>
 <!-- HERO BANNER -->
 <section class="mebel-hero" style="position:relative; overflow:hidden;">
-<canvas id="mebel-hero-canvas" style="position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none;"></canvas>
 <div class="mebel-hero__bg-glow"></div>
 <div class="mebel-hero__inner">
 <div class="mebel-hero__content">
@@ -1293,17 +1473,59 @@ html, body {
 </div>
 </div>
 </div>
-      <!-- HERO 3D STAGE (ANIMATION REVEALED) -->
-      <div class="mebel-hero__stage" style="display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:460px; pointer-events:none;">
-        <div class="mebel-hero__stage-hint" style="background:rgba(20, 12, 8, 0.85); border:1px solid rgba(255, 138, 60, 0.4); backdrop-filter:blur(10px); padding:9px 20px; border-radius:30px; font-size:12px; font-weight:700; color:#ffd991; display:inline-flex; align-items:center; gap:8px; margin-top:auto; box-shadow:0 8px 24px rgba(0,0,0,0.6); pointer-events:auto;">
-          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff9e58; box-shadow:0 0 10px #ff9e58;"></span>
-          Интерактивная 3D-модель мебели · Управляйте курсором
+      <!-- LUXURY INTERACTIVE 3D FURNITURE SHOWCASE -->
+      <div class="mebel-hero__stage" style="display:flex; flex-direction:column; align-items:center; justify-content:center; width:100%;">
+        <div class="mebel-interactive-showcase" id="furniture-explorer">
+          <div class="mebel-showcase-view">
+            <img src="images/mebel_kitchen.jpg" alt="Интерактивная мебель на заказ в Омске" class="mebel-showcase-img" id="showcase-main-img"/>
+            
+            <!-- Hotspot 1: Facades -->
+            <div class="mebel-hotspot" style="top: 28%; left: 32%;">
+              <div class="mebel-hotspot__dot">+</div>
+              <div class="mebel-hotspot__tooltip">
+                Фасады Soft-Touch & Эмаль
+                <span>Немецкие материалы, устойчивость к царапинам</span>
+              </div>
+            </div>
+
+            <!-- Hotspot 2: Blum Hardware -->
+            <div class="mebel-hotspot" style="top: 68%; left: 65%;">
+              <div class="mebel-hotspot__dot">+</div>
+              <div class="mebel-hotspot__tooltip">
+                Фурнитура Blum & Hettich
+                <span>Плавные доводчики, 100 000+ циклов</span>
+              </div>
+            </div>
+
+            <!-- Hotspot 3: LED Lighting -->
+            <div class="mebel-hotspot" style="top: 45%; left: 82%;">
+              <div class="mebel-hotspot__dot">+</div>
+              <div class="mebel-hotspot__tooltip">
+                Встроенная LED-подсветка 3000K
+                <span>Интегрированный врезной профиль</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Material / Scene Selector -->
+          <div class="mebel-showcase-controls">
+            <button class="mebel-mat-btn is-active" onclick="switchShowcaseScene('kitchen', this)">
+              <span class="mebel-mat-dot" style="background:#ff8a3c;"></span> Кухня Премиум
+            </button>
+            <button class="mebel-mat-btn" onclick="switchShowcaseScene('wardrobe', this)">
+              <span class="mebel-mat-dot" style="background:#d4af6e;"></span> Шкаф-купе
+            </button>
+            <button class="mebel-mat-btn" onclick="switchShowcaseScene('dressing', this)">
+              <span class="mebel-mat-dot" style="background:#c4ab99;"></span> Гардеробная
+            </button>
+          </div>
         </div>
       </div>
 </div>
 </section>
-<!-- CATALOG CATEGORIES -->
-<section class="mebel-section" id="categories">
+
+<!-- 1. CATALOG CATEGORIES (MILKY / CREAM) -->
+<section class="mebel-section mebel-section--milky" id="categories" style="background-color:#f8f4ec;">
 <div class="mebel-section-head">
 <span class="mebel-section-eyebrow">Направления производства</span>
 <h2 class="mebel-section-title">Что мы изготавливаем на заказ</h2>
@@ -1315,9 +1537,9 @@ html, body {
 <!-- 1. Кухни -->
 <div class="mebel-card">
 <div class="mebel-card__img-wrap">
-<img alt="Кухня на заказ в темных тонах со стеклянной витриной и подсветкой Омск" src="images/mebel_kitchen.jpg">
+<img alt="Кухня на заказ в темных тонах со стеклянной витриной и подсветкой Омск" src="images/mebel_kitchen.jpg"/>
 <div class="mebel-card__tag">Хит заказов</div>
-</img></div>
+</div>
 <div class="mebel-card__body">
 <h3 class="mebel-card__title">Кухни по индивидуальным размерам</h3>
 <p class="mebel-card__desc">
@@ -1434,22 +1656,23 @@ html, body {
 </div>
 </div>
 </section>
-<!-- GALLERY OF COMPLETED WORKS (ГОТОВЫЕ РАБОТЫ В РЯД) -->
-<section class="mebel-section" id="portfolio">
+
+<!-- 2. GALLERY OF COMPLETED WORKS (DARK BROWN) -->
+<section class="mebel-section mebel-section--dark" id="portfolio" style="background-color:#1c110a;">
 <div class="mebel-section-head">
 <span class="mebel-section-eyebrow">Наши реализованные проекты</span>
 <h2 class="mebel-section-title">Готовые работы, которые говорят за нас</h2>
 <p class="mebel-section-desc">Каждый проект выполнен на собственном производстве с точностью до 0,1 мм и гарантией качества по договору.</p>
 </div>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
 <div class="mebel-card">
-<div class="mebel-card__img-wrap" style="height: 320px;">
-<img alt="Кухня на заказ в темных тонах со стеклянной витриной и подсветкой Омск" src="images/mebel_kitchen.jpg"/>
+<div class="mebel-card__img-wrap" style="height: 300px;">
+<img alt="Кухня на заказ в темных тонах со стеклянной витриной и подсветкой Омск" src="images/client_review_1.jpg"/>
 <div class="mebel-card__tag">Кухня с витриной</div>
 </div>
 <div class="mebel-card__body">
-<h3 class="mebel-card__title">Кухня в темных тонах со стеклянной витриной</h3>
-<p class="mebel-card__desc">Фасады МДФ Soft-Touch, интегрированная теплая подсветка полок, фурнитура с доводчиками, влагостойкая столешница под мрамор.</p>
+<h3 class="mebel-card__title">Кухня в темных тонах с витриной</h3>
+<p class="mebel-card__desc">Фасады МДФ Soft-Touch, интегрированная теплая подсветка полок, фурнитура с доводчиками, влагостойкая столешница.</p>
 <div class="mebel-card__specs">
 <span style="color:var(--c-accent); font-weight:700;">Срок: 18 дней</span>
 <a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
@@ -1457,13 +1680,13 @@ html, body {
 </div>
 </div>
 <div class="mebel-card">
-<div class="mebel-card__img-wrap" style="height: 320px;">
-<img alt="Встроенный шкаф с декоративными рейками и подвесной консолью" src="images/mebel_wardrobe.jpg"/>
+<div class="mebel-card__img-wrap" style="height: 300px;">
+<img alt="Встроенный шкаф с декоративными рейками и подвесной консолью" src="images/client_review_2.jpg"/>
 <div class="mebel-card__tag">Шкаф под потолок</div>
 </div>
 <div class="mebel-card__body">
 <h3 class="mebel-card__title">Встроенный шкаф с декоративными рейками</h3>
-<p class="mebel-card__desc">Индивидуальный проект для прихожей с подвесной консолью, вертикальными рейками и скрытой подсветкой по периметру.</p>
+<p class="mebel-card__desc">Индивидуальный проект для прихожей с подвесной консолью, вертикальными рейками и скрытой подсветкой.</p>
 <div class="mebel-card__specs">
 <span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
 <a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
@@ -1471,13 +1694,13 @@ html, body {
 </div>
 </div>
 <div class="mebel-card">
-<div class="mebel-card__img-wrap" style="height: 320px;">
-<img alt="Гардеробная комната с подсветкой полок и выдвижными ящиками" src="images/mebel_dressing.jpg"/>
+<div class="mebel-card__img-wrap" style="height: 300px;">
+<img alt="Гардеробная комната с подсветкой полок и выдвижными ящиками" src="images/client_review_3.jpg"/>
 <div class="mebel-card__tag">Люкс гардеробная</div>
 </div>
 <div class="mebel-card__body">
 <h3 class="mebel-card__title">Гардеробная с умным зонированием</h3>
-<p class="mebel-card__desc">Секции для длинной и короткой одежды, полки для обуви с подсветкой, выдвижные ящики для белья и аксессуаров.</p>
+<p class="mebel-card__desc">Секции для длинной и короткой одежды, полки для обуви с подсветкой, выдвижные ящики для аксессуаров.</p>
 <div class="mebel-card__specs">
 <span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
 <a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Гардеробная')">Хочу такую →</a>
@@ -1486,8 +1709,9 @@ html, body {
 </div>
 </div>
 </section>
-<!-- INTERACTIVE QUIZ ESTIMATOR -->
-<section class="mebel-section" id="calculator">
+
+<!-- 3. INTERACTIVE QUIZ ESTIMATOR (MILKY / CREAM WRAPPER) -->
+<section class="mebel-section mebel-section--milky" id="calculator" style="background-color:#f8f4ec;">
 <div class="mebel-quiz">
 <div class="mebel-section-head" style="margin-bottom: 28px; text-align: left;">
 <span class="mebel-section-eyebrow">Экспресс-расчёт</span>
@@ -1533,8 +1757,9 @@ html, body {
 </div>
 </div>
 </section>
-<!-- STEPS SECTION -->
-<section class="mebel-section" id="steps">
+
+<!-- 4. STEPS SECTION (MILKY / CREAM) -->
+<section class="mebel-section mebel-section--milky" id="steps" style="background-color:#f4eee5; border-top:1px solid rgba(139,90,43,0.15);">
 <div class="mebel-section-head">
 <span class="mebel-section-eyebrow">Простой и прозрачный процесс</span>
 <h2 class="mebel-section-title">Как мы создаем вашу мебель</h2>
@@ -1568,62 +1793,114 @@ html, body {
 </div>
 </div>
 </section>
-<!-- REVIEWS SECTION -->
-<section class="mebel-section" id="reviews">
+
+<!-- 5. REVIEWS FROM 2GIS WITH PHOTOS & DIRECT LINK (DARK BROWN) -->
+<section class="mebel-section mebel-section--dark" id="reviews" style="background-color:#1c110a;">
 <div class="mebel-section-head">
-<span class="mebel-section-eyebrow">Отзывы клиентов</span>
-<h2 class="mebel-section-title">Что говорят о нас заказчики</h2>
-<p class="mebel-section-desc">Реальные отзывы клиентов с 2ГИС (рейтинг 4.9 из 5)</p>
+<span class="mebel-section-eyebrow">Честные отзывы заказчиков</span>
+<h2 class="mebel-section-title">Что говорят о нас на 2ГИС</h2>
+<p class="mebel-section-desc">
+  Официальный рейтинг компании «МОЙ мебельный» на 2ГИС — <b>4.9 из 5.0</b> (более 79 подтвержденных отзывов).
+</p>
+<div style="margin-top:16px;">
+  <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255, 107, 26, 0.15); border:1px solid rgba(255, 107, 26, 0.4); padding:8px 20px; border-radius:30px; color:#ffd991; font-weight:800; font-size:14px;">
+    ★ 4.9 рейтинг на 2ГИС · Омск, ул. 22 Партсъезда, 51Б
+  </span>
 </div>
+</div>
+
 <div class="mebel-catalog-grid">
-<div class="mebel-card" style="padding: 24px;">
-<div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-<b style="color:#ffffff; font-size:16px;">Анастасия В.</b>
-<span style="color:#ff8a3c;">★★★★★</span>
+<!-- Review 1 with Real Client Photo -->
+<div class="mebel-card" style="padding: 0; overflow:hidden;">
+  <div style="height:200px; position:relative; overflow:hidden;">
+    <img src="images/client_review_1.jpg" alt="Реальный проект кухни от МОЙ мебельный" style="width:100%; height:100%; object-fit:cover;"/>
+    <div style="position:absolute; bottom:8px; left:12px; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
+      📷 Фото проекта клиента
+    </div>
+  </div>
+  <div style="padding: 22px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <b style="color:#ffffff; font-size:16px;">Анастасия В.</b>
+      <span style="color:#ff8a3c; font-size:16px;">★★★★★</span>
+    </div>
+    <p style="font-size:13.5px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
+      «Заказывали гардеробную и большой шкаф в прихожую. Сделали идеально по размерам, каждая полочка ровная, подсветка смотрится роскошно! Спасибо монтажникам за аккуратную сборку.»
+    </p>
+    <div style="font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
+      <span>✓</span> 2ГИС · Подтвержденный заказ
+    </div>
+  </div>
 </div>
-<p style="font-size:14px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
-          «Заказывали гардеробную и большой шкаф в прихожую. Сделали идеально по размерам, каждая полочка ровная, подсветка смотрится роскошно! Спасибо монтажникам за аккуратную сборку.»
-        </p>
-<span style="font-size:12px; color:var(--c-text-muted);">2ГИС · Отзыв подтвержден</span>
+
+<!-- Review 2 with Real Client Photo -->
+<div class="mebel-card" style="padding: 0; overflow:hidden;">
+  <div style="height:200px; position:relative; overflow:hidden;">
+    <img src="images/client_review_2.jpg" alt="Реальный проект шкафа от МОЙ мебельный" style="width:100%; height:100%; object-fit:cover;"/>
+    <div style="position:absolute; bottom:8px; left:12px; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
+      📷 Фото проекта клиента
+    </div>
+  </div>
+  <div style="padding: 22px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <b style="color:#ffffff; font-size:16px;">Сергей Михайлов</b>
+      <span style="color:#ff8a3c; font-size:16px;">★★★★★</span>
+    </div>
+    <p style="font-size:13.5px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
+      «Заказывал кухню в темных тонах со стеклянными фасадами. Качество распила и кромки на высоте, все зазоры минимальные. Порадовало, что есть собственное производство без наценок.»
+    </p>
+    <div style="font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
+      <span>✓</span> 2ГИС · Подтвержденный заказ
+    </div>
+  </div>
 </div>
-<div class="mebel-card" style="padding: 24px;">
-<div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-<b style="color:#ffffff; font-size:16px;">Сергей Михайлов</b>
-<span style="color:#ff8a3c;">★★★★★</span>
+
+<!-- Review 3 with Real Client Photo -->
+<div class="mebel-card" style="padding: 0; overflow:hidden;">
+  <div style="height:200px; position:relative; overflow:hidden;">
+    <img src="images/client_review_3.jpg" alt="Мебель Loft от МОЙ мебельный" style="width:100%; height:100%; object-fit:cover;"/>
+    <div style="position:absolute; bottom:8px; left:12px; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
+      📷 Фото проекта клиента
+    </div>
+  </div>
+  <div style="padding: 22px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <b style="color:#ffffff; font-size:16px;">Елена К.</b>
+      <span style="color:#ff8a3c; font-size:16px;">★★★★★</span>
+    </div>
+    <p style="font-size:13.5px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
+      «Сделали мебель для салона красоты в стиле Loft: столы и стеллажи с металлическим каркасом. Всё очень прочно, красиво и точно в обещанный срок!»
+    </p>
+    <div style="font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
+      <span>✓</span> 2ГИС · Подтвержденный заказ
+    </div>
+  </div>
 </div>
-<p style="font-size:14px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
-          «Заказывал кухню в темных тонах со стеклянными фасадами. Качество распила и кромки на высоте, все зазоры минимальные. Порадовало, что есть собственное производство без наценок.»
-        </p>
-<span style="font-size:12px; color:var(--c-text-muted);">2ГИС · Отзыв подтвержден</span>
 </div>
-<div class="mebel-card" style="padding: 24px;">
-<div style="display:flex; justify-content:space-between; margin-bottom:12px;">
-<b style="color:#ffffff; font-size:16px;">Елена К.</b>
-<span style="color:#ff8a3c;">★★★★★</span>
-</div>
-<p style="font-size:14px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
-          «Сделали мебель для салона красоты в стиле Loft: столы и стеллажи с металлическим каркасом. Всё очень прочно, красиво и точно в обещанный срок!»
-        </p>
-<span style="font-size:12px; color:var(--c-text-muted);">2ГИС · Отзыв подтвержден</span>
-</div>
+
+<!-- Prominent 2GIS Button Link -->
+<div style="text-align:center; margin-top:48px;">
+  <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" target="_blank" rel="noopener noreferrer" class="mebel-btn-primary" style="display:inline-flex; align-items:center; gap:12px; padding:16px 36px; font-size:15px; text-decoration:none;">
+    <span>Смотреть больше отзывов на 2ГИС →</span>
+    <span style="background:rgba(255,255,255,0.25); padding:3px 8px; border-radius:12px; font-size:12px;">79+ отзывов</span>
+  </a>
 </div>
 </section>
-<!-- ORDER FORM SECTION -->
 
-<div class="r t-rec" data-record-type="1370" id="rec3213771601">
-<section class="exact-form-section" id="order-form">
-<div class="exact-form-card">
+<!-- 6. ORDER FORM SECTION (MILKY / CREAM) -->
+<div class="r t-rec" data-record-type="1370" id="rec3213771601" style="background-color:#f8f4ec;">
+<section class="exact-form-section" id="order-form" style="background-color:#f8f4ec;">
+<div class="exact-form-card" style="background:#ffffff; border:1px solid rgba(139,90,43,0.18); box-shadow:0 20px 50px rgba(74,44,26,0.08);">
 <!-- Eyebrow Pill -->
-<div class="exact-form-eyebrow">
-<span class="exact-form-eyebrow-dot"></span>
+<div class="exact-form-eyebrow" style="background:rgba(255,107,26,0.1); color:#ff6b1a; border:1px solid rgba(255,107,26,0.3);">
+<span class="exact-form-eyebrow-dot" style="background:#ff6b1a;"></span>
         ОСТАВИТЬ ЗАЯВКУ
       </div>
 <!-- Main Title -->
-<h2 class="exact-form-title">
-        Расскажите о вашем <span>проекте</span>
+<h2 class="exact-form-title" style="color:#1c110a;">
+        Расскажите о вашем <span style="color:#ff6b1a;">проекте</span>
 </h2>
 <!-- Subtitle -->
-<p class="exact-form-subtitle">
+<p class="exact-form-subtitle" style="color:#6b4e39;">
         Заполните форму — мы свяжемся с вами и обсудим детали.
       </p>
 <!-- Form -->
@@ -1631,26 +1908,26 @@ html, body {
 <input type="hidden" name="mebel_type" id="form-mebel-type" value="Кухня">
 <!-- Row 1: Name and Phone -->
 <div class="exact-form-row">
-<input class="exact-form-input" placeholder="Как вас зовут" required="" type="text"/>
-<input class="exact-form-input" placeholder="Телефон" required="" type="tel"/>
+<input class="exact-form-input" placeholder="Как вас зовут" required="" type="text" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
+<input class="exact-form-input" placeholder="Телефон" required="" type="tel" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
 </div>
 <!-- Row 2: Email and Service Selection -->
 <div class="exact-form-row">
-<input class="exact-form-input" placeholder="Email (по желанию)" type="email"/>
+<input class="exact-form-input" placeholder="Email (по желанию)" type="email" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
 <div class="exact-select-wrap">
 <span class="exact-select-badge">Какая услуга интересует</span>
-<select class="exact-form-select" id="exact-service-select">
-<option selected="" value="raspil">Распил и кромление ЛДСП</option>
-<option value="kitchen">Кухня по индивидуальным размерам</option>
+<select class="exact-form-select" id="exact-service-select" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;">
+<option selected="" value="kitchen">Кухня по индивидуальным размерам</option>
 <option value="wardrobe">Встроенный шкаф / гардеробная</option>
 <option value="loft">Мебель в стиле Loft</option>
 <option value="commercial">Торговое оборудование / витрины</option>
+<option value="raspil">Распил и кромление ЛДСП</option>
 <option value="mdf">Фасады МДФ и фрезеровка</option>
 </select>
 </div>
 </div>
 <!-- Row 3: File Attachment Box (Matching screenshot) -->
-<div class="exact-file-box">
+<div class="exact-file-box" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25);">
 <input id="exact-form-file" multiple="" onchange="const f = this.files[0]; if(f) document.getElementById('exact-file-name-label').innerText = 'Выбран файл: ' + f.name;" type="file"/>
 <input type="file" id="mebel-file" style="display:none" onchange="const f = this.files[0]; if(f) document.getElementById('exact-file-name-label').innerText = 'Выбран файл: ' + f.name;"/>
 <div class="exact-file-left">
@@ -1658,17 +1935,17 @@ html, body {
 <img alt="" onerror="this.innerHTML='📎';" src="images/attachment.svg"/>
 </div>
 <div>
-<div class="exact-file-title" id="exact-file-name-label">Прикрепить файл</div>
-<div class="exact-file-hint">PDF, JPG, PNG, DWG, DOC, XLS — до 20 МБ</div>
+<div class="exact-file-title" id="exact-file-name-label" style="color:#1c110a;">Прикрепить файл проекта</div>
+<div class="exact-file-hint" style="color:#8c6e58;">PDF, JPG, PNG, DWG, DOC, XLS — до 20 МБ</div>
 </div>
 </div>
-<div class="exact-file-plus">+</div>
+<div class="exact-file-plus" style="color:#ff6b1a;">+</div>
 </div>
 <!-- Row 4: Project Description -->
-<textarea class="exact-form-textarea" placeholder="Кратко о проекте"></textarea>
+<textarea class="exact-form-textarea" placeholder="Кратко о проекте" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"></textarea>
 <!-- Row 5: Dark Bronze Submit Button with Heart Icon -->
 <div class="exact-form-submit-wrap">
-<button class="exact-form-btn-submit" type="submit">
+<button class="exact-form-btn-submit" type="submit" style="background:linear-gradient(135deg, #ff8a3c 0%, #e05206 100%);">
 <span>Отправить заявку</span>
 <span class="exact-form-btn-heart">♥</span>
 </button>
@@ -1815,246 +2092,24 @@ html, body {
   }
 })();
 </script>
-<script id="standalone-mebel-3d">
-// === AWWWARDS-GRADE 3D ISOMETRIC FURNITURE WIREFRAME ENGINE ===
-(function() {
-  const canvas = document.getElementById('mebel-hero-canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let time = 0;
-  let mouse = { x: 0.72, y: 0.48, tx: 0.72, ty: 0.48 };
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-  function resize() {
-    const parent = canvas.parentElement;
-    width = parent.offsetWidth;
-    height = parent.offsetHeight;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = width + 'px';
-    canvas.style.height = height + 'px';
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  window.addEventListener('mousemove', function(e) {
-    const rect = canvas.getBoundingClientRect();
-    if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
-      mouse.tx = (e.clientX - rect.left) / width;
-      mouse.ty = (e.clientY - rect.top) / height;
-    }
+<script id="standalone-mebel-showcase">
+function switchShowcaseScene(type, btn) {
+  document.querySelectorAll('.mebel-mat-btn').forEach(function(b) {
+    b.classList.remove('is-active');
   });
-
-  // Project 3D point (x, y, z) to 2D screen coordinates
-  function project(x, y, z, rotY, rotX, cx, cy, scale) {
-    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
-    const x1 = x * cosY - z * sinY;
-    const z1 = x * sinY + z * cosY;
-
-    const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
-    const y2 = y * cosX - z1 * sinX;
-    const z2 = y * sinX + z1 * cosX;
-
-    const perspective = 1400 / (1400 + z2);
-    return {
-      x: cx + x1 * scale * perspective,
-      y: cy + y2 * scale * perspective,
-      z: z2
-    };
-  }
-
-  function drawBox(ctx, x, y, z, w, h, d, rotY, rotX, cx, cy, scale, strokeCol, fillCol, lineWidth) {
-    const hw = w / 2, hh = h / 2, hd = d / 2;
-    const v = [
-      project(x - hw, y - hh, z - hd, rotY, rotX, cx, cy, scale),
-      project(x + hw, y - hh, z - hd, rotY, rotX, cx, cy, scale),
-      project(x + hw, y + hh, z - hd, rotY, rotX, cx, cy, scale),
-      project(x - hw, y + hh, z - hd, rotY, rotX, cx, cy, scale),
-      project(x - hw, y - hh, z + hd, rotY, rotX, cx, cy, scale),
-      project(x + hw, y - hh, z + hd, rotY, rotX, cx, cy, scale),
-      project(x + hw, y + hh, z + hd, rotY, rotX, cx, cy, scale),
-      project(x - hw, y + hh, z + hd, rotY, rotX, cx, cy, scale)
-    ];
-
-    if (fillCol) {
-      const faces = [
-        [0, 1, 2, 3], // Front
-        [5, 4, 7, 6], // Back
-        [4, 5, 1, 0], // Top
-        [3, 2, 6, 7], // Bottom
-        [4, 0, 3, 7], // Left
-        [1, 5, 6, 2]  // Right
-      ];
-      ctx.fillStyle = fillCol;
-      faces.forEach(f => {
-        ctx.beginPath();
-        ctx.moveTo(v[f[0]].x, v[f[0]].y);
-        ctx.lineTo(v[f[1]].x, v[f[1]].y);
-        ctx.lineTo(v[f[2]].x, v[f[2]].y);
-        ctx.lineTo(v[f[3]].x, v[f[3]].y);
-        ctx.closePath();
-        ctx.fill();
-      });
-    }
-
-    if (strokeCol) {
-      ctx.strokeStyle = strokeCol;
-      ctx.lineWidth = lineWidth || 1.2;
-      const edges = [
-        [0,1],[1,2],[2,3],[3,0],
-        [4,5],[5,6],[6,7],[7,4],
-        [0,4],[1,5],[2,6],[3,7]
-      ];
-      edges.forEach(e => {
-        ctx.beginPath();
-        ctx.moveTo(v[e[0]].x, v[e[0]].y);
-        ctx.lineTo(v[e[1]].x, v[e[1]].y);
-        ctx.stroke();
-      });
-    }
-    return v;
-  }
-
-  function loop() {
-    time += 0.014;
-    mouse.x += (mouse.tx - mouse.x) * 0.06;
-    mouse.y += (mouse.ty - mouse.y) * 0.06;
-
-    ctx.save();
-    ctx.scale(dpr, dpr);
-    ctx.clearRect(0, 0, width, height);
-
-    const isMobile = width < 960;
-    let cx, cy, scale;
-    const stageEl = document.querySelector('.mebel-hero__stage');
-    if (isMobile && stageEl) {
-      const heroRect = canvas.getBoundingClientRect();
-      const stageRect = stageEl.getBoundingClientRect();
-      cx = width * 0.5;
-      cy = Math.max(height * 0.5, (stageRect.top - heroRect.top) + stageRect.height * 0.38);
-      scale = Math.min(width * 0.0013, 0.75);
-    } else {
-      cx = width * 0.72 + (mouse.x - 0.5) * 35;
-      cy = height * 0.48 + (mouse.y - 0.5) * 25;
-      scale = Math.min(width * 0.0012, 1.35);
-    }
-    const rotY = 0.42 + (mouse.x - 0.5) * 0.4 + Math.sin(time * 0.5) * 0.06;
-    const rotX = -0.22 + (mouse.y - 0.5) * 0.22;
-
-    // 0. Blueprint Floor Grid
-    ctx.strokeStyle = 'rgba(212, 175, 110, 0.08)';
-    ctx.lineWidth = 1;
-    for (let gx = -240; gx <= 240; gx += 60) {
-      const p1 = project(gx, 210, -200, rotY, rotX, cx, cy, scale);
-      const p2 = project(gx, 210, 200, rotY, rotX, cx, cy, scale);
-      ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-    }
-    for (let gz = -200; gz <= 200; gz += 50) {
-      const p1 = project(-240, 210, gz, rotY, rotX, cx, cy, scale);
-      const p2 = project(240, 210, gz, rotY, rotX, cx, cy, scale);
-      ctx.beginPath(); ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-    }
-
-    // 1. Main Luxury Cabinet Carcass (Egger / Lamarty)
-    drawBox(ctx, 0, 0, 0, 260, 380, 160, rotY, rotX, cx, cy, scale, 'rgba(212, 175, 110, 0.5)', 'rgba(26, 15, 9, 0.65)', 1.5);
-    
-    // Top Crown / Vitrine Glass Shelf
-    drawBox(ctx, 0, -130, 0, 256, 10, 154, rotY, rotX, cx, cy, scale, 'rgba(255, 170, 51, 0.7)', 'rgba(65, 38, 20, 0.8)', 1.2);
-    
-    // Mid Fixed Structural Shelf
-    drawBox(ctx, 0, 45, 0, 256, 12, 154, rotY, rotX, cx, cy, scale, 'rgba(255, 138, 60, 0.6)', 'rgba(50, 30, 16, 0.8)', 1.2);
-
-    // Vertical Central Divider
-    drawBox(ctx, -20, -42, 0, 12, 165, 154, rotY, rotX, cx, cy, scale, 'rgba(212, 175, 110, 0.45)', 'rgba(40, 24, 14, 0.7)', 1.2);
-
-    // Left Upper Shelves
-    drawBox(ctx, -80, -45, 0, 108, 10, 150, rotY, rotX, cx, cy, scale, 'rgba(255, 170, 51, 0.5)', 'rgba(55, 32, 18, 0.75)', 1);
-    drawBox(ctx, -80, -90, 0, 108, 10, 150, rotY, rotX, cx, cy, scale, 'rgba(255, 170, 51, 0.5)', 'rgba(55, 32, 18, 0.75)', 1);
-
-    // Right Wardrobe Hanging Rail with Warm LED Glow
-    const rodStart = project(0, -95, 0, rotY, rotX, cx, cy, scale);
-    const rodEnd = project(120, -95, 0, rotY, rotX, cx, cy, scale);
-    ctx.strokeStyle = '#ffd991';
-    ctx.lineWidth = 3;
-    ctx.shadowColor = '#ff8a3c';
-    ctx.shadowBlur = 14;
-    ctx.beginPath(); ctx.moveTo(rodStart.x, rodStart.y); ctx.lineTo(rodEnd.x, rodEnd.y); ctx.stroke();
-    ctx.shadowBlur = 0;
-
-    // Hangers on Rail
-    for (let hx = 25; hx <= 95; hx += 35) {
-      const hp = project(hx, -95, 0, rotY, rotX, cx, cy, scale);
-      const hpL = project(hx - 14, -60, 0, rotY, rotX, cx, cy, scale);
-      const hpR = project(hx + 14, -60, 0, rotY, rotX, cx, cy, scale);
-      ctx.strokeStyle = 'rgba(255, 200, 140, 0.5)';
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.moveTo(hp.x, hp.y);
-      ctx.lineTo(hpL.x, hpL.y);
-      ctx.lineTo(hpR.x, hpR.y);
-      ctx.closePath();
-      ctx.stroke();
-    }
-
-    // Lower Soft-Close Sliding Drawers (animating with smooth breathing cycle)
-    const drawer1Offset = Math.sin(time * 0.9) * 36 + 36;
-    const drawer2Offset = Math.sin(time * 0.9 + 1.2) * 26 + 26;
-
-    // Drawer 1 (Left Lower)
-    drawBox(ctx, -70, 120, drawer1Offset, 110, 65, 145, rotY, rotX, cx, cy, scale, '#ff9e58', 'rgba(85, 48, 25, 0.92)', 1.5);
-    // Drawer 1 Handle
-    const h1a = project(-70 - 20, 120, drawer1Offset + 75, rotY, rotX, cx, cy, scale);
-    const h1b = project(-70 + 20, 120, drawer1Offset + 75, rotY, rotX, cx, cy, scale);
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.moveTo(h1a.x, h1a.y); ctx.lineTo(h1b.x, h1b.y); ctx.stroke();
-
-    // Drawer 2 (Right Lower)
-    drawBox(ctx, 60, 120, drawer2Offset, 120, 65, 145, rotY, rotX, cx, cy, scale, '#ffaa33', 'rgba(75, 42, 22, 0.92)', 1.5);
-    // Drawer 2 Handle
-    const h2a = project(60 - 20, 120, drawer2Offset + 75, rotY, rotX, cx, cy, scale);
-    const h2b = project(60 + 20, 120, drawer2Offset + 75, rotY, rotX, cx, cy, scale);
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 2.5;
-    ctx.beginPath(); ctx.moveTo(h2a.x, h2a.y); ctx.lineTo(h2b.x, h2b.y); ctx.stroke();
-
-    // 2. Dynamic Blueprint CAD Annotation Lines & Tags
-    if (!isMobile) {
-      // Height Tag
-      const topCorner = project(-140, -190, -80, rotY, rotX, cx, cy, scale);
-      const btmCorner = project(-140, 190, -80, rotY, rotX, cx, cy, scale);
-      ctx.strokeStyle = 'rgba(255, 170, 51, 0.35)';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([4, 4]);
-      ctx.beginPath(); ctx.moveTo(topCorner.x, topCorner.y); ctx.lineTo(btmCorner.x, btmCorner.y); ctx.stroke();
-      ctx.setLineDash([]);
-      
-      ctx.fillStyle = '#ffd991';
-      ctx.font = '700 11px Montserrat, sans-serif';
-      ctx.fillText('ВЫСОТА: 2600 мм', topCorner.x - 110, (topCorner.y + btmCorner.y) / 2);
-
-      // Width Tag
-      const wCorner1 = project(-130, 205, 80, rotY, rotX, cx, cy, scale);
-      const wCorner2 = project(130, 205, 80, rotY, rotX, cx, cy, scale);
-      ctx.strokeStyle = 'rgba(255, 170, 51, 0.35)';
-      ctx.setLineDash([4, 4]);
-      ctx.beginPath(); ctx.moveTo(wCorner1.x, wCorner1.y); ctx.lineTo(wCorner2.x, wCorner2.y); ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillText('ШИРИНА: 2400 мм', (wCorner1.x + wCorner2.x) / 2 - 45, wCorner1.y + 22);
-
-      // Hardware Badge
-      const hwPoint = project(60, 120, drawer2Offset + 80, rotY, rotX, cx, cy, scale);
-      ctx.fillStyle = 'rgba(255, 138, 60, 0.9)';
-      ctx.beginPath(); ctx.arc(hwPoint.x, hwPoint.y, 4, 0, Math.PI * 2); ctx.fill();
-      ctx.fillText('Blum Legrabox · Доводчики', hwPoint.x + 12, hwPoint.y + 4);
-    }
-
-    ctx.restore();
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
+  if (btn) btn.classList.add('is-active');
+  var img = document.getElementById('showcase-main-img');
+  if (!img) return;
+  img.style.opacity = '0';
+  img.style.transform = 'scale(0.97)';
+  setTimeout(function() {
+    if (type === 'kitchen') img.src = 'images/mebel_kitchen.jpg';
+    else if (type === 'wardrobe') img.src = 'images/mebel_wardrobe.jpg';
+    else if (type === 'dressing') img.src = 'images/mebel_dressing.jpg';
+    img.style.opacity = '1';
+    img.style.transform = 'scale(1)';
+  }, 180);
+}
 </script>
 <!-- UNIFIED MASTER FOOTER -->
 <!-- UNIFIED MASTER SITE FOOTER -->
