@@ -49,12 +49,12 @@
       flex-shrink: 0;
     }
 
-    /* EXACT 2-COLUMN SPLIT SCREEN HERO */
+    /* 2-COLUMN SPLIT SCREEN HERO: 50/50 SPLIT WITH SMOOTH TRANSITION */
     .hero-split-section {
       position: relative;
       flex-grow: 1;
       display: grid;
-      grid-template-columns: 56% 44%;
+      grid-template-columns: 50% 50%;
       min-height: calc(100vh - 80px);
       background-color: var(--c-dark-base);
     }
@@ -65,19 +65,18 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(36px, 5vh, 64px) clamp(30px, 4.5vw, 72px);
+      padding: clamp(36px, 5vh, 64px) clamp(28px, 4vw, 64px);
       z-index: 5;
       position: relative;
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .hero-content-wrapper {
-      max-width: 780px;
+      max-width: 740px;
       width: 100%;
       margin: 0 auto 0 0;
     }
 
-    /* RIGHT COLUMN: 100% BRIGHT FRAMELESS VIDEO */
+    /* RIGHT COLUMN: EXPANDED VIDEO WITH SMOOTH SOFT LEFT TRANSITION */
     .hero-split-right {
       position: relative;
       width: 100%;
@@ -85,6 +84,19 @@
       min-height: 100%;
       overflow: hidden;
       background: #000000;
+    }
+
+    /* Smooth dissolving feather gradient from left block into video */
+    .hero-split-right::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 160px;
+      height: 100%;
+      background: linear-gradient(to right, #0c0805 0%, rgba(12, 8, 5, 0.8) 35%, rgba(12, 8, 5, 0.25) 75%, transparent 100%);
+      z-index: 2;
+      pointer-events: none;
     }
 
     .hero-pure-video {
