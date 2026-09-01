@@ -318,12 +318,25 @@ body {
 /* === 100% IDENTICAL HERO SECTION CONTAINER === */
 .hero-stage {
   position: relative;
-  background: radial-gradient(circle at 75% 35%, #1f140c 0%, #0e0906 60%, #060402 100%) !important;
-  min-height: 680px;
+  background: radial-gradient(circle at 75% 35%, #3d2314 0%, #25160d 50%, #150c07 100%) !important;
+  min-height: 700px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgba(255, 138, 60, 0.25);
   overflow: hidden;
+}
+
+.hero-stage::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 580px;
+  height: 580px;
+  background: radial-gradient(circle, rgba(255, 118, 26, 0.22) 0%, rgba(212, 175, 110, 0.08) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-canvas-bg {
