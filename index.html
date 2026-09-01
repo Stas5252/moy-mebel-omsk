@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>МОЙ мебельный — Точный распил ЛДСП и производство мебели в Омске</title>
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png?v=3">
-  <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png?v=3">
-  <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=3">
-  <link rel="icon" type="image/x-icon" href="images/favicon.ico?v=3">
-  <link rel="shortcut icon" href="images/favicon.ico?v=3">
-  <link rel="apple-touch-icon" href="images/favicon.png?v=3">
-  <script>(function(){try{var l=document.createElement('link');l.type='image/png';l.rel='icon';l.href='images/favicon.png?t='+Date.now();document.head.appendChild(l);}catch(e){}})();</script>
-
-  <link rel="stylesheet" href="css/montserrat.css?v=1788209058" type="text/css">
-  <link rel="stylesheet" href="css/fonts-tildasans.css?v=1788209058" type="text/css">
-  <link rel="stylesheet" href="css/unified-design-system.css?v=1788209058" type="text/css">
+  <title>МОЙ МЕБЕЛЬНЫЙ — Производство мебели и точный распил ЛДСП в Омске</title>
+  <meta name="description" content="Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске. Онлайн-калькулятор распила, кромление, присадка. Изготовление кухонь и шкафов.">
+  
+  <link rel="icon" type="image/png" href="images/logo_emblem_gold.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/unified-design-system.css">
 
   <style>
     :root {
       --c-orange: #ff761a;
-      --c-orange-hover: #ff8a35;
-      --c-bg-dark: #0a0705;
+      --c-orange-hover: #ff8c3a;
+      --c-dark-base: #0c0805;
     }
 
     * {
@@ -29,395 +26,268 @@
       padding: 0;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background-color: var(--c-bg-dark);
+      font-family: 'Inter', sans-serif;
+      background-color: var(--c-dark-base);
+      color: #ffffff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      color: #ffffff;
-      font-family: 'TildaSans', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Ambient Technical Blueprint Overlay in Background */
-    .hero-tech-bg {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
-      width: 50%;
-      max-width: 720px;
-      height: auto;
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0.35;
-    }
-
-    /* Master Header (74px) */
-    .site-header {
-      flex-shrink: 0;
-      position: relative;
-      z-index: 10;
-      height: 74px;
-    }
-
-    /* First Screen (Hero occupies exactly 100vh together with header) */
-    .hero-screen-section {
-      min-height: calc(100vh - 74px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 5;
-      width: 100%;
-      padding: clamp(24px, 4vh, 48px) clamp(20px, 4.5vw, 64px);
-    }
-
-    .hero-portal-wrap {
-      max-width: 1520px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    .hero-layout-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.08fr;
-      gap: clamp(36px, 4.5vw, 72px);
-      align-items: center;
-      width: 100%;
-    }
-
-    /* Left Column: Natural, Cohesive Vertical Rhythm */
-    .hero-content-col {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      z-index: 3;
-    }
-
-    /* Eyebrow */
-    .hero-eyebrow-row {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: clamp(14px, 2vh, 22px);
-    }
-    .hero-eyebrow-dash {
-      width: 28px;
-      height: 2.5px;
-      background-color: var(--c-orange);
-      border-radius: 2px;
-      display: inline-block;
-    }
-    .hero-eyebrow-text {
-      color: var(--c-orange);
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* Headline */
-    .hero-main-title {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(34px, 4.2vw, 56px);
-      font-weight: 900;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: clamp(14px, 2vh, 22px);
-      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
-    }
-    .hero-title-accent {
-      color: var(--c-orange);
-    }
-
-    /* Description */
-    .hero-main-desc {
-      font-size: clamp(14.5px, 1.15vw, 16.5px);
-      line-height: 1.65;
-      color: #b8a698;
-      max-width: 540px;
-      margin-bottom: clamp(18px, 2.5vh, 30px);
-      font-weight: 400;
-    }
-
-    /* Actions: Buttons + Link */
-    .hero-actions-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: clamp(24px, 3.5vh, 40px);
-    }
-
-    .hero-btn-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* Primary Orange Pill Button */
-    .btn-hero-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: linear-gradient(135deg, #ff761a 0%, #e05206 100%);
-      color: #ffffff;
-      padding: 16px 36px;
-      border-radius: 50px;
-      font-weight: 800;
-      font-size: 13.5px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      text-decoration: none;
-      box-shadow: 0 10px 30px rgba(255, 118, 26, 0.45);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      border: none;
-    }
-    .btn-hero-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 40px rgba(255, 118, 26, 0.65);
-      background: linear-gradient(135deg, #ff8a35 0%, #eb5808 100%);
-      color: #ffffff;
-    }
-    .btn-hero-primary .arrow {
-      font-size: 18px;
-      transition: transform 0.25s ease;
-    }
-    .btn-hero-primary:hover .arrow {
-      transform: translateX(4px);
-    }
-
-    /* Secondary Glass Button */
-    .btn-hero-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #ffffff;
-      padding: 15px 28px;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 13.5px;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid rgba(255, 138, 60, 0.3);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-    .btn-hero-secondary:hover {
-      background: rgba(255, 138, 60, 0.15);
-      border-color: var(--c-orange);
-      transform: translateY(-2px);
-      color: #ffffff;
-    }
-
-    /* Sub-link */
-    .hero-sub-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      color: #9e8e80;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .hero-sub-link:hover {
-      color: #ffffff;
-    }
-
-    /* Bottom Features Capsule Bar */
-    .hero-features-bar {
-      background: rgba(18, 12, 8, 0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 20px;
-      padding: 16px 22px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      max-width: 640px;
-      width: 100%;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-      position: relative;
-    }
-
-    .hero-feat-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      position: relative;
-    }
-    .hero-feat-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: -8px;
-      top: 15%;
-      height: 70%;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero-feat-icon {
-      width: 42px;
-      height: 42px;
-      min-width: 42px;
-      border-radius: 12px;
-      background: rgba(255, 118, 26, 0.1);
-      border: 1px solid rgba(255, 118, 26, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-feat-texts {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-    .hero-feat-title {
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.25;
-    }
-    .hero-feat-desc {
-      font-size: 11px;
-      color: #9e8e80;
-      line-height: 1.25;
-    }
-
-    /* Right Column: Generous Full-Height Video Frame */
-    .hero-video-col {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-      width: 100%;
-    }
-
-    .hero-video-frame {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16/11;
-      min-height: clamp(400px, 55vh, 600px);
-      max-height: 68vh;
-      border-radius: 28px;
+    /* Ambient Video Background */
+    .portal-bg-video-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
       overflow: hidden;
-      background: #110c08;
-      border: 1px solid rgba(255, 138, 60, 0.2);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 118, 26, 0.08);
+      pointer-events: none;
     }
-
-    .hero-video-frame video {
+    .portal-bg-video {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
-      border-radius: 28px;
-      filter: brightness(0.95) contrast(1.05);
+      filter: brightness(0.38) contrast(1.15);
+      transform: scale(1.03);
+    }
+    .portal-bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 40%, rgba(12, 8, 5, 0.45) 0%, rgba(12, 8, 5, 0.88) 100%);
     }
 
-    /* Responsive */
-    @media (max-width: 1080px) {
-      .hero-screen-section {
+    /* Header adjustments */
+    .site-header {
+      position: relative;
+      z-index: 10;
+      background: rgba(12, 8, 5, 0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Main Container */
+    .portal-main-section {
+      position: relative;
+      z-index: 2;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px 80px;
+    }
+
+    .portal-content-container {
+      max-width: 1060px;
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Badge */
+    .portal-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 24px;
+      background: rgba(255, 118, 26, 0.12);
+      border: 1px solid rgba(255, 118, 26, 0.45);
+      border-radius: 30px;
+      color: #ffd991;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+    }
+    .portal-badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ff761a;
+      box-shadow: 0 0 8px #ff761a;
+      display: inline-block;
+    }
+
+    /* Title */
+    .portal-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(34px, 5.2vw, 62px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 18px;
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95);
+    }
+    .portal-title-accent {
+      background: linear-gradient(135deg, #ff8a3c 0%, #e05206 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* Description */
+    .portal-desc {
+      font-size: clamp(15px, 1.3vw, 17.5px);
+      line-height: 1.6;
+      color: #d1bead;
+      max-width: 720px;
+      margin-bottom: 44px;
+      font-weight: 400;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    /* Cards Grid */
+    .portal-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      width: 100%;
+      max-width: 980px;
+    }
+
+    /* Portal Card Base */
+    .portal-card {
+      position: relative;
+      border-radius: 24px;
+      padding: 36px 34px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 250px;
+      text-align: left;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+    }
+    .portal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Card 1: Orange (Распил) */
+    .portal-card--raspil {
+      background: linear-gradient(135deg, #ff761a 0%, #db4c00 100%);
+    }
+    .portal-card--raspil:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 22px 55px rgba(255, 118, 26, 0.45);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* Card 2: Gold/Wood (Мебель) */
+    .portal-card--mebel {
+      background: linear-gradient(135deg, #b87a14 0%, #7d4d08 100%);
+    }
+    .portal-card--mebel:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 22px 55px rgba(184, 122, 20, 0.45);
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* Card Header: Icon + Arrow */
+    .portal-card__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    .portal-card__icon-box {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    .portal-card__arrow-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transition: all 0.25s ease;
+    }
+    .portal-card:hover .portal-card__arrow-btn {
+      background: #ffffff;
+      color: #1c110a;
+      transform: translateX(4px);
+    }
+
+    /* Card Texts */
+    .portal-card__title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+    .portal-card__desc {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .portal-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .portal-card {
+        padding: 28px 24px;
         min-height: auto;
-        padding: 32px 20px 48px;
       }
-      .hero-layout-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
+      .portal-title {
+        font-size: 32px;
       }
-      .hero-video-frame {
-        min-height: 340px;
-        max-height: 440px;
-      }
-      .hero-features-bar {
-        max-width: 100%;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero-screen-section {
-        padding: 24px 16px 36px;
-      }
-      .hero-eyebrow-row {
-        gap: 10px;
-        margin-bottom: 14px;
-      }
-      .hero-eyebrow-dash {
-        width: 22px;
-      }
-      .hero-eyebrow-text {
-        font-size: 10px;
-      }
-      .hero-main-title {
-        font-size: clamp(28px, 7.5vw, 38px);
-        margin-bottom: 16px;
-      }
-      .hero-main-desc {
-        font-size: 13.5px;
-        margin-bottom: 22px;
-      }
-      .hero-btn-row {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn-hero-primary, .btn-hero-secondary {
-        width: 100%;
-        padding: 14px 20px;
-        font-size: 13px;
-      }
-      .hero-video-frame {
-        aspect-ratio: 16/10;
-        min-height: 220px;
-        border-radius: 18px;
-      }
-      .hero-features-bar {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        padding: 14px;
-        border-radius: 16px;
-      }
-      .hero-feat-item:not(:last-child)::after {
-        display: none;
+      .portal-desc {
+        font-size: 14px;
+        margin-bottom: 30px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Technical Blueprint Background Graphics -->
-  <svg class="hero-tech-bg" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <!-- Radar Circles -->
-    <circle cx="580" cy="380" r="340" stroke="rgba(255, 118, 26, 0.08)" stroke-width="1.2" stroke-dasharray="8 6"/>
-    <circle cx="580" cy="380" r="260" stroke="rgba(255, 118, 26, 0.12)" stroke-width="1.2"/>
-    <circle cx="580" cy="380" r="160" stroke="rgba(255, 118, 26, 0.16)" stroke-width="1.5"/>
-    <circle cx="580" cy="380" r="60" stroke="rgba(255, 118, 26, 0.22)" stroke-width="1.5"/>
-    <circle cx="580" cy="380" r="8" fill="#ff761a" opacity="0.4"/>
-    
-    <!-- Top-Right Secondary Circles -->
-    <circle cx="680" cy="140" r="110" stroke="rgba(255, 118, 26, 0.1)" stroke-width="1"/>
-    <circle cx="680" cy="140" r="45" stroke="rgba(255, 118, 26, 0.15)" stroke-width="1"/>
-    
-    <!-- Crosshairs -->
-    <path d="M580 60V700 M260 380H900" stroke="rgba(255, 118, 26, 0.08)" stroke-width="1" stroke-dasharray="4 4"/>
-    <path d="M570 380H590 M580 370V390" stroke="#ff761a" stroke-width="2" opacity="0.6"/>
-  </svg>
+  <!-- Ambient Technical Background Video -->
+  <div class="portal-bg-video-wrap">
+    <video class="portal-bg-video" autoplay loop muted playsinline poster="images/main_video_poster.jpg">
+      <source src="images/main_bg_video.mp4" type="video/mp4">
+    </video>
+    <div class="portal-bg-overlay"></div>
+  </div>
 
   <!-- UNIFIED MASTER HEADER -->
   <header class="site-header">
@@ -445,124 +315,79 @@
     </div>
   </header>
 
-  <!-- Fullscreen 100vh Hero Section -->
-  <main class="hero-screen-section">
-    <div class="hero-portal-wrap">
+  <!-- MAIN PORTAL SCREEN -->
+  <main class="portal-main-section">
+    <div class="portal-content-container">
       
-      <div class="hero-layout-grid">
+      <!-- Top Badge -->
+      <div class="portal-badge">
+        <span class="portal-badge-dot"></span>
+        <span>★ 4.9 НА 2ГИС · ПРОИЗВОДСТВО SCM</span>
+      </div>
+
+      <!-- Main Headline matching screenshot -->
+      <h1 class="portal-title">
+        Производство мебели<br>
+        и точный <span class="portal-title-accent">распил ЛДСП</span>
+      </h1>
+
+      <!-- Subtitle matching screenshot -->
+      <p class="portal-desc">
+        Выберите интересующее вас направление для перехода в интерактивный онлайн-калькулятор или каталог мебели:
+      </p>
+
+      <!-- Two Portal Direction Cards -->
+      <div class="portal-cards-grid">
         
-        <!-- LEFT COLUMN: Content + Buttons + Bottom Bar -->
-        <div class="hero-content-col">
-          
-          <!-- Eyebrow -->
-          <div class="hero-eyebrow-row" style="flex-wrap:wrap; gap:12px;">
-            <span class="hero-eyebrow-dash" style="width:34px; height:3px;"></span>
-            <span class="hero-eyebrow-text" style="letter-spacing:2.2px; font-size:12px;">РАСПИЛ ЛДСП ОТ 1 М² И КРОМКООБЛИЦОВКА НА ИТАЛЬЯНСКОМ И НЕМЕЦКОМ ОБОРУДОВАНИИ</span>
-            <span style="display:inline-flex; align-items:center; gap:6px; color:#ff761a; font-family:'Montserrat', sans-serif; font-size:11px; font-weight:800; letter-spacing:2px; margin-left:6px;">
-              <span style="width:6px; height:6px; border-radius:50%; background:#ff4500; box-shadow:0 0 8px #ff4500; display:inline-block;"></span>
-              REC
-            </span>
-          </div>
-
-          <!-- Title -->
-          <h1 class="hero-main-title">
-            ТОЧНЫЙ РАСПИЛ<br>
-            ДЛЯ <span class="hero-title-accent">ВАШЕЙ МЕБЕЛИ</span>
-          </h1>
-
-          <!-- Description -->
-          <p class="hero-main-desc">
-            Предлагаем услуги по раскрою и кромкооблицовке ЛДСП на итальянском оборудовании SCM: распил столешниц, ДВПО, ХДФ, изготовление радиусных и криволинейных деталей.
-          </p>
-
-          <!-- Actions: Buttons + Sub-link -->
-          <div class="hero-actions-wrap">
-            <div class="hero-btn-row">
-              <a class="btn-hero-primary" href="raspil.html">
-                <span>ЗАКАЗАТЬ РАСПИЛ</span>
-                <span class="arrow">→</span>
-              </a>
-              <a class="btn-hero-primary" href="mebel.html">
-                <span>МЕБЕЛЬ НА ЗАКАЗ</span>
-                <span class="arrow">→</span>
-              </a>
+        <!-- CARD 1: РАСПИЛ ЛДСП (ORANGE) -->
+        <a href="raspil.html" class="portal-card portal-card--raspil">
+          <div class="portal-card__top">
+            <div class="portal-card__icon-box">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 20L20 4"></path>
+                <path d="M7 17l-3 3"></path>
+                <path d="M9 11l-2 2"></path>
+                <path d="M13 7l-2 2"></path>
+                <path d="M17 3l-2 2"></path>
+                <path d="M18 10l-4-4"></path>
+              </svg>
             </div>
-
-            <a class="hero-sub-link" href="raspil.html#rec3089023401">
-              Калькулятор расчёта стоимости ниже на странице →
-            </a>
+            <div class="portal-card__arrow-btn">→</div>
           </div>
-
-          <!-- Features Capsule Bar -->
-          <div class="hero-features-bar">
-            <!-- Item 1 -->
-            <div class="hero-feat-item">
-              <div class="hero-feat-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="9"></circle>
-                  <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path>
-                  <circle cx="12" cy="12" r="3" fill="#ff761a"></circle>
-                </svg>
-              </div>
-              <div class="hero-feat-texts">
-                <span class="hero-feat-title">Всегда наточенные</span>
-                <span class="hero-feat-desc">пилы и чистый спил</span>
-              </div>
-            </div>
-
-            <!-- Item 2 -->
-            <div class="hero-feat-item">
-              <div class="hero-feat-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="8"></circle>
-                  <line x1="22" y1="12" x2="18" y2="12"></line>
-                  <line x1="6" y1="12" x2="2" y2="12"></line>
-                  <line x1="12" y1="6" x2="12" y2="2"></line>
-                  <line x1="12" y1="22" x2="12" y2="18"></line>
-                  <circle cx="12" cy="12" r="3"></circle>
-                </svg>
-              </div>
-              <div class="hero-feat-texts">
-                <span class="hero-feat-title">Распил с точностью</span>
-                <span class="hero-feat-desc">до мм по заказу</span>
-              </div>
-            </div>
-
-            <!-- Item 3 -->
-            <div class="hero-feat-item">
-              <div class="hero-feat-icon">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                  <circle cx="12" cy="15" r="2" fill="#ff761a"></circle>
-                </svg>
-              </div>
-              <div class="hero-feat-texts">
-                <span class="hero-feat-title">Срок выполнения</span>
-                <span class="hero-feat-desc">заказа 2–4 дня</span>
-              </div>
-            </div>
+          <div>
+            <h2 class="portal-card__title">РАСПИЛ ЛДСП</h2>
+            <p class="portal-card__desc">
+              Онлайн-калькулятор раскроя, кромление 0.4–2 мм, присадка и радиусы. Точность до 1 мм.
+            </p>
           </div>
+        </a>
 
-        </div>
-
-        <!-- RIGHT COLUMN: Clean Balanced Video Frame -->
-        <div class="hero-video-col">
-          <div class="hero-video-frame">
-            <video autoplay loop muted playsinline poster="images/main_video_poster.jpg">
-              <source src="images/main_bg_video.mp4" type="video/mp4">
-            </video>
+        <!-- CARD 2: МЕБЕЛЬ НА ЗАКАЗ (GOLD/BROWN) -->
+        <a href="mebel.html" class="portal-card portal-card--mebel">
+          <div class="portal-card__top">
+            <div class="portal-card__icon-box">
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+            <div class="portal-card__arrow-btn">→</div>
           </div>
-        </div>
+          <div>
+            <h2 class="portal-card__title">МЕБЕЛЬ НА ЗАКАЗ</h2>
+            <p class="portal-card__desc">
+              Кухни с витринами, шкафы-купе под потолок, гардеробные и Loft. 3D-проект в подарок.
+            </p>
+          </div>
+        </a>
 
       </div>
 
     </div>
   </main>
 
-  <!-- UNIFIED MASTER FOOTER (Below the 100vh fold) -->
+  <!-- UNIFIED MASTER FOOTER -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div>
