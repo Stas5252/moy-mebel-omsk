@@ -688,15 +688,17 @@ html, body {
 }
 
 .saw-calc-size-limit {
-  font-size: 12px !important;
+  font-size: 13px !important;
   color: #706055 !important;
-  margin-bottom: 18px !important;
+  margin: 14px 0 18px 0 !important;
   display: flex !important;
   align-items: center !important;
   gap: 8px !important;
+  line-height: 1.4 !important;
 }
 .saw-calc-size-limit b {
   color: #1a1512 !important;
+  font-weight: 600 !important;
 }
 
 @media (max-width: 1100px) {
@@ -707,6 +709,30 @@ html, body {
 @media (max-width: 600px) {
   .saw-calc-single-row {
     grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 480px) {
+  .saw-calc-frame {
+    border-width: 4px !important;
+    padding: 16px 12px !important;
+    border-radius: 18px !important;
+  }
+  .saw-calc-section {
+    padding: 30px 10px !important;
+  }
+  .saw-calc-heading {
+    font-size: 20px !important;
+  }
+  .saw-calc-size-limit {
+    font-size: 12px !important;
+    margin: 10px 0 14px 0 !important;
+  }
+  .saw-calc-bottom-bar {
+    padding: 14px 12px !important;
+  }
+  .saw-calc-btn-submit {
+    padding: 12px 20px !important;
+    font-size: 13px !important;
   }
 }
 
@@ -1557,20 +1583,10 @@ html, body {
 </button>
 </div>
 </div>
-<!-- Notice & Edge Alerts with Prominent Exclamation Marks -->
-<div class="saw-calc-notices-grid" style="display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 20px 0;">
-  <div style="display:inline-flex; align-items:center; gap:10px; background:#fff3eb; border:1.5px solid #ffaa80; border-radius:12px; padding:10px 18px; font-size:13.5px; color:#2c1b10; font-weight:600; box-shadow:0 3px 10px rgba(212,93,17,0.08);">
-    <span style="color:#d45d11; font-weight:900; font-size:18px; line-height:1;">❗️</span>
-    <span>Кромка подбирается <b style="color:#b34700;">точно в цвет и структуру выбранного декора ЛДСП</b></span>
-  </div>
-  <div style="display:inline-flex; align-items:center; gap:10px; background:#fff3eb; border:1.5px solid #ffaa80; border-radius:12px; padding:10px 18px; font-size:13.5px; color:#2c1b10; font-weight:600; box-shadow:0 3px 10px rgba(212,93,17,0.08);">
-    <span style="color:#d45d11; font-weight:900; font-size:18px; line-height:1;">❗️</span>
-    <span><b style="color:#b34700;">Кромка кратная 1 метру</b> (округляется в большую сторону: напр. 1.2 м ➔ 2 м кромки)</span>
-  </div>
-  <div style="display:inline-flex; align-items:center; gap:8px; background:#f4ede4; border:1px solid #dfd2c4; border-radius:12px; padding:10px 16px; font-size:13px; color:#3d2b1f;">
-    <span style="color:#b86e28; font-weight:800; font-size:15px;">ℹ️</span>
-    <span>Максимальные габариты детали: <b style="color:#1c110a;">2720 × 1830 мм</b></span>
-  </div>
+<!-- Size limit and edge note -->
+<div class="saw-calc-size-limit">
+  <span style="display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; min-width:18px; border-radius:50%; border:1.2px solid #8c786a; color:#8c786a; font-size:11px; font-weight:700; font-family:'Montserrat', sans-serif;">i</span>
+  <span>Максимальные габариты детали: <b>2720 × 1830 мм</b>. Кромка подбирается в цвет выбранного ЛДСП.</span>
 </div>
 <!-- Details List Container (Dark card) -->
 <div class="saw-calc-details-card" id="calc-details-container">
