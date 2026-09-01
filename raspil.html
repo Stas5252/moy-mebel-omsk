@@ -287,6 +287,52 @@ html, body {
   .gear-telemetry-hud {
     display: none;
   }
+  .hero-right {
+    display: none !important;
+  }
+}
+@media (max-width: 480px) {
+  .hero-left {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+  .hero-title {
+    font-size: 28px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 16px !important;
+  }
+  .hero-desc {
+    font-size: 14px !important;
+    line-height: 1.55 !important;
+    margin-bottom: 24px !important;
+    max-width: 100% !important;
+  }
+  .btn-primary {
+    padding: 14px 24px !important;
+    font-size: 12px !important;
+    border-radius: 40px !important;
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .hero-actions {
+    margin-bottom: 28px !important;
+  }
+  .vibe-hero-title {
+    font-size: 28px !important;
+  }
+  .vibe-hero-desc {
+    font-size: 14px !important;
+    max-width: 100% !important;
+  }
+  .vibe-btn-calc {
+    font-size: 13px !important;
+    padding: 14px 22px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
 }
 </style>
 <style id="unified-theme-overrides">
@@ -1424,7 +1470,7 @@ html, body {
       </div>
       
       <!-- Bottom Capsule Bar -->
-      <div style="background:linear-gradient(180deg, rgba(62, 34, 18, 0.9) 0%, rgba(36, 19, 10, 0.94) 100%); border:1px solid rgba(255, 138, 60, 0.38); box-shadow:0 20px 50px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.08); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:22px; padding:18px 24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:18px; width:100%; max-width:740px;">
+      <div style="background:linear-gradient(180deg, rgba(62, 34, 18, 0.9) 0%, rgba(36, 19, 10, 0.94) 100%); border:1px solid rgba(255, 138, 60, 0.38); box-shadow:0 20px 50px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.08); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:22px; padding:18px 20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap:16px; width:100%; max-width:740px;">
         
         <!-- Badge 1 -->
         <div style="display:flex; align-items:center; gap:14px; position:relative;">

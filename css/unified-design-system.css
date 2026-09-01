@@ -616,13 +616,46 @@ body {
     height: 36px !important;
     font-size: 10.5px !important;
   }
-  /* Hero section tighter padding */
+  /* Hero: compact on small mobile */
+  .hero-stage {
+    min-height: auto !important;
+  }
+  .hero-stage::before {
+    width: 300px !important;
+    height: 300px !important;
+  }
   .hero-grid {
-    padding: 28px 12px !important;
-    gap: 24px !important;
+    padding: 28px 16px !important;
+    gap: 20px !important;
+  }
+  .hero-left {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+  }
+  .hero-right {
+    display: none !important;
+  }
+  .hero-title {
+    font-size: 28px !important;
+    line-height: 1.15 !important;
+  }
+  .hero-desc {
+    font-size: 14px !important;
+    max-width: 100% !important;
   }
   /* Footer tighter on small screens */
   .site-footer__inner {
     gap: 28px !important;
   }
+  .site-footer__col h4 {
+    font-size: 14px !important;
+  }
+}
+
+/* === GLOBAL OVERFLOW SAFETY === */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
