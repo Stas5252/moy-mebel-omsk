@@ -623,6 +623,11 @@ html, body {
   white-space: nowrap !important;
 }
 
+.saw-calc-texture-btn input[type="checkbox"],
+.saw-calc-texture-btn input {
+  display: none !important;
+}
+
 .saw-calc-texture-btn:hover {
   background: #fdf5ec !important;
   border-color: #ff761a !important;
@@ -3883,6 +3888,7 @@ html, body {
   const edgeW1 = document.getElementById('calc-edge-w1');
   const edgeW2 = document.getElementById('calc-edge-w2');
   const textureInput = document.getElementById('calc-texture-input');
+  const textureLabel = document.getElementById('calc-texture-label');
   const addBtn = document.getElementById('calc-add-btn');
   const clearBtn = document.getElementById('calc-clear-btn');
   const submitBtn = document.getElementById('calc-submit-btn');
@@ -3893,6 +3899,16 @@ html, body {
   const totalAmountEl = document.getElementById('calc-total-amount');
 
   if (!addBtn) return;
+
+  function updateTextureActive() {
+    if (textureLabel && textureInput) {
+      textureLabel.classList.toggle('is-active', !!textureInput.checked);
+    }
+  }
+  if (textureInput) {
+    textureInput.addEventListener('change', updateTextureActive);
+    updateTextureActive();
+  }
 
   function renderTable() {
     if (items.length === 0) {
@@ -3953,7 +3969,10 @@ html, body {
         edgeL2.value = itm.el2;
         edgeW1.value = itm.ew1;
         edgeW2.value = itm.ew2;
-        if (textureInput) textureInput.checked = !!itm.hasTexture;
+        if (textureInput) {
+          textureInput.checked = !!itm.hasTexture;
+          updateTextureActive();
+        }
         
         // Set material select
         for (let opt of matSelect.options) {
@@ -4045,7 +4064,10 @@ html, body {
     // Reset dimensions for next item
     lenInput.value = '';
     widInput.value = '';
-    if (textureInput) textureInput.checked = false;
+    if (textureInput) {
+      textureInput.checked = false;
+      updateTextureActive();
+    }
     lenInput.focus();
   };
 
