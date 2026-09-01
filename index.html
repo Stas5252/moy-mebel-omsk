@@ -26,6 +26,10 @@
       padding: 0;
     }
 
+    html, body {
+      height: 100%;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: var(--c-dark-base);
@@ -42,6 +46,7 @@
       z-index: 20;
       background: #0c0805;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-shrink: 0;
     }
 
     /* EXACT 2-COLUMN SPLIT SCREEN HERO */
@@ -49,34 +54,35 @@
       position: relative;
       flex-grow: 1;
       display: grid;
-      grid-template-columns: 54% 46%;
+      grid-template-columns: 56% 44%;
       min-height: calc(100vh - 80px);
       background-color: var(--c-dark-base);
     }
 
-    /* LEFT COLUMN: SOLID DARK CONTENT */
+    /* LEFT COLUMN: SPACIOUS, BALANCED, RICH DARK CONTENT */
     .hero-split-left {
       background-color: #0c0805;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(30px, 4vh, 60px) clamp(24px, 4vw, 60px);
+      padding: clamp(36px, 5vh, 64px) clamp(30px, 4.5vw, 72px);
       z-index: 5;
       position: relative;
       border-right: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .hero-content-wrapper {
-      max-width: 680px;
+      max-width: 780px;
       width: 100%;
       margin: 0 auto 0 0;
     }
 
-    /* RIGHT COLUMN: PURE BRIGHT FRAMELESS VIDEO */
+    /* RIGHT COLUMN: 100% BRIGHT FRAMELESS VIDEO */
     .hero-split-right {
       position: relative;
       width: 100%;
       height: 100%;
+      min-height: 100%;
       overflow: hidden;
       background: #000000;
     }
@@ -96,20 +102,20 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 7px 18px;
+      padding: 8px 22px;
       background: rgba(255, 118, 26, 0.12);
       border: 1px solid rgba(255, 118, 26, 0.45);
       border-radius: 30px;
       color: #ffd991;
-      font-size: 11.5px;
+      font-size: 12.5px;
       font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
     .portal-badge-dot {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #ff761a;
       box-shadow: 0 0 8px #ff761a;
@@ -119,12 +125,12 @@
     /* Main Title */
     .portal-main-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(28px, 3.4vw, 46px);
+      font-size: clamp(32px, 3.8vw, 52px);
       font-weight: 900;
       line-height: 1.12;
       letter-spacing: -0.02em;
       color: #ffffff;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
     .portal-title-accent {
       background: linear-gradient(135deg, #ff8a3c 0%, #e05206 100%);
@@ -135,35 +141,36 @@
 
     /* Subtitle */
     .portal-main-desc {
-      font-size: clamp(13.5px, 1.1vw, 15.5px);
+      font-size: clamp(14.5px, 1.2vw, 17px);
       line-height: 1.6;
-      color: #c4ab99;
-      margin-bottom: 26px;
+      color: #cbb7a6;
+      margin-bottom: 32px;
       font-weight: 400;
+      max-width: 720px;
     }
 
     /* Cards Grid */
     .portal-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 22px;
       width: 100%;
-      margin-bottom: 24px;
+      margin-bottom: 30px;
     }
 
     /* Card Base */
     .portal-card {
       position: relative;
-      border-radius: 18px;
-      padding: 24px 20px;
+      border-radius: 22px;
+      padding: 30px 26px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 190px;
+      min-height: 220px;
       text-align: left;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
       border: 1px solid rgba(255, 255, 255, 0.15);
       overflow: hidden;
     }
@@ -183,8 +190,8 @@
       background: linear-gradient(135deg, #ff761a 0%, #db4c00 100%);
     }
     .portal-card--raspil:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 16px 40px rgba(255, 118, 26, 0.5);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(255, 118, 26, 0.55);
       border-color: rgba(255, 255, 255, 0.4);
     }
 
@@ -193,8 +200,8 @@
       background: linear-gradient(135deg, #b87a14 0%, #7d4d08 100%);
     }
     .portal-card--mebel:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 16px 40px rgba(184, 122, 20, 0.5);
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 50px rgba(184, 122, 20, 0.55);
       border-color: rgba(255, 255, 255, 0.4);
     }
 
@@ -203,12 +210,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
     .portal-card__icon-box {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
       background: rgba(0, 0, 0, 0.22);
       display: flex;
       align-items: center;
@@ -216,39 +223,39 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .portal-card__arrow-btn {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      font-size: 16px;
+      font-size: 18px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.25s ease;
     }
     .portal-card:hover .portal-card__arrow-btn {
       background: #ffffff;
       color: #1c110a;
-      transform: translateX(3px);
+      transform: translateX(4px);
     }
 
     /* Card Titles & Desc */
     .portal-card__title {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(17px, 1.6vw, 21px);
+      font-size: clamp(20px, 1.8vw, 24px);
       font-weight: 900;
       letter-spacing: -0.01em;
       text-transform: uppercase;
       color: #ffffff;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       line-height: 1.15;
     }
     .portal-card__desc {
-      font-size: 12.5px;
-      line-height: 1.45;
-      color: rgba(255, 255, 255, 0.92);
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.94);
       font-weight: 500;
     }
 
@@ -256,23 +263,23 @@
     .hero-features-bar {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 12px 16px;
+      border-radius: 16px;
+      padding: 14px 20px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 12px;
+      gap: 16px;
       width: 100%;
     }
     .hero-feat-item {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       position: relative;
     }
     .hero-feat-item:not(:last-child)::after {
       content: '';
       position: absolute;
-      right: -6px;
+      right: -8px;
       top: 15%;
       height: 70%;
       width: 1px;
@@ -280,9 +287,9 @@
     }
     .hero-feat-icon {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
       background: rgba(255, 118, 26, 0.12);
       display: flex;
       align-items: center;
@@ -293,18 +300,18 @@
       flex-direction: column;
     }
     .hero-feat-title {
-      font-size: 11.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #ffffff;
-      line-height: 1.2;
+      line-height: 1.25;
     }
     .hero-feat-desc {
-      font-size: 10px;
+      font-size: 11px;
       color: #9e8e80;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1080px) {
       .hero-split-section {
         grid-template-columns: 1fr;
         min-height: auto;
@@ -312,14 +319,17 @@
       .hero-split-left {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 36px 20px;
+        padding: 40px 24px;
       }
       .hero-split-right {
-        min-height: 360px;
+        min-height: 400px;
       }
+    }
+
+    @media (max-width: 640px) {
       .portal-cards-grid {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 14px;
       }
       .hero-features-bar {
         grid-template-columns: 1fr;
@@ -359,10 +369,10 @@
     </div>
   </header>
 
-  <!-- SPLIT SCREEN HERO: LEFT SOLID DARK | RIGHT PURE BRIGHT VIDEO -->
+  <!-- SPLIT SCREEN HERO: BALANCED LEFT CONTENT | PURE RIGHT VIDEO -->
   <main class="hero-split-section">
     
-    <!-- LEFT HALF: DARK CONTAINER WITH CONTENT & CARDS -->
+    <!-- LEFT HALF: RICH, BEAUTIFULLY PROPORTIONED CONTENT -->
     <div class="hero-split-left">
       <div class="hero-content-wrapper">
         
@@ -390,7 +400,7 @@
           <a href="raspil.html" class="portal-card portal-card--raspil">
             <div class="portal-card__top">
               <div class="portal-card__icon-box">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M4 20L20 4"></path>
                   <path d="M7 17l-3 3"></path>
                   <path d="M9 11l-2 2"></path>
@@ -413,7 +423,7 @@
           <a href="mebel.html" class="portal-card portal-card--mebel">
             <div class="portal-card__top">
               <div class="portal-card__icon-box">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
                   <path d="M2 17l10 5 10-5"></path>
                   <path d="M2 12l10 5 10-5"></path>
@@ -435,7 +445,7 @@
         <div class="hero-features-bar">
           <div class="hero-feat-item">
             <div class="hero-feat-icon">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="9"></circle>
                 <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path>
                 <circle cx="12" cy="12" r="3" fill="#ff761a"></circle>
@@ -449,7 +459,7 @@
 
           <div class="hero-feat-item">
             <div class="hero-feat-icon">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="8"></circle>
                 <line x1="22" y1="12" x2="18" y2="12"></line>
                 <line x1="6" y1="12" x2="2" y2="12"></line>
@@ -466,7 +476,7 @@
 
           <div class="hero-feat-item">
             <div class="hero-feat-icon">
-              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
