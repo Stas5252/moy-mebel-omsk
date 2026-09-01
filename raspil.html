@@ -1451,7 +1451,7 @@ html, body {
 
     <!-- Right Column: Interactive Blueprint Mechanism Animation -->
     <div class="hero-right" style="display:flex; justify-content:center; align-items:center; position:relative; min-height:480px; background:transparent;">
-      <canvas height="520" id="saw-cutting-canvas" style="width:100%; max-width:640px; height:auto; background:transparent; border:none; box-shadow:none; display:block;" width="640"></canvas>
+      <canvas height="540" id="saw-cutting-canvas" style="width:100%; max-width:680px; height:auto; background:transparent; border:none; box-shadow:none; display:block;" width="680"></canvas>
     </div>
   </div>
 </section>
@@ -4112,8 +4112,8 @@ html, body {
     isStarted = true;
 
     var ctx = canvas.getContext('2d');
-    var W = 640;
-    var H = 520;
+    var W = 680;
+    var H = 540;
     canvas.width = W;
     canvas.height = H;
 
@@ -4134,154 +4134,69 @@ html, body {
       targetMouseY = H * 0.5;
     });
 
-    function render() {
-      requestAnimationFrame(render);
-      time += 0.006;
+    // Helper: Draw precision technical gear in exact original style
+    function drawBlueprintGear(cx, cy, rHub, rInner, rOuter, teeth, rotSpeed, colorHub, colorLine, hasTicks, tickStep) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(time * rotSpeed);
 
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
-
-      var pX = (mouseX - W * 0.5) * 0.025;
-      var pY = (mouseY - H * 0.5) * 0.025;
-
-      ctx.clearRect(0, 0, W, H);
-
-      // Coordinates matching client reference screenshot (top mechanism + bottom radar reticle)
-      var topX = W * 0.65 + pX;
-      var topY = H * 0.23 + pY;
-      var botX = W * 0.40 + pX * 0.6;
-      var botY = H * 0.67 + pY * 0.6;
-
-      // 1. Subtle Architectural Grid / Axis Lines
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.16)';
-      ctx.lineWidth = 1;
-      
-      // Vertical axis through bottom reticle
-      ctx.beginPath();
-      ctx.moveTo(botX, 10); ctx.lineTo(botX, H - 10);
-      ctx.stroke();
-
-      // Horizontal axis through bottom reticle
-      ctx.beginPath();
-      ctx.moveTo(10, botY); ctx.lineTo(W - 10, botY);
-      ctx.stroke();
-
-      // Vertical axis through top dial
-      ctx.beginPath();
-      ctx.moveTo(topX, 10); ctx.lineTo(topX, H - 10);
-      ctx.stroke();
-
-      // Tangent connecting hairline
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.12)';
-      ctx.beginPath();
-      ctx.moveTo(botX, botY); ctx.lineTo(topX, topY);
-      ctx.stroke();
-
-      // 2. Bottom Concentric Radar Rings & Arc Segments (matching screenshot!)
-      var radarRadii = [65, 130, 210, 290, 370];
-      radarRadii.forEach(function(rad, idx) {
-        ctx.strokeStyle = 'rgba(255, 208, 67, ' + (0.12 + (idx % 2) * 0.08) + ')';
-        ctx.lineWidth = 0.9;
+      // Solid Terracotta / Amber Filled Hub
+      if (rHub > 0) {
+        ctx.fillStyle = colorHub;
         ctx.beginPath();
-        if (idx === 1 || idx === 3) {
-          ctx.setLineDash([5, 8]);
-        } else {
-          ctx.setLineDash([]);
-        }
-        ctx.arc(botX, botY, rad, 0, Math.PI * 2);
+        ctx.arc(0, 0, rHub, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Hub center dot / bearing
+        ctx.beginPath();
+        ctx.arc(0, 0, rHub * 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = '#0c0805';
+        ctx.fill();
+        ctx.strokeStyle = colorLine;
+        ctx.lineWidth = 1.2;
         ctx.stroke();
-      });
-      ctx.setLineDash([]);
-
-      // Rotating delicate radar arc sweep
-      ctx.save();
-      ctx.translate(botX, botY);
-      ctx.rotate(-time * 0.45);
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.35)';
-      ctx.lineWidth = 1.2;
-      ctx.beginPath();
-      ctx.arc(0, 0, 210, 0, Math.PI * 0.35);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(0, 0, 290, Math.PI * 0.9, Math.PI * 1.35);
-      ctx.stroke();
-      ctx.restore();
-
-      // 3. Logo Gold Crosshair Reticle (4 Rectangular Ticks - exact match to screenshot!)
-      var crossSize = 13;
-      var crossThick = 4.5;
-      var crossGap = 7;
-      ctx.fillStyle = 'rgba(255, 208, 67, 0.9)';
-      // Top tick
-      ctx.fillRect(botX - crossThick * 0.5, botY - crossGap - crossSize, crossThick, crossSize);
-      // Bottom tick
-      ctx.fillRect(botX - crossThick * 0.5, botY + crossGap, crossThick, crossSize);
-      // Left tick
-      ctx.fillRect(botX - crossGap - crossSize, botY - crossThick * 0.5, crossSize, crossThick);
-      // Right tick
-      ctx.fillRect(botX + crossGap, botY - crossThick * 0.5, crossSize, crossThick);
-
-      // 4. Top Mechanism (Dial + Gear + Orbitals - exact match to screenshot!)
-      ctx.save();
-      ctx.translate(topX, topY);
-
-      var rotAngle = time * 0.5;
-
-      // Solid Terracotta Filled Hub (sampled from logo disc)
-      ctx.fillStyle = 'rgba(180, 60, 10, 0.65)';
-      ctx.beginPath();
-      ctx.arc(0, 0, 26, 0, Math.PI * 2);
-      ctx.fill();
+      }
 
       // Inner Concentric Orbit Ring
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.5)';
-      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = colorLine;
+      ctx.lineWidth = 1.1;
       ctx.beginPath();
-      ctx.arc(0, 0, 58, 0, Math.PI * 2);
+      ctx.arc(0, 0, rInner * 0.65, 0, Math.PI * 2);
       ctx.stroke();
 
       // Secondary Orbit Ring
       ctx.strokeStyle = 'rgba(255, 208, 67, 0.35)';
       ctx.beginPath();
-      ctx.arc(0, 0, 88, 0, Math.PI * 2);
+      ctx.arc(0, 0, rInner, 0, Math.PI * 2);
       ctx.stroke();
 
       // Rotating Diagonal Hairline Axis
-      ctx.save();
-      ctx.rotate(rotAngle * 0.6);
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.35)';
-      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.28)';
+      ctx.lineWidth = 0.9;
       ctx.beginPath();
-      ctx.moveTo(-115, -60); ctx.lineTo(115, 60);
+      ctx.moveTo(-rOuter * 1.15, -rOuter * 0.5); ctx.lineTo(rOuter * 1.15, rOuter * 0.5);
       ctx.stroke();
-      ctx.restore();
 
-      // Rotating Precision Dial Ticks Ring
-      ctx.save();
-      ctx.rotate(rotAngle);
-      var tickCount = 48;
-      for (var t = 0; t < tickCount; t++) {
-        var ta = (t * Math.PI * 2) / tickCount;
-        var isLong = (t % 4 === 0);
-        var r1 = 88;
-        var r2 = isLong ? 98 : 93;
-        ctx.strokeStyle = isLong ? 'rgba(255, 208, 67, 0.8)' : 'rgba(255, 208, 67, 0.35)';
-        ctx.lineWidth = isLong ? 1.3 : 0.9;
-        ctx.beginPath();
-        ctx.moveTo(Math.cos(ta) * r1, Math.sin(ta) * r1);
-        ctx.lineTo(Math.cos(ta) * r2, Math.sin(ta) * r2);
-        ctx.stroke();
+      // Precision Dial Ticks Ring
+      if (hasTicks) {
+        var tickCount = tickStep || 36;
+        for (var t = 0; t < tickCount; t++) {
+          var ta = (t * Math.PI * 2) / tickCount;
+          var isLong = (t % 4 === 0);
+          var t1 = rInner;
+          var t2 = isLong ? rInner + 9 : rInner + 5;
+          ctx.strokeStyle = isLong ? 'rgba(255, 208, 67, 0.75)' : 'rgba(255, 208, 67, 0.3)';
+          ctx.lineWidth = isLong ? 1.2 : 0.8;
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(ta) * t1, Math.sin(ta) * t1);
+          ctx.lineTo(Math.cos(ta) * t2, Math.sin(ta) * t2);
+          ctx.stroke();
+        }
       }
-      ctx.restore();
 
-      // Rotating Outer Gear Teeth (Delicate, thin, technical)
-      ctx.save();
-      ctx.rotate(rotAngle);
-      var teeth = 24;
+      // Rotating Technical Gear Teeth
       var toothAngle = (Math.PI * 2) / teeth;
-      var rInner = 104;
-      var rOuter = 114;
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.65)';
+      ctx.strokeStyle = colorLine;
       ctx.lineWidth = 1.1;
       ctx.beginPath();
       for (var i = 0; i < teeth; i++) {
@@ -4296,9 +4211,135 @@ html, body {
       }
       ctx.closePath();
       ctx.stroke();
-      ctx.restore();
 
       ctx.restore();
+    }
+
+    function render() {
+      requestAnimationFrame(render);
+      time += 0.006;
+
+      mouseX += (targetMouseX - mouseX) * 0.04;
+      mouseY += (targetMouseY - mouseY) * 0.04;
+
+      var pX = (mouseX - W * 0.5) * 0.025;
+      var pY = (mouseY - H * 0.5) * 0.025;
+
+      ctx.clearRect(0, 0, W, H);
+
+      // Mechanism Positions:
+      // Gear 1 (Main Top Right)
+      var g1X = W * 0.65 + pX;
+      var g1Y = H * 0.25 + pY;
+
+      // Gear 2 (Interlocked Medium Gear to the Left/Middle)
+      var g2X = g1X - 165;
+      var g2Y = g1Y + 95;
+
+      // Gear 3 (Smaller Planetary Gear at the Bottom Right)
+      var g3X = g1X + 50;
+      var g3Y = g1Y + 225;
+
+      // Radar Crosshair (Bottom Center)
+      var botX = W * 0.42 + pX * 0.6;
+      var botY = H * 0.68 + pY * 0.6;
+
+      // 1. Subtle Architectural Grid & Axis Connecting Lines
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.12)';
+      ctx.lineWidth = 1;
+
+      // Vertical axis through bottom reticle
+      ctx.beginPath();
+      ctx.moveTo(botX, 10); ctx.lineTo(botX, H - 10);
+      ctx.stroke();
+
+      // Horizontal axis through bottom reticle
+      ctx.beginPath();
+      ctx.moveTo(10, botY); ctx.lineTo(W - 10, botY);
+      ctx.stroke();
+
+      // Axis lines through gears
+      ctx.beginPath();
+      ctx.moveTo(g1X, 10); ctx.lineTo(g1X, H - 10);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(10, g2Y); ctx.lineTo(W - 10, g2Y);
+      ctx.stroke();
+
+      // Connecting transmission hairlines
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.18)';
+      ctx.beginPath();
+      ctx.setLineDash([4, 4]);
+      ctx.moveTo(g2X, g2Y); ctx.lineTo(g1X, g1Y);
+      ctx.lineTo(g3X, g3Y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // 2. Concentric Radar Rings & Arc Sweeps
+      var radarRadii = [65, 130, 210, 290, 380];
+      radarRadii.forEach(function(rad, idx) {
+        ctx.strokeStyle = 'rgba(255, 208, 67, ' + (0.10 + (idx % 2) * 0.06) + ')';
+        ctx.lineWidth = 0.9;
+        ctx.beginPath();
+        if (idx === 1 || idx === 3) ctx.setLineDash([5, 8]);
+        else ctx.setLineDash([]);
+        ctx.arc(botX, botY, rad, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+
+      // Rotating delicate radar arc sweeps
+      ctx.save();
+      ctx.translate(botX, botY);
+      ctx.rotate(-time * 0.45);
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.35)';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      ctx.arc(0, 0, 210, 0, Math.PI * 0.35);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, 0, 290, Math.PI * 0.9, Math.PI * 1.35);
+      ctx.stroke();
+      ctx.restore();
+
+      // 3. Logo Gold Crosshair Reticle (4 Rectangular Ticks)
+      var crossSize = 13;
+      var crossThick = 4.5;
+      var crossGap = 7;
+      ctx.fillStyle = 'rgba(255, 208, 67, 0.9)';
+      ctx.fillRect(botX - crossThick * 0.5, botY - crossGap - crossSize, crossThick, crossSize);
+      ctx.fillRect(botX - crossThick * 0.5, botY + crossGap, crossThick, crossSize);
+      ctx.fillRect(botX - crossGap - crossSize, botY - crossThick * 0.5, crossSize, crossThick);
+      ctx.fillRect(botX + crossGap, botY - crossThick * 0.5, crossSize, crossThick);
+
+      // Coordinate readout labels in exact technical blueprint typography
+      ctx.fillStyle = 'rgba(255, 208, 67, 0.55)';
+      ctx.font = '9px "Montserrat", monospace';
+      ctx.fillText('POS: 1200.00 / 600.00', botX + 16, botY - 14);
+      ctx.fillText('RAD: 180° · SCM ACCURACY', botX + 16, botY - 3);
+
+      // 4. DRAW 3 INTERLOCKING PRECISION GEARS IN IDENTICAL ELEGANT BLUEPRINT STYLE
+      
+      // GEAR 1 (Main Top-Right Gear): Clockwise
+      drawBlueprintGear(g1X, g1Y, 26, 104, 115, 24, 0.5, 'rgba(180, 60, 10, 0.65)', 'rgba(255, 208, 67, 0.65)', true, 48);
+
+      // GEAR 2 (Intermeshing Medium Gear - Left/Mid): Counter-Clockwise
+      drawBlueprintGear(g2X, g2Y, 20, 72, 82, 18, -0.66, 'rgba(200, 90, 20, 0.55)', 'rgba(255, 208, 67, 0.6)', true, 36);
+
+      // GEAR 3 (Intermeshing Small Planetary Gear - Bottom-Right): Counter-Clockwise
+      drawBlueprintGear(g3X, g3Y, 14, 48, 56, 12, -1.0, 'rgba(160, 50, 8, 0.55)', 'rgba(255, 208, 67, 0.55)', false, 24);
+
+      // 5. Delicate Micro-Measurement Markers along Axis
+      ctx.strokeStyle = 'rgba(255, 118, 26, 0.45)';
+      ctx.lineWidth = 1;
+      for (var m = -3; m <= 3; m++) {
+        if (m === 0) continue;
+        var mx = g1X + m * 35;
+        ctx.beginPath();
+        ctx.moveTo(mx, g1Y - 6); ctx.lineTo(mx, g1Y + 6);
+        ctx.stroke();
+      }
     }
 
     render();
