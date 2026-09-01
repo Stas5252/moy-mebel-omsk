@@ -739,13 +739,34 @@ html, body {
 }
 
 .saw-calc-size-limit {
-  font-size: 13px !important;
+  font-size: 12.5px !important;
   color: #706055 !important;
   margin: 14px 0 18px 0 !important;
   display: flex !important;
+  flex-wrap: wrap !important;
   align-items: center !important;
-  gap: 8px !important;
+  gap: 10px 22px !important;
   line-height: 1.4 !important;
+}
+.saw-calc-size-limit-item {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+}
+.saw-calc-size-limit-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 17px !important;
+  height: 17px !important;
+  min-width: 17px !important;
+  border-radius: 50% !important;
+  border: 1.2px solid #8c786a !important;
+  color: #8c786a !important;
+  font-size: 10.5px !important;
+  font-weight: 700 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  line-height: 1 !important;
 }
 .saw-calc-size-limit b {
   color: #1a1512 !important;
@@ -1634,10 +1655,20 @@ html, body {
 </button>
 </div>
 </div>
-<!-- Size limit and edge note -->
+<!-- Size limit and edge notes -->
 <div class="saw-calc-size-limit">
-  <span style="display:inline-flex; align-items:center; justify-content:center; width:18px; height:18px; min-width:18px; border-radius:50%; border:1.2px solid #8c786a; color:#8c786a; font-size:11px; font-weight:700; font-family:'Montserrat', sans-serif;">i</span>
-  <span>Максимальные габариты детали: <b>2720 × 1830 мм</b>. Кромка подбирается в цвет выбранного ЛДСП.</span>
+  <div class="saw-calc-size-limit-item">
+    <span class="saw-calc-size-limit-icon">✓</span>
+    <span>Максимальные габариты детали: <b>2720 × 1830 мм</b></span>
+  </div>
+  <div class="saw-calc-size-limit-item">
+    <span class="saw-calc-size-limit-icon">✓</span>
+    <span>Кромка подбирается <b>в цвет выбранного ЛДСП</b></span>
+  </div>
+  <div class="saw-calc-size-limit-item">
+    <span class="saw-calc-size-limit-icon">✓</span>
+    <span>Кромка <b>кратна 1 метру</b> (округляется в большую сторону: напр. 1.2 м ➔ 2 м)</span>
+  </div>
 </div>
 <!-- Details List Container (Dark card) -->
 <div class="saw-calc-details-card" id="calc-details-container">
