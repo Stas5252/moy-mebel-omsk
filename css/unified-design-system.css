@@ -148,7 +148,13 @@ body {
   width: 44px !important;
   height: 48px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 12px rgba(255, 107, 26, 0.7)) !important;
+  filter: drop-shadow(0 0 10px rgba(255, 180, 40, 0.65)) drop-shadow(0 0 22px rgba(212, 130, 8, 0.4)) !important;
+  transition: all 0.3s ease !important;
+}
+
+.site-header__brand:hover .site-header__logo-img {
+  filter: drop-shadow(0 0 16px rgba(255, 200, 70, 0.95)) drop-shadow(0 0 32px rgba(255, 140, 20, 0.65)) !important;
+  transform: scale(1.06) !important;
 }
 
 .site-header__brand-title {
