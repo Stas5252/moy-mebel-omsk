@@ -37,8 +37,8 @@
       position: relative;
     }
 
-    /* Master Fullscreen Background Video */
-    .hero-bg-video-container {
+    /* FULLSCREEN FRAMELESS VIDEO (RIGHT-ALIGNED) */
+    .hero-fullscreen-wrap {
       position: fixed;
       top: 0;
       left: 0;
@@ -48,28 +48,47 @@
       overflow: hidden;
       pointer-events: none;
     }
-    .hero-bg-video {
+
+    /* Video stretches edge-to-edge without any frames */
+    .hero-frameless-video {
+      position: absolute;
+      top: 0;
+      right: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.65) contrast(1.1);
+      object-position: right center;
+      filter: brightness(0.9) contrast(1.05);
     }
-    /* Smooth Vignette / Darkening (darker on left, brighter on right) */
-    .hero-bg-darkening {
+
+    /* LEFT-TO-RIGHT SEAMLESS DARKENING GRADIENT */
+    .hero-vignette-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, rgba(12, 8, 5, 0.94) 0%, rgba(12, 8, 5, 0.82) 48%, rgba(12, 8, 5, 0.38) 100%),
-                  linear-gradient(180deg, rgba(12, 8, 5, 0.6) 0%, transparent 20%, transparent 80%, rgba(12, 8, 5, 0.95) 100%);
+      background: linear-gradient(to right, 
+        #0c0805 0%, 
+        #0c0805 32%, 
+        rgba(12, 8, 5, 0.94) 46%, 
+        rgba(12, 8, 5, 0.65) 60%, 
+        rgba(12, 8, 5, 0.15) 80%,
+        transparent 100%
+      ),
+      linear-gradient(to bottom,
+        rgba(12, 8, 5, 0.75) 0%,
+        transparent 15%,
+        transparent 85%,
+        rgba(12, 8, 5, 0.95) 100%
+      );
     }
 
     /* Header adjustments */
     .site-header {
       position: relative;
       z-index: 10;
-      background: rgba(12, 8, 5, 0.6);
+      background: rgba(12, 8, 5, 0.5);
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -82,13 +101,18 @@
       flex-grow: 1;
       display: flex;
       align-items: center;
-      padding: 40px 24px 60px;
+      padding: clamp(30px, 4vh, 60px) clamp(20px, 4vw, 60px);
     }
 
     .hero-inner-container {
-      max-width: 1280px;
+      max-width: 1400px;
       width: 100%;
       margin: 0 auto;
+    }
+
+    .hero-left-content {
+      max-width: 780px;
+      text-align: left;
     }
 
     /* Badge */
@@ -105,7 +129,7 @@
       font-weight: 800;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
     }
     .portal-badge-dot {
@@ -120,14 +144,13 @@
     /* Main Title */
     .portal-main-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(32px, 4.4vw, 56px);
+      font-size: clamp(32px, 3.8vw, 54px);
       font-weight: 900;
       line-height: 1.1;
       letter-spacing: -0.02em;
       color: #ffffff;
       margin-bottom: 16px;
       text-shadow: 0 4px 28px rgba(0, 0, 0, 0.95);
-      max-width: 820px;
     }
     .portal-title-accent {
       background: linear-gradient(135deg, #ff8a3c 0%, #e05206 100%);
@@ -138,11 +161,11 @@
 
     /* Subtitle */
     .portal-main-desc {
-      font-size: clamp(14.5px, 1.2vw, 17px);
+      font-size: clamp(14px, 1.15vw, 16.5px);
       line-height: 1.6;
       color: #d1bead;
-      max-width: 680px;
-      margin-bottom: 34px;
+      max-width: 660px;
+      margin-bottom: 30px;
       font-weight: 400;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
     }
@@ -151,21 +174,21 @@
     .portal-cards-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 920px;
-      margin-bottom: 36px;
+      gap: 20px;
+      max-width: 740px;
+      margin-bottom: 30px;
     }
 
     /* Card Base */
     .portal-card {
       position: relative;
       border-radius: 20px;
-      padding: 30px 28px;
+      padding: 26px 24px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 220px;
+      min-height: 200px;
       text-align: left;
       transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 14px 36px rgba(0, 0, 0, 0.6);
@@ -208,11 +231,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .portal-card__icon-box {
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       border-radius: 12px;
       background: rgba(0, 0, 0, 0.22);
       display: flex;
@@ -221,15 +244,15 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
     .portal-card__arrow-btn {
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.25);
       display: flex;
       align-items: center;
       justify-content: center;
       color: #ffffff;
-      font-size: 19px;
+      font-size: 18px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       transition: all 0.25s ease;
     }
@@ -242,7 +265,7 @@
     /* Card Titles & Desc */
     .portal-card__title {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(20px, 2vw, 25px);
+      font-size: clamp(19px, 1.8vw, 23px);
       font-weight: 900;
       letter-spacing: -0.01em;
       text-transform: uppercase;
@@ -251,7 +274,7 @@
       line-height: 1.15;
     }
     .portal-card__desc {
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.5;
       color: rgba(255, 255, 255, 0.92);
       font-weight: 500;
@@ -264,22 +287,22 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 16px;
-      padding: 14px 20px;
+      padding: 12px 18px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      max-width: 920px;
+      gap: 14px;
+      max-width: 740px;
     }
     .hero-feat-item {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       position: relative;
     }
     .hero-feat-item:not(:last-child)::after {
       content: '';
       position: absolute;
-      right: -8px;
+      right: -7px;
       top: 15%;
       height: 70%;
       width: 1px;
@@ -287,9 +310,9 @@
     }
     .hero-feat-icon {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
       background: rgba(255, 118, 26, 0.12);
       display: flex;
       align-items: center;
@@ -300,29 +323,32 @@
       flex-direction: column;
     }
     .hero-feat-title {
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: #ffffff;
-      line-height: 1.25;
+      line-height: 1.2;
     }
     .hero-feat-desc {
-      font-size: 11px;
+      font-size: 10.5px;
       color: #9e8e80;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     @media (max-width: 820px) {
+      .hero-vignette-overlay {
+        background: rgba(12, 8, 5, 0.85);
+      }
       .portal-cards-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 14px;
       }
       .portal-card {
-        padding: 24px 20px;
+        padding: 22px 18px;
         min-height: auto;
       }
       .hero-features-bar {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 10px;
       }
       .hero-feat-item:not(:last-child)::after {
         display: none;
@@ -332,12 +358,12 @@
 </head>
 <body>
 
-  <!-- Fullscreen Ambient Background Video with Left-to-Right Darkening -->
-  <div class="hero-bg-video-container">
-    <video class="hero-bg-video" autoplay loop muted playsinline poster="images/main_video_poster.jpg">
+  <!-- FULLSCREEN FRAMELESS VIDEO WITH SMOOTH LEFT DARKENING -->
+  <div class="hero-fullscreen-wrap">
+    <video class="hero-frameless-video" autoplay loop muted playsinline poster="images/main_video_poster.jpg">
       <source src="images/main_bg_video.mp4" type="video/mp4">
     </video>
-    <div class="hero-bg-darkening"></div>
+    <div class="hero-vignette-overlay"></div>
   </div>
 
   <!-- UNIFIED MASTER HEADER -->
@@ -366,125 +392,127 @@
     </div>
   </header>
 
-  <!-- MAIN HERO SCREEN -->
+  <!-- MAIN HERO SCREEN (CONTENT LEFT, VIDEO RIGHT FRAMELESS) -->
   <main class="hero-screen-section">
     <div class="hero-inner-container">
-      
-      <!-- Top Badge matching screenshot -->
-      <div class="portal-badge">
-        <span class="portal-badge-dot"></span>
-        <span>★ 4.9 НА 2ГИС · ПРОИЗВОДСТВО SCM</span>
-      </div>
-
-      <!-- Main Headline matching screenshot -->
-      <h1 class="portal-main-title">
-        Производство мебели<br>
-        и точный <span class="portal-title-accent">распил ЛДСП</span>
-      </h1>
-
-      <!-- Subtitle matching screenshot -->
-      <p class="portal-main-desc">
-        Выберите интересующее вас направление для перехода в интерактивный онлайн-калькулятор или каталог мебели:
-      </p>
-
-      <!-- Two Portal Direction Cards matching screenshot -->
-      <div class="portal-cards-grid">
+      <div class="hero-left-content">
         
-        <!-- CARD 1: РАСПИЛ ЛДСП (ORANGE) -->
-        <a href="raspil.html" class="portal-card portal-card--raspil">
-          <div class="portal-card__top">
-            <div class="portal-card__icon-box">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 20L20 4"></path>
-                <path d="M7 17l-3 3"></path>
-                <path d="M9 11l-2 2"></path>
-                <path d="M13 7l-2 2"></path>
-                <path d="M17 3l-2 2"></path>
-                <path d="M18 10l-4-4"></path>
+        <!-- Top Badge matching screenshot -->
+        <div class="portal-badge">
+          <span class="portal-badge-dot"></span>
+          <span>★ 4.9 НА 2ГИС · ПРОИЗВОДСТВО SCM</span>
+        </div>
+
+        <!-- Main Headline matching screenshot -->
+        <h1 class="portal-main-title">
+          Производство мебели<br>
+          и точный <span class="portal-title-accent">распил ЛДСП</span>
+        </h1>
+
+        <!-- Subtitle matching screenshot -->
+        <p class="portal-main-desc">
+          Выберите интересующее вас направление для перехода в интерактивный онлайн-калькулятор или каталог мебели:
+        </p>
+
+        <!-- Two Portal Direction Cards matching screenshot -->
+        <div class="portal-cards-grid">
+          
+          <!-- CARD 1: РАСПИЛ ЛДСП (ORANGE) -->
+          <a href="raspil.html" class="portal-card portal-card--raspil">
+            <div class="portal-card__top">
+              <div class="portal-card__icon-box">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 20L20 4"></path>
+                  <path d="M7 17l-3 3"></path>
+                  <path d="M9 11l-2 2"></path>
+                  <path d="M13 7l-2 2"></path>
+                  <path d="M17 3l-2 2"></path>
+                  <path d="M18 10l-4-4"></path>
+                </svg>
+              </div>
+              <div class="portal-card__arrow-btn">→</div>
+            </div>
+            <div>
+              <h2 class="portal-card__title">РАСПИЛ ЛДСП</h2>
+              <p class="portal-card__desc">
+                Онлайн-калькулятор раскроя, кромление 0.4–2 мм, присадка и радиусы. Точность до 1 мм.
+              </p>
+            </div>
+          </a>
+
+          <!-- CARD 2: МЕБЕЛЬ НА ЗАКАЗ (GOLD/BROWN) -->
+          <a href="mebel.html" class="portal-card portal-card--mebel">
+            <div class="portal-card__top">
+              <div class="portal-card__icon-box">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                  <path d="M2 17l10 5 10-5"></path>
+                  <path d="M2 12l10 5 10-5"></path>
+                </svg>
+              </div>
+              <div class="portal-card__arrow-btn">→</div>
+            </div>
+            <div>
+              <h2 class="portal-card__title">МЕБЕЛЬ НА ЗАКАЗ</h2>
+              <p class="portal-card__desc">
+                Кухни с витринами, шкафы-купе под потолок, гардеробные и Loft. 3D-проект в подарок.
+              </p>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Features Capsule Bar -->
+        <div class="hero-features-bar">
+          <div class="hero-feat-item">
+            <div class="hero-feat-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path>
+                <circle cx="12" cy="12" r="3" fill="#ff761a"></circle>
               </svg>
             </div>
-            <div class="portal-card__arrow-btn">→</div>
+            <div class="hero-feat-texts">
+              <span class="hero-feat-title">Всегда наточенные</span>
+              <span class="hero-feat-desc">пилы и чистый спил</span>
+            </div>
           </div>
-          <div>
-            <h2 class="portal-card__title">РАСПИЛ ЛДСП</h2>
-            <p class="portal-card__desc">
-              Онлайн-калькулятор раскроя, кромление 0.4–2 мм, присадка и радиусы. Точность до 1 мм.
-            </p>
-          </div>
-        </a>
 
-        <!-- CARD 2: МЕБЕЛЬ НА ЗАКАЗ (GOLD/BROWN) -->
-        <a href="mebel.html" class="portal-card portal-card--mebel">
-          <div class="portal-card__top">
-            <div class="portal-card__icon-box">
-              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                <path d="M2 17l10 5 10-5"></path>
-                <path d="M2 12l10 5 10-5"></path>
+          <div class="hero-feat-item">
+            <div class="hero-feat-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="8"></circle>
+                <line x1="22" y1="12" x2="18" y2="12"></line>
+                <line x1="6" y1="12" x2="2" y2="12"></line>
+                <line x1="12" y1="6" x2="12" y2="2"></line>
+                <line x1="12" y1="22" x2="12" y2="18"></line>
+                <circle cx="12" cy="12" r="3"></circle>
               </svg>
             </div>
-            <div class="portal-card__arrow-btn">→</div>
+            <div class="hero-feat-texts">
+              <span class="hero-feat-title">Распил с точностью</span>
+              <span class="hero-feat-desc">до мм по заказу</span>
+            </div>
           </div>
-          <div>
-            <h2 class="portal-card__title">МЕБЕЛЬ НА ЗАКАЗ</h2>
-            <p class="portal-card__desc">
-              Кухни с витринами, шкафы-купе под потолок, гардеробные и Loft. 3D-проект в подарок.
-            </p>
+
+          <div class="hero-feat-item">
+            <div class="hero-feat-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+                <circle cx="12" cy="15" r="2" fill="#ff761a"></circle>
+              </svg>
+            </div>
+            <div class="hero-feat-texts">
+              <span class="hero-feat-title">Срок выполнения</span>
+              <span class="hero-feat-desc">заказа 2–4 дня</span>
+            </div>
           </div>
-        </a>
+        </div>
 
       </div>
-
-      <!-- Features Capsule Bar -->
-      <div class="hero-features-bar">
-        <div class="hero-feat-item">
-          <div class="hero-feat-icon">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path>
-              <circle cx="12" cy="12" r="3" fill="#ff761a"></circle>
-            </svg>
-          </div>
-          <div class="hero-feat-texts">
-            <span class="hero-feat-title">Всегда наточенные</span>
-            <span class="hero-feat-desc">пилы и чистый спил</span>
-          </div>
-        </div>
-
-        <div class="hero-feat-item">
-          <div class="hero-feat-icon">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="8"></circle>
-              <line x1="22" y1="12" x2="18" y2="12"></line>
-              <line x1="6" y1="12" x2="2" y2="12"></line>
-              <line x1="12" y1="6" x2="12" y2="2"></line>
-              <line x1="12" y1="22" x2="12" y2="18"></line>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </div>
-          <div class="hero-feat-texts">
-            <span class="hero-feat-title">Распил с точностью</span>
-            <span class="hero-feat-desc">до мм по заказу</span>
-          </div>
-        </div>
-
-        <div class="hero-feat-item">
-          <div class="hero-feat-icon">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
-              <line x1="16" y1="2" x2="16" y2="6"></line>
-              <line x1="8" y1="2" x2="8" y2="6"></line>
-              <line x1="3" y1="10" x2="21" y2="10"></line>
-              <circle cx="12" cy="15" r="2" fill="#ff761a"></circle>
-            </svg>
-          </div>
-          <div class="hero-feat-texts">
-            <span class="hero-feat-title">Срок выполнения</span>
-            <span class="hero-feat-desc">заказа 2–4 дня</span>
-          </div>
-        </div>
-      </div>
-
     </div>
   </main>
 
