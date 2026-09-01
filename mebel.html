@@ -2364,185 +2364,221 @@ html, body {
 <div id="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 24px;">
 
 <!-- 1. Современная кухня в стиле минимализм -->
-<div class="mebel-card gallery-item" data-cat="kitchen">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Современная кухня в стиле минимализм Омск" loading="lazy" src="images/gallery_work_1.jpg"/>
-<div class="mebel-card__tag">Кухня</div>
+<div class="mebel-card gallery-item" data-cat="kitchen" onclick="openProjectModal(1)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Современная кухня в стиле минимализм Омск" loading="lazy" src="images/gallery/work_1_1.jpg"/>
+    <div class="mebel-card__tag">Кухня</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      9 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Современная кухня в стиле минимализм</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 16 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Современная кухня в стиле минимализм</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 16 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
-</div>
-</div>
-</div>
-
 <!-- 2. Кухня в цвете океан -->
-<div class="mebel-card gallery-item" data-cat="kitchen">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Кухня в цвете океан на заказ Омск" loading="lazy" src="images/gallery_work_2.jpg"/>
-<div class="mebel-card__tag">Кухня</div>
+<div class="mebel-card gallery-item" data-cat="kitchen" onclick="openProjectModal(2)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Кухня в цвете океан Омск" loading="lazy" src="images/gallery/work_2_1.jpg"/>
+    <div class="mebel-card__tag">Кухня</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      6 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Кухня в цвете океан</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 18 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Кухня в цвете океан</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 18 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
+<!-- 3. Подвесная тумба: Минимализм и тепло -->
+<div class="mebel-card gallery-item" data-cat="living" onclick="openProjectModal(3)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Подвесная тумба: Минимализм и тепло Омск" loading="lazy" src="images/gallery/work_3_1.jpg"/>
+    <div class="mebel-card__tag">Тумбы и гостиные</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      4 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Подвесная тумба: Минимализм и тепло</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 10 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Мебель на заказ')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-
-<!-- 3. Подвесная тумба -->
-<div class="mebel-card gallery-item" data-cat="living">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Подвесная тумба в гостиную Омск" loading="lazy" src="images/gallery_work_3.jpg"/>
-<div class="mebel-card__tag">Тумбы и гостиные</div>
-</div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Подвесная тумба: Минимализм и тепло</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 10 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Мебель на заказ')">Хочу такую →</a>
-</div>
-</div>
-</div>
-
 <!-- 4. Кухня для семейных вечеров -->
-<div class="mebel-card gallery-item" data-cat="kitchen">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Кухня для семейных вечеров Омск" loading="lazy" src="images/gallery_work_4.jpg"/>
-<div class="mebel-card__tag">Кухня</div>
+<div class="mebel-card gallery-item" data-cat="kitchen" onclick="openProjectModal(4)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Кухня для семейных вечеров Омск" loading="lazy" src="images/gallery/work_4_1.jpg"/>
+    <div class="mebel-card__tag">Кухня</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      5 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Кухня для семейных вечеров</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 19 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Кухня для семейных вечеров</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 19 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
+<!-- 5. Гардеробная: порядок становится привычкой -->
+<div class="mebel-card gallery-item" data-cat="dressing" onclick="openProjectModal(5)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Гардеробная: порядок становится привычкой Омск" loading="lazy" src="images/gallery/work_5_1.jpg"/>
+    <div class="mebel-card__tag">Гардеробная</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      6 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Гардеробная: порядок становится привычкой</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Гардеробная')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-
-<!-- 5. Гардеробная -->
-<div class="mebel-card gallery-item" data-cat="dressing">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Гардеробная комната на заказ Омск" loading="lazy" src="images/gallery_work_5.jpg"/>
-<div class="mebel-card__tag">Гардеробная</div>
-</div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Гардеробная: порядок становится привычкой</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Гардеробная')">Хочу такую →</a>
-</div>
-</div>
-</div>
-
 <!-- 6. Встроенный шкаф в пастельных тонах -->
-<div class="mebel-card gallery-item" data-cat="wardrobe">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Встроенный шкаф в пастельных тонах Омск" loading="lazy" src="images/gallery_work_6.jpg"/>
-<div class="mebel-card__tag">Шкафы и купе</div>
+<div class="mebel-card gallery-item" data-cat="wardrobe" onclick="openProjectModal(6)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Встроенный шкаф в пастельных тонах Омск" loading="lazy" src="images/gallery/work_6_1.jpg"/>
+    <div class="mebel-card__tag">Шкафы и купе</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      4 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Встроенный шкаф в пастельных тонах</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Встроенный шкаф в пастельных тонах</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
-</div>
-</div>
-</div>
-
 <!-- 7. Пространство для тёплых встреч -->
-<div class="mebel-card gallery-item" data-cat="kitchen">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Кухня-гостиная на заказ Омск" loading="lazy" src="images/gallery_work_7.jpg"/>
-<div class="mebel-card__tag">Кухня</div>
+<div class="mebel-card gallery-item" data-cat="kitchen" onclick="openProjectModal(7)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Пространство для тёплых встреч Омск" loading="lazy" src="images/gallery/work_7_1.jpg"/>
+    <div class="mebel-card__tag">Кухня</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      5 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Пространство для тёплых встреч</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 17 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Пространство для тёплых встреч</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 17 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
-</div>
-</div>
-</div>
-
 <!-- 8. Тот самый идеальный шкаф -->
-<div class="mebel-card gallery-item" data-cat="wardrobe">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Идеальный распашной шкаф в спальню Омск" loading="lazy" src="images/gallery_work_8.jpg"/>
-<div class="mebel-card__tag">Шкафы и купе</div>
+<div class="mebel-card gallery-item" data-cat="wardrobe" onclick="openProjectModal(8)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Тот самый идеальный шкаф Омск" loading="lazy" src="images/gallery/work_8_1.jpg"/>
+    <div class="mebel-card__tag">Шкафы и купе</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      2 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Тот самый идеальный шкаф</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 11 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Тот самый идеальный шкаф</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 11 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
-</div>
-</div>
-</div>
-
 <!-- 9. Прихожая: ключевая роль зеркал -->
-<div class="mebel-card gallery-item" data-cat="hallway">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Прихожая с зеркалами в пол Омск" loading="lazy" src="images/gallery_work_9.jpg"/>
-<div class="mebel-card__tag">Прихожие</div>
+<div class="mebel-card gallery-item" data-cat="hallway" onclick="openProjectModal(9)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Прихожая: ключевая роль зеркал Омск" loading="lazy" src="images/gallery/work_9_1.jpg"/>
+    <div class="mebel-card__tag">Прихожие</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      5 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Прихожая: ключевая роль зеркал</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Прихожая')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Прихожая: ключевая роль зеркал</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Прихожая')">Хочу такую →</a>
-</div>
-</div>
-</div>
-
 <!-- 10. Шкаф «Вертикальный баланс» -->
-<div class="mebel-card gallery-item" data-cat="wardrobe">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Шкаф со стеллажом Вертикальный баланс Омск" loading="lazy" src="images/gallery_work_10.jpg"/>
-<div class="mebel-card__tag">Шкафы и купе</div>
+<div class="mebel-card gallery-item" data-cat="wardrobe" onclick="openProjectModal(10)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Шкаф «Вертикальный баланс» Омск" loading="lazy" src="images/gallery/work_10_1.jpg"/>
+    <div class="mebel-card__tag">Шкафы и купе</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      2 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Шкаф «Вертикальный баланс»</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Шкаф «Вертикальный баланс»</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
-</div>
-</div>
-</div>
-
 <!-- 11. Шкаф для зонирования пространства -->
-<div class="mebel-card gallery-item" data-cat="wardrobe">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Шкаф-перегородка для зонирования комнаты Омск" loading="lazy" src="images/gallery_work_11.jpg"/>
-<div class="mebel-card__tag">Шкафы и купе</div>
+<div class="mebel-card gallery-item" data-cat="wardrobe" onclick="openProjectModal(11)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Шкаф для зонирования пространства Омск" loading="lazy" src="images/gallery/work_11_1.jpg"/>
+    <div class="mebel-card__tag">Шкафы и купе</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      4 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Шкаф для зонирования пространства</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 15 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Шкаф для зонирования пространства</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 15 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
-</div>
-</div>
-</div>
-
 <!-- 12. Вместительный шкаф в прихожую -->
-<div class="mebel-card gallery-item" data-cat="wardrobe">
-<div class="mebel-card__img-wrap" style="height: 260px;">
-<img alt="Вместительный шкаф в прихожую Омск" loading="lazy" src="images/gallery_work_12.jpg"/>
-<div class="mebel-card__tag">Шкафы и купе</div>
+<div class="mebel-card gallery-item" data-cat="wardrobe" onclick="openProjectModal(12)" style="cursor: pointer;">
+  <div class="mebel-card__img-wrap" style="height: 260px; position: relative;">
+    <img alt="Вместительный шкаф в прихожую Омск" loading="lazy" src="images/gallery/work_12_1.jpg"/>
+    <div class="mebel-card__tag">Шкафы и купе</div>
+    <div class="mebel-card__photos-count" style="position: absolute; bottom: 12px; right: 12px; background: rgba(14, 9, 6, 0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255, 138, 60, 0.4); color: #ffd991; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 4px 12px rgba(0,0,0,0.5);">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      2 фото
+    </div>
+  </div>
+  <div class="mebel-card__body">
+    <h3 class="mebel-card__title">Вместительный шкаф в прихожую</h3>
+    <div class="mebel-card__specs">
+      <span style="color:var(--c-accent); font-weight:700;">Срок: 13 дней</span>
+      <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
+    </div>
+  </div>
 </div>
-<div class="mebel-card__body">
-<h3 class="mebel-card__title">Вместительный шкаф в прихожую</h3>
-<div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 13 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
-</div>
-</div>
-</div>
-
 </div>
 </section>
 
@@ -2978,77 +3014,200 @@ function switchShowcaseScene(type, btn) {
 </div>
 </footer>
 
-<!-- ========== GALLERY LIGHTBOX ========== -->
-<div id="gallery-lightbox" class="glb-overlay" onclick="if(event.target===this)closeLightbox()">
-  <button class="glb-close" onclick="closeLightbox()" aria-label="Закрыть">✕</button>
-  <button class="glb-arrow glb-arrow--prev" onclick="lightboxNav(-1)" aria-label="Предыдущее фото">‹</button>
-  <div class="glb-content">
-    <img id="glb-img" class="glb-img" src="" alt="">
-    <div class="glb-info">
-      <h3 id="glb-title" class="glb-title"></h3>
-      <span id="glb-tag" class="glb-tag"></span>
-      <span id="glb-counter" class="glb-counter"></span>
+
+<!-- ========== ADVANCED PROJECT GALLERY MODAL ========== -->
+<div id="project-modal" class="proj-modal-overlay" onclick="if(event.target===this)closeProjectModal()">
+  <div class="proj-modal-container">
+    <button class="proj-modal-close" onclick="closeProjectModal()" aria-label="Закрыть модальное окно">✕</button>
+    
+    <div class="proj-modal-grid">
+      <!-- LEFT: Photo Viewer + Slider -->
+      <div class="proj-modal-media">
+        <div class="proj-modal-stage">
+          <button class="proj-modal-nav proj-modal-nav--prev" onclick="projSlide(-1)" aria-label="Предыдущее фото">‹</button>
+          <img id="proj-main-img" class="proj-main-img" src="" alt="">
+          <button class="proj-modal-nav proj-modal-nav--next" onclick="projSlide(1)" aria-label="Следующее фото">›</button>
+          
+          <div class="proj-photo-counter" id="proj-photo-counter">1 / 1</div>
+        </div>
+        
+        <!-- Thumbnails Strip -->
+        <div class="proj-thumbs-strip" id="proj-thumbs-strip">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+      
+      <!-- RIGHT: Project Details & Action -->
+      <div class="proj-modal-info">
+        <div class="proj-modal-badges">
+          <span class="proj-badge-tag" id="proj-tag">Кухня</span>
+          <span class="proj-badge-specs" id="proj-specs">Срок: 16 дней</span>
+        </div>
+        
+        <h2 class="proj-modal-title" id="proj-title">Название проекта</h2>
+        
+        <div class="proj-modal-divider"></div>
+        
+        <div class="proj-modal-descr-title">О проекте:</div>
+        <p class="proj-modal-descr" id="proj-descr">Описание проекта...</p>
+        
+        <div class="proj-modal-features">
+          <div class="proj-feat-item">
+            <span class="proj-feat-icon">✓</span>
+            <span>Точный замер и 3D-проект бесплатно</span>
+          </div>
+          <div class="proj-feat-item">
+            <span class="proj-feat-icon">✓</span>
+            <span>Немецкая и австрийская фурнитура</span>
+          </div>
+          <div class="proj-feat-item">
+            <span class="proj-feat-icon">✓</span>
+            <span>Гарантия 24 месяца по договору</span>
+          </div>
+        </div>
+        
+        <div class="proj-modal-actions">
+          <button class="proj-btn-order" id="proj-btn-order" onclick="orderCurrentProject()">
+            <span>РАССЧИТАТЬ ТАКОЙ ПРОЕКТ</span>
+            <span style="font-size: 16px;">→</span>
+          </button>
+        </div>
+        
+        <!-- Project Switcher Nav -->
+        <div class="proj-nav-switchers">
+          <button class="proj-nav-btn" onclick="switchProject(-1)">
+            ← Предыдущий проект
+          </button>
+          <span class="proj-current-num" id="proj-current-num">Проект 1 из 12</span>
+          <button class="proj-nav-btn" onclick="switchProject(1)">
+            Следующий проект →
+          </button>
+        </div>
+      </div>
     </div>
   </div>
-  <button class="glb-arrow glb-arrow--next" onclick="lightboxNav(1)" aria-label="Следующее фото">›</button>
 </div>
 
 <style>
-/* === GALLERY LIGHTBOX === */
-.glb-overlay {
+/* === ADVANCED PROJECT GALLERY MODAL STYLES === */
+.proj-modal-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 99999;
-  background: rgba(10, 6, 3, 0.94);
+  z-index: 999999;
+  background: rgba(10, 6, 3, 0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  animation: glbFadeIn 0.25s ease;
+  padding: 24px;
+  overflow-y: auto;
+  animation: projModalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.glb-overlay.is-open {
+.proj-modal-overlay.is-active {
   display: flex;
 }
-@keyframes glbFadeIn {
+@keyframes projModalFadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.glb-close {
+
+.proj-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 1140px;
+  background: linear-gradient(145deg, #1f120a 0%, #150c07 100%);
+  border: 1px solid rgba(255, 138, 60, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: projModalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes projModalSlideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.proj-modal-close {
   position: absolute;
-  top: 20px;
-  right: 24px;
-  width: 48px;
-  height: 48px;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 138, 60, 0.4);
-  background: rgba(28, 17, 10, 0.85);
-  color: #ffffff;
-  font-size: 22px;
+  border: 1px solid rgba(255, 138, 60, 0.35);
+  background: rgba(28, 17, 10, 0.9);
+  color: #f5ede4;
+  font-size: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  z-index: 10;
+  z-index: 20;
 }
-.glb-close:hover {
+.proj-modal-close:hover {
   background: #ff6b1a;
   border-color: #ff6b1a;
-  transform: scale(1.1);
+  color: #ffffff;
+  transform: scale(1.08);
 }
-.glb-arrow {
+
+.proj-modal-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  min-height: 540px;
+  overflow-y: auto;
+}
+
+/* LEFT: MEDIA SECTION */
+.proj-modal-media {
+  background: #0d0704;
+  border-right: 1px solid rgba(255, 138, 60, 0.15);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+.proj-modal-stage {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  background: #080402;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.proj-main-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: opacity 0.2s ease;
+}
+
+.proj-modal-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 138, 60, 0.35);
-  background: rgba(28, 17, 10, 0.8);
+  background: rgba(20, 11, 6, 0.85);
+  border: 1px solid rgba(255, 138, 60, 0.4);
   color: #ffffff;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 300;
   cursor: pointer;
   display: flex;
@@ -3057,214 +3216,394 @@ function switchShowcaseScene(type, btn) {
   transition: all 0.2s ease;
   z-index: 10;
   line-height: 1;
-  padding-bottom: 3px;
+  padding-bottom: 2px;
 }
-.glb-arrow:hover {
-  background: rgba(255, 107, 26, 0.25);
-  border-color: #ff8a3c;
+.proj-modal-nav:hover {
+  background: #ff6b1a;
+  border-color: #ff6b1a;
   transform: translateY(-50%) scale(1.1);
 }
-.glb-arrow--prev { left: 20px; }
-.glb-arrow--next { right: 20px; }
+.proj-modal-nav--prev { left: 14px; }
+.proj-modal-nav--next { right: 14px; }
 
-.glb-content {
+.proj-photo-counter {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(14, 9, 6, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 138, 60, 0.35);
+  color: #ffd991;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-family: 'Space Grotesk', monospace;
+  pointer-events: none;
+}
+
+/* Thumbs Strip */
+.proj-thumbs-strip {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 4px 2px 8px 2px;
+  scrollbar-width: thin;
+  scrollbar-color: #ff761a rgba(255,255,255,0.05);
+}
+.proj-thumbs-strip::-webkit-scrollbar {
+  height: 5px;
+}
+.proj-thumbs-strip::-webkit-scrollbar-thumb {
+  background: #ff761a;
+  border-radius: 4px;
+}
+.proj-thumb-item {
+  width: 64px;
+  height: 52px;
+  min-width: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: all 0.2s ease;
+  background: #000;
+}
+.proj-thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.proj-thumb-item:hover {
+  opacity: 0.9;
+  border-color: rgba(255, 138, 60, 0.6);
+}
+.proj-thumb-item.is-active {
+  opacity: 1;
+  border-color: #ff761a;
+  box-shadow: 0 0 10px rgba(255, 118, 26, 0.5);
+}
+
+/* RIGHT: INFO SECTION */
+.proj-modal-info {
+  padding: 36px 32px 32px 32px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 900px;
-  max-height: 85vh;
-  width: 100%;
+  justify-content: space-between;
 }
-.glb-img {
-  max-width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  border-radius: 16px;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 138, 60, 0.15);
-  animation: glbImgIn 0.3s ease;
-  user-select: none;
-  -webkit-user-drag: none;
-}
-@keyframes glbImgIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-.glb-info {
+.proj-modal-badges {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-  text-align: center;
 }
-.glb-title {
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-}
-.glb-tag {
-  background: rgba(255, 107, 26, 0.2);
+.proj-badge-tag {
+  background: rgba(255, 107, 26, 0.15);
   border: 1px solid rgba(255, 107, 26, 0.5);
   color: #ff9e58;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 11.5px;
+  font-weight: 800;
   text-transform: uppercase;
   padding: 4px 12px;
   border-radius: 20px;
   letter-spacing: 0.5px;
 }
-.glb-counter {
-  color: #8c7a6e;
-  font-size: 13px;
-  font-weight: 600;
+.proj-badge-specs {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #d6c0a8;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.proj-modal-title {
   font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.3;
+  margin: 0 0 16px 0;
+}
+.proj-modal-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(255, 138, 60, 0.3) 0%, rgba(255, 255, 255, 0.05) 100%);
+  margin-bottom: 18px;
 }
 
-/* Mobile lightbox */
-@media (max-width: 640px) {
-  .glb-arrow {
-    width: 44px;
-    height: 44px;
-    font-size: 26px;
-  }
-  .glb-arrow--prev { left: 8px; }
-  .glb-arrow--next { right: 8px; }
-  .glb-close {
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-  }
-  .glb-overlay { padding: 12px; }
-  .glb-img { border-radius: 10px; max-height: 60vh; }
-  .glb-title { font-size: 15px; }
-  .glb-info { gap: 10px; margin-top: 14px; }
+.proj-modal-descr-title {
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ff9e58;
+  margin-bottom: 8px;
+}
+.proj-modal-descr {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #c9b4a1;
+  margin: 0 0 20px 0;
+  max-height: 140px;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
-/* Cursor hint on gallery card images */
-#gallery-grid .mebel-card__img-wrap {
-  cursor: pointer;
-  position: relative;
+.proj-modal-features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
 }
-#gallery-grid .mebel-card__img-wrap::after {
-  content: '🔍';
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: rgba(14, 9, 5, 0.75);
-  border: 1px solid rgba(255, 138, 60, 0.35);
+.proj-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  color: #f0e4d7;
+}
+.proj-feat-icon {
+  color: #ff8a3c;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.proj-modal-actions {
+  margin-bottom: 20px;
+}
+.proj-btn-order {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
+  gap: 12px;
+  background: linear-gradient(135deg, #ff9e58 0%, #ff6b1a 50%, #d44e00 100%);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 15px 24px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 24px -4px rgba(255, 107, 26, 0.5);
+  transition: all 0.25s ease;
 }
-#gallery-grid .mebel-card__img-wrap:hover::after {
-  opacity: 1;
+.proj-btn-order:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -4px rgba(255, 107, 26, 0.7);
+}
+
+/* Project switchers footer */
+.proj-nav-switchers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+  font-size: 12px;
+}
+.proj-nav-btn {
+  background: none;
+  border: none;
+  color: #ffaa33;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+.proj-nav-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 138, 60, 0.2);
+}
+.proj-current-num {
+  color: #7a685b;
+  font-size: 11.5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .proj-modal-grid {
+    grid-template-columns: 1fr;
+  }
+  .proj-modal-media {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 138, 60, 0.15);
+    padding: 18px 16px;
+  }
+  .proj-modal-stage {
+    height: 300px;
+  }
+  .proj-modal-info {
+    padding: 22px 18px;
+  }
+  .proj-modal-title {
+    font-size: 19px;
+  }
+  .proj-modal-container {
+    max-height: 94vh;
+    border-radius: 18px;
+  }
+}
+@media (max-width: 480px) {
+  .proj-modal-overlay {
+    padding: 10px;
+  }
+  .proj-modal-stage {
+    height: 220px;
+  }
+  .proj-modal-nav {
+    width: 38px;
+    height: 38px;
+    font-size: 22px;
+  }
+  .proj-modal-nav--prev { left: 8px; }
+  .proj-modal-nav--next { right: 8px; }
+  .proj-thumb-item {
+    width: 50px;
+    height: 42px;
+    min-width: 50px;
+  }
+  .proj-modal-close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
 }
 </style>
 
 <script>
-(function() {
-  var overlay = document.getElementById('gallery-lightbox');
-  var imgEl = document.getElementById('glb-img');
-  var titleEl = document.getElementById('glb-title');
-  var tagEl = document.getElementById('glb-tag');
-  var counterEl = document.getElementById('glb-counter');
+// Project Database
+var PROJECTS_DB = [{"id": 1, "title": "Современная кухня в стиле минимализм", "tag": "Кухня", "specs": "Срок: 16 дней", "type": "Кухня", "descr": "Лаконичная кухня с комбинированными фасадами в светлых и древесных оттенках станет гармоничным решением для современного интерьера. Вместительные системы хранения, эргономичная рабочая поверхность и встроенная техника обеспечивают максимальный комфорт в ежедневном использовании. Сдержанный дизайн подчеркивает актуальность интерьера и сохраняет свою привлекательность на долгие годы.", "images": ["images/gallery/work_1_1.jpg", "images/gallery/work_1_2.jpg", "images/gallery/work_1_3.jpg", "images/gallery/work_1_4.jpg", "images/gallery/work_1_5.jpg", "images/gallery/work_1_6.jpg", "images/gallery/work_1_7.jpg", "images/gallery/work_1_8.jpg", "images/gallery/work_1_9.jpg"]}, {"id": 2, "title": "Кухня в цвете океан", "tag": "Кухня", "specs": "Срок: 18 дней", "type": "Кухня", "descr": "Глубокий сине-бирюзовый оттенок фасадов придаёт интерьеру выразительность и премиальный вид, а светлые акценты делают пространство визуально лёгким и наполненным светом. Чистые линии, скрытые ручки и встроенная техника создают ощущение цельного архитектурного объекта, где каждая деталь продумана до мелочей.", "images": ["images/gallery/work_2_1.jpg", "images/gallery/work_2_2.jpg", "images/gallery/work_2_3.jpg", "images/gallery/work_2_4.jpg", "images/gallery/work_2_5.jpg", "images/gallery/work_2_6.jpg"]}, {"id": 3, "title": "Подвесная тумба: Минимализм и тепло", "tag": "Тумбы и гостиные", "specs": "Срок: 10 дней", "type": "Мебель на заказ", "descr": "Белоснежная, лаконичная поверхность без ручек создаёт ощущение лёгкости и чистоты. Встроенный декоративный камин с мягким оранжево-красным светом добавляет тепла и уюта в строгую геометрию мебели, превращая ее в центр притяжения взгляда.", "images": ["images/gallery/work_3_1.jpg", "images/gallery/work_3_2.jpg", "images/gallery/work_3_3.jpg", "images/gallery/work_3_4.jpg"]}, {"id": 4, "title": "Кухня для семейных вечеров", "tag": "Кухня", "specs": "Срок: 19 дней", "type": "Кухня", "descr": "Эта кухня выполнена в современном минималистичном стиле, где продумана каждая деталь для гармонии и функциональности. Верхние шкафы с матовыми фасадами в светлых тонах создают ощущение лёгкости, а контрастные горизонтальные секции с тёплой древесной текстурой добавляют уюта и природного акцента.", "images": ["images/gallery/work_4_1.jpg", "images/gallery/work_4_2.jpg", "images/gallery/work_4_3.jpg", "images/gallery/work_4_4.jpg", "images/gallery/work_4_5.jpg"]}, {"id": 5, "title": "Гардеробная: порядок становится привычкой", "tag": "Гардеробная", "specs": "Срок: 14 дней", "type": "Гардеробная", "descr": "Современная гардеробная, изготовленная по индивидуальному проекту - это продуманное пространство для хранения одежды, обуви и аксессуаров. Конструкция включает вместительные открытые полки для обуви и сложенных вещей, удобную штангу для одежды на вешалках, а также блок глубоких выдвижных ящиков для белья, аксессуаров и сезонных вещей.", "images": ["images/gallery/work_5_1.jpg", "images/gallery/work_5_2.jpg", "images/gallery/work_5_3.jpg", "images/gallery/work_5_4.jpg", "images/gallery/work_5_5.jpg", "images/gallery/work_5_6.jpg"]}, {"id": 6, "title": "Встроенный шкаф в пастельных тонах", "tag": "Шкафы и купе", "specs": "Срок: 12 дней", "type": "Шкаф-купе", "descr": "Благодаря пастельной палитре шкаф выглядит лёгким, не перегружает интерьер и гармонично вписывается в современный стиль. Фасады выполнены из ЛДСП светлых пастельных оттенков. Двери распашные с тонкими ручками профильного типа подчеркивают минимализм.", "images": ["images/gallery/work_6_1.jpg", "images/gallery/work_6_2.jpg", "images/gallery/work_6_3.jpg", "images/gallery/work_6_4.jpg"]}, {"id": 7, "title": "Пространство для тёплых встреч", "tag": "Кухня", "specs": "Срок: 17 дней", "type": "Кухня", "descr": "Современная кухня, в которой гармонично сочетаются натуральные текстуры и спокойные оттенки. Верхние фасады под дерево добавляют тепла и уюта, а матовые нижние модули в мягком мятном цвете создают ощущение свежести и легкости.", "images": ["images/gallery/work_7_1.jpg", "images/gallery/work_7_2.jpg", "images/gallery/work_7_3.jpg", "images/gallery/work_7_4.jpg", "images/gallery/work_7_5.jpg"]}, {"id": 8, "title": "Тот самый идеальный шкаф", "tag": "Шкафы и купе", "specs": "Срок: 11 дней", "type": "Шкаф-купе", "descr": "Современный встроенный шкаф в спокойном серо-бежевом оттенке — стильное и практичное решение для спальни, прихожей или гардеробной. Фасады выполнены из МДФ в пленке с декоративной фрезеровкой, что придает шкафу элегантный и дорогой внешний вид. Шкаф изготовлен до потолка, благодаря чему максимально эффективно используется пространство для хранения.", "images": ["images/gallery/work_8_1.jpg", "images/gallery/work_8_2.jpg"]}, {"id": 9, "title": "Прихожая: ключевая роль зеркал", "tag": "Прихожие", "specs": "Срок: 12 дней", "type": "Прихожая", "descr": "Эта прихожая — про эстетику и практичность, где каждый элемент работает на гармонию: свет, дерево, белизна и отражения. С первого взгляда внимание привлекает идеально подобранный баланс материалов: светлое дерево в сочетании с белыми фасадами и зеркалами создаёт ощущение простора и уюта.", "images": ["images/gallery/work_9_1.jpg", "images/gallery/work_9_2.jpg", "images/gallery/work_9_3.jpg", "images/gallery/work_9_4.jpg", "images/gallery/work_9_5.jpg"]}, {"id": 10, "title": "Шкаф «Вертикальный баланс»", "tag": "Шкафы и купе", "specs": "Срок: 14 дней", "type": "Шкаф-купе", "descr": "Этот стеллаж — пример продуманного дизайна, где эстетика минимализма сочетается с функциональностью. Вертикальная композиция с четкой геометрией форм создает ощущение порядка и легкости, а асимметричное расположение секций добавляет динамики и современного характера. Закрытые модули гармонично чередуются с открытыми нишами, позволяя удобно комбинировать хранение и демонстрацию декора, книг или аксессуаров.", "images": ["images/gallery/work_10_1.jpg", "images/gallery/work_10_2.jpg"]}, {"id": 11, "title": "Шкаф для зонирования пространства", "tag": "Шкафы и купе", "specs": "Срок: 15 дней", "type": "Шкаф-купе", "descr": "Многофункциональное решение для интерьера — шкаф-перегородка. Современные квартиры всё чаще требуют гибкости: важно не только хранение, но и зонирование пространства. Именно для этого создан этот шкаф-перегородка. Фасады выполнены в МДФ, корпус ЛДСП.", "images": ["images/gallery/work_11_1.jpg", "images/gallery/work_11_2.jpg", "images/gallery/work_11_3.jpg", "images/gallery/work_11_4.jpg"]}, {"id": 12, "title": "Вместительный шкаф в прихожую", "tag": "Шкафы и купе", "specs": "Срок: 13 дней", "type": "Шкаф-купе", "descr": "Элегантное сочетание натуральной текстуры дерева и однотонного белого материала создаёт гармоничный и современный образ. Корпус выполнен из ЛДСП \"Дуб Каньон Монумент\", фасады из ЛДСП \"Белоснежный\", петли с доводчиком.", "images": ["images/gallery/work_12_1.jpg", "images/gallery/work_12_2.jpg"]}];
 
-  var slides = [];
-  var currentIdx = 0;
+var currentProjectIndex = 0;
+var currentPhotoIndex = 0;
 
-  // Collect all gallery items
-  var cards = document.querySelectorAll('#gallery-grid .gallery-item');
-  cards.forEach(function(card, i) {
-    var img = card.querySelector('.mebel-card__img-wrap img');
-    var title = card.querySelector('.mebel-card__title');
-    var tag = card.querySelector('.mebel-card__tag');
-    if (img) {
-      slides.push({
-        src: img.src,
-        alt: img.alt || '',
-        title: title ? title.textContent : '',
-        tag: tag ? tag.textContent : ''
-      });
-      // Click handler on image wrapper
-      var imgWrap = card.querySelector('.mebel-card__img-wrap');
-      if (imgWrap) {
-        imgWrap.addEventListener('click', function(e) {
-          e.preventDefault();
-          e.stopPropagation();
-          openLightbox(i);
-        });
-      }
+var projOverlay = document.getElementById('project-modal');
+var projMainImg = document.getElementById('proj-main-img');
+var projPhotoCounter = document.getElementById('proj-photo-counter');
+var projThumbsStrip = document.getElementById('proj-thumbs-strip');
+var projTag = document.getElementById('proj-tag');
+var projSpecs = document.getElementById('proj-specs');
+var projTitle = document.getElementById('proj-title');
+var projDescr = document.getElementById('proj-descr');
+var projCurrentNum = document.getElementById('proj-current-num');
+
+function openProjectModal(projectId) {
+  var idx = PROJECTS_DB.findIndex(function(p) { return p.id === projectId; });
+  if (idx === -1) idx = 0;
+  loadProject(idx, 0);
+  projOverlay.classList.add('is-active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeProjectModal() {
+  projOverlay.classList.remove('is-active');
+  document.body.style.overflow = '';
+}
+
+function loadProject(pIdx, photoIdx) {
+  if (pIdx < 0) pIdx = PROJECTS_DB.length - 1;
+  if (pIdx >= PROJECTS_DB.length) pIdx = 0;
+  currentProjectIndex = pIdx;
+  
+  var p = PROJECTS_DB[pIdx];
+  projTitle.textContent = p.title;
+  projTag.textContent = p.tag;
+  projSpecs.textContent = p.specs;
+  projDescr.textContent = p.descr;
+  projCurrentNum.textContent = 'Проект ' + (pIdx + 1) + ' из ' + PROJECTS_DB.length;
+  
+  // Build thumbs
+  projThumbsStrip.innerHTML = '';
+  p.images.forEach(function(imgSrc, i) {
+    var thumb = document.createElement('div');
+    thumb.className = 'proj-thumb-item' + (i === photoIdx ? ' is-active' : '');
+    thumb.innerHTML = '<img src="' + imgSrc + '" alt="">';
+    thumb.onclick = function() { setPhoto(i); };
+    projThumbsStrip.appendChild(thumb);
+  });
+  
+  setPhoto(photoIdx || 0);
+}
+
+function setPhoto(idx) {
+  var p = PROJECTS_DB[currentProjectIndex];
+  if (!p || !p.images.length) return;
+  if (idx < 0) idx = p.images.length - 1;
+  if (idx >= p.images.length) idx = 0;
+  currentPhotoIndex = idx;
+  
+  projMainImg.src = p.images[idx];
+  projMainImg.alt = p.title + ' - фото ' + (idx + 1);
+  projPhotoCounter.textContent = (idx + 1) + ' / ' + p.images.length;
+  
+  // Update thumb active state
+  var thumbs = projThumbsStrip.querySelectorAll('.proj-thumb-item');
+  thumbs.forEach(function(t, i) {
+    if (i === idx) {
+      t.classList.add('is-active');
+      t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    } else {
+      t.classList.remove('is-active');
     }
   });
+}
 
-  function showSlide(idx) {
-    if (idx < 0) idx = slides.length - 1;
-    if (idx >= slides.length) idx = 0;
-    currentIdx = idx;
-    var s = slides[idx];
-    imgEl.src = s.src;
-    imgEl.alt = s.alt;
-    titleEl.textContent = s.title;
-    tagEl.textContent = s.tag;
-    counterEl.textContent = (idx + 1) + ' / ' + slides.length;
-    // Re-trigger animation
-    imgEl.style.animation = 'none';
-    imgEl.offsetHeight; // reflow
-    imgEl.style.animation = '';
+function projSlide(dir) {
+  setPhoto(currentPhotoIndex + dir);
+}
+
+function switchProject(dir) {
+  loadProject(currentProjectIndex + dir, 0);
+}
+
+function orderCurrentProject() {
+  var p = PROJECTS_DB[currentProjectIndex];
+  closeProjectModal();
+  if (p && typeof selectMebelType === 'function') {
+    selectMebelType(p.type);
   }
+  var formEl = document.getElementById('order-form');
+  if (formEl) {
+    formEl.scrollIntoView({ behavior: 'smooth' });
+  }
+}
 
-  window.openLightbox = function(idx) {
-    showSlide(idx);
-    overlay.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-  };
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  if (!projOverlay.classList.contains('is-active')) return;
+  if (e.key === 'Escape') closeProjectModal();
+  if (e.key === 'ArrowLeft') projSlide(-1);
+  if (e.key === 'ArrowRight') projSlide(1);
+});
 
-  window.closeLightbox = function() {
-    overlay.classList.remove('is-open');
-    document.body.style.overflow = '';
-  };
-
-  window.lightboxNav = function(dir) {
-    showSlide(currentIdx + dir);
-  };
-
-  // Keyboard navigation
-  document.addEventListener('keydown', function(e) {
-    if (!overlay.classList.contains('is-open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lightboxNav(-1);
-    if (e.key === 'ArrowRight') lightboxNav(1);
-  });
-
-  // Touch swipe support
-  var touchStartX = 0;
-  var touchStartY = 0;
-  overlay.addEventListener('touchstart', function(e) {
-    touchStartX = e.changedTouches[0].screenX;
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-  overlay.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].screenX - touchStartX;
-    var dy = e.changedTouches[0].screenY - touchStartY;
-    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 50) {
-      if (dx < 0) lightboxNav(1);
-      else lightboxNav(-1);
-    }
-  }, { passive: true });
-})();
+// Touch swipe support on main image stage
+var pTouchX = 0;
+var pTouchY = 0;
+projOverlay.addEventListener('touchstart', function(e) {
+  pTouchX = e.changedTouches[0].screenX;
+  pTouchY = e.changedTouches[0].screenY;
+}, { passive: true });
+projOverlay.addEventListener('touchend', function(e) {
+  var dx = e.changedTouches[0].screenX - pTouchX;
+  var dy = e.changedTouches[0].screenY - pTouchY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    if (dx < 0) projSlide(1);
+    else projSlide(-1);
+  }
+}, { passive: true });
 </script>
 
 </body>
