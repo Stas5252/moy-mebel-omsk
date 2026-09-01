@@ -1451,7 +1451,7 @@ html, body {
 
     <!-- Right Column: Interactive Blueprint Mechanism Animation -->
     <div class="hero-right" style="display:flex; justify-content:center; align-items:center; position:relative; min-height:480px; background:transparent;">
-      <canvas height="520" id="saw-cutting-canvas" style="width:100%; max-width:640px; height:auto; background:transparent; border:none; box-shadow:none; display:block;" width="640"></canvas>
+      <canvas height="580" id="saw-cutting-canvas" style="width:100%; max-width:720px; height:auto; background:transparent; border:none; box-shadow:none; display:block; filter: drop-shadow(0 0 25px rgba(255,118,26,0.35));" width="720"></canvas>
     </div>
   </div>
 </section>
@@ -1557,10 +1557,20 @@ html, body {
 </button>
 </div>
 </div>
-<!-- Size limit notice -->
-<div class="saw-calc-size-limit">
-<span style="display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; min-width:19px; border-radius:50%; border:1.5px solid #d45d11; color:#d45d11; font-size:12px; font-weight:800; font-family:'Montserrat', sans-serif;">i</span>
-<span>Максимальные габариты детали: <b>2720 × 1830 мм</b> · <b>Кромка кратна метру</b> (округляется всегда в большую сторону).</span>
+<!-- Notice & Edge Alerts with Prominent Exclamation Marks -->
+<div class="saw-calc-notices-grid" style="display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 20px 0;">
+  <div style="display:inline-flex; align-items:center; gap:10px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.16), rgba(180, 60, 10, 0.12)); border:1.5px solid rgba(255, 107, 26, 0.55); border-radius:12px; padding:10px 18px; font-size:13.5px; color:#ffffff; font-weight:600; box-shadow:0 4px 14px rgba(0,0,0,0.25);">
+    <span style="color:#ff761a; font-weight:900; font-size:18px; line-height:1;">❗️</span>
+    <span>Кромка подбирается <b>точно в цвет и структуру выбранного декора ЛДСП</b></span>
+  </div>
+  <div style="display:inline-flex; align-items:center; gap:10px; background:linear-gradient(145deg, rgba(255, 107, 26, 0.16), rgba(180, 60, 10, 0.12)); border:1.5px solid rgba(255, 107, 26, 0.55); border-radius:12px; padding:10px 18px; font-size:13.5px; color:#ffffff; font-weight:600; box-shadow:0 4px 14px rgba(0,0,0,0.25);">
+    <span style="color:#ff761a; font-weight:900; font-size:18px; line-height:1;">❗️</span>
+    <span><b>Кромка кратная 1 метру</b> (округляется в большую сторону: напр. 1.2 м ➔ 2 м кромки)</span>
+  </div>
+  <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:10px 16px; font-size:13px; color:#cbb7a6;">
+    <span style="color:#ffd991; font-weight:800; font-size:14px;">ℹ️</span>
+    <span>Максимальные габариты детали: <b>2720 × 1830 мм</b></span>
+  </div>
 </div>
 <!-- Details List Container (Dark card) -->
 <div class="saw-calc-details-card" id="calc-details-container">
@@ -4102,8 +4112,8 @@ html, body {
     isStarted = true;
 
     var ctx = canvas.getContext('2d');
-    var W = 640;
-    var H = 520;
+    var W = 720;
+    var H = 580;
     canvas.width = W;
     canvas.height = H;
 
@@ -4124,179 +4134,254 @@ html, body {
       targetMouseY = H * 0.5;
     });
 
+    // Helper: draw realistic precision gear with teeth
+    function drawGear(cx, cy, outerRadius, innerRadius, numTeeth, toothHeight, angle, colorMain, colorHub, hasSpokes) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.rotate(angle);
+
+      // Glow effect for teeth and rim
+      ctx.shadowColor = 'rgba(255, 118, 26, 0.6)';
+      ctx.shadowBlur = 14;
+
+      // Draw gear teeth path
+      ctx.beginPath();
+      var step = (Math.PI * 2) / numTeeth;
+      for (var i = 0; i < numTeeth; i++) {
+        var a = i * step;
+        var r1 = outerRadius;
+        var r2 = outerRadius + toothHeight;
+
+        var a1 = a;
+        var a2 = a + step * 0.28;
+        var a3 = a + step * 0.50;
+        var a4 = a + step * 0.78;
+
+        ctx.lineTo(Math.cos(a1) * r1, Math.sin(a1) * r1);
+        ctx.lineTo(Math.cos(a2) * r2, Math.sin(a2) * r2);
+        ctx.lineTo(Math.cos(a3) * r2, Math.sin(a3) * r2);
+        ctx.lineTo(Math.cos(a4) * r1, Math.sin(a4) * r1);
+      }
+      ctx.closePath();
+
+      // Rim gradient stroke
+      ctx.strokeStyle = colorMain;
+      ctx.lineWidth = 2.4;
+      ctx.stroke();
+
+      // Soft semi-transparent fill
+      ctx.fillStyle = 'rgba(255, 118, 26, 0.08)';
+      ctx.fill();
+
+      // Inner circular channel
+      ctx.shadowBlur = 0;
+      ctx.beginPath();
+      ctx.arc(0, 0, innerRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = colorMain;
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+
+      // Central Hub Disc
+      ctx.beginPath();
+      ctx.arc(0, 0, innerRadius * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = colorHub;
+      ctx.fill();
+      ctx.strokeStyle = '#ffd043';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Central shaft hole
+      ctx.beginPath();
+      ctx.arc(0, 0, innerRadius * 0.18, 0, Math.PI * 2);
+      ctx.fillStyle = '#0c0805';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.8)';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Spokes (Спицы шестерни)
+      if (hasSpokes) {
+        var numSpokes = 5;
+        for (var s = 0; s < numSpokes; s++) {
+          var spAngle = s * (Math.PI * 2 / numSpokes);
+          ctx.beginPath();
+          ctx.moveTo(Math.cos(spAngle) * (innerRadius * 0.45), Math.sin(spAngle) * (innerRadius * 0.45));
+          ctx.lineTo(Math.cos(spAngle) * innerRadius, Math.sin(spAngle) * innerRadius);
+          ctx.strokeStyle = 'rgba(255, 208, 67, 0.55)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+
+          // Spoke circle weight relief holes
+          var holeR = (innerRadius * 0.45 + innerRadius) * 0.5;
+          ctx.beginPath();
+          ctx.arc(Math.cos(spAngle + Math.PI/numSpokes) * holeR, Math.sin(spAngle + Math.PI/numSpokes) * holeR, innerRadius * 0.12, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(255, 118, 26, 0.6)';
+          ctx.lineWidth = 1.4;
+          ctx.stroke();
+        }
+      }
+
+      ctx.restore();
+    }
+
+    // Spark particles along cutting arc
+    var sparks = [];
+    for (var p = 0; p < 24; p++) {
+      sparks.push({
+        x: 0, y: 0,
+        vx: (Math.random() - 0.5) * 4,
+        vy: (Math.random() - 0.5) * 4,
+        life: Math.random()
+      });
+    }
+
     function render() {
       requestAnimationFrame(render);
-      time += 0.006;
+      time += 0.008;
 
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
+      mouseX += (targetMouseX - mouseX) * 0.05;
+      mouseY += (targetMouseY - mouseY) * 0.05;
 
-      var pX = (mouseX - W * 0.5) * 0.025;
-      var pY = (mouseY - H * 0.5) * 0.025;
+      var pX = (mouseX - W * 0.5) * 0.035;
+      var pY = (mouseY - H * 0.5) * 0.035;
 
       ctx.clearRect(0, 0, W, H);
 
-      // Coordinates matching client reference screenshot (top mechanism + bottom radar reticle)
-      var topX = W * 0.65 + pX;
-      var topY = H * 0.23 + pY;
-      var botX = W * 0.40 + pX * 0.6;
-      var botY = H * 0.67 + pY * 0.6;
+      // Mechanism Center Coordinates
+      var gear1X = W * 0.64 + pX;
+      var gear1Y = H * 0.36 + pY;
 
-      // 1. Subtle Architectural Grid / Axis Lines
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.08)';
-      ctx.lineWidth = 1;
-      
-      // Vertical axis through bottom reticle
+      var gear2X = gear1X - 170;
+      var gear2Y = gear1Y + 115;
+
+      var gear3X = gear1X + 110;
+      var gear3Y = gear1Y + 140;
+
+      // 1. HIGH-CONTRAST TECHNICAL BLUEPRINT GRID & AXES
+      ctx.strokeStyle = 'rgba(255, 118, 26, 0.22)';
+      ctx.lineWidth = 1.2;
+
+      // Crosshair axes through main gear
       ctx.beginPath();
-      ctx.moveTo(botX, 10); ctx.lineTo(botX, H - 10);
+      ctx.setLineDash([8, 6]);
+      ctx.moveTo(gear1X, 20); ctx.lineTo(gear1X, H - 20);
+      ctx.moveTo(20, gear1Y); ctx.lineTo(W - 20, gear1Y);
       ctx.stroke();
 
-      // Horizontal axis through bottom reticle
+      // Diagonal transmission line
       ctx.beginPath();
-      ctx.moveTo(10, botY); ctx.lineTo(W - 10, botY);
+      ctx.setLineDash([4, 4]);
+      ctx.moveTo(gear2X, gear2Y); ctx.lineTo(gear1X, gear1Y);
+      ctx.lineTo(gear3X, gear3Y);
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.35)';
       ctx.stroke();
+      ctx.setLineDash([]);
 
-      // Vertical axis through top dial
-      ctx.beginPath();
-      ctx.moveTo(topX, 10); ctx.lineTo(topX, H - 10);
-      ctx.stroke();
-
-      // Tangent connecting hairline
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.06)';
-      ctx.beginPath();
-      ctx.moveTo(botX, botY); ctx.lineTo(topX, topY);
-      ctx.stroke();
-
-      // 2. Bottom Concentric Radar Rings & Arc Segments (matching screenshot!)
-      var radarRadii = [65, 130, 210, 290, 370];
-      radarRadii.forEach(function(rad, idx) {
-        ctx.strokeStyle = 'rgba(255, 208, 67, ' + (0.07 + (idx % 2) * 0.05) + ')';
-        ctx.lineWidth = 0.9;
+      // 2. LARGE CONCENTRIC MEASURING RADAR RINGS
+      var radii = [70, 140, 220, 310];
+      radii.forEach(function(rad, idx) {
+        ctx.strokeStyle = 'rgba(255, 208, 67, ' + (0.2 + (idx % 2) * 0.15) + ')';
+        ctx.lineWidth = (idx === 2) ? 1.8 : 1.1;
         ctx.beginPath();
-        if (idx === 1 || idx === 3) {
-          ctx.setLineDash([5, 8]);
-        } else {
-          ctx.setLineDash([]);
-        }
-        ctx.arc(botX, botY, rad, 0, Math.PI * 2);
+        if (idx === 1 || idx === 3) ctx.setLineDash([6, 8]);
+        else ctx.setLineDash([]);
+        ctx.arc(gear1X, gear1Y, rad, 0, Math.PI * 2);
         ctx.stroke();
       });
       ctx.setLineDash([]);
 
-      // Rotating delicate radar arc sweep
+      // Rotating Precision Dial Markers (Degrees / Millimeters)
       ctx.save();
-      ctx.translate(botX, botY);
-      ctx.rotate(-time * 0.45);
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.25)';
-      ctx.lineWidth = 1.1;
-      ctx.beginPath();
-      ctx.arc(0, 0, 210, 0, Math.PI * 0.35);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(0, 0, 290, Math.PI * 0.9, Math.PI * 1.35);
-      ctx.stroke();
-      ctx.restore();
-
-      // 3. Logo Gold Crosshair Reticle (4 Rectangular Ticks - exact match to screenshot!)
-      var crossSize = 13;
-      var crossThick = 4.5;
-      var crossGap = 7;
-      ctx.fillStyle = 'rgba(255, 208, 67, 0.85)';
-      // Top tick
-      ctx.fillRect(botX - crossThick * 0.5, botY - crossGap - crossSize, crossThick, crossSize);
-      // Bottom tick
-      ctx.fillRect(botX - crossThick * 0.5, botY + crossGap, crossThick, crossSize);
-      // Left tick
-      ctx.fillRect(botX - crossGap - crossSize, botY - crossThick * 0.5, crossSize, crossThick);
-      // Right tick
-      ctx.fillRect(botX + crossGap, botY - crossThick * 0.5, crossSize, crossThick);
-
-      // 4. Top Mechanism (Dial + Gear + Orbitals - exact match to screenshot!)
-      ctx.save();
-      ctx.translate(topX, topY);
-
-      var rotAngle = time * 0.5;
-
-      // Solid Terracotta Filled Hub (sampled from logo disc)
-      ctx.fillStyle = 'rgba(150, 48, 4, 0.5)';
-      ctx.beginPath();
-      ctx.arc(0, 0, 26, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Inner Concentric Orbit Ring
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.38)';
-      ctx.lineWidth = 1;
-      ctx.beginPath();
-      ctx.arc(0, 0, 58, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Secondary Orbit Ring
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.25)';
-      ctx.beginPath();
-      ctx.arc(0, 0, 88, 0, Math.PI * 2);
-      ctx.stroke();
-
-      // Rotating Diagonal Hairline Axis
-      ctx.save();
-      ctx.rotate(rotAngle * 0.6);
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.25)';
-      ctx.lineWidth = 0.9;
-      ctx.beginPath();
-      ctx.moveTo(-115, -60); ctx.lineTo(115, 60);
-      ctx.stroke();
-      ctx.restore();
-
-      // Rotating Precision Dial Ticks Ring
-      ctx.save();
-      ctx.rotate(rotAngle);
-      var tickCount = 48;
-      for (var t = 0; t < tickCount; t++) {
-        var ta = (t * Math.PI * 2) / tickCount;
-        var isLong = (t % 4 === 0);
-        var r1 = 88;
-        var r2 = isLong ? 98 : 93;
-        ctx.strokeStyle = isLong ? 'rgba(255, 208, 67, 0.65)' : 'rgba(255, 208, 67, 0.25)';
-        ctx.lineWidth = isLong ? 1.1 : 0.8;
+      ctx.translate(gear1X, gear1Y);
+      ctx.rotate(time * 0.25);
+      for (var d = 0; d < 36; d++) {
+        var ang = d * (Math.PI * 2 / 36);
+        var isMajor = d % 3 === 0;
+        var rIn = isMajor ? 208 : 214;
+        var rOut = 220;
+        ctx.strokeStyle = isMajor ? 'rgba(255, 118, 26, 0.85)' : 'rgba(255, 208, 67, 0.4)';
+        ctx.lineWidth = isMajor ? 2.2 : 1.2;
         ctx.beginPath();
-        ctx.moveTo(Math.cos(ta) * r1, Math.sin(ta) * r1);
-        ctx.lineTo(Math.cos(ta) * r2, Math.sin(ta) * r2);
+        ctx.moveTo(Math.cos(ang) * rIn, Math.sin(ang) * rIn);
+        ctx.lineTo(Math.cos(ang) * rOut, Math.sin(ang) * rOut);
         ctx.stroke();
       }
       ctx.restore();
 
-      // Rotating Outer Gear Teeth (Delicate, thin, technical)
+      // 3. THREE INTERLOCKING LARGE PRECISION GEARS (ШЕСТЕРЕНКИ)
+      // Gear 1: Large Main Saw Gear (Top-Right) - Clockwise
+      drawGear(gear1X, gear1Y, 105, 82, 18, 14, time * 0.6, '#ff8a3c', 'rgba(230, 80, 10, 0.85)', true);
+
+      // Gear 2: Medium Intermeshed Gear (Bottom-Left) - Counter-Clockwise
+      drawGear(gear2X, gear2Y, 78, 60, 14, 12, -time * 0.77 + 0.22, '#ffd043', 'rgba(180, 100, 15, 0.85)', true);
+
+      // Gear 3: Planetary Micro-Gear (Bottom-Right) - Counter-Clockwise
+      drawGear(gear3X, gear3Y, 52, 38, 10, 10, -time * 1.2 + 0.5, '#ffaa33', 'rgba(210, 85, 10, 0.85)', false);
+
+      // 4. CUTTING BLADE TANGENT & SPARK EMITTERS
+      var cutX = gear1X - 95;
+      var cutY = gear1Y + 35;
+
+      // Laser / Cutting guide line
       ctx.save();
-      ctx.rotate(rotAngle);
-      var teeth = 24;
-      var toothAngle = (Math.PI * 2) / teeth;
-      var rInner = 104;
-      var rOuter = 114;
-      ctx.strokeStyle = 'rgba(255, 208, 67, 0.45)';
-      ctx.lineWidth = 0.9;
+      ctx.strokeStyle = 'rgba(255, 69, 0, 0.85)';
+      ctx.shadowColor = '#ff4500';
+      ctx.shadowBlur = 12;
+      ctx.lineWidth = 2;
       ctx.beginPath();
-      for (var i = 0; i < teeth; i++) {
-        var a = i * toothAngle;
-        var a1 = a + toothAngle * 0.25;
-        var a2 = a + toothAngle * 0.5;
-        var a3 = a + toothAngle * 0.75;
-        ctx.lineTo(Math.cos(a) * rInner, Math.sin(a) * rInner);
-        ctx.lineTo(Math.cos(a1) * rOuter, Math.sin(a1) * rOuter);
-        ctx.lineTo(Math.cos(a2) * rOuter, Math.sin(a2) * rOuter);
-        ctx.lineTo(Math.cos(a3) * rInner, Math.sin(a3) * rInner);
-      }
-      ctx.closePath();
+      ctx.moveTo(cutX - 50, cutY - 30);
+      ctx.lineTo(cutX + 130, cutY + 80);
       ctx.stroke();
+
+      // Hot cutting point
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(cutX, cutY, 4, 0, Math.PI * 2);
+      ctx.fill();
       ctx.restore();
 
-      ctx.restore();
+      // Sparks Animation
+      sparks.forEach(function(s) {
+        s.life -= 0.025;
+        if (s.life <= 0) {
+          s.x = cutX;
+          s.y = cutY;
+          s.vx = (Math.random() - 0.2) * 3.5;
+          s.vy = (Math.random() * 3) + 1;
+          s.life = 0.8 + Math.random() * 0.4;
+        }
+        s.x += s.vx;
+        s.y += s.vy;
+        ctx.fillStyle = 'rgba(255, 190, 50, ' + s.life + ')';
+        ctx.fillRect(s.x, s.y, 2.2, 2.2);
+      });
+
+      // 5. GOLD CORNER BRACKETS / TECHNICAL CROSSHAIRS
+      var bSize = 16;
+      ctx.strokeStyle = 'rgba(255, 118, 26, 0.7)';
+      ctx.lineWidth = 2.2;
+      // Top Left bracket
+      ctx.beginPath();
+      ctx.moveTo(gear1X - 130, gear1Y - 110);
+      ctx.lineTo(gear1X - 130 - bSize, gear1Y - 110);
+      ctx.lineTo(gear1X - 130 - bSize, gear1Y - 110 - bSize);
+      ctx.stroke();
+
+      // Bottom Right bracket
+      ctx.beginPath();
+      ctx.moveTo(gear1X + 130, gear1Y + 110);
+      ctx.lineTo(gear1X + 130 + bSize, gear1Y + 110);
+      ctx.lineTo(gear1X + 130 + bSize, gear1Y + 110 + bSize);
+      ctx.stroke();
     }
 
     render();
   }
 
-  initTechBlueprint();
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initTechBlueprint);
+  } else {
+    initTechBlueprint();
   }
 })();
 </script>
