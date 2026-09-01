@@ -3015,542 +3015,281 @@ function switchShowcaseScene(type, btn) {
 </footer>
 
 
-<!-- ========== ADVANCED PROJECT GALLERY MODAL ========== -->
-<div id="project-modal" class="proj-modal-overlay" onclick="if(event.target===this)closeProjectModal()">
-  <div class="proj-modal-container">
-    <button class="proj-modal-close" onclick="closeProjectModal()" aria-label="Закрыть модальное окно">✕</button>
+
+<!-- ========== CLEAN FULLSCREEN PHOTO LIGHTBOX ========== -->
+<div id="clean-photo-lightbox" class="c-lb-overlay" onclick="if(event.target===this)closeCleanLightbox()">
+  <button class="c-lb-close" onclick="closeCleanLightbox()" aria-label="Закрыть">✕</button>
+  
+  <button class="c-lb-nav c-lb-nav--prev" onclick="cSlide(-1)" aria-label="Предыдущее фото">‹</button>
+  
+  <div class="c-lb-stage">
+    <img id="c-lb-img" class="c-lb-img" src="" alt="">
     
-    <div class="proj-modal-grid">
-      <!-- LEFT: Photo Viewer + Slider -->
-      <div class="proj-modal-media">
-        <div class="proj-modal-stage">
-          <button class="proj-modal-nav proj-modal-nav--prev" onclick="projSlide(-1)" aria-label="Предыдущее фото">‹</button>
-          <img id="proj-main-img" class="proj-main-img" src="" alt="">
-          <button class="proj-modal-nav proj-modal-nav--next" onclick="projSlide(1)" aria-label="Следующее фото">›</button>
-          
-          <div class="proj-photo-counter" id="proj-photo-counter">1 / 1</div>
-        </div>
-        
-        <!-- Thumbnails Strip -->
-        <div class="proj-thumbs-strip" id="proj-thumbs-strip">
-          <!-- Dynamically populated -->
-        </div>
+    <div class="c-lb-bottom-bar">
+      <div class="c-lb-title-wrap">
+        <span id="c-lb-title" class="c-lb-title"></span>
+        <span id="c-lb-counter" class="c-lb-counter">1 / 1</span>
       </div>
-      
-      <!-- RIGHT: Project Details & Action -->
-      <div class="proj-modal-info">
-        <div class="proj-modal-badges">
-          <span class="proj-badge-tag" id="proj-tag">Кухня</span>
-          <span class="proj-badge-specs" id="proj-specs">Срок: 16 дней</span>
-        </div>
-        
-        <h2 class="proj-modal-title" id="proj-title">Название проекта</h2>
-        
-        <div class="proj-modal-divider"></div>
-        
-        <div class="proj-modal-descr-title">О проекте:</div>
-        <p class="proj-modal-descr" id="proj-descr">Описание проекта...</p>
-        
-        <div class="proj-modal-features">
-          <div class="proj-feat-item">
-            <span class="proj-feat-icon">✓</span>
-            <span>Точный замер и 3D-проект бесплатно</span>
-          </div>
-          <div class="proj-feat-item">
-            <span class="proj-feat-icon">✓</span>
-            <span>Немецкая и австрийская фурнитура</span>
-          </div>
-          <div class="proj-feat-item">
-            <span class="proj-feat-icon">✓</span>
-            <span>Гарантия 24 месяца по договору</span>
-          </div>
-        </div>
-        
-        <div class="proj-modal-actions">
-          <button class="proj-btn-order" id="proj-btn-order" onclick="orderCurrentProject()">
-            <span>РАССЧИТАТЬ ТАКОЙ ПРОЕКТ</span>
-            <span style="font-size: 16px;">→</span>
-          </button>
-        </div>
-        
-        <!-- Project Switcher Nav -->
-        <div class="proj-nav-switchers">
-          <button class="proj-nav-btn" onclick="switchProject(-1)">
-            ← Предыдущий проект
-          </button>
-          <span class="proj-current-num" id="proj-current-num">Проект 1 из 12</span>
-          <button class="proj-nav-btn" onclick="switchProject(1)">
-            Следующий проект →
-          </button>
-        </div>
-      </div>
+      <div class="c-lb-thumbs" id="c-lb-thumbs"></div>
     </div>
   </div>
+  
+  <button class="c-lb-nav c-lb-nav--next" onclick="cSlide(1)" aria-label="Следующее фото">›</button>
 </div>
 
 <style>
-/* === ADVANCED PROJECT GALLERY MODAL STYLES === */
-.proj-modal-overlay {
+/* === PURE MINIMALIST FULLSCREEN LIGHTBOX === */
+.c-lb-overlay {
   display: none;
   position: fixed;
   inset: 0;
   z-index: 999999;
-  background: rgba(10, 6, 3, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(8, 5, 3, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  overflow-y: auto;
-  animation: projModalFadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 20px;
+  animation: cLbFade 0.2s ease;
+  user-select: none;
 }
-.proj-modal-overlay.is-active {
+.c-lb-overlay.is-open {
   display: flex;
 }
-@keyframes projModalFadeIn {
+@keyframes cLbFade {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.proj-modal-container {
-  position: relative;
-  width: 100%;
-  max-width: 1140px;
-  background: linear-gradient(145deg, #1f120a 0%, #150c07 100%);
-  border: 1px solid rgba(255, 138, 60, 0.35);
-  border-radius: 24px;
-  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  animation: projModalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@keyframes projModalSlideUp {
-  from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-.proj-modal-close {
+.c-lb-close {
   position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 44px;
-  height: 44px;
+  top: 24px;
+  right: 28px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 138, 60, 0.35);
-  background: rgba(28, 17, 10, 0.9);
-  color: #f5ede4;
-  font-size: 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  background: rgba(20, 12, 7, 0.8);
+  color: #ffffff;
+  font-size: 22px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  z-index: 20;
+  z-index: 50;
 }
-.proj-modal-close:hover {
+.c-lb-close:hover {
   background: #ff6b1a;
   border-color: #ff6b1a;
-  color: #ffffff;
-  transform: scale(1.08);
+  transform: scale(1.1);
 }
 
-.proj-modal-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  min-height: 540px;
-  overflow-y: auto;
-}
-
-/* LEFT: MEDIA SECTION */
-.proj-modal-media {
-  background: #0d0704;
-  border-right: 1px solid rgba(255, 138, 60, 0.15);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  justify-content: center;
-}
-.proj-modal-stage {
-  position: relative;
-  width: 100%;
-  height: 440px;
-  background: #080402;
-  border-radius: 16px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-.proj-main-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  user-select: none;
-  -webkit-user-drag: none;
-  transition: opacity 0.2s ease;
-}
-
-.proj-modal-nav {
+.c-lb-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: rgba(20, 11, 6, 0.85);
-  border: 1px solid rgba(255, 138, 60, 0.4);
+  border: 1.5px solid rgba(255, 138, 60, 0.35);
+  background: rgba(24, 14, 8, 0.85);
   color: #ffffff;
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 300;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  z-index: 10;
+  z-index: 40;
   line-height: 1;
-  padding-bottom: 2px;
+  padding-bottom: 4px;
 }
-.proj-modal-nav:hover {
+.c-lb-nav:hover {
   background: #ff6b1a;
   border-color: #ff6b1a;
   transform: translateY(-50%) scale(1.1);
 }
-.proj-modal-nav--prev { left: 14px; }
-.proj-modal-nav--next { right: 14px; }
+.c-lb-nav--prev { left: 24px; }
+.c-lb-nav--next { right: 24px; }
 
-.proj-photo-counter {
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: rgba(14, 9, 6, 0.85);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 138, 60, 0.35);
-  color: #ffd991;
-  font-size: 11.5px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-family: 'Space Grotesk', monospace;
-  pointer-events: none;
-}
-
-/* Thumbs Strip */
-.proj-thumbs-strip {
+.c-lb-stage {
+  position: relative;
+  max-width: 90vw;
+  max-height: 92vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.c-lb-img {
+  max-width: 82vw;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.9);
+  animation: cLbImgFade 0.25s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+@keyframes cLbImgFade {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.c-lb-bottom-bar {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
+}
+
+.c-lb-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(24, 14, 8, 0.8);
+  border: 1px solid rgba(255, 138, 60, 0.25);
+  padding: 6px 18px;
+  border-radius: 30px;
+}
+.c-lb-title {
+  color: #f5ede4;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+}
+.c-lb-counter {
+  color: #ff9e58;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Mini Thumbs Strip */
+.c-lb-thumbs {
+  display: flex;
+  gap: 8px;
+  max-width: 80vw;
   overflow-x: auto;
-  padding: 4px 2px 8px 2px;
-  scrollbar-width: thin;
-  scrollbar-color: #ff761a rgba(255,255,255,0.05);
+  padding: 4px 2px;
 }
-.proj-thumbs-strip::-webkit-scrollbar {
-  height: 5px;
-}
-.proj-thumbs-strip::-webkit-scrollbar-thumb {
-  background: #ff761a;
-  border-radius: 4px;
-}
-.proj-thumb-item {
-  width: 64px;
-  height: 52px;
-  min-width: 64px;
-  border-radius: 8px;
+.c-lb-thumb {
+  width: 52px;
+  height: 40px;
+  min-width: 52px;
+  border-radius: 6px;
   overflow: hidden;
   border: 2px solid transparent;
   cursor: pointer;
-  opacity: 0.55;
+  opacity: 0.45;
   transition: all 0.2s ease;
   background: #000;
 }
-.proj-thumb-item img {
+.c-lb-thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.proj-thumb-item:hover {
-  opacity: 0.9;
-  border-color: rgba(255, 138, 60, 0.6);
+.c-lb-thumb:hover {
+  opacity: 0.85;
 }
-.proj-thumb-item.is-active {
+.c-lb-thumb.is-active {
   opacity: 1;
   border-color: #ff761a;
-  box-shadow: 0 0 10px rgba(255, 118, 26, 0.5);
+  box-shadow: 0 0 10px rgba(255, 118, 26, 0.6);
 }
 
-/* RIGHT: INFO SECTION */
-.proj-modal-info {
-  padding: 36px 32px 32px 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.proj-modal-badges {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-}
-.proj-badge-tag {
-  background: rgba(255, 107, 26, 0.15);
-  border: 1px solid rgba(255, 107, 26, 0.5);
-  color: #ff9e58;
-  font-size: 11.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 20px;
-  letter-spacing: 0.5px;
-}
-.proj-badge-specs {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #d6c0a8;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-
-.proj-modal-title {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 22px;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1.3;
-  margin: 0 0 16px 0;
-}
-.proj-modal-divider {
-  height: 1px;
-  background: linear-gradient(90deg, rgba(255, 138, 60, 0.3) 0%, rgba(255, 255, 255, 0.05) 100%);
-  margin-bottom: 18px;
-}
-
-.proj-modal-descr-title {
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #ff9e58;
-  margin-bottom: 8px;
-}
-.proj-modal-descr {
-  font-size: 13.5px;
-  line-height: 1.65;
-  color: #c9b4a1;
-  margin: 0 0 20px 0;
-  max-height: 140px;
-  overflow-y: auto;
-  padding-right: 6px;
-}
-
-.proj-modal-features {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 14px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-}
-.proj-feat-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12.5px;
-  color: #f0e4d7;
-}
-.proj-feat-icon {
-  color: #ff8a3c;
-  font-weight: 900;
-  font-size: 14px;
-}
-
-.proj-modal-actions {
-  margin-bottom: 20px;
-}
-.proj-btn-order {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #ff9e58 0%, #ff6b1a 50%, #d44e00 100%);
-  color: #ffffff;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  padding: 15px 24px;
-  border-radius: 14px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 10px 24px -4px rgba(255, 107, 26, 0.5);
-  transition: all 0.25s ease;
-}
-.proj-btn-order:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px -4px rgba(255, 107, 26, 0.7);
-}
-
-/* Project switchers footer */
-.proj-nav-switchers {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 14px;
-  font-size: 12px;
-}
-.proj-nav-btn {
-  background: none;
-  border: none;
-  color: #ffaa33;
-  font-weight: 700;
-  cursor: pointer;
-  padding: 4px 8px;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
-.proj-nav-btn:hover {
-  color: #ffffff;
-  background: rgba(255, 138, 60, 0.2);
-}
-.proj-current-num {
-  color: #7a685b;
-  font-size: 11.5px;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .proj-modal-grid {
-    grid-template-columns: 1fr;
+/* Mobile layout */
+@media (max-width: 768px) {
+  .c-lb-nav {
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
   }
-  .proj-modal-media {
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 138, 60, 0.15);
-    padding: 18px 16px;
+  .c-lb-nav--prev { left: 10px; }
+  .c-lb-nav--next { right: 10px; }
+  .c-lb-close {
+    top: 14px;
+    right: 14px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
   }
-  .proj-modal-stage {
-    height: 300px;
+  .c-lb-img {
+    max-width: 94vw;
+    max-height: 68vh;
+    border-radius: 10px;
   }
-  .proj-modal-info {
-    padding: 22px 18px;
+  .c-lb-title {
+    font-size: 12.5px;
   }
-  .proj-modal-title {
-    font-size: 19px;
-  }
-  .proj-modal-container {
-    max-height: 94vh;
-    border-radius: 18px;
-  }
-}
-@media (max-width: 480px) {
-  .proj-modal-overlay {
-    padding: 10px;
-  }
-  .proj-modal-stage {
-    height: 220px;
-  }
-  .proj-modal-nav {
-    width: 38px;
-    height: 38px;
-    font-size: 22px;
-  }
-  .proj-modal-nav--prev { left: 8px; }
-  .proj-modal-nav--next { right: 8px; }
-  .proj-thumb-item {
-    width: 50px;
-    height: 42px;
-    min-width: 50px;
-  }
-  .proj-modal-close {
-    top: 10px;
-    right: 10px;
-    width: 36px;
-    height: 36px;
-    font-size: 16px;
+  .c-lb-thumb {
+    width: 44px;
+    height: 34px;
+    min-width: 44px;
   }
 }
 </style>
 
 <script>
-// Project Database
 var PROJECTS_DB = [{"id": 1, "title": "Современная кухня в стиле минимализм", "tag": "Кухня", "specs": "Срок: 16 дней", "type": "Кухня", "descr": "Лаконичная кухня с комбинированными фасадами в светлых и древесных оттенках станет гармоничным решением для современного интерьера. Вместительные системы хранения, эргономичная рабочая поверхность и встроенная техника обеспечивают максимальный комфорт в ежедневном использовании. Сдержанный дизайн подчеркивает актуальность интерьера и сохраняет свою привлекательность на долгие годы.", "images": ["images/gallery/work_1_1.jpg", "images/gallery/work_1_2.jpg", "images/gallery/work_1_3.jpg", "images/gallery/work_1_4.jpg", "images/gallery/work_1_5.jpg", "images/gallery/work_1_6.jpg", "images/gallery/work_1_7.jpg", "images/gallery/work_1_8.jpg", "images/gallery/work_1_9.jpg"]}, {"id": 2, "title": "Кухня в цвете океан", "tag": "Кухня", "specs": "Срок: 18 дней", "type": "Кухня", "descr": "Глубокий сине-бирюзовый оттенок фасадов придаёт интерьеру выразительность и премиальный вид, а светлые акценты делают пространство визуально лёгким и наполненным светом. Чистые линии, скрытые ручки и встроенная техника создают ощущение цельного архитектурного объекта, где каждая деталь продумана до мелочей.", "images": ["images/gallery/work_2_1.jpg", "images/gallery/work_2_2.jpg", "images/gallery/work_2_3.jpg", "images/gallery/work_2_4.jpg", "images/gallery/work_2_5.jpg", "images/gallery/work_2_6.jpg"]}, {"id": 3, "title": "Подвесная тумба: Минимализм и тепло", "tag": "Тумбы и гостиные", "specs": "Срок: 10 дней", "type": "Мебель на заказ", "descr": "Белоснежная, лаконичная поверхность без ручек создаёт ощущение лёгкости и чистоты. Встроенный декоративный камин с мягким оранжево-красным светом добавляет тепла и уюта в строгую геометрию мебели, превращая ее в центр притяжения взгляда.", "images": ["images/gallery/work_3_1.jpg", "images/gallery/work_3_2.jpg", "images/gallery/work_3_3.jpg", "images/gallery/work_3_4.jpg"]}, {"id": 4, "title": "Кухня для семейных вечеров", "tag": "Кухня", "specs": "Срок: 19 дней", "type": "Кухня", "descr": "Эта кухня выполнена в современном минималистичном стиле, где продумана каждая деталь для гармонии и функциональности. Верхние шкафы с матовыми фасадами в светлых тонах создают ощущение лёгкости, а контрастные горизонтальные секции с тёплой древесной текстурой добавляют уюта и природного акцента.", "images": ["images/gallery/work_4_1.jpg", "images/gallery/work_4_2.jpg", "images/gallery/work_4_3.jpg", "images/gallery/work_4_4.jpg", "images/gallery/work_4_5.jpg"]}, {"id": 5, "title": "Гардеробная: порядок становится привычкой", "tag": "Гардеробная", "specs": "Срок: 14 дней", "type": "Гардеробная", "descr": "Современная гардеробная, изготовленная по индивидуальному проекту - это продуманное пространство для хранения одежды, обуви и аксессуаров. Конструкция включает вместительные открытые полки для обуви и сложенных вещей, удобную штангу для одежды на вешалках, а также блок глубоких выдвижных ящиков для белья, аксессуаров и сезонных вещей.", "images": ["images/gallery/work_5_1.jpg", "images/gallery/work_5_2.jpg", "images/gallery/work_5_3.jpg", "images/gallery/work_5_4.jpg", "images/gallery/work_5_5.jpg", "images/gallery/work_5_6.jpg"]}, {"id": 6, "title": "Встроенный шкаф в пастельных тонах", "tag": "Шкафы и купе", "specs": "Срок: 12 дней", "type": "Шкаф-купе", "descr": "Благодаря пастельной палитре шкаф выглядит лёгким, не перегружает интерьер и гармонично вписывается в современный стиль. Фасады выполнены из ЛДСП светлых пастельных оттенков. Двери распашные с тонкими ручками профильного типа подчеркивают минимализм.", "images": ["images/gallery/work_6_1.jpg", "images/gallery/work_6_2.jpg", "images/gallery/work_6_3.jpg", "images/gallery/work_6_4.jpg"]}, {"id": 7, "title": "Пространство для тёплых встреч", "tag": "Кухня", "specs": "Срок: 17 дней", "type": "Кухня", "descr": "Современная кухня, в которой гармонично сочетаются натуральные текстуры и спокойные оттенки. Верхние фасады под дерево добавляют тепла и уюта, а матовые нижние модули в мягком мятном цвете создают ощущение свежести и легкости.", "images": ["images/gallery/work_7_1.jpg", "images/gallery/work_7_2.jpg", "images/gallery/work_7_3.jpg", "images/gallery/work_7_4.jpg", "images/gallery/work_7_5.jpg"]}, {"id": 8, "title": "Тот самый идеальный шкаф", "tag": "Шкафы и купе", "specs": "Срок: 11 дней", "type": "Шкаф-купе", "descr": "Современный встроенный шкаф в спокойном серо-бежевом оттенке — стильное и практичное решение для спальни, прихожей или гардеробной. Фасады выполнены из МДФ в пленке с декоративной фрезеровкой, что придает шкафу элегантный и дорогой внешний вид. Шкаф изготовлен до потолка, благодаря чему максимально эффективно используется пространство для хранения.", "images": ["images/gallery/work_8_1.jpg", "images/gallery/work_8_2.jpg"]}, {"id": 9, "title": "Прихожая: ключевая роль зеркал", "tag": "Прихожие", "specs": "Срок: 12 дней", "type": "Прихожая", "descr": "Эта прихожая — про эстетику и практичность, где каждый элемент работает на гармонию: свет, дерево, белизна и отражения. С первого взгляда внимание привлекает идеально подобранный баланс материалов: светлое дерево в сочетании с белыми фасадами и зеркалами создаёт ощущение простора и уюта.", "images": ["images/gallery/work_9_1.jpg", "images/gallery/work_9_2.jpg", "images/gallery/work_9_3.jpg", "images/gallery/work_9_4.jpg", "images/gallery/work_9_5.jpg"]}, {"id": 10, "title": "Шкаф «Вертикальный баланс»", "tag": "Шкафы и купе", "specs": "Срок: 14 дней", "type": "Шкаф-купе", "descr": "Этот стеллаж — пример продуманного дизайна, где эстетика минимализма сочетается с функциональностью. Вертикальная композиция с четкой геометрией форм создает ощущение порядка и легкости, а асимметричное расположение секций добавляет динамики и современного характера. Закрытые модули гармонично чередуются с открытыми нишами, позволяя удобно комбинировать хранение и демонстрацию декора, книг или аксессуаров.", "images": ["images/gallery/work_10_1.jpg", "images/gallery/work_10_2.jpg"]}, {"id": 11, "title": "Шкаф для зонирования пространства", "tag": "Шкафы и купе", "specs": "Срок: 15 дней", "type": "Шкаф-купе", "descr": "Многофункциональное решение для интерьера — шкаф-перегородка. Современные квартиры всё чаще требуют гибкости: важно не только хранение, но и зонирование пространства. Именно для этого создан этот шкаф-перегородка. Фасады выполнены в МДФ, корпус ЛДСП.", "images": ["images/gallery/work_11_1.jpg", "images/gallery/work_11_2.jpg", "images/gallery/work_11_3.jpg", "images/gallery/work_11_4.jpg"]}, {"id": 12, "title": "Вместительный шкаф в прихожую", "tag": "Шкафы и купе", "specs": "Срок: 13 дней", "type": "Шкаф-купе", "descr": "Элегантное сочетание натуральной текстуры дерева и однотонного белого материала создаёт гармоничный и современный образ. Корпус выполнен из ЛДСП \"Дуб Каньон Монумент\", фасады из ЛДСП \"Белоснежный\", петли с доводчиком.", "images": ["images/gallery/work_12_1.jpg", "images/gallery/work_12_2.jpg"]}];
 
-var currentProjectIndex = 0;
-var currentPhotoIndex = 0;
+var cCurrentProject = 0;
+var cCurrentPhoto = 0;
 
-var projOverlay = document.getElementById('project-modal');
-var projMainImg = document.getElementById('proj-main-img');
-var projPhotoCounter = document.getElementById('proj-photo-counter');
-var projThumbsStrip = document.getElementById('proj-thumbs-strip');
-var projTag = document.getElementById('proj-tag');
-var projSpecs = document.getElementById('proj-specs');
-var projTitle = document.getElementById('proj-title');
-var projDescr = document.getElementById('proj-descr');
-var projCurrentNum = document.getElementById('proj-current-num');
+var cOverlay = document.getElementById('clean-photo-lightbox');
+var cImg = document.getElementById('c-lb-img');
+var cTitle = document.getElementById('c-lb-title');
+var cCounter = document.getElementById('c-lb-counter');
+var cThumbs = document.getElementById('c-lb-thumbs');
 
 function openProjectModal(projectId) {
   var idx = PROJECTS_DB.findIndex(function(p) { return p.id === projectId; });
   if (idx === -1) idx = 0;
-  loadProject(idx, 0);
-  projOverlay.classList.add('is-active');
+  cCurrentProject = idx;
+  cCurrentPhoto = 0;
+  
+  var p = PROJECTS_DB[idx];
+  cTitle.textContent = p.title;
+  
+  // Render mini thumbs
+  cThumbs.innerHTML = '';
+  p.images.forEach(function(src, i) {
+    var t = document.createElement('div');
+    t.className = 'c-lb-thumb' + (i === 0 ? ' is-active' : '');
+    t.innerHTML = '<img src="' + src + '" alt="">';
+    t.onclick = function() { cSetPhoto(i); };
+    cThumbs.appendChild(t);
+  });
+  
+  cSetPhoto(0);
+  cOverlay.classList.add('is-open');
   document.body.style.overflow = 'hidden';
 }
 
-function closeProjectModal() {
-  projOverlay.classList.remove('is-active');
+function closeCleanLightbox() {
+  cOverlay.classList.remove('is-open');
   document.body.style.overflow = '';
 }
 
-function loadProject(pIdx, photoIdx) {
-  if (pIdx < 0) pIdx = PROJECTS_DB.length - 1;
-  if (pIdx >= PROJECTS_DB.length) pIdx = 0;
-  currentProjectIndex = pIdx;
-  
-  var p = PROJECTS_DB[pIdx];
-  projTitle.textContent = p.title;
-  projTag.textContent = p.tag;
-  projSpecs.textContent = p.specs;
-  projDescr.textContent = p.descr;
-  projCurrentNum.textContent = 'Проект ' + (pIdx + 1) + ' из ' + PROJECTS_DB.length;
-  
-  // Build thumbs
-  projThumbsStrip.innerHTML = '';
-  p.images.forEach(function(imgSrc, i) {
-    var thumb = document.createElement('div');
-    thumb.className = 'proj-thumb-item' + (i === photoIdx ? ' is-active' : '');
-    thumb.innerHTML = '<img src="' + imgSrc + '" alt="">';
-    thumb.onclick = function() { setPhoto(i); };
-    projThumbsStrip.appendChild(thumb);
-  });
-  
-  setPhoto(photoIdx || 0);
-}
-
-function setPhoto(idx) {
-  var p = PROJECTS_DB[currentProjectIndex];
+function cSetPhoto(idx) {
+  var p = PROJECTS_DB[cCurrentProject];
   if (!p || !p.images.length) return;
   if (idx < 0) idx = p.images.length - 1;
   if (idx >= p.images.length) idx = 0;
-  currentPhotoIndex = idx;
+  cCurrentPhoto = idx;
   
-  projMainImg.src = p.images[idx];
-  projMainImg.alt = p.title + ' - фото ' + (idx + 1);
-  projPhotoCounter.textContent = (idx + 1) + ' / ' + p.images.length;
+  cImg.src = p.images[idx];
+  cImg.alt = p.title + ' - ' + (idx + 1);
+  cCounter.textContent = (idx + 1) + ' / ' + p.images.length;
   
-  // Update thumb active state
-  var thumbs = projThumbsStrip.querySelectorAll('.proj-thumb-item');
+  var thumbs = cThumbs.querySelectorAll('.c-lb-thumb');
   thumbs.forEach(function(t, i) {
     if (i === idx) {
       t.classList.add('is-active');
@@ -3561,47 +3300,28 @@ function setPhoto(idx) {
   });
 }
 
-function projSlide(dir) {
-  setPhoto(currentPhotoIndex + dir);
-}
-
-function switchProject(dir) {
-  loadProject(currentProjectIndex + dir, 0);
-}
-
-function orderCurrentProject() {
-  var p = PROJECTS_DB[currentProjectIndex];
-  closeProjectModal();
-  if (p && typeof selectMebelType === 'function') {
-    selectMebelType(p.type);
-  }
-  var formEl = document.getElementById('order-form');
-  if (formEl) {
-    formEl.scrollIntoView({ behavior: 'smooth' });
-  }
+function cSlide(dir) {
+  cSetPhoto(cCurrentPhoto + dir);
 }
 
 // Keyboard navigation
 document.addEventListener('keydown', function(e) {
-  if (!projOverlay.classList.contains('is-active')) return;
-  if (e.key === 'Escape') closeProjectModal();
-  if (e.key === 'ArrowLeft') projSlide(-1);
-  if (e.key === 'ArrowRight') projSlide(1);
+  if (!cOverlay.classList.contains('is-open')) return;
+  if (e.key === 'Escape') closeCleanLightbox();
+  if (e.key === 'ArrowLeft') cSlide(-1);
+  if (e.key === 'ArrowRight') cSlide(1);
 });
 
-// Touch swipe support on main image stage
-var pTouchX = 0;
-var pTouchY = 0;
-projOverlay.addEventListener('touchstart', function(e) {
-  pTouchX = e.changedTouches[0].screenX;
-  pTouchY = e.changedTouches[0].screenY;
+// Touch swipe support
+var cTouchX = 0;
+cOverlay.addEventListener('touchstart', function(e) {
+  cTouchX = e.changedTouches[0].screenX;
 }, { passive: true });
-projOverlay.addEventListener('touchend', function(e) {
-  var dx = e.changedTouches[0].screenX - pTouchX;
-  var dy = e.changedTouches[0].screenY - pTouchY;
-  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
-    if (dx < 0) projSlide(1);
-    else projSlide(-1);
+cOverlay.addEventListener('touchend', function(e) {
+  var dx = e.changedTouches[0].screenX - cTouchX;
+  if (Math.abs(dx) > 40) {
+    if (dx < 0) cSlide(1);
+    else cSlide(-1);
   }
 }, { passive: true });
 </script>
