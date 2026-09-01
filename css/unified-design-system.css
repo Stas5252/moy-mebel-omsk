@@ -596,3 +596,33 @@ body {
   color: #ffffff !important;
   margin-bottom: 16px !important;
 }
+
+/* === SMALL MOBILE FIXES (320px – 480px) === */
+@media (max-width: 480px) {
+  /* Header: phones stack vertically on narrow screens */
+  .site-header__phones-row {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+  .site-header__phone {
+    font-size: 13px !important;
+  }
+  .site-header__hours {
+    font-size: 10px !important;
+  }
+  .header-btn {
+    width: 120px !important;
+    height: 36px !important;
+    font-size: 10.5px !important;
+  }
+  /* Hero section tighter padding */
+  .hero-grid {
+    padding: 28px 12px !important;
+    gap: 24px !important;
+  }
+  /* Footer tighter on small screens */
+  .site-footer__inner {
+    gap: 28px !important;
+  }
+}

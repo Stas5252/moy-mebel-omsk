@@ -580,6 +580,20 @@
       .mebel-steps-grid { grid-template-columns: 1fr; }
       .mebel-hero__badges { grid-template-columns: 1fr; }
     }
+    @media (max-width: 480px) {
+      .mebel-section { padding: 40px 12px; }
+      .mebel-section-title { font-size: 24px !important; }
+      .mebel-section-desc { font-size: 14px !important; }
+      .mebel-card__img-wrap { height: 200px; }
+      .mebel-card__body { padding: 18px; }
+      .mebel-card__title { font-size: 17px; }
+      .mebel-card__desc { font-size: 13px; }
+      .mebel-hotspot__tooltip { white-space: normal !important; max-width: 180px; text-align: center; font-size: 11px; }
+      .mebel-hero__stage { min-height: 300px !important; }
+      .mebel-interactive-showcase { max-width: 100% !important; border-radius: 14px !important; }
+      .mebel-showcase-controls { flex-wrap: wrap; gap: 6px; }
+      .mebel-mat-btn { font-size: 11px !important; padding: 8px 12px !important; }
+    }
 
     /* === SECTION COLOR ALTERNATION (MILKY VS DARK BROWN) === */
     .mebel-hero {
@@ -2347,7 +2361,7 @@ html, body {
 <h2 class="mebel-section-title">Готовые работы, которые говорят за нас</h2>
 <p class="mebel-section-desc">Каждый проект выполнен на собственном производстве в Омске с гарантией качества.</p></div>
 
-<div id="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+<div id="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 24px;">
 
 <!-- 1. Современная кухня в стиле минимализм -->
 <div class="mebel-card gallery-item" data-cat="kitchen">
