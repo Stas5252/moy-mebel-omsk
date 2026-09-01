@@ -7,3 +7,4 @@ images/portal_video.mp4
 Thumbs.db
 .vscode/
 .idea/
+.playwright-cli/

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>МОЙ мебельный — Производство мебели и точный распил ЛДСП в Омске</title>
+  <title>МОЙ мебельный — Точный распил ЛДСП и производство мебели в Омске</title>
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png?v=3">
   <link rel="icon" type="image/png" sizes="192x192" href="images/favicon.png?v=3">
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=3">
@@ -17,368 +17,561 @@
   <link rel="stylesheet" href="css/unified-design-system.css?v=1788209058" type="text/css">
 
   <style>
+    :root {
+      --c-orange: #ff761a;
+      --c-orange-hover: #ff8a35;
+      --c-bg-dark: #0a0705;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: #0a0604;
+      background-color: var(--c-bg-dark);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      color: #ffffff;
+      font-family: 'TildaSans', 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+      position: relative;
     }
-    .portal-main {
+
+    /* Ambient Technical Blueprint Overlay in Background */
+    .hero-tech-bg {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      width: 50%;
+      max-width: 720px;
+      height: auto;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.35;
+    }
+
+    /* Master Header (74px) */
+    .site-header {
+      flex-shrink: 0;
+      position: relative;
+      z-index: 10;
+      height: 74px;
+    }
+
+    /* First Screen (Hero occupies exactly 100vh together with header) */
+    .hero-screen-section {
       min-height: calc(100vh - 74px);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-    }
-
-    /* Fullscreen ambient background */
-    .portal-bg-wrap {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-    .portal-bg-wrap video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(0.55) contrast(1.1);
-      transform: scale(1.02);
-    }
-    .portal-bg-overlay {
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at center, rgba(14, 9, 6, 0.45) 0%, rgba(10, 6, 4, 0.82) 75%, rgba(5, 3, 2, 0.95) 100%);
-    }
-
-    /* Central Portal Content */
-    .portal-main {
+      justify-content: center;
       position: relative;
       z-index: 5;
-      max-width: 1080px;
-      margin: auto;
-      padding: 60px clamp(16px, 4vw, 40px);
-      text-align: center;
+      width: 100%;
+      padding: clamp(24px, 4vh, 48px) clamp(20px, 4.5vw, 64px);
+    }
+
+    .hero-portal-wrap {
+      max-width: 1520px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .hero-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.08fr;
+      gap: clamp(36px, 4.5vw, 72px);
+      align-items: center;
       width: 100%;
     }
 
-    .portal-eyebrow {
+    /* Left Column: Natural, Cohesive Vertical Rhythm */
+    .hero-content-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 3;
+    }
+
+    /* Eyebrow */
+    .hero-eyebrow-row {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      background: rgba(255, 138, 60, 0.12);
-      border: 1px solid rgba(255, 138, 60, 0.35);
-      backdrop-filter: blur(12px);
-      padding: 7px 18px;
-      border-radius: 30px;
+      gap: 12px;
+      margin-bottom: clamp(14px, 2vh, 22px);
+    }
+    .hero-eyebrow-dash {
+      width: 28px;
+      height: 2.5px;
+      background-color: var(--c-orange);
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .hero-eyebrow-text {
+      color: var(--c-orange);
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #ff9e58;
-      margin-bottom: 24px;
     }
 
-    .portal-title {
+    /* Headline */
+    .hero-main-title {
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(34px, 4.5vw, 56px);
+      font-size: clamp(34px, 4.2vw, 56px);
       font-weight: 900;
-      line-height: 1.12;
+      line-height: 1.08;
       letter-spacing: -0.02em;
+      text-transform: uppercase;
       color: #ffffff;
-      margin-bottom: 18px;
+      margin-bottom: clamp(14px, 2vh, 22px);
       text-shadow: 0 4px 24px rgba(0, 0, 0, 0.9);
     }
-    .portal-title span {
-      background: linear-gradient(135deg, #ffd991 0%, #ff8a3c 50%, #e05206 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-title-accent {
+      color: var(--c-orange);
     }
 
-    .portal-desc {
-      font-size: clamp(15px, 1.3vw, 17px);
-      color: #b89f8a;
-      max-width: 640px;
-      margin: 0 auto 44px;
-      line-height: 1.6;
+    /* Description */
+    .hero-main-desc {
+      font-size: clamp(14.5px, 1.15vw, 16.5px);
+      line-height: 1.65;
+      color: #b8a698;
+      max-width: 540px;
+      margin-bottom: clamp(18px, 2.5vh, 30px);
+      font-weight: 400;
     }
 
-    /* 2 Big Impact Buttons */
-    .portal-cards-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .portal-card {
-      position: relative;
+    /* Actions: Buttons + Link */
+    .hero-actions-wrap {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 36px 32px;
-      border-radius: 20px;
-      text-decoration: none;
-      color: #ffffff;
-      overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7);
+      gap: 12px;
+      margin-bottom: clamp(24px, 3.5vh, 40px);
     }
 
-    .portal-card--raspil {
-      background: linear-gradient(135deg, #ff7a18 0%, #d64700 60%, #8a2a00 100%);
-      border: 1.5px solid rgba(255, 200, 140, 0.5);
-    }
-    .portal-card--raspil:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 50px rgba(255, 107, 26, 0.6), 0 0 30px rgba(255, 107, 26, 0.4);
-      border-color: #ffffff;
-    }
-
-    .portal-card--mebel {
-      background: linear-gradient(135deg, #c98214 0%, #9e5b04 60%, #5e3200 100%);
-      border: 1.5px solid rgba(255, 220, 150, 0.5);
-    }
-    .portal-card--mebel:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 24px 50px rgba(212, 175, 110, 0.6), 0 0 30px rgba(255, 170, 51, 0.4);
-      border-color: #ffffff;
-    }
-
-    .portal-card__top {
+    .hero-btn-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      width: 100%;
-      margin-bottom: 18px;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
-    .portal-card__icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: rgba(0, 0, 0, 0.28);
-      display: grid;
-      place-items: center;
-    }
-    .portal-card__icon img {
-      width: 26px;
-      height: 26px;
-      filter: brightness(0) invert(1);
-    }
-
-    .portal-card__arrow {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      display: grid;
-      place-items: center;
-      font-size: 22px;
+    /* Primary Orange Pill Button */
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, #ff761a 0%, #e05206 100%);
+      color: #ffffff;
+      padding: 16px 36px;
+      border-radius: 50px;
       font-weight: 800;
+      font-size: 13.5px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(255, 118, 26, 0.45);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: none;
+    }
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 40px rgba(255, 118, 26, 0.65);
+      background: linear-gradient(135deg, #ff8a35 0%, #eb5808 100%);
+      color: #ffffff;
+    }
+    .btn-hero-primary .arrow {
+      font-size: 18px;
+      transition: transform 0.25s ease;
+    }
+    .btn-hero-primary:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* Secondary Glass Button */
+    .btn-hero-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      padding: 15px 28px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 13.5px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid rgba(255, 138, 60, 0.3);
+      backdrop-filter: blur(10px);
       transition: all 0.3s ease;
     }
-    .portal-card:hover .portal-card__arrow {
-      transform: translateX(6px);
-      background: #ffffff;
-      color: #0a0604;
+    .btn-hero-secondary:hover {
+      background: rgba(255, 138, 60, 0.15);
+      border-color: var(--c-orange);
+      transform: translateY(-2px);
+      color: #ffffff;
     }
 
-    .portal-card__title {
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-      text-align: left;
-    }
-    .portal-card__desc {
-      font-size: 13.5px;
-      color: rgba(255, 255, 255, 0.88);
-      line-height: 1.5;
-      text-align: left;
-      font-weight: 500;
-    }
-
-    /* Clean Bottom Bar */
-    .portal-bottom-bar {
-      position: relative;
-      z-index: 5;
-      width: 100%;
-      border-top: 1px solid rgba(212, 175, 110, 0.28);
-      background: linear-gradient(180deg, #24160d 0%, #1a0f08 100%);
-      padding: 18px clamp(16px, 4vw, 40px);
-      display: flex;
-      justify-content: space-between;
+    /* Sub-link */
+    .hero-sub-link {
+      display: inline-flex;
       align-items: center;
-      font-size: 12px;
-      color: #c4ab97;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #9e8e80;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .hero-sub-link:hover {
+      color: #ffffff;
     }
 
-    @media (max-width: 768px) {
-      .portal-main {
+    /* Bottom Features Capsule Bar */
+    .hero-features-bar {
+      background: rgba(18, 12, 8, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 16px 22px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .hero-feat-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+    }
+    .hero-feat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -8px;
+      top: 15%;
+      height: 70%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-feat-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 12px;
+      background: rgba(255, 118, 26, 0.1);
+      border: 1px solid rgba(255, 118, 26, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-feat-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .hero-feat-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+    }
+    .hero-feat-desc {
+      font-size: 11px;
+      color: #9e8e80;
+      line-height: 1.25;
+    }
+
+    /* Right Column: Generous Full-Height Video Frame */
+    .hero-video-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero-video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/11;
+      min-height: clamp(400px, 55vh, 600px);
+      max-height: 68vh;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #110c08;
+      border: 1px solid rgba(255, 138, 60, 0.2);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(255, 118, 26, 0.08);
+    }
+
+    .hero-video-frame video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 28px;
+      filter: brightness(0.95) contrast(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 1080px) {
+      .hero-screen-section {
         min-height: auto;
-        padding: 32px 16px 40px;
+        padding: 32px 20px 48px;
       }
-      .portal-eyebrow {
-        padding: 6px 14px;
+      .hero-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .hero-video-frame {
+        min-height: 340px;
+        max-height: 440px;
+      }
+      .hero-features-bar {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero-screen-section {
+        padding: 24px 16px 36px;
+      }
+      .hero-eyebrow-row {
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .hero-eyebrow-dash {
+        width: 22px;
+      }
+      .hero-eyebrow-text {
         font-size: 10px;
+      }
+      .hero-main-title {
+        font-size: clamp(28px, 7.5vw, 38px);
         margin-bottom: 16px;
       }
-      .portal-title {
-        font-size: clamp(24px, 6.5vw, 34px);
-        line-height: 1.15;
-        margin-bottom: 12px;
-      }
-      .portal-desc {
+      .hero-main-desc {
         font-size: 13.5px;
-        line-height: 1.5;
-        margin-bottom: 24px;
+        margin-bottom: 22px;
       }
-      .portal-cards-grid {
+      .hero-btn-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn-hero-primary, .btn-hero-secondary {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 13px;
+      }
+      .hero-video-frame {
+        aspect-ratio: 16/10;
+        min-height: 220px;
+        border-radius: 18px;
+      }
+      .hero-features-bar {
         grid-template-columns: 1fr;
-        gap: 14px;
-        max-width: 420px;
-      }
-      .portal-card {
-        padding: 20px 18px;
+        gap: 12px;
+        padding: 14px;
         border-radius: 16px;
       }
-      .portal-card__top {
-        margin-bottom: 12px;
-      }
-      .portal-card__icon {
-        width: 44px;
-        height: 44px;
-        border-radius: 12px;
-      }
-      .portal-card__icon img {
-        width: 22px;
-        height: 22px;
-      }
-      .portal-card__arrow {
-        width: 36px;
-        height: 36px;
-        font-size: 18px;
-      }
-      .portal-card__title {
-        font-size: 20px;
-        margin-bottom: 4px;
-      }
-      .portal-card__desc {
-        font-size: 12px;
-        line-height: 1.4;
-      }
-      .portal-bottom-bar {
-        flex-direction: column;
-        gap: 12px;
-        align-items: center;
-        text-align: center;
-        padding: 16px;
+      .hero-feat-item:not(:last-child)::after {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ambient Video Background -->
-  <div class="portal-bg-wrap">
-    <video autoplay loop muted playsinline poster="images/main_video_poster.jpg">
-      <source src="images/main_bg_video.mp4" type="video/mp4">
-    </video>
-    <div class="portal-bg-overlay"></div>
-  </div>
+  <!-- Ambient Technical Blueprint Background Graphics -->
+  <svg class="hero-tech-bg" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Radar Circles -->
+    <circle cx="580" cy="380" r="340" stroke="rgba(255, 118, 26, 0.08)" stroke-width="1.2" stroke-dasharray="8 6"/>
+    <circle cx="580" cy="380" r="260" stroke="rgba(255, 118, 26, 0.12)" stroke-width="1.2"/>
+    <circle cx="580" cy="380" r="160" stroke="rgba(255, 118, 26, 0.16)" stroke-width="1.5"/>
+    <circle cx="580" cy="380" r="60" stroke="rgba(255, 118, 26, 0.22)" stroke-width="1.5"/>
+    <circle cx="580" cy="380" r="8" fill="#ff761a" opacity="0.4"/>
+    
+    <!-- Top-Right Secondary Circles -->
+    <circle cx="680" cy="140" r="110" stroke="rgba(255, 118, 26, 0.1)" stroke-width="1"/>
+    <circle cx="680" cy="140" r="45" stroke="rgba(255, 118, 26, 0.15)" stroke-width="1"/>
+    
+    <!-- Crosshairs -->
+    <path d="M580 60V700 M260 380H900" stroke="rgba(255, 118, 26, 0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M570 380H590 M580 370V390" stroke="#ff761a" stroke-width="2" opacity="0.6"/>
+  </svg>
 
   <!-- UNIFIED MASTER HEADER -->
-    <!-- CLEAN PORTAL HEADER (WITHOUT REDUNDANT SWITCHER BUTTONS) -->
   <header class="site-header">
     <div class="site-header__inner" style="justify-content: space-between;">
       <a class="site-header__brand" href="index.html" aria-label="Мой Мебельный — Главная" style="position:static !important; transform:none !important;">
-        <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ мебельный">
-        <div class="site-header__brand-text">
-          <span class="site-header__brand-title">МОЙ</span>
-          <span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
-        </div>
+        <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ МЕБЕЛЬНЫЙ">
+        <span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
       </a>
 
       <div class="site-header__nav-right">
         <div class="site-header__contacts">
-          <a class="site-header__phone" href="tel:+73812480153">
-            <img src="images/phone_contact_call_ring.svg" alt="">
-            +7 (3812) 480-153
-          </a>
-          <span class="site-header__hours">Омск, ул. 22 Партсъезда, 51Б · 09:00–17:00</span>
+          <div class="site-header__phones-row">
+            <a class="site-header__phone" href="tel:+73812590650" title="Цех: 26-я Северная, 13А/9 (09:00–17:00)">
+              <img src="images/phone_contact_call_ring.svg" alt="">
+              +7 (3812) 590-650
+            </a>
+            <a class="site-header__phone" href="tel:+79533986959" title="Офис: Герцена, 36 (10:00–19:00)">
+              <img src="images/phone_contact_call_ring.svg" alt="">
+              +7-953-398-69-59
+            </a>
+          </div>
+          <span class="site-header__hours">Герцена, 36 (10:00–19:00) · 26-я Северная, 13А/9 (09:00–17:00)</span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Central Portal Content -->
-  <main class="portal-main">
-    <div class="portal-eyebrow">
-      <span class="ui-eyebrow__dot"></span>
-      ★ 4.9 на 2ГИС · Производство SCM
-    </div>
-
-    <h1 class="portal-title">
-      Производство мебели<br>
-      <span>и точный распил ЛДСП</span>
-    </h1>
-
-    <p class="portal-desc">
-      Выберите интересующее вас направление для перехода в интерактивный онлайн-калькулятор или каталог мебели:
-    </p>
-
-    <!-- 2 BIG CARDS -->
-    <div class="portal-cards-grid">
-      <!-- CARD 1: РАСПИЛ -->
-      <a class="portal-card portal-card--raspil" href="raspil.html">
-        <div class="portal-card__top">
-          <div class="portal-card__icon">
-            <img src="images/saw.svg" alt="Распил">
+  <!-- Fullscreen 100vh Hero Section -->
+  <main class="hero-screen-section">
+    <div class="hero-portal-wrap">
+      
+      <div class="hero-layout-grid">
+        
+        <!-- LEFT COLUMN: Content + Buttons + Bottom Bar -->
+        <div class="hero-content-col">
+          
+          <!-- Eyebrow -->
+          <div class="hero-eyebrow-row" style="flex-wrap:wrap; gap:12px;">
+            <span class="hero-eyebrow-dash" style="width:34px; height:3px;"></span>
+            <span class="hero-eyebrow-text" style="letter-spacing:2.2px; font-size:12px;">РАСПИЛ ЛДСП ОТ 1 М² И КРОМКООБЛИЦОВКА НА ИТАЛЬЯНСКОМ И НЕМЕЦКОМ ОБОРУДОВАНИИ</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; color:#ff761a; font-family:'Montserrat', sans-serif; font-size:11px; font-weight:800; letter-spacing:2px; margin-left:6px;">
+              <span style="width:6px; height:6px; border-radius:50%; background:#ff4500; box-shadow:0 0 8px #ff4500; display:inline-block;"></span>
+              REC
+            </span>
           </div>
-          <div class="portal-card__arrow">→</div>
-        </div>
-        <div class="portal-card__title">Распил ЛДСП</div>
-        <div class="portal-card__desc">
-          Онлайн-калькулятор раскроя, кромление 0.4–2 мм, присадка и радиусы. Точность до 1 мм.
-        </div>
-      </a>
 
-      <!-- CARD 2: МЕБЕЛЬ -->
-      <a class="portal-card portal-card--mebel" href="mebel.html">
-        <div class="portal-card__top">
-          <div class="portal-card__icon">
-            <img src="images/tile_stowage.svg" alt="Мебель">
+          <!-- Title -->
+          <h1 class="hero-main-title">
+            ТОЧНЫЙ РАСПИЛ<br>
+            ДЛЯ <span class="hero-title-accent">ВАШЕЙ МЕБЕЛИ</span>
+          </h1>
+
+          <!-- Description -->
+          <p class="hero-main-desc">
+            Предлагаем услуги по раскрою и кромкооблицовке ЛДСП на итальянском оборудовании SCM: распил столешниц, ДВПО, ХДФ, изготовление радиусных и криволинейных деталей.
+          </p>
+
+          <!-- Actions: Buttons + Sub-link -->
+          <div class="hero-actions-wrap">
+            <div class="hero-btn-row">
+              <a class="btn-hero-primary" href="raspil.html">
+                <span>ЗАКАЗАТЬ РАСПИЛ</span>
+                <span class="arrow">→</span>
+              </a>
+              <a class="btn-hero-primary" href="mebel.html">
+                <span>МЕБЕЛЬ НА ЗАКАЗ</span>
+                <span class="arrow">→</span>
+              </a>
+            </div>
+
+            <a class="hero-sub-link" href="raspil.html#rec3089023401">
+              Калькулятор расчёта стоимости ниже на странице →
+            </a>
           </div>
-          <div class="portal-card__arrow">→</div>
+
+          <!-- Features Capsule Bar -->
+          <div class="hero-features-bar">
+            <!-- Item 1 -->
+            <div class="hero-feat-item">
+              <div class="hero-feat-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"></path>
+                  <circle cx="12" cy="12" r="3" fill="#ff761a"></circle>
+                </svg>
+              </div>
+              <div class="hero-feat-texts">
+                <span class="hero-feat-title">Всегда наточенные</span>
+                <span class="hero-feat-desc">пилы и чистый спил</span>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="hero-feat-item">
+              <div class="hero-feat-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="8"></circle>
+                  <line x1="22" y1="12" x2="18" y2="12"></line>
+                  <line x1="6" y1="12" x2="2" y2="12"></line>
+                  <line x1="12" y1="6" x2="12" y2="2"></line>
+                  <line x1="12" y1="22" x2="12" y2="18"></line>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              <div class="hero-feat-texts">
+                <span class="hero-feat-title">Распил с точностью</span>
+                <span class="hero-feat-desc">до мм по заказу</span>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="hero-feat-item">
+              <div class="hero-feat-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#ff761a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="18" rx="3" ry="3"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                  <circle cx="12" cy="15" r="2" fill="#ff761a"></circle>
+                </svg>
+              </div>
+              <div class="hero-feat-texts">
+                <span class="hero-feat-title">Срок выполнения</span>
+                <span class="hero-feat-desc">заказа 2–4 дня</span>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="portal-card__title">Мебель на заказ</div>
-        <div class="portal-card__desc">
-          Кухни с витринами, шкафы-купе под потолок, гардеробные и Loft. 3D-проект в подарок.
+
+        <!-- RIGHT COLUMN: Clean Balanced Video Frame -->
+        <div class="hero-video-col">
+          <div class="hero-video-frame">
+            <video autoplay loop muted playsinline poster="images/main_video_poster.jpg">
+              <source src="images/main_bg_video.mp4" type="video/mp4">
+            </video>
+          </div>
         </div>
-      </a>
+
+      </div>
+
     </div>
   </main>
 
-  <!-- Bottom Bar -->
-    <!-- UNIFIED MASTER FOOTER (IDENTICAL ON ALL 3 PAGES) -->
+  <!-- UNIFIED MASTER FOOTER (Below the 100vh fold) -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div>
         <a class="site-header__brand" href="index.html" style="justify-self:flex-start; margin-bottom:14px;">
-          <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ мебельный">
-          <div class="site-header__brand-text">
-            <span class="site-header__brand-title">МОЙ</span>
-            <span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
-          </div>
+          <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ МЕБЕЛЬНЫЙ">
+          <span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
         </a>
         <p class="site-footer__brand-p">
-          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия). Гарантия качества по договору.
+          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия).
         </p>
       </div>
 
@@ -403,22 +596,48 @@
       </div>
 
       <div class="site-footer__col">
-        <h4>Контакты цеха</h4>
-        <ul class="site-footer__links">
-          <li><a href="tel:+73812480153" style="color:#ffffff; font-weight:800;">+7 (3812) 480-153</a></li>
-          <li><span>г. Омск, ул. 22 Партсъезда, 51Б</span></li>
-          <li><span>Пн — Пт с 09:00 до 17:00</span></li>
-          <li><a href="https://vk.ru/moymb" target="_blank" style="color:var(--c-orange);">Группа ВКонтакте</a></li>
-        </ul>
+        <h4>Адреса и контакты</h4>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-top:8px; font-size:13px; line-height:1.4;">
+          <!-- Герцена 36 -->
+          <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
+            <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+              <span>Офис: ул. Герцена, 36</span>
+              <span style="font-size:11px; color:#ffd991; font-weight:500;">10:00 – 19:00</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <a href="tel:+73812480153" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 48-01-53</a>
+              <a href="tel:+79533986959" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-953-398-69-59</a>
+            </div>
+            <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" target="_blank" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;">
+              💬 Написать в MAX (Герцена) →
+            </a>
+          </div>
+
+          <!-- 26 Северная -->
+          <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
+            <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+              <span>Цех: ул. 26-я Северная, 13А/9</span>
+              <span style="font-size:11px; color:#ffd991; font-weight:500;">09:00 – 17:00</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+              <a href="tel:+73812590650" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 590-650</a>
+              <a href="tel:+79088014000" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-908-801-40-00</a>
+            </div>
+            <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" target="_blank" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;">
+              💬 Написать в MAX (26-я Северная) →
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="site-footer__bottom">
-      <div>© 2026 «МОЙ мебельный». Все права защищены. Производство в Омске.</div>
-      <div style="display:flex; align-items:center; gap:20px;">
+      <div>© 2026 «МОЙ мебельный». Все права защищены. Производство и офисы в Омске.</div>
+      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
         <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" target="_blank" style="color:#ffaa33; text-decoration:none; font-weight:700;">★ 4.9 на 2ГИС</a>
-        <a href="https://vk.ru/moymb" target="_blank" style="color:#d4af6e; text-decoration:none;">VK</a>
-        <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" target="_blank" style="color:#d4af6e; text-decoration:none;">Max</a>
+        <a href="https://vk.ru/moymb" target="_blank" style="color:#d4af6e; text-decoration:none; font-weight:600;">ВКонтакте</a>
+        <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" target="_blank" style="color:#d4af6e; text-decoration:none; font-weight:600;">MAX (Герцена)</a>
+        <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" target="_blank" style="color:#d4af6e; text-decoration:none; font-weight:600;">MAX (26-я Северная)</a>
       </div>
     </div>
   </footer>

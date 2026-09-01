@@ -215,9 +215,9 @@
       color: #ffffff;
     }
     .mebel-hero__title span {
-      background: linear-gradient(135deg, #ff9e58 0%, #ff6b1a 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ff761a;
+      background: none;
+      -webkit-text-fill-color: #ff761a;
     }
     .mebel-hero__desc {
       font-size: clamp(15px, 1.3vw, 18px);
@@ -644,7 +644,7 @@
     .mebel-interactive-showcase {
       position: relative;
       width: 100%;
-      max-width: 580px;
+      max-width: 620px;
       margin: 0 auto;
       border-radius: 20px;
       background: linear-gradient(145deg, #2a1a10 0%, #1a0f08 100%);
@@ -655,35 +655,37 @@
     .mebel-showcase-view {
       position: relative;
       width: 100%;
-      height: 360px;
+      height: 380px;
       border-radius: 14px;
-      overflow: hidden;
-      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+      overflow: visible;
     }
     .mebel-showcase-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 14px;
       transition: opacity 0.4s ease, transform 0.6s ease;
       display: block;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
     .mebel-showcase-view:hover .mebel-showcase-img {
-      transform: scale(1.04);
+      transform: scale(1.02);
     }
     /* Hotspot markers */
     .mebel-hotspot {
       position: absolute;
-      z-index: 5;
+      z-index: 15;
       cursor: pointer;
+      transform: translate(-50%, -50%);
     }
     .mebel-hotspot__dot {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
-      background: rgba(255, 107, 26, 0.9);
+      background: rgba(255, 107, 26, 0.95);
       border: 2px solid #ffffff;
       color: #ffffff;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 900;
       display: flex;
       align-items: center;
@@ -701,8 +703,8 @@
       bottom: calc(100% + 10px);
       left: 50%;
       transform: translateX(-50%) translateY(6px);
-      background: rgba(20, 12, 7, 0.95);
-      backdrop-filter: blur(8px);
+      background: rgba(20, 12, 7, 0.96);
+      backdrop-filter: blur(10px);
       border: 1px solid #ff8a3c;
       padding: 8px 14px;
       border-radius: 10px;
@@ -713,8 +715,8 @@
       pointer-events: none;
       opacity: 0;
       transition: all 0.25s ease;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      z-index: 10;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+      z-index: 25;
     }
     .mebel-hotspot__tooltip span {
       display: block;
@@ -727,6 +729,42 @@
     .mebel-hotspot.is-open .mebel-hotspot__tooltip {
       opacity: 1;
       transform: translateX(-50%) translateY(0);
+    }
+    /* Directional Tooltip Modifiers */
+    .mebel-hotspot--right .mebel-hotspot__tooltip {
+      left: auto;
+      right: -10px;
+      transform: translateX(0) translateY(6px);
+    }
+    .mebel-hotspot--right:hover .mebel-hotspot__tooltip,
+    .mebel-hotspot--right.is-open .mebel-hotspot__tooltip {
+      transform: translateX(0) translateY(0);
+    }
+    .mebel-hotspot--left .mebel-hotspot__tooltip {
+      left: -10px;
+      right: auto;
+      transform: translateX(0) translateY(6px);
+    }
+    .mebel-hotspot--left:hover .mebel-hotspot__tooltip,
+    .mebel-hotspot--left.is-open .mebel-hotspot__tooltip {
+      transform: translateX(0) translateY(0);
+    }
+    .mebel-hotspot--bottom .mebel-hotspot__tooltip {
+      bottom: auto;
+      top: calc(100% + 10px);
+      transform: translateX(-50%) translateY(-6px);
+    }
+    .mebel-hotspot--bottom:hover .mebel-hotspot__tooltip,
+    .mebel-hotspot--bottom.is-open .mebel-hotspot__tooltip {
+      transform: translateX(-50%) translateY(0);
+    }
+    .mebel-hotspot--bottom.mebel-hotspot--right .mebel-hotspot__tooltip {
+      left: auto;
+      right: -10px;
+      transform: translateX(0) translateY(-6px);
+    }
+    .mebel-hotspot--bottom.mebel-hotspot--right:hover .mebel-hotspot__tooltip {
+      transform: translateX(0) translateY(0);
     }
     /* Material Switcher Bar */
     .mebel-showcase-controls {
@@ -765,7 +803,7 @@
       display: inline-block;
     }
   </style>
-<meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный 3D-проект." name="description"/>
+<meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный предварительный расчёт." name="description"/>
 <meta content="кухни на заказ омск, шкаф купе на заказ омск, гардеробная на заказ, мебель лофт омск, торговое оборудование омск, изготовление мебели омск" name="keywords"/>
 <meta content="index, follow" name="robots"/>
 <link href="https://moymebelniy55.ru/mebel.html" rel="canonical"/>
@@ -779,7 +817,7 @@
 <meta content="website" property="og:type"/>
 <meta content="МОЙ мебельный" property="og:site_name"/>
 <meta content="Мебель на заказ в Омске — Кухни, шкафы-купе, гардеробные, Loft | МОЙ мебельный" property="og:title"/>
-<meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный 3D-проект." property="og:description"/>
+<meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный предварительный расчёт." property="og:description"/>
 <meta content="https://moymebelniy55.ru/mebel.html" property="og:url"/>
 <meta content="images/mebel_kitchen.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
@@ -787,7 +825,7 @@
 <!-- Twitter Cards -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Мебель на заказ в Омске — Кухни, шкафы-купе, гардеробные, Loft | МОЙ мебельный" name="twitter:title"/>
-<meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный 3D-проект." name="twitter:description"/>
+<meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный предварительный расчёт." name="twitter:description"/>
 <meta content="images/mebel_kitchen.jpg" name="twitter:image"/>
 <script type="application/ld+json">
 {
@@ -803,7 +841,7 @@
   "priceRange": "₽₽",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "ул. 22 Партсъезда, 51Б",
+    "streetAddress": "ул. 26-я Северная, 13А/9, ул. Герцена, 36",
     "addressLocality": "Омск",
     "addressRegion": "Омская область",
     "postalCode": "644105",
@@ -1419,19 +1457,22 @@ html, body {
         </a>
 </nav>
 <a aria-label="Мой Мебельный — Главная" class="site-header__brand" href="index.html">
-<img alt="МОЙ мебельный" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
-<div class="site-header__brand-text">
-<span class="site-header__brand-title">МОЙ</span>
-<span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
-</div>
+<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
+<span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
 </a>
 <div class="site-header__nav-right">
 <div class="site-header__contacts">
-<a class="site-header__phone" href="tel:+73812480153">
-<img alt="" src="images/phone_contact_call_ring.svg"/>
-            +7 (3812) 480-153
-          </a>
-<span class="site-header__hours">Омск, ул. 22 Партсъезда, 51Б · 09:00–17:00</span>
+  <div class="site-header__phones-row">
+    <a class="site-header__phone" href="tel:+73812590650" title="Цех: 26-я Северная, 13А/9 (09:00–17:00)">
+      <img alt="" src="images/phone_contact_call_ring.svg"/>
+      +7 (3812) 590-650
+    </a>
+    <a class="site-header__phone" href="tel:+79533986959" title="Офис: Герцена, 36 (10:00–19:00)">
+      <img alt="" src="images/phone_contact_call_ring.svg"/>
+      +7-953-398-69-59
+    </a>
+  </div>
+  <span class="site-header__hours">Герцена, 36 (10:00–19:00) · 26-я Северная, 13А/9 (09:00–17:00)</span>
 </div>
 </div>
 </div>
@@ -1442,13 +1483,13 @@ html, body {
 <div class="mebel-hero__inner">
 <div class="mebel-hero__content">
 <div class="mebel-hero__eyebrow">
-          ✦ Индивидуальная мебель в Омске · Точность ЧПУ 0,1 мм
+          ✦ Индивидуальная мебель в Омске
         </div>
 <h1 class="mebel-hero__title">
           Корпусная и встроенная <span>мебель на заказ</span>
 </h1>
 <p class="mebel-hero__desc">
-          Кухни, встроенные шкафы, гардеробные комнаты, мебель в стиле Loft и торговое оборудование по индивидуальным проектам. Собственное высокоточное ЧПУ-производство на оборудовании SCM без посредников и переплат.
+          Кухни, встроенные шкафы, гардеробные комнаты, мебель в стиле Loft и торговое оборудование по индивидуальным проектам. Собственное производство на оборудовании SCM без посредников и переплат.
         </p>
 <div class="mebel-hero__actions">
 <a class="mebel-btn-primary" href="#order-form">
@@ -1460,15 +1501,15 @@ html, body {
 </div>
 <div class="mebel-hero__badges">
 <div class="mebel-badge">
-<b>Бесплатный 3D-проект</b>
-<span>при заказе мебели</span>
+<b>Бесплатный расчёт</b>
+<span>предварительная смета</span>
 </div>
 <div class="mebel-badge">
 <b>Цех станков SCM</b>
 <span>точность до 1 мм</span>
 </div>
 <div class="mebel-badge">
-<b>Гарантия по договору</b>
+<b>Гарантия качества</b>
 <span>срок службы от 10+ лет</span>
 </div>
 </div>
@@ -1479,30 +1520,31 @@ html, body {
           <div class="mebel-showcase-view">
             <img src="images/mebel_kitchen.jpg" alt="Интерактивная мебель на заказ в Омске" class="mebel-showcase-img" id="showcase-main-img"/>
             
-            <!-- Hotspot 1: Facades -->
-            <div class="mebel-hotspot" style="top: 28%; left: 32%;">
-              <div class="mebel-hotspot__dot">+</div>
-              <div class="mebel-hotspot__tooltip">
-                Фасады Soft-Touch & Эмаль
-                <span>Немецкие материалы, устойчивость к царапинам</span>
+            <div id="showcase-hotspots-container" style="transition: opacity 0.2s ease;">
+              <!-- Hotspot 1: Facades -->
+              <div class="mebel-hotspot" style="top: 30%; left: 32%;">
+                <div class="mebel-hotspot__dot">+</div>
+                <div class="mebel-hotspot__tooltip">
+                  МДФ фасады
+                </div>
               </div>
-            </div>
 
-            <!-- Hotspot 2: Blum Hardware -->
-            <div class="mebel-hotspot" style="top: 68%; left: 65%;">
-              <div class="mebel-hotspot__dot">+</div>
-              <div class="mebel-hotspot__tooltip">
-                Фурнитура Blum & Hettich
-                <span>Плавные доводчики, 100 000+ циклов</span>
+              <!-- Hotspot 2: Blum Hardware -->
+              <div class="mebel-hotspot" style="top: 68%; left: 60%;">
+                <div class="mebel-hotspot__dot">+</div>
+                <div class="mebel-hotspot__tooltip">
+                  Фурнитура Blum & Hettich
+                  <span>Плавные доводчики, 100 000+ циклов</span>
+                </div>
               </div>
-            </div>
 
-            <!-- Hotspot 3: LED Lighting -->
-            <div class="mebel-hotspot" style="top: 45%; left: 82%;">
-              <div class="mebel-hotspot__dot">+</div>
-              <div class="mebel-hotspot__tooltip">
-                Встроенная LED-подсветка 3000K
-                <span>Интегрированный врезной профиль</span>
+              <!-- Hotspot 3: LED Lighting -->
+              <div class="mebel-hotspot mebel-hotspot--right" style="top: 45%; left: 76%;">
+                <div class="mebel-hotspot__dot">+</div>
+                <div class="mebel-hotspot__tooltip">
+                  Встроенная LED-подсветка 3000K
+                  <span>Интегрированный врезной профиль</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1537,13 +1579,13 @@ html, body {
 <!-- 1. Кухни -->
 <div class="mebel-card">
 <div class="mebel-card__img-wrap">
-<img alt="Кухня на заказ в темных тонах со стеклянной витриной и подсветкой Омск" src="images/mebel_kitchen.jpg"/>
+<img alt="Кухня на заказ по индивидуальным размерам Омск" src="images/cat_kitchen_custom.jpg"/>
 <div class="mebel-card__tag">Хит заказов</div>
 </div>
 <div class="mebel-card__body">
 <h3 class="mebel-card__title">Кухни по индивидуальным размерам</h3>
 <p class="mebel-card__desc">
-            Прямые, угловые и островные кухни. Фасады МДФ (эмаль, плёнка Soft-touch, пластик Fenix, шпон), интегрированная контурная LED-подсветка, доводчики Blum/Boyard и влагостойкие столешницы.
+            Прямые, угловые и островные кухни. Фасады МДФ, интегрированная контурная LED-подсветка, доводчики Blum/Boyard и влагостойкие столешницы HPL.
           </p>
 <div class="mebel-card__specs">
 <div class="mebel-card__spec-item">
@@ -1557,7 +1599,7 @@ html, body {
 <!-- 2. Шкафы и прихожие -->
 <div class="mebel-card">
 <div class="mebel-card__img-wrap">
-<img alt="Встроенный шкаф с декоративными рейками и подвесной консолью" src="images/mebel_wardrobe.jpg"/>
+<img alt="Встроенный шкаф и шкаф-купе на заказ Омск" src="images/cat_wardrobe_custom.jpg"/>
 <div class="mebel-card__tag">Встроенные</div>
 </div>
 <div class="mebel-card__body">
@@ -1577,7 +1619,7 @@ html, body {
 <!-- 3. Гардеробные -->
 <div class="mebel-card">
 <div class="mebel-card__img-wrap">
-<img alt="Гардеробная комната с подсветкой полок и выдвижными ящиками" src="images/mebel_dressing.jpg"/>
+<img alt="Гардеробная система на заказ Омск" src="images/cat_dressing_custom.jpg"/>
 <div class="mebel-card__tag">Премиум</div>
 </div>
 <div class="mebel-card__body">
@@ -1603,7 +1645,7 @@ html, body {
 <div class="mebel-card__body">
 <h3 class="mebel-card__title">Мебель на металлокаркасе (Loft)</h3>
 <p class="mebel-card__desc">
-            Стеллажи, приставные столики, обеденные столы и тумбы на надежном стальном профиле с качественной порошковой покраской и столешницами из массива/ЛДСП.
+            Стеллажи, приставные столики, обеденные столы и тумбы на надежном стальном профиле с качественной порошковой покраской и столешницами из HPL/ЛДСП.
           </p>
 <div class="mebel-card__specs">
 <div class="mebel-card__spec-item">
@@ -1643,7 +1685,7 @@ html, body {
 <div class="mebel-card__body">
 <h3 class="mebel-card__title">Прихожие и корпусные гарнитуры</h3>
 <p class="mebel-card__desc">
-            Комплексная мебель для прихожих, спален и гостиных: стеновые панели, парящие тумбы под ТВ, встроенные обувницы и мягкие банкетки.
+            Комплексная мебель для прихожих, спален и гостиных: стеновые панели, парящие тумбы под ТВ, индивидуальные шкафы-купе.
           </p>
 <div class="mebel-card__specs">
 <div class="mebel-card__spec-item">
@@ -1657,144 +1699,840 @@ html, body {
 </div>
 </section>
 
+
+<!-- 1.5. COMPLETE MATERIALS & DECORS SECTION -->
+<section class="mebel-section mebel-section--dark" id="materials" style="background-color:#140c07; border-top:1px solid rgba(139,90,43,0.18); border-bottom:1px solid rgba(139,90,43,0.18);">
+<div class="mebel-section-head" style="margin-bottom:36px;">
+<span class="mebel-section-eyebrow">Каталог декоров и покрытий</span>
+<h2 class="mebel-section-title">Материалы для вашей мебели</h2>
+<p class="mebel-section-desc">
+  Все образцы ЛДСП и фасадов МДФ в наличии на нашем складе и производстве в Омске. Вы можете заказать как готовую мебель, так и детали от 1 м².
+</p>
+</div>
+
+
+<div style="margin-bottom: 44px;">
+  <div style="margin-bottom: 18px;">
+    <h3 style="font-family:var(--font-heading); font-size:22px; color:#ffd991; margin:0 0 6px 0; font-weight:800; display:flex; align-items:center; gap:10px;">
+      <span style="display:inline-block; width:10px; height:10px; border-radius:3px; background:#ff8a3c;"></span>
+      Материал ЛДСП от 1м²
+    </h3>
+    <p style="color:#c4ab99; font-size:14px; margin:0;">Вы можете заказать детали мебели от 1м² (не покупая целый лист)</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px;">
+    
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_1.jpg" alt="Каспий темныйЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Каспий темныйЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_2.jpg" alt="Алюминий ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Алюминий ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_3.jpg" alt="Серая ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Серая ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_4.jpg" alt="Титан ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Титан ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_5.jpg" alt="КапучиноЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">КапучиноЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_6.jpg" alt="Бежевый шагреньЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Бежевый шагреньЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_7.jpg" alt="Джарра светлаяЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Джарра светлаяЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_8.jpg" alt="Дуб Рокпайл ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Рокпайл ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_9.jpg" alt="Ясень Шимо темный ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Ясень Шимо темный ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_10.jpg" alt="Дуб Мадура ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Мадура ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_11.jpg" alt="Дуб Атланта ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Атланта ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_12.jpg" alt="Ясень Анкор светлый ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Ясень Анкор светлый ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_13.jpg" alt="Дуб Вотан ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Вотан ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_14.jpg" alt="Венге Соренто ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Венге Соренто ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_15.jpg" alt="Венге Линум ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Венге Линум ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_16.jpg" alt="Катхульт ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Катхульт ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_17.jpg" alt="Дерево выбеленноеЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дерево выбеленноеЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_18.jpg" alt="Бодега светлая ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Бодега светлая ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_19.jpg" alt="Орех Ноче ГварнериЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Орех Ноче ГварнериЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_20.jpg" alt="Орех Ноче Экко ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Орех Ноче Экко ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_21.jpg" alt="Дуб Девон ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Девон ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_22.jpg" alt="Клен Танзау ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Клен Танзау ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_23.jpg" alt="Белый шагрень ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Белый шагрень ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_24.jpg" alt="Черный шагрень ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Черный шагрень ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_25.jpg" alt="Вишня Оксфорд ЛДСП(2750*1830*22) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Вишня Оксфорд ЛДСП(2750*1830*22) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_26.jpg" alt="Бук Бавария Светлый ЛДСП(2750*1830*22) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Бук Бавария Светлый ЛДСП(2750*1830*22) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_27.jpg" alt="Джарра темная ЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Джарра темная ЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_28.jpg" alt="Ясень Шимо светлыйЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Ясень Шимо светлыйЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_29.jpg" alt="Сосна Санторини Светлая ЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Сосна Санторини Светлая ЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_30.jpg" alt="Дуб Каньон МонументЛДСП (2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Каньон МонументЛДСП (2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_31.jpg" alt="Дуб Сонома светлый ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Сонома светлый ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-basic" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/basic_32.jpg" alt="Дуб Ривьера ЛДСП(2750*1830*16) г. Югра" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Дуб Ривьера ЛДСП(2750*1830*16) г. Югра</div>
+    </div>
+  </div>
+  </div>
+  
+<div style="text-align:center; margin-top:24px;">
+  <button id="btn-more-basic" onclick="toggleSectionMaterials('basic', 'btn-more-basic', 28)" style="display:inline-flex; align-items:center; gap:8px; padding:12px 32px; font-size:14px; font-weight:700; border-radius:30px; cursor:pointer; background:rgba(255,255,255,0.06); color:#ffd991; border:1px solid rgba(255,138,60,0.35); transition:all 0.25s ease;" onmouseover="this.style.background='#ff8a3c'; this.style.color='#ffffff';" onmouseout="this.style.background='rgba(255,255,255,0.06)'; this.style.color='#ffd991';">
+    <span>Смотреть ещё (28)</span>
+    <span style="font-size:15px;">↓</span>
+  </button>
+</div>
+</div>
+
+<div style="margin-bottom: 44px;">
+  <div style="margin-bottom: 18px;">
+    <h3 style="font-family:var(--font-heading); font-size:22px; color:#ffd991; margin:0 0 6px 0; font-weight:800; display:flex; align-items:center; gap:10px;">
+      <span style="display:inline-block; width:10px; height:10px; border-radius:3px; background:#ff8a3c;"></span>
+      Материал ЛДСП EGGER
+    </h3>
+    <p style="color:#c4ab99; font-size:14px; margin:0;">Эти материалы продаются листами (2800 × 2070 × 16 мм)</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px;">
+    
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_1.jpg" alt="ЛДСП Орех Пацифик табакST10 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Орех Пацифик табакST10 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_2.jpg" alt="ЛДСП Дуб Гладстоун табакST28 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Гладстоун табакST28 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_3.jpg" alt="ЛДСП Орех Дижон натуральныйST9 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Орех Дижон натуральныйST9 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_4.jpg" alt="ЛДСП Дуб Кендал коньякSt12 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Кендал коньякSt12 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_5.jpg" alt="ЛДСП Дуб Давос трюфельSt12 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Давос трюфельSt12 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_6.jpg" alt="ЛДСП Дуб Корбридж натуральныйSt12 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Корбридж натуральныйSt12 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_7.jpg" alt="ЛДСП Дуб Гамильтон натуральныйSt10 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Гамильтон натуральныйSt10 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_8.jpg" alt="ЛДСП Дуб Небраска натуральныйSt10 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Небраска натуральныйSt10 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_9.jpg" alt="ЛДСП Сосна Аланд белаяSt22 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Сосна Аланд белаяSt22 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_10.jpg" alt="ЛДСП Дуб Уайт-Ривер серо-коричневыйSt10 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Уайт-Ривер серо-коричневыйSt10 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_11.jpg" alt="ЛДСП Файнлайн темно-серыйSt19 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Файнлайн темно-серыйSt19 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_12.jpg" alt="ЛДСП Дуб Галифакс табакSt37 (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Галифакс табакSt37 (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_13.jpg" alt="ЛДСП Дуб Галифакс белый St37, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Галифакс белый St37, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_14.jpg" alt="ЛДСП Дуб Лоренцо бежево-серый St19, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Лоренцо бежево-серый St19, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_15.jpg" alt="ЛДСП Тонсберг натуральный ST19, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Тонсберг натуральный ST19, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_16.jpg" alt="ЛДСП Дуб Кендал натуральный St12,(2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Кендал натуральный St12,(2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_17.jpg" alt="ЛДСП Гикори натуральныйST10, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Гикори натуральныйST10, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_18.jpg" alt="ЛДСП Дуб Каселла натуральный ST40, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Каселла натуральный ST40, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_19.jpg" alt="ЛДСП Дуб Каселла коричневыйST40, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Каселла коричневыйST40, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_20.jpg" alt="ЛДСП Орех ЛинкольнST19, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Орех ЛинкольнST19, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_21.jpg" alt="ЛДСП Орех Вармия коричневыйST19, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Орех Вармия коричневыйST19, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_22.jpg" alt="ЛДСП Миндаль бежевый ST9,(2800*2070*16мм), EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Миндаль бежевый ST9,(2800*2070*16мм), EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_23.jpg" alt="ЛДСП Ярко-серый ST9,(2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Ярко-серый ST9,(2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_24.jpg" alt="ЛДСП Коттон бежевыйST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Коттон бежевыйST9, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_25.jpg" alt="ЛДСП Камель бежевыйST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Камель бежевыйST9, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_26.jpg" alt="ЛДСП Фарфор белыйST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Фарфор белыйST9, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_27.jpg" alt="ЛДСП Светло-серый ST9,(2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Светло-серый ST9,(2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_28.jpg" alt="ЛДСП Шёлк серыйST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Шёлк серыйST9, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_29.jpg" alt="ЛДСП Ангора серая ST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Ангора серая ST9, (2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_30.jpg" alt="ЛДСП Дуб Сакраменто коричневый(ST36, 2800*2070*16мм), EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Дуб Сакраменто коричневый(ST36, 2800*2070*16мм), EGGER</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/egger_31.jpg" alt="РАСПИЛ ЛДСПЛДСП Дикий дуб натуральный St10,(2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">РАСПИЛ ЛДСПЛДСП Дикий дуб натуральный St10,(2800*2070*16мм) EGGER</div>
+    </div>
+  </div>
+  </div>
+  
+<div style="text-align:center; margin-top:24px;">
+  <button id="btn-more-egger" onclick="toggleSectionMaterials('egger', 'btn-more-egger', 27)" style="display:inline-flex; align-items:center; gap:8px; padding:12px 32px; font-size:14px; font-weight:700; border-radius:30px; cursor:pointer; background:rgba(255,255,255,0.06); color:#ffd991; border:1px solid rgba(255,138,60,0.35); transition:all 0.25s ease;" onmouseover="this.style.background='#ff8a3c'; this.style.color='#ffffff';" onmouseout="this.style.background='rgba(255,255,255,0.06)'; this.style.color='#ffd991';">
+    <span>Смотреть ещё (27)</span>
+    <span style="font-size:15px;">↓</span>
+  </button>
+</div>
+</div>
+
+<div style="margin-bottom: 44px;">
+  <div style="margin-bottom: 18px;">
+    <h3 style="font-family:var(--font-heading); font-size:22px; color:#ffd991; margin:0 0 6px 0; font-weight:800; display:flex; align-items:center; gap:10px;">
+      <span style="display:inline-block; width:10px; height:10px; border-radius:3px; background:#ff8a3c;"></span>
+      Фасады МДФ
+    </h3>
+    <p style="color:#c4ab99; font-size:14px; margin:0;">Каталог мебельных фасадов ПВХ, эмаль и 3D-фрезеровки</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:18px;">
+    
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_1.jpg" alt="Фасад МДФ: Фрезеровка «Классика / Неоклассика»" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Фрезеровка «Классика / Неоклассика»</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_2.jpg" alt="Фасад МДФ: Интегрированная ручка J-Pull" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Интегрированная ручка J-Pull</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_3.jpg" alt="Фасад МДФ: Вертикальная рейка / Волна 3D" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Вертикальная рейка / Волна 3D</div>
+    </div>
+  </div>
+  <div class="mat-card-exact " style="display:flex; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_4.jpg" alt="Фасад МДФ: Глубокая геометрия и ступенчатая фрезеровка" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Глубокая геометрия и ступенчатая фрезеровка</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-mdf" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_5.jpg" alt="Фасад МДФ: Классическая филенка с патиной" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Классическая филенка с патиной</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-mdf" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_6.jpg" alt="Фасад МДФ: Тонкая рамка Slim Minimalist" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Тонкая рамка Slim Minimalist</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-mdf" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_7.jpg" alt="Фасад МДФ: Радиусные и гнутые фасады" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Радиусные и гнутые фасады</div>
+    </div>
+  </div>
+  <div class="mat-card-exact mat-extra-mdf" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
+    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
+      <img src="images/materials/mdf_8.jpg" alt="Фасад МДФ: Гладкий матовый фасад Soft-touch" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
+    </div>
+    <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
+      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">Фасад МДФ: Гладкий матовый фасад Soft-touch</div>
+    </div>
+  </div>
+  </div>
+  
+<div style="text-align:center; margin-top:24px;">
+  <button id="btn-more-mdf" onclick="toggleSectionMaterials('mdf', 'btn-more-mdf', 4)" style="display:inline-flex; align-items:center; gap:8px; padding:12px 32px; font-size:14px; font-weight:700; border-radius:30px; cursor:pointer; background:rgba(255,255,255,0.06); color:#ffd991; border:1px solid rgba(255,138,60,0.35); transition:all 0.25s ease;" onmouseover="this.style.background='#ff8a3c'; this.style.color='#ffffff';" onmouseout="this.style.background='rgba(255,255,255,0.06)'; this.style.color='#ffd991';">
+    <span>Смотреть ещё (4)</span>
+    <span style="font-size:15px;">↓</span>
+  </button>
+</div>
+</div>
+</section>
+
 <!-- 2. GALLERY OF COMPLETED WORKS (DARK BROWN) -->
 <section class="mebel-section mebel-section--dark" id="portfolio" style="background-color:#1c110a;">
 <div class="mebel-section-head">
 <span class="mebel-section-eyebrow">Наши реализованные проекты</span>
 <h2 class="mebel-section-title">Готовые работы, которые говорят за нас</h2>
-<p class="mebel-section-desc">Каждый проект выполнен на собственном производстве с точностью до 0,1 мм и гарантией качества по договору.</p>
-</div>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
-<div class="mebel-card">
-<div class="mebel-card__img-wrap" style="height: 300px;">
-<img alt="Кухня на заказ в темных тонах со стеклянной витриной и подсветкой Омск" src="images/client_review_1.jpg"/>
-<div class="mebel-card__tag">Кухня с витриной</div>
+<p class="mebel-section-desc">Каждый проект выполнен на собственном производстве в Омске с гарантией качества.</p></div>
+
+<div id="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+
+<!-- 1. Современная кухня в стиле минимализм -->
+<div class="mebel-card gallery-item" data-cat="kitchen">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Современная кухня в стиле минимализм Омск" loading="lazy" src="images/gallery_work_1.jpg"/>
+<div class="mebel-card__tag">Кухня</div>
 </div>
 <div class="mebel-card__body">
-<h3 class="mebel-card__title">Кухня в темных тонах с витриной</h3>
-<p class="mebel-card__desc">Фасады МДФ Soft-Touch, интегрированная теплая подсветка полок, фурнитура с доводчиками, влагостойкая столешница.</p>
+<h3 class="mebel-card__title">Современная кухня в стиле минимализм</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 16 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
+</div>
+</div>
+</div>
+
+<!-- 2. Кухня в цвете океан -->
+<div class="mebel-card gallery-item" data-cat="kitchen">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Кухня в цвете океан на заказ Омск" loading="lazy" src="images/gallery_work_2.jpg"/>
+<div class="mebel-card__tag">Кухня</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Кухня в цвете океан</h3>
 <div class="mebel-card__specs">
 <span style="color:var(--c-accent); font-weight:700;">Срок: 18 дней</span>
 <a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
 </div>
 </div>
 </div>
-<div class="mebel-card">
-<div class="mebel-card__img-wrap" style="height: 300px;">
-<img alt="Встроенный шкаф с декоративными рейками и подвесной консолью" src="images/client_review_2.jpg"/>
-<div class="mebel-card__tag">Шкаф под потолок</div>
+
+<!-- 3. Подвесная тумба -->
+<div class="mebel-card gallery-item" data-cat="living">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Подвесная тумба в гостиную Омск" loading="lazy" src="images/gallery_work_3.jpg"/>
+<div class="mebel-card__tag">Тумбы и гостиные</div>
 </div>
 <div class="mebel-card__body">
-<h3 class="mebel-card__title">Встроенный шкаф с декоративными рейками</h3>
-<p class="mebel-card__desc">Индивидуальный проект для прихожей с подвесной консолью, вертикальными рейками и скрытой подсветкой.</p>
+<h3 class="mebel-card__title">Подвесная тумба: Минимализм и тепло</h3>
 <div class="mebel-card__specs">
-<span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
-<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
+<span style="color:var(--c-accent); font-weight:700;">Срок: 10 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Мебель на заказ')">Хочу такую →</a>
 </div>
 </div>
 </div>
-<div class="mebel-card">
-<div class="mebel-card__img-wrap" style="height: 300px;">
-<img alt="Гардеробная комната с подсветкой полок и выдвижными ящиками" src="images/client_review_3.jpg"/>
-<div class="mebel-card__tag">Люкс гардеробная</div>
+
+<!-- 4. Кухня для семейных вечеров -->
+<div class="mebel-card gallery-item" data-cat="kitchen">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Кухня для семейных вечеров Омск" loading="lazy" src="images/gallery_work_4.jpg"/>
+<div class="mebel-card__tag">Кухня</div>
 </div>
 <div class="mebel-card__body">
-<h3 class="mebel-card__title">Гардеробная с умным зонированием</h3>
-<p class="mebel-card__desc">Секции для длинной и короткой одежды, полки для обуви с подсветкой, выдвижные ящики для аксессуаров.</p>
+<h3 class="mebel-card__title">Кухня для семейных вечеров</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 19 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
+</div>
+</div>
+</div>
+
+<!-- 5. Гардеробная -->
+<div class="mebel-card gallery-item" data-cat="dressing">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Гардеробная комната на заказ Омск" loading="lazy" src="images/gallery_work_5.jpg"/>
+<div class="mebel-card__tag">Гардеробная</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Гардеробная: порядок становится привычкой</h3>
 <div class="mebel-card__specs">
 <span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
 <a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Гардеробная')">Хочу такую →</a>
 </div>
 </div>
 </div>
+
+<!-- 6. Встроенный шкаф в пастельных тонах -->
+<div class="mebel-card gallery-item" data-cat="wardrobe">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Встроенный шкаф в пастельных тонах Омск" loading="lazy" src="images/gallery_work_6.jpg"/>
+<div class="mebel-card__tag">Шкафы и купе</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Встроенный шкаф в пастельных тонах</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
+</div>
+</div>
+</div>
+
+<!-- 7. Пространство для тёплых встреч -->
+<div class="mebel-card gallery-item" data-cat="kitchen">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Кухня-гостиная на заказ Омск" loading="lazy" src="images/gallery_work_7.jpg"/>
+<div class="mebel-card__tag">Кухня</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Пространство для тёплых встреч</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 17 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Кухня')">Хочу такую →</a>
+</div>
+</div>
+</div>
+
+<!-- 8. Тот самый идеальный шкаф -->
+<div class="mebel-card gallery-item" data-cat="wardrobe">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Идеальный распашной шкаф в спальню Омск" loading="lazy" src="images/gallery_work_8.jpg"/>
+<div class="mebel-card__tag">Шкафы и купе</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Тот самый идеальный шкаф</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 11 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
+</div>
+</div>
+</div>
+
+<!-- 9. Прихожая: ключевая роль зеркал -->
+<div class="mebel-card gallery-item" data-cat="hallway">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Прихожая с зеркалами в пол Омск" loading="lazy" src="images/gallery_work_9.jpg"/>
+<div class="mebel-card__tag">Прихожие</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Прихожая: ключевая роль зеркал</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Прихожая')">Хочу такую →</a>
+</div>
+</div>
+</div>
+
+<!-- 10. Шкаф «Вертикальный баланс» -->
+<div class="mebel-card gallery-item" data-cat="wardrobe">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Шкаф со стеллажом Вертикальный баланс Омск" loading="lazy" src="images/gallery_work_10.jpg"/>
+<div class="mebel-card__tag">Шкафы и купе</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Шкаф «Вертикальный баланс»</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
+</div>
+</div>
+</div>
+
+<!-- 11. Шкаф для зонирования пространства -->
+<div class="mebel-card gallery-item" data-cat="wardrobe">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Шкаф-перегородка для зонирования комнаты Омск" loading="lazy" src="images/gallery_work_11.jpg"/>
+<div class="mebel-card__tag">Шкафы и купе</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Шкаф для зонирования пространства</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 15 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
+</div>
+</div>
+</div>
+
+<!-- 12. Вместительный шкаф в прихожую -->
+<div class="mebel-card gallery-item" data-cat="wardrobe">
+<div class="mebel-card__img-wrap" style="height: 260px;">
+<img alt="Вместительный шкаф в прихожую Омск" loading="lazy" src="images/gallery_work_12.jpg"/>
+<div class="mebel-card__tag">Шкафы и купе</div>
+</div>
+<div class="mebel-card__body">
+<h3 class="mebel-card__title">Вместительный шкаф в прихожую</h3>
+<div class="mebel-card__specs">
+<span style="color:var(--c-accent); font-weight:700;">Срок: 13 дней</span>
+<a class="mebel-card__btn" href="#order-form" onclick="selectMebelType('Шкаф-купе')">Хочу такой →</a>
+</div>
+</div>
+</div>
+
 </div>
 </section>
 
-<!-- 3. INTERACTIVE QUIZ ESTIMATOR (MILKY / CREAM WRAPPER) -->
-<section class="mebel-section mebel-section--milky" id="calculator" style="background-color:#f8f4ec;">
-<div class="mebel-quiz">
-<div class="mebel-section-head" style="margin-bottom: 28px; text-align: left;">
-<span class="mebel-section-eyebrow">Экспресс-расчёт</span>
-<h3 class="mebel-quiz__title">Узнайте стоимость вашей мебели за 1 минуту</h3>
-<p class="mebel-quiz__desc">Выберите параметры вашего проекта — мы бесплатно подготовим предварительную смету и 3D-визуализацию.</p>
-</div>
-<div style="margin-bottom: 24px;">
-<label style="font-weight: 700; color:#ffffff; font-size: 15px; margin-bottom: 12px; display:block;">1. Что планируете заказать?</label>
-<div class="mebel-quiz__grid">
-<div class="mebel-quiz-opt is-selected" onclick="pickQuiz(this, 'Кухня')">
-<b>Кухня</b>
-<span>Прямая, угловая, с островом</span>
-</div>
-<div class="mebel-quiz-opt" onclick="pickQuiz(this, 'Шкаф или купе')">
-<b>Шкаф или купе</b>
-<span>Встроенный, распашной</span>
-</div>
-<div class="mebel-quiz-opt" onclick="pickQuiz(this, 'Гардеробная')">
-<b>Гардеробная</b>
-<span>П-образная, линейная</span>
-</div>
-<div class="mebel-quiz-opt" onclick="pickQuiz(this, 'Мебель Loft')">
-<b>Мебель Loft</b>
-<span>Столы, стеллажи, металл</span>
-</div>
-</div>
-</div>
-<div style="margin-bottom: 32px;">
-<label style="font-weight: 700; color:#ffffff; font-size: 15px; margin-bottom: 12px; display:block;">2. Ориентировочная длина (метры):</label>
-<div style="display:flex; align-items:center; gap: 16px; max-width: 400px;">
-<input id="quiz-length-range" max="10" min="1" oninput="document.getElementById('quiz-len-val').innerText = this.value + ' м'" step="0.5" style="flex-grow:1; accent-color:#ff8a3c;" type="range" value="3"/>
-<span id="quiz-len-val" style="font-size: 18px; font-weight: 700; color:var(--c-accent); min-width: 60px;">3 м</span>
-</div>
-</div>
-<div style="background: rgba(14, 9, 5, 0.7); padding: 20px; border-radius: 14px; border: 1px solid rgba(255, 138, 60, 0.2); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
-<div>
-<div style="font-size: 13px; color:#b89d88;">Ориентировочная стоимость:</div>
-<div id="quiz-est-price" style="font-size: 26px; font-weight: 800; color:#ffffff;">от 45 000 ₽</div>
-</div>
-<a class="mebel-btn-primary" href="#order-form" style="padding: 12px 28px;">
-          Зафиксировать цену и вызвать замерщика →
-        </a>
-</div>
-</div>
-</section>
-
-<!-- 4. STEPS SECTION (MILKY / CREAM) -->
-<section class="mebel-section mebel-section--milky" id="steps" style="background-color:#f4eee5; border-top:1px solid rgba(139,90,43,0.15);">
-<div class="mebel-section-head">
-<span class="mebel-section-eyebrow">Простой и прозрачный процесс</span>
-<h2 class="mebel-section-title">Как мы создаем вашу мебель</h2>
-<p class="mebel-section-desc">От первого замера до идеального монтажа в вашей квартире или офисе</p>
-</div>
-<div class="mebel-steps-grid">
-<div class="mebel-step-card">
-<div class="mebel-step-num">01</div>
-<h4>Заявка и консультация</h4>
-<p>Обсуждаем ваши пожелания, стиль, бюджет и предварительные размеры.</p>
-</div>
-<div class="mebel-step-card">
-<div class="mebel-step-num">02</div>
-<h4>Точный замер</h4>
-<p>Мастер выезжает с лазерным дальномером и каталогом декоров ЛДСП/МДФ.</p>
-</div>
-<div class="mebel-step-card">
-<div class="mebel-step-num">03</div>
-<h4>3D-дизайн проект</h4>
-<p>Разрабатываем объемную модель мебели с подбором фурнитуры и точной сметой.</p>
-</div>
-<div class="mebel-step-card">
-<div class="mebel-step-num">04</div>
-<h4>ЧПУ-производство</h4>
-<p>Раскрой, фрезеровка и кромление на станках SCM с точностью до 0,1 мм.</p>
-</div>
-<div class="mebel-step-card">
-<div class="mebel-step-num">05</div>
-<h4>Доставка и сборка</h4>
-<p>Бережная доставка, профессиональная сборка и уборка за собой.</p>
-</div>
-</div>
-</section>
-
-<!-- 5. REVIEWS FROM 2GIS WITH PHOTOS & DIRECT LINK (DARK BROWN) -->
+<!-- 3. REVIEWS FROM 2GIS WITH PHOTOS & DIRECT LINK (DARK BROWN) -->
 <section class="mebel-section mebel-section--dark" id="reviews" style="background-color:#1c110a;">
 <div class="mebel-section-head">
 <span class="mebel-section-eyebrow">Честные отзывы заказчиков</span>
@@ -1804,75 +2542,87 @@ html, body {
 </p>
 <div style="margin-top:16px;">
   <span style="display:inline-flex; align-items:center; gap:8px; background:rgba(255, 107, 26, 0.15); border:1px solid rgba(255, 107, 26, 0.4); padding:8px 20px; border-radius:30px; color:#ffd991; font-weight:800; font-size:14px;">
-    ★ 4.9 рейтинг на 2ГИС · Омск, ул. 22 Партсъезда, 51Б
+    ★ 4.9 рейтинг на 2ГИС · Омск, ул. 26-я Северная, 13А/9 · Герцена, 36
   </span>
 </div>
 </div>
 
 <div class="mebel-catalog-grid">
-<!-- Review 1 with Real Client Photo -->
-<div class="mebel-card" style="padding: 0; overflow:hidden;">
-  <div style="height:200px; position:relative; overflow:hidden;">
-    <img src="images/client_review_1.jpg" alt="Реальный проект кухни от МОЙ мебельный" style="width:100%; height:100%; object-fit:cover;"/>
-    <div style="position:absolute; bottom:8px; left:12px; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
-      📷 Фото проекта клиента
+<!-- Review 1: Реальный отзыв 2ГИС (без фото) -->
+<div class="mebel-card" style="padding: 24px; display:flex; flex-direction:column; justify-content:space-between;">
+  <div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, #2b6cb0, #1a365d); color:#ffffff; font-weight:800; font-size:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">А</div>
+        <div>
+          <b style="color:#ffffff; font-size:15.5px; display:block;">Алексей</b>
+          <span style="font-size:11.5px; color:#a08570;">Отзыв на 2ГИС</span>
+        </div>
+      </div>
+      <span style="color:#ff8a3c; font-size:15px; letter-spacing:1px;">★★★★★</span>
     </div>
-  </div>
-  <div style="padding: 22px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-      <b style="color:#ffffff; font-size:16px;">Анастасия В.</b>
-      <span style="color:#ff8a3c; font-size:16px;">★★★★★</span>
-    </div>
-    <p style="font-size:13.5px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
-      «Заказывали гардеробную и большой шкаф в прихожую. Сделали идеально по размерам, каждая полочка ровная, подсветка смотрится роскошно! Спасибо монтажникам за аккуратную сборку.»
+    <div style="font-size:11.5px; color:#ffd991; margin-bottom:10px; font-weight:600;">2ГИС · Подтвержденный заказ</div>
+    <p style="font-size:13.5px; color:#e2d5c8; line-height:1.6; margin:0;">
+      «Ребята молодцы, ответственные. Помогли с выбором, всё подробно рассказали, сделали в срок, качество на высоте, рекомендую!»
     </p>
-    <div style="font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
-      <span>✓</span> 2ГИС · Подтвержденный заказ
-    </div>
+  </div>
+  <div style="margin-top:18px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
+    <span>✓</span> 2ГИС · Подтвержденный отзыв
   </div>
 </div>
 
-<!-- Review 2 with Real Client Photo -->
-<div class="mebel-card" style="padding: 0; overflow:hidden;">
-  <div style="height:200px; position:relative; overflow:hidden;">
-    <img src="images/client_review_2.jpg" alt="Реальный проект шкафа от МОЙ мебельный" style="width:100%; height:100%; object-fit:cover;"/>
-    <div style="position:absolute; bottom:8px; left:12px; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
-      📷 Фото проекта клиента
+<!-- Review 2: Марина М (С ФОТО ШКАФА ИЗ 2ГИС) -->
+<div class="mebel-card" style="padding: 24px; display:flex; flex-direction:column; justify-content:space-between;">
+  <div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, #e53e3e, #9b2c2c); color:#ffffff; font-weight:800; font-size:14px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">ММ</div>
+        <div>
+          <b style="color:#ffffff; font-size:15.5px; display:block;">Марина М</b>
+          <span style="font-size:11.5px; color:#a08570;">50 отзывов на 2ГИС</span>
+        </div>
+      </div>
+      <span style="color:#ff8a3c; font-size:15px; letter-spacing:1px;">★★★★★</span>
+    </div>
+    <div style="font-size:11.5px; color:#ffd991; margin-bottom:10px; font-weight:600;">9 апреля 2026</div>
+    <p style="font-size:13px; color:#e2d5c8; line-height:1.55; margin:0 0 14px 0;">
+      «Хотим выразить огромную благодарность за проектирование и установку шкафа в офис. Работа выполнена на высшем уровне: все пожелания учтены, шкаф получился очень красивым и функциональным. Отдельная благодарность менеджеру Елене за дизайн, нужные подсказки при проектировании, доброжелательность и вежливость. Также отмечу аккуратность и профессионализм мастеров — монтаж прошёл быстро и без лишних хлопот. Спасибо за Ваш труд и внимание к деталям! Надеемся на дальнейшее сотрудничество»
+    </p>
+    
+    <!-- Красивый блок прикрепленной фотографии из отзыва -->
+    <div style="position:relative; height:240px; border-radius:12px; overflow:hidden; background:#0e0905; border:1px solid rgba(255,138,60,0.25); display:flex; align-items:center; justify-content:center;">
+      <img src="images/review_marina_wardrobe.jpg" alt="" style="position:absolute; inset:-10px; width:110%; height:110%; object-fit:cover; filter:blur(14px) brightness(0.35); pointer-events:none;"/>
+      <img src="images/review_marina_wardrobe.jpg" alt="Реальное фото шкафа в офис из отзыва Марины М на 2ГИС" style="position:relative; z-index:2; height:100%; width:auto; max-width:100%; object-fit:contain; border-radius:8px; box-shadow:0 4px 20px rgba(0,0,0,0.6);"/>
+      <div style="position:absolute; bottom:8px; right:10px; z-index:3; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
+        📷 Фото из отзыва 2ГИС
+      </div>
     </div>
   </div>
-  <div style="padding: 22px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-      <b style="color:#ffffff; font-size:16px;">Сергей Михайлов</b>
-      <span style="color:#ff8a3c; font-size:16px;">★★★★★</span>
-    </div>
-    <p style="font-size:13.5px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
-      «Заказывал кухню в темных тонах со стеклянными фасадами. Качество распила и кромки на высоте, все зазоры минимальные. Порадовало, что есть собственное производство без наценок.»
-    </p>
-    <div style="font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
-      <span>✓</span> 2ГИС · Подтвержденный заказ
-    </div>
+  <div style="margin-top:18px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
+    <span>✓</span> 2ГИС · Подтвержденный отзыв
   </div>
 </div>
 
-<!-- Review 3 with Real Client Photo -->
-<div class="mebel-card" style="padding: 0; overflow:hidden;">
-  <div style="height:200px; position:relative; overflow:hidden;">
-    <img src="images/client_review_3.jpg" alt="Мебель Loft от МОЙ мебельный" style="width:100%; height:100%; object-fit:cover;"/>
-    <div style="position:absolute; bottom:8px; left:12px; background:rgba(14,9,5,0.85); backdrop-filter:blur(6px); padding:4px 10px; border-radius:6px; font-size:11px; font-weight:700; color:#ffd991; border:1px solid rgba(255,138,60,0.3);">
-      📷 Фото проекта клиента
+<!-- Review 3: Реальный отзыв 2ГИС (без фото) -->
+<div class="mebel-card" style="padding: 24px; display:flex; flex-direction:column; justify-content:space-between;">
+  <div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px;">
+      <div style="display:flex; align-items:center; gap:12px;">
+        <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg, #276749, #1c4532); color:#ffffff; font-weight:800; font-size:15px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">К</div>
+        <div>
+          <b style="color:#ffffff; font-size:15.5px; display:block;">Константин</b>
+          <span style="font-size:11.5px; color:#a08570;">Отзыв на 2ГИС</span>
+        </div>
+      </div>
+      <span style="color:#ff8a3c; font-size:15px; letter-spacing:1px;">★★★★★</span>
     </div>
-  </div>
-  <div style="padding: 22px;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-      <b style="color:#ffffff; font-size:16px;">Елена К.</b>
-      <span style="color:#ff8a3c; font-size:16px;">★★★★★</span>
-    </div>
-    <p style="font-size:13.5px; color:#c4ab99; line-height:1.55; margin:0 0 14px 0;">
-      «Сделали мебель для салона красоты в стиле Loft: столы и стеллажи с металлическим каркасом. Всё очень прочно, красиво и точно в обещанный срок!»
+    <div style="font-size:11.5px; color:#ffd991; margin-bottom:10px; font-weight:600;">2ГИС · Подтвержденный заказ</div>
+    <p style="font-size:13.5px; color:#e2d5c8; line-height:1.6; margin:0;">
+      «Рекомендую компанию! Качество мебели на высшем уровне, изделия выполнены аккуратно, без дефектов. Сроки изготовления были соблюдены. Мастера установили мебель аккуратно.»
     </p>
-    <div style="font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
-      <span>✓</span> 2ГИС · Подтвержденный заказ
-    </div>
+  </div>
+  <div style="margin-top:18px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.08); font-size:12px; color:#ffaa33; font-weight:600; display:flex; align-items:center; gap:6px;">
+    <span>✓</span> 2ГИС · Подтвержденный отзыв
   </div>
 </div>
 </div>
@@ -1958,10 +2708,10 @@ html, body {
 
 <script>
     function selectMebelType(type) {
-      var sel = document.getElementById('form-mebel-type');
+      var sel = document.getElementById('exact-service-select');
       if (sel) {
         for (var i = 0; i < sel.options.length; i++) {
-          if (sel.options[i].value === type || sel.options[i].text.indexOf(type) !== -1) {
+          if (sel.options[i].text.indexOf(type) !== -1 || sel.options[i].value === type.toLowerCase()) {
             sel.selectedIndex = i;
             break;
           }
@@ -1969,30 +2719,22 @@ html, body {
       }
     }
 
-    function pickQuiz(elem, type) {
-      document.querySelectorAll('.mebel-quiz-opt').forEach(function(o) {
-        o.classList.remove('is-selected');
+    function toggleSectionMaterials(secKey, btnId, count) {
+      var extras = document.querySelectorAll('.mat-extra-' + secKey);
+      var btn = document.getElementById(btnId);
+      if (!extras.length) return;
+      var isHidden = (extras[0].style.display === 'none');
+      extras.forEach(function(el) {
+        el.style.display = isHidden ? 'flex' : 'none';
       });
-      elem.classList.add('is-selected');
-      selectMebelType(type);
-      updateQuizPrice();
+      if (btn) {
+        if (isHidden) {
+          btn.innerHTML = '<span>Свернуть список</span> <span style="font-size:15px;">↑</span>';
+        } else {
+          btn.innerHTML = '<span>Смотреть ещё (' + count + ')</span> <span style="font-size:15px;">↓</span>';
+        }
+      }
     }
-
-    function updateQuizPrice() {
-      var len = parseFloat(document.getElementById('quiz-length-range').value) || 3;
-      var selected = document.querySelector('.mebel-quiz-opt.is-selected b');
-      var typeText = selected ? selected.innerText : 'Кухня';
-      var base = 15000;
-      if (typeText.indexOf('Кухня') !== -1) base = 25000;
-      else if (typeText.indexOf('Шкаф') !== -1) base = 16000;
-      else if (typeText.indexOf('Гардеробная') !== -1) base = 18000;
-      else if (typeText.indexOf('Loft') !== -1) base = 12000;
-      
-      var total = Math.round(base * len);
-      document.getElementById('quiz-est-price').innerText = 'от ' + total.toLocaleString('ru-RU') + ' ₽';
-    }
-
-    document.getElementById('quiz-length-range').addEventListener('input', updateQuizPrice);
   </script>
 <script>
 // === ULTRA-FAST VANILLA PHONE MASK & 120 FPS SCROLL OPTIMIZER ===
@@ -2093,21 +2835,55 @@ html, body {
 })();
 </script>
 <script id="standalone-mebel-showcase">
+var sceneHotspots = {
+  kitchen: [
+    { top: '30%', left: '32%', cls: '', title: 'МДФ фасады', desc: '' },
+    { top: '68%', left: '60%', cls: '', title: 'Фурнитура Blum & Hettich', desc: 'Плавные доводчики, 100 000+ циклов' },
+    { top: '45%', left: '76%', cls: 'mebel-hotspot--right', title: 'Встроенная LED-подсветка 3000K', desc: 'Интегрированный врезной профиль' }
+  ],
+  wardrobe: [
+    { top: '38%', left: '38%', cls: '', title: 'МДФ ЛДСП фасады', desc: '' },
+    { top: '26%', left: '72%', cls: 'mebel-hotspot--right', title: 'Встроенная LED-подсветка 3000K', desc: 'Подсветка открытых полок и штанг' },
+    { top: '68%', left: '72%', cls: 'mebel-hotspot--right', title: 'Фурнитура Blum & Hettich', desc: 'Скрытый монтаж и плавные доводчики' }
+  ],
+  dressing: [
+    { top: '32%', left: '28%', cls: 'mebel-hotspot--left', title: 'Индивидуальные размеры под ваши запросы', desc: '' },
+    { top: '45%', left: '68%', cls: 'mebel-hotspot--right', title: 'Встроенная LED-подсветка 3000K', desc: 'Контурное освещение секций' },
+    { top: '75%', left: '48%', cls: '', title: 'Фурнитура Blum & Hettich', desc: 'Плавный ход выдвижных элементов' }
+  ]
+};
+
 function switchShowcaseScene(type, btn) {
   document.querySelectorAll('.mebel-mat-btn').forEach(function(b) {
     b.classList.remove('is-active');
   });
   if (btn) btn.classList.add('is-active');
   var img = document.getElementById('showcase-main-img');
+  var container = document.getElementById('showcase-hotspots-container');
   if (!img) return;
   img.style.opacity = '0';
   img.style.transform = 'scale(0.97)';
+  if (container) container.style.opacity = '0';
+  
   setTimeout(function() {
     if (type === 'kitchen') img.src = 'images/mebel_kitchen.jpg';
     else if (type === 'wardrobe') img.src = 'images/mebel_wardrobe.jpg';
     else if (type === 'dressing') img.src = 'images/mebel_dressing.jpg';
+    
+    if (container && sceneHotspots[type]) {
+      container.innerHTML = sceneHotspots[type].map(function(h) {
+        var descHtml = h.desc ? '<span>' + h.desc + '</span>' : '';
+        var cls = h.cls ? ' ' + h.cls : '';
+        return '<div class="mebel-hotspot' + cls + '" style="top: ' + h.top + '; left: ' + h.left + ';">' +
+                 '<div class="mebel-hotspot__dot">+</div>' +
+                 '<div class="mebel-hotspot__tooltip">' + h.title + descHtml + '</div>' +
+               '</div>';
+      }).join('');
+    }
+    
     img.style.opacity = '1';
     img.style.transform = 'scale(1)';
+    if (container) container.style.opacity = '1';
   }, 180);
 }
 </script>
@@ -2117,14 +2893,11 @@ function switchShowcaseScene(type, btn) {
 <div class="site-footer__inner">
 <div>
 <a class="site-header__brand" href="index.html" style="justify-self:flex-start; margin-bottom:14px;">
-<img alt="МОЙ мебельный" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
-<div class="site-header__brand-text">
-<span class="site-header__brand-title">МОЙ</span>
-<span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
-</div>
+<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
+<span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
 </a>
 <p class="site-footer__brand-p">
-          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия). Гарантия качества по договору.
+          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия).
         </p>
 </div>
 <div class="site-footer__col">
@@ -2146,21 +2919,47 @@ function switchShowcaseScene(type, btn) {
 </ul>
 </div>
 <div class="site-footer__col">
-<h4>Контакты цеха</h4>
-<ul class="site-footer__links">
-<li><a href="tel:+73812480153" style="color:#ffffff; font-weight:800;">+7 (3812) 480-153</a></li>
-<li><span>г. Омск, ул. 22 Партсъезда, 51Б</span></li>
-<li><span>Пн — Пт с 09:00 до 17:00</span></li>
-<li><a href="https://vk.ru/moymb" style="color:var(--accent-orange);" target="_blank">Группа ВКонтакте</a></li>
-</ul>
+<h4>Адреса и контакты</h4>
+<div style="display:flex; flex-direction:column; gap:10px; margin-top:8px; font-size:13px; line-height:1.4;">
+  <!-- Герцена 36 -->
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
+    <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span>Офис: ул. Герцена, 36</span>
+      <span style="font-size:11px; color:#ffd991; font-weight:500;">10:00 – 19:00</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <a href="tel:+73812480153" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 48-01-53</a>
+      <a href="tel:+79533986959" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-953-398-69-59</a>
+    </div>
+    <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;" target="_blank">
+      💬 Написать в MAX (Герцена) →
+    </a>
+  </div>
+
+  <!-- 26 Северная -->
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
+    <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span>Цех: ул. 26-я Северная, 13А/9</span>
+      <span style="font-size:11px; color:#ffd991; font-weight:500;">09:00 – 17:00</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <a href="tel:+73812590650" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 590-650</a>
+      <a href="tel:+79088014000" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-908-801-40-00</a>
+    </div>
+    <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;" target="_blank">
+      💬 Написать в MAX (26-я Северная) →
+    </a>
+  </div>
+</div>
 </div>
 </div>
 <div class="site-footer__bottom">
-<div>© 2026 «МОЙ мебельный». Все права защищены. Производство в Омске.</div>
-<div style="display:flex; align-items:center; gap:20px;">
+<div>© 2026 «МОЙ мебельный». Все права защищены. Производство и офисы в Омске.</div>
+<div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
 <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" style="color:#ffaa33; text-decoration:none; font-weight:700;" target="_blank">★ 4.9 на 2ГИС</a>
-<a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none;" target="_blank">VK</a>
-<a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="color:#d4af6e; text-decoration:none;" target="_blank">Max</a>
+<a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">ВКонтакте</a>
+<a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (Герцена)</a>
+<a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (26-я Северная)</a>
 </div>
 </div>
 </footer>

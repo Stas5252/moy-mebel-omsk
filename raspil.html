@@ -172,9 +172,9 @@ html, body {
 }
 
 .vibe-hero-title .text-gold {
-  background: linear-gradient(135deg, #ffc478 0%, #ff8a3c 50%, #e05e08 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ff761a !important;
+  background: none !important;
+  -webkit-text-fill-color: #ff761a !important;
   display: inline-block;
 }
 
@@ -491,12 +491,12 @@ html, body {
 }
 
 .saw-calc-frame {
-  max-width: 1040px !important;
+  max-width: 1360px !important;
   width: 100% !important;
   background: #ffffff !important;
-  border: 14px solid #362013 !important;
-  border-radius: 28px !important;
-  padding: clamp(24px, 4vw, 44px) !important;
+  border: 10px solid #362013 !important;
+  border-radius: 26px !important;
+  padding: clamp(24px, 3vw, 38px) !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15) !important;
   color: #1a1512 !important;
   font-family: 'Montserrat', 'TildaSans', sans-serif !important;
@@ -534,129 +534,180 @@ html, body {
 .saw-calc-hint {
   font-size: 13px !important;
   color: #7a6e65 !important;
-  max-width: 380px !important;
+  max-width: 440px !important;
   text-align: right !important;
   line-height: 1.4 !important;
 }
 
-/* 3 Main Inputs in One Row */
-.saw-calc-inputs-grid {
+/* Single Row Inputs Layout */
+.saw-calc-single-row {
   display: grid !important;
-  grid-template-columns: 1.5fr 1fr 1fr !important;
-  gap: 16px !important;
+  grid-template-columns: 2.2fr 1fr 1fr 1.3fr 1.3fr auto auto !important;
+  gap: 12px !important;
+  align-items: flex-end !important;
   margin-bottom: 12px !important;
+  background: #ffffff !important;
+  border: 1px solid #eee2d5 !important;
+  border-radius: 14px !important;
+  padding: 18px 20px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
 }
 
-.saw-calc-field label {
+.saw-calc-col {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+}
+
+.saw-calc-col label {
   font-size: 11px !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.8px !important;
+  letter-spacing: 0.6px !important;
   color: #4a3e35 !important;
   margin-bottom: 6px !important;
-  display: block !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
-.saw-calc-field input, .saw-calc-field select {
+.saw-calc-col input, .saw-calc-col select {
   width: 100% !important;
-  height: 48px !important;
-  background: #ffffff !important;
-  border: 1.5px solid #dfd5cb !important;
-  border-radius: 10px !important;
-  padding: 0 14px !important;
+  height: 46px !important;
+  background: #faf7f2 !important;
+  border: 1.5px solid #e0d5c8 !important;
+  border-radius: 9px !important;
+  padding: 0 10px !important;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 14px !important;
+  font-size: 13.5px !important;
   font-weight: 600 !important;
   color: #1a1512 !important;
   outline: none !important;
   transition: all 0.2s ease !important;
 }
 
-.saw-calc-field input:focus, .saw-calc-field select:focus {
-  border-color: #ff6b1a !important;
-  box-shadow: 0 0 0 3px rgba(255, 107, 26, 0.15) !important;
+.saw-calc-col input:focus, .saw-calc-col select:focus {
+  border-color: #ff761a !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 118, 26, 0.15) !important;
+}
+
+.saw-calc-dual-selects {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 6px !important;
+}
+
+.saw-calc-dual-selects select {
+  padding: 0 6px !important;
+  font-size: 12px !important;
+}
+
+/* Texture Pill Toggle Button */
+.saw-calc-texture-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 46px !important;
+  background: #f7efe6 !important;
+  border: 1.5px solid #dfd3c5 !important;
+  border-radius: 9px !important;
+  padding: 0 14px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #3b2a1e !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: all 0.2s ease !important;
+  white-space: nowrap !important;
+}
+
+.saw-calc-texture-btn:hover {
+  background: #fdf5ec !important;
+  border-color: #ff761a !important;
+}
+
+.saw-calc-texture-box {
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  border: 1.5px solid #c9b5a3 !important;
+  border-radius: 5px !important;
+  background: #ffffff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+}
+
+.saw-calc-texture-btn.is-active,
+.saw-calc-texture-btn:has(input:checked) {
+  background: #fff4ea !important;
+  border-color: #ff761a !important;
+  color: #d45d11 !important;
+}
+
+.saw-calc-texture-btn:has(input:checked) .saw-calc-texture-box,
+.saw-calc-texture-btn.is-active .saw-calc-texture-box {
+  background: #ff761a !important;
+  border-color: #ff761a !important;
+}
+
+.saw-calc-texture-btn:has(input:checked) .saw-calc-texture-box::after,
+.saw-calc-texture-btn.is-active .saw-calc-texture-box::after {
+  content: '✔';
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.saw-calc-btn-add {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 46px !important;
+  background: linear-gradient(135deg, #ff761a 0%, #e05206 100%) !important;
+  color: #ffffff !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  padding: 0 22px !important;
+  border-radius: 9px !important;
+  border: none !important;
+  cursor: pointer !important;
+  box-shadow: 0 6px 18px rgba(255, 118, 26, 0.35) !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+}
+.saw-calc-btn-add:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(255, 118, 26, 0.5) !important;
 }
 
 .saw-calc-size-limit {
   font-size: 12px !important;
-  color: #8c7b70 !important;
+  color: #706055 !important;
   margin-bottom: 18px !important;
   display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 8px !important;
 }
 .saw-calc-size-limit b {
   color: #1a1512 !important;
 }
 
-/* Edge Banding Dual Cards */
-.saw-calc-edge-grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 16px !important;
-  margin-bottom: 22px !important;
+@media (max-width: 1100px) {
+  .saw-calc-single-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
 }
-
-.saw-calc-edge-box {
-  background: #faf6f0 !important;
-  border: 1px solid #eee2d5 !important;
-  border-radius: 12px !important;
-  padding: 14px 16px !important;
-}
-
-.saw-calc-edge-box__title {
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.8px !important;
-  color: #d45d11 !important;
-  margin-bottom: 10px !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-
-.saw-calc-edge-box__selects {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 10px !important;
-}
-
-.saw-calc-edge-box select {
-  width: 100% !important;
-  height: 40px !important;
-  background: #ffffff !important;
-  border: 1px solid #dfd5cb !important;
-  border-radius: 8px !important;
-  padding: 0 10px !important;
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  color: #1a1512 !important;
-  outline: none !important;
-}
-
-/* Orange Add Button */
-.saw-calc-btn-add {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  background: linear-gradient(135deg, #ff7a18 0%, #ff5500 100%) !important;
-  color: #ffffff !important;
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 14px !important;
-  font-weight: 800 !important;
-  padding: 13px 26px !important;
-  border-radius: 10px !important;
-  border: none !important;
-  cursor: pointer !important;
-  box-shadow: 0 6px 18px rgba(255, 85, 0, 0.35) !important;
-  margin-bottom: 24px !important;
-  transition: all 0.2s ease !important;
-}
-.saw-calc-btn-add:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(255, 85, 0, 0.5) !important;
+@media (max-width: 600px) {
+  .saw-calc-single-row {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Dark Details Container */
@@ -1292,70 +1343,117 @@ html, body {
         </a>
 </nav>
 <a aria-label="Мой Мебельный — Главная" class="site-header__brand" href="index.html">
-<img alt="МОЙ мебельный" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
-<div class="site-header__brand-text">
-<span class="site-header__brand-title">МОЙ</span>
-<span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
-</div>
+<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
+<span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
 </a>
 <div class="site-header__nav-right">
 <div class="site-header__contacts">
-<a class="site-header__phone" href="tel:+73812480153">
-<img alt="" src="images/phone_contact_call_ring.svg"/>
-            +7 (3812) 480-153
-          </a>
-<span class="site-header__hours">Омск, ул. 22 Партсъезда, 51Б · 09:00–17:00</span>
+  <div class="site-header__phones-row">
+    <a class="site-header__phone" href="tel:+73812590650" title="Цех: 26-я Северная, 13А/9 (09:00–17:00)">
+      <img alt="" src="images/phone_contact_call_ring.svg"/>
+      +7 (3812) 590-650
+    </a>
+    <a class="site-header__phone" href="tel:+79533986959" title="Офис: Герцена, 36 (10:00–19:00)">
+      <img alt="" src="images/phone_contact_call_ring.svg"/>
+      +7-953-398-69-59
+    </a>
+  </div>
+  <span class="site-header__hours">Герцена, 36 (10:00–19:00) · 26-я Северная, 13А/9 (09:00–17:00)</span>
 </div>
 </div>
 </div>
 </header>
 <!-- HERO SECTION (RASPIL) -->
-<!-- HERO SECTION (RASPIL) -->
-<!-- HERO SECTION (RASPIL) -->
 <section class="hero-stage">
-<div class="hero-grid">
-<div class="hero-left">
-<div class="ui-eyebrow">
-<span class="ui-eyebrow__dot"></span>
-          ПРОИЗВОДСТВО SCM · ИТАЛИЯ / ГЕРМАНИЯ
+  <div class="hero-grid">
+    <div class="hero-left">
+      <!-- Eyebrow (Exact match to screenshot) -->
+      <div style="display:inline-flex; align-items:center; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+        <span style="width:34px; height:3px; background-color:#ff761a; border-radius:2px; display:inline-block; flex-shrink:0;"></span>
+        <span style="color:#ff761a; font-family:'Montserrat', sans-serif; font-size:12px; font-weight:800; letter-spacing:2.2px; text-transform:uppercase;">
+          РАСПИЛ ЛДСП ОТ 1 М² И КРОМКООБЛИЦОВКА НА ИТАЛЬЯНСКОМ И НЕМЕЦКОМ ОБОРУДОВАНИИ
+        </span>
+        <span style="display:inline-flex; align-items:center; gap:6px; color:#ff761a; font-family:'Montserrat', sans-serif; font-size:11px; font-weight:800; letter-spacing:2px; margin-left:6px;">
+          <span style="width:6px; height:6px; border-radius:50%; background:#ff4500; box-shadow:0 0 8px #ff4500; display:inline-block;"></span>
+          REC
+        </span>
+      </div>
+      <h1 class="hero-title">
+        Точный распил<br/>
+        для <span class="text-gold" style="font-style:italic; border-bottom:3px solid #ff761a; padding-bottom:2px; display:inline-block;">вашей мебели</span>
+      </h1>
+      <p class="hero-desc">
+        Изготавливаем мебельные детали любой сложности по индивидуальным проектам с точностью до 1 мм. Выполняем полный цикл услуг: от точного раскроя и кромления ЛДСП до обработки радиусных элементов, производства фасадов МДФ, столешниц и сборки готовых корпусов.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#rec3089023401" style="text-transform:uppercase; letter-spacing:0.8px; padding:16px 36px; border-radius:50px; font-weight:800; font-size:13.5px;">
+          <span>КАЛЬКУЛЯТОР РАСЧЁТА СТОИМОСТИ</span>
+          <span style="font-size:18px;">→</span>
+        </a>
+      </div>
+      
+      <!-- Bottom Capsule Bar -->
+      <div style="background:linear-gradient(180deg, rgba(62, 34, 18, 0.9) 0%, rgba(36, 19, 10, 0.94) 100%); border:1px solid rgba(255, 138, 60, 0.38); box-shadow:0 20px 50px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.08); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:22px; padding:18px 24px; display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:18px; width:100%; max-width:740px;">
+        
+        <!-- Badge 1 -->
+        <div style="display:flex; align-items:center; gap:14px; position:relative;">
+          <div style="width:48px; height:48px; min-width:48px; border-radius:13px; background:linear-gradient(145deg, rgba(50, 26, 14, 0.95), rgba(28, 14, 7, 0.95)); border:1px solid rgba(255, 138, 60, 0.35); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffaa33" stroke-width="1.8">
+              <circle cx="12" cy="12" r="8" stroke-dasharray="2 1.5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="12" cy="12" r="1.5" fill="#ffaa33"/>
+            </svg>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <span style="font-size:14.5px; font-weight:800; color:#ffffff; line-height:1.2;">Острые пилы</span>
+            <span style="font-size:12px; color:#c4b09e; line-height:1.2;">и чистый спил</span>
+          </div>
         </div>
-<h1 class="hero-title">
-          Точный распил<br/>
-<span class="text-gold">для вашей мебели</span>
-</h1>
-<p class="hero-desc">
-          Выполняем раскрой и кромление ЛДСП (Lamarty, Egger), фрезеровку радиусов, присадку отверстий и изготовление фасадов МДФ на высокоточных европейских станках с гарантией чистого реза без сколов.
-        </p>
-<div class="hero-actions">
-<a class="btn-primary" href="#rec3089023401">
-<span>Рассчитать распил онлайн</span>
-<span>→</span>
-</a>
-<a class="btn-ghost" href="#rec3089027501">
-<span>Оборудование SCM</span>
-<span>↓</span>
-</a>
-</div>
-<div class="hero-badges-row">
-<div class="hero-badge-card">
-<b>Чистый рез</b>
-<span>Подрезной алмазный диск</span>
-</div>
-<div class="hero-badge-card">
-<b>Точность до 1 мм</b>
-<span>По вашему эскизу</span>
-</div>
-<div class="hero-badge-card">
-<b>Срок от 2–4 дней</b>
-<span>МДФ — от 7 дней</span>
-</div>
-</div>
-</div>
-<!-- Self-Contained Interactive Wood Saw Visual -->
-<div class="hero-right" style="display:flex; justify-content:center; align-items:center; position:relative; min-height:420px;">
-<canvas height="420" id="saw-cutting-canvas" style="width:100%; max-width:620px; height:auto; border-radius:18px; box-shadow:0 20px 50px rgba(0,0,0,0.8); background:#110a06; border:1px solid rgba(212, 175, 110, 0.25);" width="620"></canvas>
-</div>
-</div>
+
+        <!-- Badge 2 -->
+        <div style="display:flex; align-items:center; gap:14px; position:relative;">
+          <div style="width:48px; height:48px; min-width:48px; border-radius:13px; background:linear-gradient(145deg, rgba(50, 26, 14, 0.95), rgba(28, 14, 7, 0.95)); border:1px solid rgba(255, 138, 60, 0.35); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffaa33" stroke-width="1.8">
+              <circle cx="12" cy="12" r="8"/>
+              <circle cx="12" cy="12" r="3"/>
+              <line x1="12" y1="2" x2="12" y2="7"/>
+              <line x1="12" y1="17" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="7" y2="12"/>
+              <line x1="17" y1="12" x2="22" y2="12"/>
+            </svg>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <span style="font-size:14.5px; font-weight:800; color:#ffffff; line-height:1.2;">Точность до 1 мм</span>
+            <span style="font-size:12px; color:#c4b09e; line-height:1.2;">по вашему заказу</span>
+          </div>
+        </div>
+
+        <!-- Badge 3 -->
+        <div style="display:flex; align-items:center; gap:14px; position:relative;">
+          <div style="width:48px; height:48px; min-width:48px; border-radius:13px; background:linear-gradient(145deg, rgba(50, 26, 14, 0.95), rgba(28, 14, 7, 0.95)); border:1px solid rgba(255, 138, 60, 0.35); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,0,0,0.4);">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#ffaa33" stroke-width="1.8">
+              <rect x="3" y="4" width="18" height="18" rx="4" ry="4"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+              <circle cx="8.5" cy="14.5" r="1.2" fill="#ffaa33"/>
+              <circle cx="15.5" cy="14.5" r="1.2" fill="#ffaa33"/>
+            </svg>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:2px;">
+            <span style="font-size:14.5px; font-weight:800; color:#ffffff; line-height:1.2;">Готово за 2–4 дня</span>
+            <span style="font-size:12px; color:#c4b09e; line-height:1.2;">с момента заказа</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Right Column: Interactive Blueprint Mechanism Animation -->
+    <div class="hero-right" style="display:flex; justify-content:center; align-items:center; position:relative; min-height:480px; background:transparent;">
+      <canvas height="520" id="saw-cutting-canvas" style="width:100%; max-width:640px; height:auto; background:transparent; border:none; box-shadow:none; display:block;" width="640"></canvas>
+    </div>
+  </div>
 </section>
 <div class="r t-rec" data-record-type="1370" id="rec3089023401">
 <section class="saw-calc-section">
@@ -1370,12 +1468,11 @@ html, body {
           Добавьте детали по очереди — калькулятор сам посчитает площадь, кромку и итоговую сумму.
         </div>
 </div>
-<!-- 3 Main Inputs in One Row -->
-<div class="saw-calc-inputs-grid">
-<div class="saw-calc-field">
+<!-- Single Row Inputs Grid -->
+<div class="saw-calc-single-row">
+<div class="saw-calc-col">
 <label>МАТЕРИАЛ</label>
 <select id="calc-material-select">
-<optgroup label="ЛДСП 16 мм Lamarty · Базовые и древесные (850 ₽/м²)">
 <option data-name="Венге Линум 16мм" selected="" value="850">Венге Линум 16мм · 850 ₽/м²</option>
 <option data-name="Дуб Сонома 16мм" value="850">Дуб Сонома 16мм · 850 ₽/м²</option>
 <option data-name="Белый Шагрень 16мм" value="850">Белый Шагрень 16мм · 850 ₽/м²</option>
@@ -1388,89 +1485,83 @@ html, body {
 <option data-name="Чёрный Шагрень 16мм" value="850">Чёрный Шагрень 16мм · 850 ₽/м²</option>
 <option data-name="Орех Невада 16мм" value="850">Орех Невада 16мм · 850 ₽/м²</option>
 <option data-name="Дуб Крафт Золотой 16мм" value="850">Дуб Крафт Золотой 16мм · 850 ₽/м²</option>
-</optgroup>
-<optgroup label="ЛДСП 16 мм Egger · Премиум синхропоры (1 150 ₽/м²)">
 <option data-name="Egger Дуб Галифакс Натуральный 16мм" value="1150">Egger Дуб Галифакс Натуральный 16мм · 1 150 ₽/м²</option>
 <option data-name="Egger Дуб Галифакс Табак 16мм" value="1150">Egger Дуб Галифакс Табак 16мм · 1 150 ₽/м²</option>
 <option data-name="Egger Белый Альпийский 16мм" value="1150">Egger Белый Альпийский 16мм · 1 150 ₽/м²</option>
 <option data-name="Egger Серый Пыльный 16мм" value="1150">Egger Серый Пыльный 16мм · 1 150 ₽/м²</option>
 <option data-name="Egger Орех Дикаприо 16мм" value="1150">Egger Орех Дикаприо 16мм · 1 150 ₽/м²</option>
-</optgroup>
-<optgroup label="ЛДСП 22–25 мм · Утолщённые столешницы и полки">
 <option data-name="Lamarty 22мм Дуб Сонома" value="1250">Lamarty 22мм Дуб Сонома · 1 250 ₽/м²</option>
 <option data-name="Lamarty 22мм Белый Гладкий" value="1250">Lamarty 22мм Белый Гладкий · 1 250 ₽/м²</option>
 <option data-name="Lamarty 25мм Венге" value="1450">Lamarty 25мм Венге · 1 450 ₽/м²</option>
-</optgroup>
-<optgroup label="МДФ Фасады и Детали">
 <option data-name="МДФ 16мм шлифованный" value="1450">МДФ 16мм шлифованный · 1 450 ₽/м²</option>
 <option data-name="МДФ 19мм шлифованный" value="1750">МДФ 19мм шлифованный · 1 750 ₽/м²</option>
 <option data-name="МДФ 16мм влагостойкий глубокая фрезеровка" value="1950">МДФ 16мм влагостойкий фрезерованный · 1 950 ₽/м²</option>
-</optgroup>
-<optgroup label="ХДФ / ДВП · Задние стенки и донья ящиков">
 <option data-name="ХДФ Белый 3.2мм" value="380">ХДФ Белый 3.2мм · 380 ₽/м²</option>
 <option data-name="ХДФ Венге / Серый 3.2мм" value="420">ХДФ Венге / Серый 3.2мм · 420 ₽/м²</option>
-</optgroup>
 </select>
 </div>
-<div class="saw-calc-field">
+<div class="saw-calc-col">
 <label>ДЛИНА, ММ</label>
 <input id="calc-length-input" max="2720" min="50" placeholder="напр. 1200" type="number"/>
 </div>
-<div class="saw-calc-field">
+<div class="saw-calc-col">
 <label>ШИРИНА, ММ</label>
 <input id="calc-width-input" max="1830" min="50" placeholder="напр. 600" type="number"/>
+</div>
+<div class="saw-calc-col">
+<label>═ КРОМКА ДЛИНА</label>
+<div class="saw-calc-dual-selects">
+<select id="calc-edge-l1" title="Длина сторона 1">
+<option value="none">Без</option>
+<option value="0.4">0.4 мм</option>
+<option value="1.0">1.0 мм</option>
+<option value="2.0">2.0 мм</option>
+</select>
+<select id="calc-edge-l2" title="Длина сторона 2">
+<option value="none">Без</option>
+<option value="0.4">0.4 мм</option>
+<option value="1.0">1.0 мм</option>
+<option value="2.0">2.0 мм</option>
+</select>
+</div>
+</div>
+<div class="saw-calc-col">
+<label>║ КРОМКА ШИРИНА</label>
+<div class="saw-calc-dual-selects">
+<select id="calc-edge-w1" title="Ширина сторона 1">
+<option value="none">Без</option>
+<option value="0.4">0.4 мм</option>
+<option value="1.0">1.0 мм</option>
+<option value="2.0">2.0 мм</option>
+</select>
+<select id="calc-edge-w2" title="Ширина сторона 2">
+<option value="none">Без</option>
+<option value="0.4">0.4 мм</option>
+<option value="1.0">1.0 мм</option>
+<option value="2.0">2.0 мм</option>
+</select>
+</div>
+</div>
+<div class="saw-calc-col">
+<label>&nbsp;</label>
+<label class="saw-calc-texture-btn" id="calc-texture-label" title="Направление текстуры">
+<input id="calc-texture-input" type="checkbox"/>
+<span class="saw-calc-texture-box"></span>
+<span>Текстура</span>
+</label>
+</div>
+<div class="saw-calc-col">
+<label>&nbsp;</label>
+<button class="saw-calc-btn-add" id="calc-add-btn" type="button">
+<span>+</span> Добавить деталь
+</button>
 </div>
 </div>
 <!-- Size limit notice -->
 <div class="saw-calc-size-limit">
-<span style="color:#d45d11;">ⓘ</span>
-<span>Максимальные габариты детали: <b>2720 × 1830 мм</b>. Кромка подбирается в цвет выбранного ЛДСП.</span>
+<span style="display:inline-flex; align-items:center; justify-content:center; width:19px; height:19px; min-width:19px; border-radius:50%; border:1.5px solid #d45d11; color:#d45d11; font-size:12px; font-weight:800; font-family:'Montserrat', sans-serif;">i</span>
+<span>Максимальные габариты детали: <b>2720 × 1830 мм</b> · <b>Кромка кратна метру</b> (округляется всегда в большую сторону).</span>
 </div>
-<!-- Dual Edge Banding Boxes -->
-<div class="saw-calc-edge-grid">
-<div class="saw-calc-edge-box">
-<div class="saw-calc-edge-box__title">
-<span>═</span> КРОМКА ПО ДЛИНЕ
-          </div>
-<div class="saw-calc-edge-box__selects">
-<select id="calc-edge-l1">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм · 45 ₽/м</option>
-<option value="1.0">1.0 мм · 70 ₽/м</option>
-<option value="2.0">2.0 мм · 95 ₽/м</option>
-</select>
-<select id="calc-edge-l2">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм · 45 ₽/м</option>
-<option value="1.0">1.0 мм · 70 ₽/м</option>
-<option value="2.0">2.0 мм · 95 ₽/м</option>
-</select>
-</div>
-</div>
-<div class="saw-calc-edge-box">
-<div class="saw-calc-edge-box__title">
-<span>║</span> КРОМКА ПО ШИРИНЕ
-          </div>
-<div class="saw-calc-edge-box__selects">
-<select id="calc-edge-w1">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм · 45 ₽/м</option>
-<option value="1.0">1.0 мм · 70 ₽/м</option>
-<option value="2.0">2.0 мм · 95 ₽/м</option>
-</select>
-<select id="calc-edge-w2">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм · 45 ₽/м</option>
-<option value="1.0">1.0 мм · 70 ₽/м</option>
-<option value="2.0">2.0 мм · 95 ₽/м</option>
-</select>
-</div>
-</div>
-</div>
-<!-- Add Button -->
-<button class="saw-calc-btn-add" id="calc-add-btn" type="button">
-<span>+</span> Добавить деталь
-      </button>
 <!-- Details List Container (Dark card) -->
 <div class="saw-calc-details-card" id="calc-details-container">
 <div class="saw-calc-empty" id="calc-empty-state">
@@ -1486,7 +1577,7 @@ html, body {
 <th>#</th>
 <th>Деталь / Размеры</th>
 <th>Материал</th>
-<th>Кромка (пог. м)</th>
+<th>Кромка</th>
 <th>Стоимость</th>
 <th>Действия</th>
 </tr>
@@ -1540,8 +1631,8 @@ html, body {
       </div>
 
       <div class="saw-modal-field">
-        <label>Комментарий / направление текстуры (по желанию)</label>
-        <textarea id="calc-order-comment" placeholder="Направление древесной текстуры, присадка петель, срочность..." class="saw-modal-textarea"></textarea>
+        <label>Комментарий (по желанию)</label>
+        <textarea id="calc-order-comment" placeholder="" class="saw-modal-textarea"></textarea>
       </div>
 
       <!-- File Attachment Dropzone -->
@@ -2840,8 +2931,8 @@ html, body {
   }
 </style> <section class="prt-section"> <!-- ФОН --> <div aria-hidden="true" class="prt-bg"> <div class="prt-bg__orb prt-bg__orb--1"></div> <div class="prt-bg__orb prt-bg__orb--2"></div> <div class="prt-bg__orb prt-bg__orb--3"></div> <div class="prt-bg__shape prt-bg__shape--ring prt-bg__shape--ring-1"></div> <div class="prt-bg__shape prt-bg__shape--ring prt-bg__shape--ring-2"></div> <div class="prt-bg__shape prt-bg__shape--ring prt-bg__shape--ring-3"></div> <div class="prt-bg__shape prt-bg__shape--square prt-bg__shape--square-1"></div> <div class="prt-bg__shape prt-bg__shape--square prt-bg__shape--square-2"></div> <div class="prt-bg__shape prt-bg__shape--square prt-bg__shape--square-3"></div> <div class="prt-bg__dot prt-bg__dot--1"></div> <div class="prt-bg__dot prt-bg__dot--2"></div> <div class="prt-bg__dot prt-bg__dot--3"></div> <div class="prt-bg__dot prt-bg__dot--4"></div> <div class="prt-bg__dot prt-bg__dot--5"></div> <div class="prt-bg__dot prt-bg__dot--6"></div> <div class="prt-bg__line prt-bg__line--1"></div> <div class="prt-bg__line prt-bg__line--2"></div> <div class="prt-bg__line prt-bg__line--3"></div> </div> <div class="prt-container"> <div class="prt-header prt-reveal"> <h2 class="prt-title">
         Работы, которые говорят
-        <span class="prt-title__accent">за нас</span> </h2> </div> <div class="prt-counter-block prt-reveal prt-d1"> <div class="prt-counter-value"> <span class="prt-counter-num" data-duration="2200" data-target="2808500">0</span> <span class="prt-counter-plus">+</span> <span class="prt-counter-unit">м²</span> </div> <span class="prt-counter-label"> <span class="prt-counter-label-text">распила за 15+ лет работы</span> </span> </div> <div class="prt-pitch prt-reveal prt-d2"> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--l1"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--l2"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--r1"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--r2"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--tl"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--tr"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--bl"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--br"></span> <span aria-hidden="true" class="prt-pitch__ring"></span> <p class="prt-pitch__text">
-        Изготавливаем детали по индивидуальным проектам с точностью до <b>0,1 мм</b>. Ценим ваше время, соблюдаем сроки и отвечаем за качество каждой детали.
+        <span class="prt-title__accent">за нас</span> </h2> </div> <div class="prt-counter-block prt-reveal prt-d1"> <div class="prt-counter-value"> <span class="prt-counter-num" data-duration="4500" data-target="2808500">0</span> <span class="prt-counter-plus">+</span> <span class="prt-counter-unit">м²</span> </div> <span class="prt-counter-label"> <span class="prt-counter-label-text">распила за 15+ лет работы</span> </span> </div> <div class="prt-pitch prt-reveal prt-d2"> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--l1"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--l2"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--r1"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--r2"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--tl"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--tr"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--bl"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--br"></span> <span aria-hidden="true" class="prt-pitch__ring"></span> <p class="prt-pitch__text">
+        Изготавливаем детали по индивидуальным проектам с точностью до <b>1 мм</b>. Ценим ваше время, соблюдаем сроки и отвечаем за качество каждой детали.
       </p> </div> <div class="prt-grid"> <a class="prt-card prt-reveal prt-d1" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Раскрой ЛДСП и кромления" class="prt-card__img" loading="lazy" src="images/i_1.webp"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">01</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Раскрой ЛДСП и кромления</h3> <div class="prt-card__meta"> <span>Раскрой</span> <span class="prt-card__meta-dot"></span> <span>от 1 дня</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d2" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Столешницы и стеновые панели" class="prt-card__img" loading="lazy" src="images/i.webp"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">02</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Столешницы и стеновые панели</h3> <div class="prt-card__meta"> <span>Столешницы</span> <span class="prt-card__meta-dot"></span> <span>от 2 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d3" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Радиусные детали" class="prt-card__img" loading="lazy" src="images/IMG_2719.JPG"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">03</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Радиусные детали</h3> <div class="prt-card__meta"> <span>Сложная геометрия</span> <span class="prt-card__meta-dot"></span> <span>от 3 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d4" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Изготовление фасадов МДФ" class="prt-card__img" loading="lazy" src="images/i_2.webp"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">04</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Изготовление фасадов МДФ</h3> <div class="prt-card__meta"> <span>Фасады</span> <span class="prt-card__meta-dot"></span> <span>от 4 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d5" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Комплексные заказы" class="prt-card__img" loading="lazy" src="images/IMG_2723.JPG"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">05</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Комплексные заказы</h3> <div class="prt-card__meta"> <span>Сборка корпусов</span> <span class="prt-card__meta-dot"></span> <span>от 5 дней</span> </div> </div> </a> </div> <!-- CTA с кнопкой "Оставить заявку" --> <div class="prt-cta prt-reveal prt-d6"> <p class="prt-cta__lead"></p> <p class="prt-cta__sub"></p> <a class="prt-btn" href="#rec3213771601"> <span class="prt-btn__text">Оставить заявку</span> <span aria-hidden="true" class="prt-btn__icon"> <svg viewbox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"></path></svg> </span> </a> </div> </div> </section> <script>
   (function () {
     'use strict';
@@ -2852,7 +2943,7 @@ html, body {
 
     function runCounter(el) {
       var target = parseInt(el.getAttribute('data-target'), 10) || 0;
-      var duration = parseInt(el.getAttribute('data-duration'), 10) || 2000;
+      var duration = parseInt(el.getAttribute('data-duration'), 10) || 4500;
       if (target <= 0) return;
 
       var startTime = null;
@@ -2863,15 +2954,15 @@ html, body {
         return;
       }
 
-      function easeOutQuart(t) {
-        return 1 - Math.pow(1 - t, 4);
+      function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
       }
 
       function step(timestamp) {
         if (!startTime) startTime = timestamp;
         var elapsed = timestamp - startTime;
         var progress = Math.min(elapsed / duration, 1);
-        var eased = easeOutQuart(progress);
+        var eased = easeOutCubic(progress);
         var current = Math.floor(eased * target);
 
         el.textContent = formatNumber(current);
@@ -3683,14 +3774,11 @@ html, body {
 <div class="site-footer__inner">
 <div>
 <a class="site-header__brand" href="index.html" style="justify-self:flex-start; margin-bottom:14px;">
-<img alt="МОЙ мебельный" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
-<div class="site-header__brand-text">
-<span class="site-header__brand-title">МОЙ</span>
-<span class="site-header__brand-sub">МЕБЕЛЬНЫЙ</span>
-</div>
+<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
+<span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
 </a>
 <p class="site-footer__brand-p">
-          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия). Гарантия качества по договору.
+          Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия).
         </p>
 </div>
 <div class="site-footer__col">
@@ -3712,21 +3800,47 @@ html, body {
 </ul>
 </div>
 <div class="site-footer__col">
-<h4>Контакты цеха</h4>
-<ul class="site-footer__links">
-<li><a href="tel:+73812480153" style="color:#ffffff; font-weight:800;">+7 (3812) 480-153</a></li>
-<li><span>г. Омск, ул. 22 Партсъезда, 51Б</span></li>
-<li><span>Пн — Пт с 09:00 до 17:00</span></li>
-<li><a href="https://vk.ru/moymb" style="color:var(--accent-orange);" target="_blank">Группа ВКонтакте</a></li>
-</ul>
+<h4>Адреса и контакты</h4>
+<div style="display:flex; flex-direction:column; gap:10px; margin-top:8px; font-size:13px; line-height:1.4;">
+  <!-- Герцена 36 -->
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
+    <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span>Офис: ул. Герцена, 36</span>
+      <span style="font-size:11px; color:#ffd991; font-weight:500;">10:00 – 19:00</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <a href="tel:+73812480153" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 48-01-53</a>
+      <a href="tel:+79533986959" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-953-398-69-59</a>
+    </div>
+    <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;" target="_blank">
+      💬 Написать в MAX (Герцена) →
+    </a>
+  </div>
+
+  <!-- 26 Северная -->
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
+    <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span>Цех: ул. 26-я Северная, 13А/9</span>
+      <span style="font-size:11px; color:#ffd991; font-weight:500;">09:00 – 17:00</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:2px;">
+      <a href="tel:+73812590650" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 590-650</a>
+      <a href="tel:+79088014000" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-908-801-40-00</a>
+    </div>
+    <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;" target="_blank">
+      💬 Написать в MAX (26-я Северная) →
+    </a>
+  </div>
+</div>
 </div>
 </div>
 <div class="site-footer__bottom">
-<div>© 2026 «МОЙ мебельный». Все права защищены. Производство в Омске.</div>
-<div style="display:flex; align-items:center; gap:20px;">
+<div>© 2026 «МОЙ мебельный». Все права защищены. Производство и офисы в Омске.</div>
+<div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
 <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" style="color:#ffaa33; text-decoration:none; font-weight:700;" target="_blank">★ 4.9 на 2ГИС</a>
-<a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none;" target="_blank">VK</a>
-<a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="color:#d4af6e; text-decoration:none;" target="_blank">Max</a>
+<a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">ВКонтакте</a>
+<a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (Герцена)</a>
+<a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (26-я Северная)</a>
 </div>
 </div>
 </footer>
@@ -3742,6 +3856,7 @@ html, body {
   const edgeL2 = document.getElementById('calc-edge-l2');
   const edgeW1 = document.getElementById('calc-edge-w1');
   const edgeW2 = document.getElementById('calc-edge-w2');
+  const textureInput = document.getElementById('calc-texture-input');
   const addBtn = document.getElementById('calc-add-btn');
   const clearBtn = document.getElementById('calc-clear-btn');
   const submitBtn = document.getElementById('calc-submit-btn');
@@ -3770,14 +3885,15 @@ html, body {
     items.forEach((item, idx) => {
       grandTotal += item.cost;
       const tr = document.createElement('tr');
+      const textureBadge = item.hasTexture ? ` <span style="display:inline-block; font-size:10px; font-weight:700; background:rgba(255,118,26,0.18); color:#ffaa33; border:1px solid rgba(255,118,26,0.4); border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle;">Текстура</span>` : '';
 
       tr.innerHTML = `
         <td style="color:#ffaa33; font-weight:700;">${idx + 1}</td>
-        <td><b>${item.length} × ${item.width} мм</b></td>
+        <td><b>${item.length} × ${item.width} мм</b>${textureBadge}</td>
         <td><span style="color:#d1bfae;">${item.matName}</span></td>
         <td>
-          <div style="font-size:12px; color:#ffd991;">${item.edgeDesc}</div>
-          <div style="font-size:11px; color:#ff9e58; font-weight:700;">Итого кромки: ${item.edgeRoundedMeters} пог. м</div>
+          <div style="font-size:12.5px; color:#ffd991; font-weight:600;">${item.edgeDesc}</div>
+          <div style="font-size:11px; color:#ff9e58; font-weight:700; margin-top:2px;">Итого кромки: ${item.edgeRoundedMeters} м</div>
         </td>
         <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽</td>
         <td>
@@ -3811,6 +3927,7 @@ html, body {
         edgeL2.value = itm.el2;
         edgeW1.value = itm.ew1;
         edgeW2.value = itm.ew2;
+        if (textureInput) textureInput.checked = !!itm.hasTexture;
         
         // Set material select
         for (let opt of matSelect.options) {
@@ -3856,35 +3973,34 @@ html, body {
     const ew1 = edgeW1.value, ew2 = edgeW2.value;
 
     let edgeTotalMeters = 0;
-    let edgeCost = 0;
-    const edgeParts = [];
+    if (el1 !== 'none') edgeTotalMeters += L / 1000;
+    if (el2 !== 'none') edgeTotalMeters += L / 1000;
+    if (ew1 !== 'none') edgeTotalMeters += W / 1000;
+    if (ew2 !== 'none') edgeTotalMeters += W / 1000;
 
-    if (el1 !== 'none') {
-      const m = L / 1000;
-      edgeTotalMeters += m;
-      edgeCost += m * edgePrices[el1];
-      edgeParts.push(`Д1 (${el1}мм: ${m.toFixed(2)}м)`);
-    }
-    if (el2 !== 'none') {
-      const m = L / 1000;
-      edgeTotalMeters += m;
-      edgeCost += m * edgePrices[el2];
-      edgeParts.push(`Д2 (${el2}мм: ${m.toFixed(2)}м)`);
-    }
-    if (ew1 !== 'none') {
-      const m = W / 1000;
-      edgeTotalMeters += m;
-      edgeCost += m * edgePrices[ew1];
-      edgeParts.push(`Ш1 (${ew1}мм: ${m.toFixed(2)}м)`);
-    }
-    if (ew2 !== 'none') {
-      const m = W / 1000;
-      edgeTotalMeters += m;
-      edgeCost += m * edgePrices[ew2];
-      edgeParts.push(`Ш2 (${ew2}мм: ${m.toFixed(2)}м)`);
-    }
-
+    // Edge meters ALWAYS rounded UP to full meters
     const edgeRoundedMeters = Math.ceil(edgeTotalMeters);
+
+    let edgeCost = 0;
+    if (edgeTotalMeters > 0) {
+      let rawCost = 0;
+      if (el1 !== 'none') rawCost += (L / 1000) * edgePrices[el1];
+      if (el2 !== 'none') rawCost += (L / 1000) * edgePrices[el2];
+      if (ew1 !== 'none') rawCost += (W / 1000) * edgePrices[ew1];
+      if (ew2 !== 'none') rawCost += (W / 1000) * edgePrices[ew2];
+      const ratio = edgeRoundedMeters / edgeTotalMeters;
+      edgeCost = rawCost * ratio;
+    }
+
+    const activeEdges = [el1, el2, ew1, ew2].filter(e => e !== 'none');
+    let edgeDesc = 'Без кромки';
+    if (activeEdges.length > 0) {
+      const counts = {};
+      activeEdges.forEach(th => { counts[th] = (counts[th] || 0) + 1; });
+      edgeDesc = Object.keys(counts).map(th => `${th} мм (${counts[th]})`).join(' · ');
+    }
+
+    const hasTexture = textureInput ? textureInput.checked : false;
     const itemTotalCost = Math.round(sawCutCost + edgeCost);
 
     items.push({
@@ -3892,7 +4008,8 @@ html, body {
       width: W,
       matName: matName,
       el1, el2, ew1, ew2,
-      edgeDesc: edgeParts.length > 0 ? edgeParts.join(' · ') : 'Без кромки',
+      hasTexture: hasTexture,
+      edgeDesc: edgeDesc,
       edgeRoundedMeters: edgeRoundedMeters,
       cost: itemTotalCost
     });
@@ -3902,6 +4019,7 @@ html, body {
     // Reset dimensions for next item
     lenInput.value = '';
     widInput.value = '';
+    if (textureInput) textureInput.checked = false;
     lenInput.focus();
   };
 
@@ -3935,7 +4053,7 @@ html, body {
     var modal = document.getElementById('calc-order-modal');
 
     if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + items.length + ' шт';
-    if (m2InfoEl) m2InfoEl.innerText = 'Площадь: ' + totalArea.toFixed(2) + ' м² · Кромка: ' + totalEdgeMeters + ' пог. м';
+    if (m2InfoEl) m2InfoEl.innerText = 'Площадь: ' + totalArea.toFixed(2) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
     if (totalPriceEl) totalPriceEl.innerText = grandTotal.toLocaleString('ru-RU') + ' ₽';
 
     if (modal) modal.classList.add('is-open');
@@ -3977,281 +4095,208 @@ html, body {
 <script id="standalone-saw-engine">
 (function() {
   var isStarted = false;
-  function initSaw() {
+  function initTechBlueprint() {
     if (isStarted) return;
     var canvas = document.getElementById('saw-cutting-canvas');
     if (!canvas) return;
     isStarted = true;
 
     var ctx = canvas.getContext('2d');
-    var W = 620;
-    var H = 420;
+    var W = 640;
+    var H = 520;
     canvas.width = W;
     canvas.height = H;
 
-    var progress = 0.1;
-    var state = 0; // 0 = cutting, 1 = completed, 2 = return
-    var timer = 0;
-    var cutPosIndex = 0;
-    var cutPositions = [220, 340, 180, 420, 290];
-    var bladeAngle = 0;
-    var split = 0;
+    var time = 0;
+    var mouseX = W * 0.5;
+    var mouseY = H * 0.5;
+    var targetMouseX = mouseX;
+    var targetMouseY = mouseY;
 
-    var sparks = [];
-    for (var i = 0; i < 20; i++) {
-      sparks.push({ x: 0, y: 0, vx: 0, vy: 0, life: 0, maxLife: 20, size: 2 });
-    }
-
-    function drawRoundRect(c, x, y, w, h, r) {
-      c.beginPath();
-      c.moveTo(x + r, y);
-      c.lineTo(x + w - r, y);
-      c.quadraticCurveTo(x + w, y, x + w, y + r);
-      c.lineTo(x + w, y + h - r);
-      c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      c.lineTo(x + r, y + h);
-      c.quadraticCurveTo(x, y + h, x, y + h - r);
-      c.lineTo(x, y + r);
-      c.quadraticCurveTo(x, y, x + r, y);
-      c.closePath();
-    }
+    var heroArea = canvas.closest('.hero-stage') || canvas;
+    heroArea.addEventListener('mousemove', function(e) {
+      var rect = canvas.getBoundingClientRect();
+      targetMouseX = (e.clientX - rect.left) * (W / rect.width);
+      targetMouseY = (e.clientY - rect.top) * (H / rect.height);
+    });
+    heroArea.addEventListener('mouseleave', function() {
+      targetMouseX = W * 0.5;
+      targetMouseY = H * 0.5;
+    });
 
     function render() {
       requestAnimationFrame(render);
+      time += 0.006;
 
-      bladeAngle += 0.38;
+      mouseX += (targetMouseX - mouseX) * 0.04;
+      mouseY += (targetMouseY - mouseY) * 0.04;
 
-      var bX = 45;
-      var bY = 45;
-      var bW = 530;
-      var bH = 290;
-      var bThick = 22;
-
-      var targetX = cutPositions[cutPosIndex];
-      var cutX = bX + targetX;
-      var cutStartY = bY + 10;
-      var cutEndY = bY + bH - 10;
-      var sawY = cutStartY + progress * (cutEndY - cutStartY);
-
-      if (state === 0) {
-        progress += 0.0075;
-        split = Math.max(0, split - 0.2);
-        if (progress >= 1) {
-          progress = 1;
-          state = 1;
-          timer = 0;
-        }
-      } else if (state === 1) {
-        timer++;
-        split = Math.min(3, split + 0.15);
-        if (timer > 25) {
-          state = 2;
-        }
-      } else if (state === 2) {
-        progress -= 0.045;
-        if (progress <= 0) {
-          progress = 0;
-          state = 0;
-          cutPosIndex = (cutPosIndex + 1) % cutPositions.length;
-          split = 0;
-        }
-      }
+      var pX = (mouseX - W * 0.5) * 0.025;
+      var pY = (mouseY - H * 0.5) * 0.025;
 
       ctx.clearRect(0, 0, W, H);
 
-      // Background
-      ctx.fillStyle = '#0f0a07';
-      ctx.fillRect(0, 0, W, H);
+      // Coordinates matching client reference screenshot (top mechanism + bottom radar reticle)
+      var topX = W * 0.65 + pX;
+      var topY = H * 0.23 + pY;
+      var botX = W * 0.40 + pX * 0.6;
+      var botY = H * 0.67 + pY * 0.6;
 
-      // Grid
-      ctx.strokeStyle = 'rgba(212, 175, 110, 0.04)';
+      // 1. Subtle Architectural Grid / Axis Lines
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.08)';
       ctx.lineWidth = 1;
-      for (var gx = 0; gx < W; gx += 30) {
-        ctx.beginPath(); ctx.moveTo(gx, 0); ctx.lineTo(gx, H); ctx.stroke();
-      }
-      for (var gy = 0; gy < H; gy += 30) {
-        ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
-      }
-
-      // Top Ruler
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-      ctx.font = '600 8px Montserrat, sans-serif';
-      for (var rx = 50; rx < W - 50; rx += 25) {
-        ctx.fillRect(rx, 14, 1, 6);
-        if (rx % 50 === 0) {
-          ctx.fillText((rx * 5).toString(), rx - 8, 10);
-        }
-      }
-
-      // Wood Board
-      var leftW = targetX;
-      var rightW = bW - targetX;
-      var leftShift = -split * 0.5;
-      var rightShift = split * 0.5;
-
-      // Slabs
-      ctx.fillStyle = '#4a2d18';
-      ctx.fillRect(bX + leftShift, bY, leftW, bH);
-      ctx.fillStyle = '#3f2513';
-      ctx.fillRect(bX + targetX + rightShift, bY, rightW, bH);
-
-      // Wood Grain Texture Lines
-      ctx.strokeStyle = 'rgba(212, 175, 110, 0.1)';
-      ctx.lineWidth = 1;
-      for (var g = 0; g < 9; g++) {
-        var gy = bY + 20 + g * 30;
-        ctx.beginPath();
-        ctx.moveTo(bX + leftShift, gy);
-        ctx.bezierCurveTo(bX + leftShift + leftW * 0.4, gy + 8, bX + leftShift + leftW * 0.8, gy - 8, bX + leftShift + leftW, gy);
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.moveTo(bX + targetX + rightShift, gy);
-        ctx.bezierCurveTo(bX + targetX + rightShift + rightW * 0.4, gy - 8, bX + targetX + rightShift + rightW * 0.8, gy + 8, bX + bW + rightShift, gy + 2);
-        ctx.stroke();
-      }
-
-      // Edge banding
-      ctx.fillStyle = '#8f532b';
-      ctx.fillRect(bX + leftShift, bY + bH, leftW, bThick);
-      ctx.fillRect(bX + targetX + rightShift, bY + bH, rightW, bThick);
-
-      // Laser guide line
-      if (state === 0 || state === 1) {
-        ctx.strokeStyle = 'rgba(255, 107, 26, 0.7)';
-        ctx.lineWidth = 1.5;
-        ctx.setLineDash([5, 4]);
-        ctx.beginPath();
-        ctx.moveTo(cutX, Math.max(sawY, cutStartY));
-        ctx.lineTo(cutX, cutEndY + 15);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-
-      // Kerf cut line (behind blade)
-      if (progress > 0.02) {
-        ctx.strokeStyle = '#050302';
-        ctx.lineWidth = 4;
-        ctx.beginPath();
-        ctx.moveTo(cutX, cutStartY);
-        ctx.lineTo(cutX, sawY);
-        ctx.stroke();
-
-        ctx.strokeStyle = 'rgba(255, 138, 60, 0.6)';
-        ctx.lineWidth = 1;
-        ctx.stroke();
-      }
-
-      // Saw Blade
-      var sawRadius = 60;
-      ctx.save();
-      ctx.translate(cutX, sawY);
-
-      // Glow circle (lightweight fast gradient)
-      var glowGrad = ctx.createRadialGradient(0, 0, 10, 0, 0, sawRadius + 14);
-      glowGrad.addColorStop(0, 'rgba(255, 107, 26, 0.25)');
-      glowGrad.addColorStop(1, 'rgba(255, 107, 26, 0)');
-      ctx.fillStyle = glowGrad;
+      
+      // Vertical axis through bottom reticle
       ctx.beginPath();
-      ctx.arc(0, 0, sawRadius + 14, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.rotate(bladeAngle);
-
-      // 28 Teeth
-      var teeth = 28;
-      var toothAngle = (Math.PI * 2) / teeth;
-      ctx.beginPath();
-      for (var t = 0; t < teeth; t++) {
-        var a = t * toothAngle;
-        var rInner = sawRadius * 0.86;
-        var rTip = sawRadius;
-        ctx.lineTo(Math.cos(a) * rInner, Math.sin(a) * rInner);
-        ctx.lineTo(Math.cos(a + toothAngle * 0.6) * rTip, Math.sin(a + toothAngle * 0.6) * rTip);
-      }
-      ctx.closePath();
-
-      // Blade disc
-      var bladeGrad = ctx.createRadialGradient(0, 0, 5, 0, 0, sawRadius);
-      bladeGrad.addColorStop(0, '#ffffff');
-      bladeGrad.addColorStop(0.2, '#ffe0a8');
-      bladeGrad.addColorStop(0.65, '#4f555f');
-      bladeGrad.addColorStop(1, '#ff9e58');
-      ctx.fillStyle = bladeGrad;
-      ctx.fill();
-
-      // Center Hub
-      ctx.fillStyle = '#140d08';
-      ctx.beginPath();
-      ctx.arc(0, 0, 16, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.strokeStyle = '#ffaa33';
-      ctx.lineWidth = 2;
+      ctx.moveTo(botX, 10); ctx.lineTo(botX, H - 10);
       ctx.stroke();
 
+      // Horizontal axis through bottom reticle
+      ctx.beginPath();
+      ctx.moveTo(10, botY); ctx.lineTo(W - 10, botY);
+      ctx.stroke();
+
+      // Vertical axis through top dial
+      ctx.beginPath();
+      ctx.moveTo(topX, 10); ctx.lineTo(topX, H - 10);
+      ctx.stroke();
+
+      // Tangent connecting hairline
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.06)';
+      ctx.beginPath();
+      ctx.moveTo(botX, botY); ctx.lineTo(topX, topY);
+      ctx.stroke();
+
+      // 2. Bottom Concentric Radar Rings & Arc Segments (matching screenshot!)
+      var radarRadii = [65, 130, 210, 290, 370];
+      radarRadii.forEach(function(rad, idx) {
+        ctx.strokeStyle = 'rgba(255, 208, 67, ' + (0.07 + (idx % 2) * 0.05) + ')';
+        ctx.lineWidth = 0.9;
+        ctx.beginPath();
+        if (idx === 1 || idx === 3) {
+          ctx.setLineDash([5, 8]);
+        } else {
+          ctx.setLineDash([]);
+        }
+        ctx.arc(botX, botY, rad, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+      ctx.setLineDash([]);
+
+      // Rotating delicate radar arc sweep
+      ctx.save();
+      ctx.translate(botX, botY);
+      ctx.rotate(-time * 0.45);
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.25)';
+      ctx.lineWidth = 1.1;
+      ctx.beginPath();
+      ctx.arc(0, 0, 210, 0, Math.PI * 0.35);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, 0, 290, Math.PI * 0.9, Math.PI * 1.35);
+      ctx.stroke();
       ctx.restore();
 
-      // Sparks (only 1-2 new per frame when cutting)
-      if (state === 0) {
-        for (var s = 0; s < 2; s++) {
-          var sp = sparks.find(function(p) { return p.life <= 0; });
-          if (sp) {
-            sp.x = cutX + (Math.random() - 0.5) * 4;
-            sp.y = sawY + (Math.random() - 0.5) * 6;
-            var angle = Math.PI * 0.5 + (Math.random() - 0.5) * 1.8;
-            var speed = Math.random() * 6 + 2;
-            sp.vx = Math.cos(angle) * speed;
-            sp.vy = Math.sin(angle) * speed;
-            sp.life = Math.random() * 18 + 8;
-            sp.maxLife = sp.life;
-            sp.size = Math.random() * 2 + 1;
-          }
-        }
-      }
+      // 3. Logo Gold Crosshair Reticle (4 Rectangular Ticks - exact match to screenshot!)
+      var crossSize = 13;
+      var crossThick = 4.5;
+      var crossGap = 7;
+      ctx.fillStyle = 'rgba(255, 208, 67, 0.85)';
+      // Top tick
+      ctx.fillRect(botX - crossThick * 0.5, botY - crossGap - crossSize, crossThick, crossSize);
+      // Bottom tick
+      ctx.fillRect(botX - crossThick * 0.5, botY + crossGap, crossThick, crossSize);
+      // Left tick
+      ctx.fillRect(botX - crossGap - crossSize, botY - crossThick * 0.5, crossSize, crossThick);
+      // Right tick
+      ctx.fillRect(botX + crossGap, botY - crossThick * 0.5, crossSize, crossThick);
 
-      sparks.forEach(function(p) {
-        if (p.life > 0) {
-          p.x += p.vx;
-          p.y += p.vy;
-          p.vy += 0.16;
-          p.life--;
-          var alpha = Math.max(0, p.life / p.maxLife);
-          var rad = Math.max(0.1, p.size * alpha);
-          ctx.fillStyle = 'rgba(255, 170, 51, ' + alpha + ')';
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, rad, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      });
+      // 4. Top Mechanism (Dial + Gear + Orbitals - exact match to screenshot!)
+      ctx.save();
+      ctx.translate(topX, topY);
 
-      // Bottom HUD
-      var mmPos = Math.round(progress * 2720);
-      ctx.fillStyle = 'rgba(10, 6, 4, 0.9)';
-      ctx.strokeStyle = 'rgba(255, 138, 60, 0.3)';
-      ctx.lineWidth = 1;
-      drawRoundRect(ctx, bX + 8, H - 38, 380, 26, 6);
+      var rotAngle = time * 0.5;
+
+      // Solid Terracotta Filled Hub (sampled from logo disc)
+      ctx.fillStyle = 'rgba(150, 48, 4, 0.5)';
+      ctx.beginPath();
+      ctx.arc(0, 0, 26, 0, Math.PI * 2);
       ctx.fill();
+
+      // Inner Concentric Orbit Ring
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.38)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(0, 0, 58, 0, Math.PI * 2);
       ctx.stroke();
 
-      ctx.fillStyle = '#ffaa33';
-      ctx.font = '800 11px Montserrat, sans-serif';
-      ctx.fillText('SCM SI 400 EP · ЧПУ РАСКРОЙ:', bX + 18, H - 21);
+      // Secondary Orbit Ring
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.25)';
+      ctx.beginPath();
+      ctx.arc(0, 0, 88, 0, Math.PI * 2);
+      ctx.stroke();
 
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '700 11px Montserrat, sans-serif';
-      ctx.fillText(mmPos + ' / 2720 ММ', bX + 205, H - 21);
+      // Rotating Diagonal Hairline Axis
+      ctx.save();
+      ctx.rotate(rotAngle * 0.6);
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.25)';
+      ctx.lineWidth = 0.9;
+      ctx.beginPath();
+      ctx.moveTo(-115, -60); ctx.lineTo(115, 60);
+      ctx.stroke();
+      ctx.restore();
 
-      ctx.fillStyle = state === 1 ? '#55ff77' : '#ff9e58';
-      ctx.font = '800 10px Montserrat, sans-serif';
-      ctx.fillText(state === 1 ? '✔ ЧИСТЫЙ РЕЗ 100%' : '● ПОДРЕЗНОЙ ДИСК', bX + 285, H - 21);
+      // Rotating Precision Dial Ticks Ring
+      ctx.save();
+      ctx.rotate(rotAngle);
+      var tickCount = 48;
+      for (var t = 0; t < tickCount; t++) {
+        var ta = (t * Math.PI * 2) / tickCount;
+        var isLong = (t % 4 === 0);
+        var r1 = 88;
+        var r2 = isLong ? 98 : 93;
+        ctx.strokeStyle = isLong ? 'rgba(255, 208, 67, 0.65)' : 'rgba(255, 208, 67, 0.25)';
+        ctx.lineWidth = isLong ? 1.1 : 0.8;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(ta) * r1, Math.sin(ta) * r1);
+        ctx.lineTo(Math.cos(ta) * r2, Math.sin(ta) * r2);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // Rotating Outer Gear Teeth (Delicate, thin, technical)
+      ctx.save();
+      ctx.rotate(rotAngle);
+      var teeth = 24;
+      var toothAngle = (Math.PI * 2) / teeth;
+      var rInner = 104;
+      var rOuter = 114;
+      ctx.strokeStyle = 'rgba(255, 208, 67, 0.45)';
+      ctx.lineWidth = 0.9;
+      ctx.beginPath();
+      for (var i = 0; i < teeth; i++) {
+        var a = i * toothAngle;
+        var a1 = a + toothAngle * 0.25;
+        var a2 = a + toothAngle * 0.5;
+        var a3 = a + toothAngle * 0.75;
+        ctx.lineTo(Math.cos(a) * rInner, Math.sin(a) * rInner);
+        ctx.lineTo(Math.cos(a1) * rOuter, Math.sin(a1) * rOuter);
+        ctx.lineTo(Math.cos(a2) * rOuter, Math.sin(a2) * rOuter);
+        ctx.lineTo(Math.cos(a3) * rInner, Math.sin(a3) * rInner);
+      }
+      ctx.closePath();
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.restore();
     }
 
     render();
   }
 
-  initSaw();
+  initTechBlueprint();
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSaw);
+    document.addEventListener('DOMContentLoaded', initTechBlueprint);
   }
 })();
 </script>

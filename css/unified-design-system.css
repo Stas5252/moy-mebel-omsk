@@ -10,13 +10,13 @@
   --bg-card: #1c120a;
   --bg-elevated: #26180f;
   
-  --c-orange: #ff6b1a;
+  --c-orange: #ff761a;
   --c-orange-light: #ff8a3c;
-  --c-orange-glow: rgba(255, 107, 26, 0.45);
+  --c-orange-glow: rgba(255, 118, 26, 0.45);
   
-  --c-gold: #d4af6e;
-  --c-gold-light: #ffd991;
-  --c-gold-glow: rgba(212, 175, 110, 0.35);
+  --c-gold: #ff761a;
+  --c-gold-light: #ff8a3c;
+  --c-gold-glow: rgba(255, 118, 26, 0.35);
   
   --text-white: #ffffff;
   --text-cream: #f5ede4;
@@ -148,39 +148,33 @@ body {
   width: 44px !important;
   height: 48px !important;
   object-fit: contain !important;
-  filter: drop-shadow(0 0 10px rgba(254, 224, 130, 0.65)) drop-shadow(0 0 22px rgba(240, 190, 82, 0.4)) !important;
-  transition: all 0.3s ease !important;
+  filter: none !important;
+  transition: transform 0.3s ease !important;
 }
 
 .site-header__brand:hover .site-header__logo-img {
-  filter: drop-shadow(0 0 16px rgba(255, 240, 180, 0.95)) drop-shadow(0 0 32px rgba(254, 224, 130, 0.65)) !important;
+  filter: none !important;
   transform: scale(1.06) !important;
 }
 
 .site-header__brand-title {
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 19px !important;
+  font-size: 21px !important;
   font-weight: 900 !important;
   letter-spacing: 2px !important;
-  line-height: 1.1 !important;
-  color: #ffffff !important;
-}
-
-.site-header__brand-sub {
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 10px !important;
-  font-weight: 700 !important;
-  letter-spacing: 2.5px !important;
   text-transform: uppercase !important;
-  color: #d4af6e !important;
+  color: #ffffff !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
 }
 
-/* Right Contacts with FIXED WIDTH (ZERO JUMP) */
+/* Right Contacts with responsive flexible width */
 .site-header__nav-right {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
-  width: 320px !important;
+  min-width: 280px !important;
+  max-width: 460px !important;
   flex-shrink: 0 !important;
 }
 
@@ -188,17 +182,26 @@ body {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-end !important;
+  gap: 3px !important;
+}
+
+.site-header__phones-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
 .site-header__phone {
   display: inline-flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 5px !important;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 15px !important;
+  font-size: 13.5px !important;
   font-weight: 800 !important;
   color: #ffffff !important;
   text-decoration: none !important;
+  white-space: nowrap !important;
+  transition: color 0.2s ease !important;
 }
 
 .site-header__phone:hover {
@@ -206,18 +209,18 @@ body {
 }
 
 .site-header__phone img {
-  width: 14px !important;
-  height: 14px !important;
+  width: 13px !important;
+  height: 13px !important;
   filter: brightness(0) invert(1) !important;
 }
 
 .site-header__hours {
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 11.5px !important;
+  font-size: 11px !important;
   font-weight: 500 !important;
   line-height: 1.3 !important;
   letter-spacing: 0.2px !important;
-  color: #b89f8a !important;
+  color: #ffd991 !important;
   white-space: nowrap !important;
 }
 
@@ -388,9 +391,9 @@ body {
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8) !important;
 }
 .hero-title .text-gold {
-  background: linear-gradient(135deg, #ffd991 0%, #ff8a3c 50%, #e05206 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ff761a !important;
+  background: none !important;
+  -webkit-text-fill-color: #ff761a !important;
   display: inline-block;
 }
 
