@@ -833,22 +833,22 @@
 <meta content="Мебель на заказ в Омске — Кухни, шкафы-купе, гардеробные, Loft | МОЙ мебельный" property="og:title"/>
 <meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный предварительный расчёт." property="og:description"/>
 <meta content="https://moymebelniy55.ru/mebel.html" property="og:url"/>
-<meta content="images/mebel_kitchen.jpg" property="og:image"/>
+<meta content="https://moymebelniy55.ru/images/og-mebel.jpg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
 <!-- Twitter Cards -->
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="Мебель на заказ в Омске — Кухни, шкафы-купе, гардеробные, Loft | МОЙ мебельный" name="twitter:title"/>
 <meta content="Изготовление корпусной и встроенной мебели на заказ в Омске. Кухни с витринами, шкафы под потолок, гардеробные и мебель Loft на металлокаркасе. Бесплатный предварительный расчёт." name="twitter:description"/>
-<meta content="images/mebel_kitchen.jpg" name="twitter:image"/>
+<meta content="https://moymebelniy55.ru/images/og-mebel.jpg" name="twitter:image"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "МОЙ мебельный",
   "alternateName": "Производство мебели и распил ЛДСП в Омске",
-  "image": "images/mebel_kitchen.jpg",
-  "logo": "images/logo_emblem_gold.png",
+  "image": "https://moymebelniy55.ru/images/og-mebel.jpg",
+  "logo": "https://moymebelniy55.ru/images/logo_emblem_gold.png",
   "telephone": "+73812480153",
   "email": "lamarty-raskroy@mail.ru",
   "url": "https://moymebelniy55.ru/",
@@ -1454,6 +1454,7 @@ html, body {
 </style>
 </head>
 <body>
+<a class="skip-link" href="#content">Перейти к содержимому</a>
 <!-- HEADER -->
 <!-- UNIFIED HEADER IN EXACT STYLE OF RASPIL PAGE -->
 <!-- UNIFIED MASTER HEADER -->
@@ -1505,6 +1506,8 @@ html, body {
 </div>
 </div>
 </header>
+
+<main id="content" tabindex="-1">
 <!-- HERO BANNER -->
 <section class="mebel-hero" style="position:relative; overflow:hidden;">
 <div class="mebel-hero__bg-glow"></div>
@@ -2848,7 +2851,13 @@ html, body {
             fileInput.files = e.dataTransfer.files;
             var name = e.dataTransfer.files[0].name;
             var textEl = zone.querySelector('.saw-modal__drop-title') || zone.querySelector('span') || zone;
-            textEl.innerHTML = '📁 <b>' + name + '</b> (выбран)';
+            // имя файла подставляем как текст, не как разметку
+            textEl.textContent = '';
+            textEl.appendChild(document.createTextNode('📁 '));
+            var strongEl = document.createElement('b');
+            strongEl.textContent = name;
+            textEl.appendChild(strongEl);
+            textEl.appendChild(document.createTextNode(' (выбран)'));
           }
         }
       });
@@ -2935,6 +2944,8 @@ function switchShowcaseScene(type, btn) {
 </script>
 <!-- UNIFIED MASTER FOOTER -->
 <!-- UNIFIED MASTER SITE FOOTER -->
+</main>
+
 <footer class="site-footer">
 <div class="site-footer__inner">
 <div>
@@ -2947,7 +2958,7 @@ function switchShowcaseScene(type, btn) {
         </p>
 </div>
 <div class="site-footer__col">
-<h4>Услуги распила</h4>
+<h3>Услуги распила</h3>
 <ul class="site-footer__links">
 <li><a href="raspil.html#rec3089023401">Онлайн-калькулятор</a></li>
 <li><a href="raspil.html#rec3089027501">Оборудование SCM</a></li>
@@ -2956,7 +2967,7 @@ function switchShowcaseScene(type, btn) {
 </ul>
 </div>
 <div class="site-footer__col">
-<h4>Мебель на заказ</h4>
+<h3>Мебель на заказ</h3>
 <ul class="site-footer__links">
 <li><a href="mebel.html#categories">Кухни по размерам</a></li>
 <li><a href="mebel.html#categories">Встроенные шкафы</a></li>
@@ -2965,7 +2976,7 @@ function switchShowcaseScene(type, btn) {
 </ul>
 </div>
 <div class="site-footer__col site-footer__col--contacts">
-<h4>Адреса и контакты</h4>
+<h3>Адреса и контакты</h3>
 <div class="site-footer__contacts-grid">
   <!-- 26 Северная -->
   <div class="site-footer__contact-card">
@@ -2978,7 +2989,7 @@ function switchShowcaseScene(type, btn) {
       <a href="tel:+73812590650">+7 (3812) 590-650</a>
       <a href="tel:+79088014000">+7-908-801-40-00</a>
     </div>
-    <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" target="_blank" class="site-footer__card-max">
+    <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" target="_blank" class="site-footer__card-max" rel="noopener noreferrer">
       💬 Написать в MAX (26-я&nbsp;Северная)&nbsp;→
     </a>
   </div>
@@ -2994,7 +3005,7 @@ function switchShowcaseScene(type, btn) {
       <a href="tel:+73812480153">+7 (3812) 48-01-53</a>
       <a href="tel:+79533986959">+7-953-398-69-59</a>
     </div>
-    <a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" target="_blank" class="site-footer__card-max">
+    <a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" target="_blank" class="site-footer__card-max" rel="noopener noreferrer">
       💬 Написать в MAX (Герцена)&nbsp;→
     </a>
   </div>
@@ -3004,10 +3015,10 @@ function switchShowcaseScene(type, btn) {
 <div class="site-footer__bottom">
 <div>©&nbsp;2026 «МОЙ&nbsp;мебельный». Все&nbsp;права защищены. Производство и&nbsp;офисы в&nbsp;Омске.</div>
 <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-<a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" style="color:#ffaa33; text-decoration:none; font-weight:700;" target="_blank">★ 4.9 на 2ГИС</a>
-<a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">ВКонтакте</a>
-<a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (26-я&nbsp;Северная)</a>
-<a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (Герцена)</a>
+<a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" style="color:#ffaa33; text-decoration:none; font-weight:700;" target="_blank" rel="noopener noreferrer">★ 4.9 на 2ГИС</a>
+<a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
+<a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank" rel="noopener noreferrer">MAX (26-я&nbsp;Северная)</a>
+<a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank" rel="noopener noreferrer">MAX (Герцена)</a>
 </div>
 </div>
 </footer>
