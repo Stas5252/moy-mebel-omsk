@@ -569,6 +569,16 @@ body {
 }
 
 /* === 100% IDENTICAL MASTER FOOTER === */
+.site-footer,
+.site-footer * {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.site-header,
+.site-header * {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
 .site-footer {
   position: relative;
   z-index: 10;
