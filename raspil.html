@@ -4718,6 +4718,42 @@ function handleFileBtnClick(e, inputId, boxId) {
     }
   });
 })();
+
+// Initialize Phone Input Mask for +7 (___) ___-__-__
+function initRaspilPhoneMasks() {
+  var phoneInputs = document.querySelectorAll('input[type="tel"], input[name="phone"], input[name="Phone"], #sawPhone');
+  phoneInputs.forEach(function(inp) {
+    if (inp._hasMask) return;
+    inp._hasMask = true;
+    inp.placeholder = '+7 (___) ___-__-__';
+    
+    inp.addEventListener('input', function(e) {
+      var val = inp.value.replace(/\D/g, '');
+      if (val.startsWith('8') || val.startsWith('7')) {
+        val = val.substring(1);
+      }
+      var formatted = '+7 ';
+      if (val.length > 0) formatted += '(' + val.substring(0, 3);
+      if (val.length >= 3) formatted += ') ' + val.substring(3, 6);
+      if (val.length >= 6) formatted += '-' + val.substring(6, 8);
+      if (val.length >= 8) formatted += '-' + val.substring(8, 10);
+      inp.value = formatted;
+    });
+
+    inp.addEventListener('focus', function() {
+      if (!inp.value) inp.value = '+7 (';
+    });
+
+    inp.addEventListener('blur', function() {
+      if (inp.value === '+7 (' || inp.value === '+7 ') inp.value = '';
+    });
+  });
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRaspilPhoneMasks);
+} else {
+  initRaspilPhoneMasks();
+}
 </script>
 
 <!-- SCROLL TO TOP FLOATING BUTTON -->
