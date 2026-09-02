@@ -588,7 +588,7 @@
       .mebel-card__body { padding: 18px; }
       .mebel-card__title { font-size: 17px; }
       .mebel-card__desc { font-size: 13px; }
-      .mebel-hotspot__tooltip { white-space: normal !important; max-width: 180px; text-align: center; font-size: 11px; }
+      .mebel-hotspot__tooltip { white-space: normal !important; max-width: 220px; text-align: center; font-size: 13.5px; }
       .mebel-hero__stage { min-height: 300px !important; }
       .mebel-interactive-showcase { max-width: 100% !important; border-radius: 14px !important; }
       .mebel-showcase-controls { flex-wrap: wrap; gap: 6px; }
@@ -720,10 +720,10 @@
       background: rgba(20, 12, 7, 0.96);
       backdrop-filter: blur(10px);
       border: 1px solid #ff8a3c;
-      padding: 8px 14px;
-      border-radius: 10px;
+      padding: 10px 18px;
+      border-radius: 12px;
       white-space: nowrap;
-      font-size: 12px;
+      font-size: 14.5px;
       font-weight: 700;
       color: #ffffff;
       pointer-events: none;
@@ -734,10 +734,10 @@
     }
     .mebel-hotspot__tooltip span {
       display: block;
-      font-size: 10.5px;
+      font-size: 12px;
       font-weight: 500;
       color: #ffd991;
-      margin-top: 2px;
+      margin-top: 3px;
     }
     .mebel-hotspot:hover .mebel-hotspot__tooltip,
     .mebel-hotspot.is-open .mebel-hotspot__tooltip {
@@ -1476,17 +1476,31 @@ html, body {
 </a>
 <div class="site-header__nav-right">
 <div class="site-header__contacts">
-  <div class="site-header__phones-row">
-    <a class="site-header__phone" href="tel:+73812590650" title="Цех: 26-я Северная, 13А/9 (09:00–17:00)">
-      <img alt="" src="images/phone_contact_call_ring.svg"/>
-      +7 (3812) 590-650
-    </a>
-    <a class="site-header__phone" href="tel:+79533986959" title="Офис: Герцена, 36 (10:00–19:00)">
-      <img alt="" src="images/phone_contact_call_ring.svg"/>
-      +7-953-398-69-59
-    </a>
+  <!-- Офис -->
+  <div class="site-header__loc">
+    <div class="site-header__loc-top">
+      <span class="site-header__loc-badge site-header__loc-badge--office">ОФИС</span>
+      <a class="site-header__phone" href="tel:+79533986959">
+        <img alt="" src="images/phone_contact_call_ring.svg"/>
+        +7-953-398-69-59
+      </a>
+    </div>
+    <div class="site-header__loc-sub">ул. Герцена, 36 <span class="site-header__loc-hours">10:00–19:00</span></div>
   </div>
-  <span class="site-header__hours">Герцена, 36 (10:00–19:00) · 26-я Северная, 13А/9 (09:00–17:00)</span>
+
+  <div class="site-header__contacts-divider"></div>
+
+  <!-- Цех, офис -->
+  <div class="site-header__loc">
+    <div class="site-header__loc-top">
+      <span class="site-header__loc-badge">ЦЕХ, ОФИС</span>
+      <a class="site-header__phone" href="tel:+73812590650">
+        <img alt="" src="images/phone_contact_call_ring.svg"/>
+        +7 (3812) 590-650
+      </a>
+    </div>
+    <div class="site-header__loc-sub">26-я Северная, 13А/9 <span class="site-header__loc-hours">09:00–17:00</span></div>
+  </div>
 </div>
 </div>
 </div>
@@ -1520,11 +1534,11 @@ html, body {
 </div>
 <div class="mebel-badge">
 <b>Цех станков SCM</b>
-<span>точность до 1 мм</span>
+<span>точность до&nbsp;1&nbsp;мм</span>
 </div>
 <div class="mebel-badge">
 <b>Гарантия качества</b>
-<span>срок службы от 10+ лет</span>
+<span>фиксируем в договоре</span>
 </div>
 </div>
 </div>
@@ -2224,11 +2238,6 @@ html, body {
       <img src="images/materials/egger_27.jpg" alt="ЛДСП Светло-серый ST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
     </div>
     <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
-      <div style="font-weight:700; color:#ffffff; font-size:13.5px; line-height:1.4;">ЛДСП Светло-серый ST9, (2800*2070*16мм) EGGER</div>
-    </div>
-  </div>
-  <div class="mat-card-exact mat-extra-egger" style="display:none; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; transition:all 0.25s ease; flex-direction:column;">
-    <div style="height:190px; overflow:hidden; position:relative; background:#0e0905;">
       <img src="images/materials/egger_28.jpg" alt="ЛДСП Шёлк серый ST9, (2800*2070*16мм) EGGER" loading="lazy" style="width:100%; height:100%; object-fit:cover; transition:transform 0.35s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"/>
     </div>
     <div style="padding:14px 16px; flex-grow:1; display:flex; flex-direction:column; justify-content:center;">
@@ -2375,8 +2384,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Современная кухня в стиле минимализм</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 16 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
     </div>
   </div>
@@ -2393,8 +2401,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Кухня в цвете океан</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 18 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
     </div>
   </div>
@@ -2411,8 +2418,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Подвесная тумба: Минимализм и тепло</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 10 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Мебель на заказ')">Хочу такую →</a>
     </div>
   </div>
@@ -2429,8 +2435,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Кухня для семейных вечеров</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 19 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
     </div>
   </div>
@@ -2447,8 +2452,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Гардеробная: порядок становится привычкой</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Гардеробная')">Хочу такую →</a>
     </div>
   </div>
@@ -2465,8 +2469,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Встроенный шкаф в пастельных тонах</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
     </div>
   </div>
@@ -2483,8 +2486,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Пространство для тёплых встреч</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 17 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Кухня')">Хочу такую →</a>
     </div>
   </div>
@@ -2501,8 +2503,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Тот самый идеальный шкаф</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 11 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
     </div>
   </div>
@@ -2519,8 +2520,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Прихожая: ключевая роль зеркал</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 12 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Прихожая')">Хочу такую →</a>
     </div>
   </div>
@@ -2537,8 +2537,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Шкаф «Вертикальный баланс»</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 14 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
     </div>
   </div>
@@ -2555,8 +2554,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Шкаф для зонирования пространства</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 15 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
     </div>
   </div>
@@ -2573,8 +2571,7 @@ html, body {
   </div>
   <div class="mebel-card__body">
     <h3 class="mebel-card__title">Вместительный шкаф в прихожую</h3>
-    <div class="mebel-card__specs">
-      <span style="color:var(--c-accent); font-weight:700;">Срок: 13 дней</span>
+    <div class="mebel-card__specs" style="justify-content: flex-end;">
       <a class="mebel-card__btn" href="#order-form" onclick="event.stopPropagation(); selectMebelType('Шкаф-купе')">Хочу такую →</a>
     </div>
   </div>
@@ -2727,19 +2724,18 @@ html, body {
 </div>
 </div>
 <!-- Row 3: File Attachment Box (Matching screenshot) -->
-<div class="exact-file-box" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25);">
-<input id="exact-form-file" multiple="" onchange="const f = this.files[0]; if(f) document.getElementById('exact-file-name-label').innerText = 'Выбран файл: ' + f.name;" type="file"/>
-<input type="file" id="mebel-file" style="display:none" onchange="const f = this.files[0]; if(f) document.getElementById('exact-file-name-label').innerText = 'Выбран файл: ' + f.name;"/>
+<div class="exact-file-box" id="mebel-file-box" onclick="handleFileBoxClick(event, 'exact-form-file', 'mebel-file-box')" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25);">
+<input id="exact-form-file" type="file" style="display:none;" accept=".pdf,.jpg,.jpeg,.png,.dwg,.doc,.docx,.xls,.xlsx,.zip,.rar" onchange="handleExactFileSelection(this, 'mebel-file-box')"/>
 <div class="exact-file-left">
 <div class="exact-file-icon">
 <img alt="" onerror="this.innerHTML='📎';" src="images/attachment.svg"/>
 </div>
 <div>
 <div class="exact-file-title" id="exact-file-name-label" style="color:#1c110a;">Прикрепить файл проекта</div>
-<div class="exact-file-hint" style="color:#8c6e58;">PDF, JPG, PNG, DWG, DOC, XLS — до 20 МБ</div>
+<div class="exact-file-hint" id="exact-file-hint-label" style="color:#8c6e58;">PDF, JPG, PNG, DWG, DOC, XLS — до 20 МБ</div>
 </div>
 </div>
-<div class="exact-file-plus" style="color:#ff6b1a;">+</div>
+<button type="button" class="exact-file-plus" id="mebel-file-box-btn" aria-label="Выбрать или удалить файл" onclick="handleFileBtnClick(event, 'exact-form-file', 'mebel-file-box')">+</button>
 </div>
 <!-- Row 4: Project Description -->
 <textarea class="exact-form-textarea" placeholder="Кратко о проекте" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"></textarea>
@@ -2892,7 +2888,7 @@ var sceneHotspots = {
     { top: '45%', left: '76%', cls: 'mebel-hotspot--right', title: 'Встроенная LED-подсветка 3000K', desc: 'Интегрированный врезной профиль' }
   ],
   wardrobe: [
-    { top: '38%', left: '38%', cls: '', title: 'МДФ ЛДСП фасады', desc: '' },
+    { top: '38%', left: '38%', cls: '', title: 'МДФ, ЛДСП фасады', desc: '' },
     { top: '26%', left: '72%', cls: 'mebel-hotspot--right', title: 'Встроенная LED-подсветка 3000K', desc: 'Подсветка открытых полок и штанг' },
     { top: '68%', left: '72%', cls: 'mebel-hotspot--right', title: 'Фурнитура Blum & Hettich', desc: 'Скрытый монтаж и плавные доводчики' }
   ],
@@ -2968,48 +2964,48 @@ function switchShowcaseScene(type, btn) {
 <li><a href="mebel.html#categories">Мебель в стиле Loft</a></li>
 </ul>
 </div>
-<div class="site-footer__col">
+<div class="site-footer__col site-footer__col--contacts">
 <h4>Адреса и контакты</h4>
-<div style="display:flex; flex-direction:column; gap:10px; margin-top:8px; font-size:13px; line-height:1.4;">
-  <!-- Герцена 36 -->
-  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
-    <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
-      <span>Офис: ул. Герцена, 36</span>
-      <span style="font-size:11px; color:#ffd991; font-weight:500;">10:00 – 19:00</span>
+<div class="site-footer__contacts-grid">
+  <!-- 26 Северная -->
+  <div class="site-footer__contact-card">
+    <div style="font-weight:700; color:#ffffff; font-size:12.5px; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span>Цех, офис: ул.&nbsp;26&#8209;я&nbsp;Северная,&nbsp;13А/9</span>
+      <span style="font-size:11px; color:#ffd991; font-weight:500; white-space:nowrap; flex-shrink:0;">09:00 – 17:00</span>
     </div>
     <div style="display:flex; flex-direction:column; gap:2px;">
-      <a href="tel:+73812480153" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 48-01-53</a>
-      <a href="tel:+79533986959" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-953-398-69-59</a>
+      <a href="tel:+73812590650" style="color:#ffffff; font-weight:700; text-decoration:none; white-space:nowrap;">+7 (3812) 590-650</a>
+      <a href="tel:+79088014000" style="color:#ffffff; font-weight:700; text-decoration:none; white-space:nowrap;">+7-908-801-40-00</a>
     </div>
-    <a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;" target="_blank">
-      💬 Написать в MAX (Герцена) →
+    <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" target="_blank" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none; white-space:nowrap;">
+      💬 Написать в MAX (26-я&nbsp;Северная)&nbsp;→
     </a>
   </div>
 
-  <!-- 26 Северная -->
-  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:9px 12px;">
-    <div style="font-weight:700; color:#ffffff; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
-      <span>Цех: ул. 26-я Северная, 13А/9</span>
-      <span style="font-size:11px; color:#ffd991; font-weight:500;">09:00 – 17:00</span>
+  <!-- Герцена 36 -->
+  <div class="site-footer__contact-card">
+    <div style="font-weight:700; color:#ffffff; font-size:12.5px; margin-bottom:4px; display:flex; align-items:center; justify-content:space-between; gap:6px;">
+      <span>Офис: ул.&nbsp;Герцена,&nbsp;36</span>
+      <span style="font-size:11px; color:#ffd991; font-weight:500; white-space:nowrap; flex-shrink:0;">10:00 – 19:00</span>
     </div>
     <div style="display:flex; flex-direction:column; gap:2px;">
-      <a href="tel:+73812590650" style="color:#ffffff; font-weight:700; text-decoration:none;">+7 (3812) 590-650</a>
-      <a href="tel:+79088014000" style="color:#ffffff; font-weight:700; text-decoration:none;">+7-908-801-40-00</a>
+      <a href="tel:+73812480153" style="color:#ffffff; font-weight:700; text-decoration:none; white-space:nowrap;">+7 (3812) 48-01-53</a>
+      <a href="tel:+79533986959" style="color:#ffffff; font-weight:700; text-decoration:none; white-space:nowrap;">+7-953-398-69-59</a>
     </div>
-    <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none;" target="_blank">
-      💬 Написать в MAX (26-я Северная) →
+    <a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" target="_blank" style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; color:#ff8a3c; font-size:12px; font-weight:600; text-decoration:none; white-space:nowrap;">
+      💬 Написать в MAX (Герцена)&nbsp;→
     </a>
   </div>
 </div>
 </div>
 </div>
 <div class="site-footer__bottom">
-<div>© 2026 «МОЙ мебельный». Все права защищены. Производство и офисы в Омске.</div>
+<div>©&nbsp;2026 «МОЙ&nbsp;мебельный». Все&nbsp;права защищены. Производство и&nbsp;офисы в&nbsp;Омске.</div>
 <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
 <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" style="color:#ffaa33; text-decoration:none; font-weight:700;" target="_blank">★ 4.9 на 2ГИС</a>
 <a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">ВКонтакте</a>
-<a href="https://max.ru/u/f9LHodD0cOKTDFXngTEnGbyyYyTiTujmExGzK2djzKO11GyMQ6sqJzHY2hw" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (Герцена)</a>
-<a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (26-я Северная)</a>
+<a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (26-я&nbsp;Северная)</a>
+<a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank">MAX (Герцена)</a>
 </div>
 </div>
 </footer>
@@ -3324,6 +3320,153 @@ cOverlay.addEventListener('touchend', function(e) {
     else cSlide(-1);
   }
 }, { passive: true });
+
+// ==========================================
+// UNIVERSAL FILE UPLOAD HANDLERS
+// ==========================================
+function formatFileSize(bytes) {
+  if (!bytes || bytes === 0) return '0 КБ';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' КБ';
+  return (bytes / (1024 * 1024)).toFixed(1) + ' МБ';
+}
+
+function handleExactFileSelection(input, boxId) {
+  var box = document.getElementById(boxId);
+  if (!box) return;
+  var titleEl = box.querySelector('.exact-file-title');
+  var hintEl = box.querySelector('.exact-file-hint');
+  var btnEl = box.querySelector('.exact-file-plus');
+  var file = input.files && input.files[0];
+
+  if (file) {
+    box.classList.add('has-file');
+    if (titleEl) {
+      titleEl.innerText = file.name;
+      titleEl.style.color = '#155724';
+    }
+    if (hintEl) {
+      hintEl.innerText = formatFileSize(file.size) + ' · Готов к отправке (нажмите ✕ чтобы удалить)';
+      hintEl.style.color = '#2e7d32';
+    }
+    if (btnEl) {
+      btnEl.innerText = '✕';
+      btnEl.classList.add('is-remove');
+      btnEl.setAttribute('title', 'Удалить прикрепленный файл');
+    }
+  } else {
+    resetExactFileBox(input, boxId);
+  }
+}
+
+function resetExactFileBox(input, boxId) {
+  if (input) input.value = '';
+  var box = document.getElementById(boxId);
+  if (!box) return;
+  box.classList.remove('has-file');
+  var titleEl = box.querySelector('.exact-file-title');
+  var hintEl = box.querySelector('.exact-file-hint');
+  var btnEl = box.querySelector('.exact-file-plus');
+
+  if (titleEl) {
+    titleEl.innerText = 'Прикрепить файл проекта';
+    titleEl.style.color = '#1c110a';
+  }
+  if (hintEl) {
+    hintEl.innerText = 'PDF, JPG, PNG, DWG, DOC, XLS — до 20 МБ';
+    hintEl.style.color = '#8c6e58';
+  }
+  if (btnEl) {
+    btnEl.innerText = '+';
+    btnEl.classList.remove('is-remove');
+    btnEl.setAttribute('title', 'Выбрать файл');
+  }
+}
+
+function handleFileBoxClick(e, inputId, boxId) {
+  if (e.target.closest('.is-remove')) return;
+  var input = document.getElementById(inputId);
+  if (input) input.click();
+}
+
+function handleFileBtnClick(e, inputId, boxId) {
+  e.preventDefault();
+  e.stopPropagation();
+  var input = document.getElementById(inputId);
+  var btn = document.getElementById(boxId + '-btn') || (document.getElementById(boxId) && document.getElementById(boxId).querySelector('.exact-file-plus'));
+  if (btn && btn.classList.contains('is-remove')) {
+    resetExactFileBox(input, boxId);
+  } else {
+    if (input) input.click();
+  }
+}
+
+// Initialize Drag-and-Drop on mebel-file-box
+(function initDrop() {
+  var box = document.getElementById('mebel-file-box');
+  var input = document.getElementById('exact-form-file');
+  if (!box || !input) return;
+
+  ['dragenter', 'dragover'].forEach(function(ev) {
+    box.addEventListener(ev, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      box.style.borderColor = '#ff761a';
+      box.style.background = 'rgba(255, 118, 26, 0.08)';
+    });
+  });
+
+  ['dragleave', 'drop'].forEach(function(ev) {
+    box.addEventListener(ev, function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      box.style.borderColor = '';
+      box.style.background = '';
+    });
+  });
+
+  box.addEventListener('drop', function(e) {
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      input.files = e.dataTransfer.files;
+      handleExactFileSelection(input, 'mebel-file-box');
+    }
+  });
+})();
+</script>
+
+<!-- SCROLL TO TOP FLOATING BUTTON -->
+<button class="scroll-to-top" id="scrollToTopBtn" aria-label="Наверх" title="Наверх">
+  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="18 15 12 9 6 15"></polyline>
+  </svg>
+</button>
+
+<script>
+// ==========================================
+// SCROLL TO TOP BUTTON BEHAVIOR
+// ==========================================
+(function() {
+  function initScrollBtn() {
+    var topBtn = document.getElementById('scrollToTopBtn');
+    if (!topBtn) return;
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        topBtn.classList.add('is-visible');
+      } else {
+        topBtn.classList.remove('is-visible');
+      }
+    }, { passive: true });
+
+    topBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollBtn);
+  } else {
+    initScrollBtn();
+  }
+})();
 </script>
 
 </body>
