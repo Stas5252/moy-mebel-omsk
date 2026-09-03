@@ -1656,9 +1656,15 @@ html, body {
 <div>
 <span class="saw-calc-eyebrow">КАЛЬКУЛЯТОР</span>
 <h2 class="saw-calc-heading">Расчёт стоимости распила</h2>
-<div class="saw-calc-size-limit-item" style="margin-top:6px; font-size:13.5px; color:#2d1b10; font-weight:600;">
-  <span class="saw-calc-size-limit-icon">✓</span>
-  <span>Минимальная стоимость заказа — <b>500 рублей</b></span>
+<div class="saw-calc-header-notes" style="display:flex; flex-direction:column; gap:4px; margin-top:6px;">
+  <div class="saw-calc-size-limit-item" style="font-size:13.5px; color:#2d1b10; font-weight:600;">
+    <span class="saw-calc-size-limit-icon">✓</span>
+    <span>Минимальная стоимость заказа — <b>500 рублей</b></span>
+  </div>
+  <div class="saw-calc-size-limit-item" style="font-size:13.5px; color:#2d1b10; font-weight:600;">
+    <span class="saw-calc-size-limit-icon">✓</span>
+    <span>Максимальные габариты детали: <b>2720 × 1830 мм</b></span>
+  </div>
 </div>
 </div>
 <div class="saw-calc-hint">
@@ -1771,7 +1777,7 @@ html, body {
 <div class="saw-calc-size-limit">
   <div class="saw-calc-size-limit-item">
     <span class="saw-calc-size-limit-icon">✓</span>
-    <span>Максимальные габариты детали: <b>2720 × 1830 мм</b></span>
+    <span>Кромка 1 мм: <b>+20% к длине</b> и <b>кратна 5 метрам</b></span>
   </div>
   <div class="saw-calc-size-limit-item">
     <span class="saw-calc-size-limit-icon">✓</span>
@@ -1779,7 +1785,7 @@ html, body {
   </div>
   <div class="saw-calc-size-limit-item">
     <span class="saw-calc-size-limit-icon">✓</span>
-    <span>Кромка <b>кратна 1 метру</b> (округляется в большую сторону: напр. 1.2 м ➔ 2 м)</span>
+    <span>Кромка 0.4 и 2 мм: <b>кратна 1 метру</b> (округляется в большую сторону)</span>
   </div>
 </div>
 <!-- Details List Container (Dark card) -->
@@ -4149,7 +4155,7 @@ html, body {
         <td><span style="color:#d1bfae;">${item.matName}</span></td>
         <td>
           <div style="font-size:12.5px; color:#ffd991; font-weight:600;">${item.edgeDesc}</div>
-          <div style="font-size:11px; color:#ff9e58; font-weight:700; margin-top:2px;">Итого кромки: ${item.edgeRoundedMeters} м</div>
+          <div style="font-size:11px; color:#ff9e58; font-weight:700; margin-top:2px;">Итого кромки: ${item.edgeSummaryText || (item.edgeRoundedMeters + ' м')}</div>
         </td>
         <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽</td>
         <td>
@@ -4268,28 +4274,43 @@ html, body {
     const areaM2 = (L * W) / 1000000;
     const sawCutCost = areaM2 * matPriceM2;
 
-    // Calculate Edge Meters
+    // Calculate Edge Meters by Thickness
     const el1 = edgeL1.value, el2 = edgeL2.value;
     const ew1 = edgeW1.value, ew2 = edgeW2.value;
 
-    let edgeTotalMeters = 0;
-    if (el1 !== 'none') edgeTotalMeters += L / 1000;
-    if (el2 !== 'none') edgeTotalMeters += L / 1000;
-    if (ew1 !== 'none') edgeTotalMeters += W / 1000;
-    if (ew2 !== 'none') edgeTotalMeters += W / 1000;
-
-    // Edge meters ALWAYS rounded UP to full meters
-    const edgeRoundedMeters = Math.ceil(edgeTotalMeters);
+    const edgeLengths = { '0.4': 0, '1.0': 0, '2.0': 0 };
+    if (el1 !== 'none') edgeLengths[el1] += L / 1000;
+    if (el2 !== 'none') edgeLengths[el2] += L / 1000;
+    if (ew1 !== 'none') edgeLengths[ew1] += W / 1000;
+    if (ew2 !== 'none') edgeLengths[ew2] += W / 1000;
 
     let edgeCost = 0;
-    if (edgeTotalMeters > 0) {
-      let rawCost = 0;
-      if (el1 !== 'none') rawCost += (L / 1000) * edgePrices[el1];
-      if (el2 !== 'none') rawCost += (L / 1000) * edgePrices[el2];
-      if (ew1 !== 'none') rawCost += (W / 1000) * edgePrices[ew1];
-      if (ew2 !== 'none') rawCost += (W / 1000) * edgePrices[ew2];
-      const ratio = edgeRoundedMeters / edgeTotalMeters;
-      edgeCost = rawCost * ratio;
+    let totalEdgeRoundedMeters = 0;
+    const edgeSummaryParts = [];
+
+    // 0.4 мм: кратна 1 метру (округляется в большую сторону)
+    if (edgeLengths['0.4'] > 0) {
+      const m04 = Math.ceil(edgeLengths['0.4']);
+      totalEdgeRoundedMeters += m04;
+      edgeCost += m04 * (edgePrices['0.4'] || 45);
+      edgeSummaryParts.push(`0.4 мм: ${m04} м`);
+    }
+
+    // 1.0 мм: +20% к длине и кратна 5 метрам
+    if (edgeLengths['1.0'] > 0) {
+      const withAllowance = edgeLengths['1.0'] * 1.20;
+      const m10 = Math.ceil(withAllowance / 5) * 5;
+      totalEdgeRoundedMeters += m10;
+      edgeCost += m10 * (edgePrices['1.0'] || 60);
+      edgeSummaryParts.push(`1.0 мм: ${m10} м (+20%, кратно 5 м)`);
+    }
+
+    // 2.0 мм: кратна 1 метру (округляется в большую сторону)
+    if (edgeLengths['2.0'] > 0) {
+      const m20 = Math.ceil(edgeLengths['2.0']);
+      totalEdgeRoundedMeters += m20;
+      edgeCost += m20 * (edgePrices['2.0'] || 85);
+      edgeSummaryParts.push(`2.0 мм: ${m20} м`);
     }
 
     const activeEdges = [el1, el2, ew1, ew2].filter(e => e !== 'none');
@@ -4299,6 +4320,8 @@ html, body {
       activeEdges.forEach(th => { counts[th] = (counts[th] || 0) + 1; });
       edgeDesc = Object.keys(counts).map(th => `${th} мм (${counts[th]})`).join(' · ');
     }
+
+    const edgeSummaryText = edgeSummaryParts.length > 0 ? edgeSummaryParts.join(' · ') : '0 м';
 
     const hasTexture = textureInput ? textureInput.checked : false;
     const itemTotalCost = Math.round(sawCutCost + edgeCost);
@@ -4310,7 +4333,8 @@ html, body {
       el1, el2, ew1, ew2,
       hasTexture: hasTexture,
       edgeDesc: edgeDesc,
-      edgeRoundedMeters: edgeRoundedMeters,
+      edgeSummaryText: edgeSummaryText,
+      edgeRoundedMeters: totalEdgeRoundedMeters,
       cost: itemTotalCost
     });
 
