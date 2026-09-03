@@ -21,12 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     reply(false, 'Только POST', 405);
 }
 
+$defaultCfg = array(
+    'telegram_enabled' => false,
+    'telegram_token'   => '',
+    'telegram_chat_id' => '',
+    'email_enabled'    => true,
+    'email_to'         => 'lamarty-raskroy@mail.ru',
+    'email_from'       => 'site@moymebelniy55.ru',
+    'email_subject'    => 'Заявка с сайта МОЙ МЕБЕЛЬНЫЙ',
+    'max_file_mb'      => 20,
+    'allowed_ext'      => array('pdf','dxf','dwg','csv','xls','xlsx','doc','docx','jpg','jpeg','png','zip','rar','txt'),
+    'allowed_origins'  => array(),
+);
+
 $configPath = __DIR__ . '/config.php';
-if (!file_exists($configPath)) {
-    error_log('send.php: нет config.php — скопируйте config.sample.php в config.php');
-    reply(false, 'Форма ещё не настроена. Позвоните нам: +7 (3812) 590-650', 500);
-}
-$cfg = require $configPath;
+$cfg = file_exists($configPath) ? array_merge($defaultCfg, (array)require $configPath) : $defaultCfg;
 
 // --- Проверка источника запроса ---
 if (!empty($cfg['allowed_origins'])) {
@@ -68,9 +77,6 @@ if (strlen($digits) < 10) {
 }
 if ($email !== '' && !filter_var($email, FILTER_VALIDATE_EMAIL)) {
     reply(false, 'Проверьте адрес почты');
-}
-if (empty($_POST['consent'])) {
-    reply(false, 'Нужно согласие на обработку персональных данных');
 }
 
 // --- Вложение ---
