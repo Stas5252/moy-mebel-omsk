@@ -701,7 +701,7 @@ html, body {
 .saw-calc-texture-btn:has(input:checked) {
   background: #fff4ea !important;
   border-color: #ff761a !important;
-  color: #d45d11 !important;
+  color: #bc4e08 !important; /* 4,6 : 1 вместо 3,7 : 1 */
 }
 
 .saw-calc-texture-btn:has(input:checked) .saw-calc-texture-box,
@@ -926,6 +926,15 @@ html, body {
   letter-spacing: 0.8px !important;
   color: #7a6e65 !important;
 }
+.saw-calc-min-note {
+  display: block;
+  width: 100%;
+  margin-top: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8a6a52;
+  line-height: 1.3;
+}
 .saw-calc-total-amount {
   font-size: 26px !important;
   font-weight: 900 !important;
@@ -1029,7 +1038,7 @@ html, body {
   font-weight: 800 !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
-  color: #d45d11 !important;
+  color: #bc4e08 !important; /* 4,6 : 1 вместо 3,7 : 1 */
   margin-bottom: 16px !important;
 }
 .exact-form-eyebrow-dot {
@@ -1100,9 +1109,9 @@ html, body {
   left: 16px !important;
   background: #faf7f2 !important;
   padding: 0 6px !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
-  color: #d45d11 !important;
+  color: #bc4e08 !important; /* 4,6 : 1 вместо 3,7 : 1 */
   z-index: 2 !important;
 }
 
@@ -1162,7 +1171,7 @@ html, body {
 }
 .exact-file-hint {
   font-size: 12px !important;
-  color: #8c7b70 !important;
+  color: #75655b !important; /* 5,2 : 1 вместо 3,8 : 1 */
 }
 
 .exact-file-plus {
@@ -1472,6 +1481,32 @@ html, body {
   }
 }
 </script>
+
+<!-- Область нажатия для мелких ссылок и кнопок: невидимый слой поверх элемента.
+     Размеры и внешний вид не меняются, промахов пальцем становится меньше. -->
+<style>
+  .site-header__phone,
+  .site-footer__card-phones a,
+  .site-footer__links a {
+    position: relative;
+  }
+  .site-header__phone::after,
+  .site-footer__card-phones a::after,
+  .site-footer__links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 36px;
+  }
+  /* кнопки в карточках можно увеличить по-настоящему — карточка тянется сама */
+  .mebel-card__btn,
+  .mebel-mat-btn {
+    min-height: 40px;
+  }
+</style>
 </head> <body class="t-body" style="margin:0;"> <!--allrecords--> <div class="t-records" data-hook="blocks-collection-content-node" data-tilda-cookie="no" data-tilda-formskey="6d1d6a096bd2d9911bc4e24b32238409" data-tilda-lazy="yes" data-tilda-page-id="191860309" data-tilda-project-country="RU" data-tilda-project-id="32238409" data-tilda-root-zone="com" id="allrecords">
 <a class="skip-link" href="#content">Перейти к содержимому</a>
 <!-- UNIFIED MASTER HEADER -->
@@ -1489,7 +1524,7 @@ html, body {
         </a>
 </nav>
 <a aria-label="Мой Мебельный — Главная" class="site-header__brand" href="index.html">
-<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
+<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png" width="210" height="237"/>
 <span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
 </a>
 <div class="site-header__nav-right">
@@ -1534,10 +1569,6 @@ html, body {
         <span style="width:34px; height:3px; background-color:#ff761a; border-radius:2px; display:inline-block; flex-shrink:0;"></span>
         <span style="color:#ff761a; font-family:'Montserrat', sans-serif; font-size:12px; font-weight:800; letter-spacing:2.2px; text-transform:uppercase;">
           РАСПИЛ ЛДСП ОТ&nbsp;1&nbsp;М² И&nbsp;КРОМКООБЛИЦОВКА НА&nbsp;ИТАЛЬЯНСКОМ И&nbsp;НЕМЕЦКОМ ОБОРУДОВАНИИ
-        </span>
-        <span style="display:inline-flex; align-items:center; gap:6px; color:#ff761a; font-family:'Montserrat', sans-serif; font-size:11px; font-weight:800; letter-spacing:2px; margin-left:6px;">
-          <span style="width:6px; height:6px; border-radius:50%; background:#ff4500; box-shadow:0 0 8px #ff4500; display:inline-block;"></span>
-          REC
         </span>
       </div>
       <h1 class="hero-title">
@@ -1637,7 +1668,7 @@ html, body {
 <!-- Single Row Inputs Grid -->
 <div class="saw-calc-single-row">
 <div class="saw-calc-col">
-<label>МАТЕРИАЛ</label>
+<label for="calc-material-select">МАТЕРИАЛ</label>
 <select id="calc-material-select">
 <option data-name="Венге Линум 16мм" selected="" value="850">Венге Линум 16мм · 850 ₽/м²</option>
 <option data-name="Венге соренто 16мм" value="850">Венге соренто 16мм · 850 ₽/м²</option>
@@ -1674,23 +1705,23 @@ html, body {
 </select>
 </div>
 <div class="saw-calc-col">
-<label>ДЛИНА, ММ</label>
+<label for="calc-length-input">ДЛИНА, ММ</label>
 <input id="calc-length-input" max="2720" min="50" placeholder="напр. 1200" type="number"/>
 </div>
 <div class="saw-calc-col">
-<label>ШИРИНА, ММ</label>
+<label for="calc-width-input">ШИРИНА, ММ</label>
 <input id="calc-width-input" max="1830" min="50" placeholder="напр. 600" type="number"/>
 </div>
 <div class="saw-calc-col">
 <label>═ КРОМКА ДЛИНА</label>
 <div class="saw-calc-dual-selects">
-<select id="calc-edge-l1" title="Длина сторона 1">
+<select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1" title="Длина сторона 1">
 <option value="none">Без</option>
 <option value="0.4">0.4 мм</option>
 <option value="1.0">1.0 мм</option>
 <option value="2.0">2.0 мм</option>
 </select>
-<select id="calc-edge-l2" title="Длина сторона 2">
+<select id="calc-edge-l2" aria-label="Кромка по длине, сторона 2" title="Длина сторона 2">
 <option value="none">Без</option>
 <option value="0.4">0.4 мм</option>
 <option value="1.0">1.0 мм</option>
@@ -1701,13 +1732,13 @@ html, body {
 <div class="saw-calc-col">
 <label>║ КРОМКА ШИРИНА</label>
 <div class="saw-calc-dual-selects">
-<select id="calc-edge-w1" title="Ширина сторона 1">
+<select id="calc-edge-w1" aria-label="Кромка по ширине, сторона 1" title="Ширина сторона 1">
 <option value="none">Без</option>
 <option value="0.4">0.4 мм</option>
 <option value="1.0">1.0 мм</option>
 <option value="2.0">2.0 мм</option>
 </select>
-<select id="calc-edge-w2" title="Ширина сторона 2">
+<select id="calc-edge-w2" aria-label="Кромка по ширине, сторона 2" title="Ширина сторона 2">
 <option value="none">Без</option>
 <option value="0.4">0.4 мм</option>
 <option value="1.0">1.0 мм</option>
@@ -1716,15 +1747,15 @@ html, body {
 </div>
 </div>
 <div class="saw-calc-col">
-<label>&nbsp;</label>
+<label aria-hidden="true">&nbsp;</label>
 <label class="saw-calc-texture-btn" id="calc-texture-label" title="Направление текстуры">
-<input id="calc-texture-input" type="checkbox"/>
+<input id="calc-texture-input" type="checkbox" aria-label="Учитывать направление текстуры"/>
 <span class="saw-calc-texture-box"></span>
 <span>Текстура</span>
 </label>
 </div>
 <div class="saw-calc-col">
-<label>&nbsp;</label>
+<label aria-hidden="true">&nbsp;</label>
 <button class="saw-calc-btn-add" id="calc-add-btn" type="button">
 <span>+</span> Добавить деталь
 </button>
@@ -1780,6 +1811,7 @@ html, body {
 <div class="saw-calc-total-wrap">
 <span class="saw-calc-total-label">ИТОГО</span>
 <span class="saw-calc-total-amount" id="calc-total-amount">0 ₽</span>
+<span class="saw-calc-min-note" id="calc-min-note" style="display:none;"></span>
 </div>
 <div class="saw-calc-actions-wrap">
 <button class="saw-calc-btn-clear" id="calc-clear-btn" type="button">Очистить список</button>
@@ -1791,11 +1823,11 @@ html, body {
 </div>
 </section>
 <!-- DEDICATED CALCULATOR ORDER MODAL (Direct submit without scrolling down) -->
-<div id="calc-order-modal" class="saw-modal-overlay" onclick="if(event.target===this) closeCalcModal()">
+<div id="calc-order-modal" class="saw-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="calc-modal-title" onclick="if(event.target===this) closeCalcModal()">
   <div class="saw-modal-card">
     <button type="button" class="saw-modal-close" onclick="closeCalcModal()" aria-label="Закрыть модальное окно">✕</button>
     <div class="saw-modal-badge">✦ ОФОРМЛЕНИЕ ЗАКАЗА НА РАСПИЛ</div>
-    <h3 class="saw-modal-title">Отправить расчёт на производство</h3>
+    <h3 class="saw-modal-title" id="calc-modal-title">Отправить расчёт на производство</h3>
     <p class="saw-modal-subtitle">Все добавленные детали, площади и метраж кромки автоматически передаются мастеру цеха.</p>
     
     <!-- Calculation Live Summary Box -->
@@ -1808,32 +1840,38 @@ html, body {
     </div>
 
     <!-- Direct Order Form -->
-    <form id="calc-dedicated-form" onsubmit="submitCalcOrder(event)">
+    <form id="calc-dedicated-form" data-lead-form="calc" action="send.php" method="post" enctype="multipart/form-data">
       <div class="saw-modal-row">
         <div class="saw-modal-field">
-          <label>Ваше имя *</label>
-          <input type="text" id="calc-order-name" required placeholder="Как вас зовут" class="saw-modal-input">
+          <label for="calc-order-name">Ваше имя *</label>
+          <input type="text" id="calc-order-name" name="name" autocomplete="name" required placeholder="Как вас зовут" class="saw-modal-input">
         </div>
         <div class="saw-modal-field">
-          <label>Номер телефона *</label>
-          <input type="tel" id="calc-order-phone" required placeholder="+7 (___) ___-__-__" class="saw-modal-input">
+          <label for="calc-order-phone">Номер телефона *</label>
+          <input type="tel" id="calc-order-phone" name="phone" autocomplete="tel" inputmode="tel" required placeholder="+7 (___) ___-__-__" class="saw-modal-input">
         </div>
       </div>
 
       <div class="saw-modal-field">
-        <label>Комментарий (по желанию)</label>
-        <textarea id="calc-order-comment" placeholder="" class="saw-modal-textarea"></textarea>
+        <label for="calc-order-comment">Комментарий (по желанию)</label>
+        <textarea id="calc-order-comment" name="comment" placeholder="" class="saw-modal-textarea"></textarea>
       </div>
 
       <!-- File Attachment Dropzone -->
       <div class="saw-modal-dropzone" onclick="document.getElementById('calc-order-file').click()">
-        <input type="file" id="calc-order-file" name="file" style="display:none" accept=".pdf,.dxf,.dwg,.csv,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar" onchange="handleCalcFileSelect(this)">
+        <input type="file" id="calc-order-file" name="file" aria-label="Карта раскроя или файл проекта" style="display:none" accept=".pdf,.dxf,.dwg,.csv,.xls,.xlsx,.jpg,.jpeg,.png,.zip,.rar" onchange="handleCalcFileSelect(this)">
         <div class="saw-modal-drop-icon">📎</div>
         <div>
           <div class="saw-modal-drop-title" id="calc-file-status">Прикрепить карту раскроя / файл проекта</div>
           <div class="saw-modal-drop-hint">PDF, DXF, CSV, Excel, JPG, PNG до 20 МБ</div>
         </div>
       </div>
+
+      <label class="lead-consent">
+        <input type="checkbox" name="consent" value="1" required>
+        <span>Я согласен на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a></span>
+      </label>
+      <input type="text" name="website" class="lead-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <div class="saw-modal-actions">
         <button type="submit" class="saw-modal-btn-submit">
@@ -3123,7 +3161,7 @@ html, body {
         Работы, которые говорят
         <span class="prt-title__accent">за нас</span> </h2> </div> <div class="prt-counter-block prt-reveal prt-d1"> <div class="prt-counter-value"> <span class="prt-counter-num" data-duration="4500" data-target="2808500">0</span> <span class="prt-counter-plus">+</span> <span class="prt-counter-unit">м²</span> </div> <span class="prt-counter-label"> <span class="prt-counter-label-text">распила за 15+ лет работы</span> </span> </div> <div class="prt-pitch prt-reveal prt-d2"> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--l1"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--l2"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--r1"></span> <span aria-hidden="true" class="prt-pitch__board prt-pitch__board--r2"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--tl"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--tr"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--bl"></span> <span aria-hidden="true" class="prt-pitch__accent prt-pitch__accent--br"></span> <span aria-hidden="true" class="prt-pitch__ring"></span> <p class="prt-pitch__text">
         Изготавливаем детали по индивидуальным проектам с точностью до <b>1 мм</b>. Ценим ваше время, соблюдаем сроки и отвечаем за качество каждой детали.
-      </p> </div> <div class="prt-grid"> <a class="prt-card prt-reveal prt-d1" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Раскрой ЛДСП и кромления" class="prt-card__img" loading="lazy" src="images/i_1.webp"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">01</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Раскрой ЛДСП и кромления</h3> <div class="prt-card__meta"> <span>Раскрой</span> <span class="prt-card__meta-dot"></span> <span>от 1 дня</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d2" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Столешницы и стеновые панели" class="prt-card__img" loading="lazy" src="images/i.webp"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">02</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Столешницы и стеновые панели</h3> <div class="prt-card__meta"> <span>Столешницы</span> <span class="prt-card__meta-dot"></span> <span>от 2 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d3" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Радиусные детали" class="prt-card__img" loading="lazy" src="images/IMG_2719.JPG"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">03</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Радиусные детали</h3> <div class="prt-card__meta"> <span>Сложная геометрия</span> <span class="prt-card__meta-dot"></span> <span>от 3 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d4" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Изготовление фасадов МДФ" class="prt-card__img" loading="lazy" src="images/i_2.webp"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">04</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Изготовление фасадов МДФ</h3> <div class="prt-card__meta"> <span>Фасады</span> <span class="prt-card__meta-dot"></span> <span>от 4 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d5" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Комплексные заказы" class="prt-card__img" loading="lazy" src="images/IMG_2723.JPG"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">05</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Комплексные заказы</h3> <div class="prt-card__meta"> <span>Сборка корпусов</span> <span class="prt-card__meta-dot"></span> <span>от 5 дней</span> </div> </div> </a> </div> <!-- CTA с кнопкой "Оставить заявку" --> <div class="prt-cta prt-reveal prt-d6"> <p class="prt-cta__lead"></p> <p class="prt-cta__sub"></p> <a class="prt-btn" href="#rec3213771601"> <span class="prt-btn__text">Оставить заявку</span> <span aria-hidden="true" class="prt-btn__icon"> <svg viewbox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"></path></svg> </span> </a> </div> </div> </section> <script>
+      </p> </div> <div class="prt-grid"> <a class="prt-card prt-reveal prt-d1" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Раскрой ЛДСП и кромления" class="prt-card__img" loading="lazy" src="images/i_1.webp" width="1717" height="916"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">01</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Раскрой ЛДСП и кромления</h3> <div class="prt-card__meta"> <span>Раскрой</span> <span class="prt-card__meta-dot"></span> <span>от 1 дня</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d2" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Столешницы и стеновые панели" class="prt-card__img" loading="lazy" src="images/i.webp" width="1500" height="1000"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">02</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Столешницы и стеновые панели</h3> <div class="prt-card__meta"> <span>Столешницы</span> <span class="prt-card__meta-dot"></span> <span>от 2 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d3" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Радиусные детали" class="prt-card__img" loading="lazy" src="images/IMG_2719.JPG" width="1600" height="1073"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">03</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Радиусные детали</h3> <div class="prt-card__meta"> <span>Сложная геометрия</span> <span class="prt-card__meta-dot"></span> <span>от 3 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d4" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Изготовление фасадов МДФ" class="prt-card__img" loading="lazy" src="images/i_2.webp" width="1000" height="561"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">04</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Изготовление фасадов МДФ</h3> <div class="prt-card__meta"> <span>Фасады</span> <span class="prt-card__meta-dot"></span> <span>от 4 дней</span> </div> </div> </a> <a class="prt-card prt-reveal prt-d5" href="#rec3089023401"> <div class="prt-card__media"> <img alt="Комплексные заказы" class="prt-card__img" loading="lazy" src="images/IMG_2723.JPG" width="1600" height="1073"/> <div class="prt-card__overlay"></div> <span class="prt-card__num">05</span> </div> <div class="prt-card__body"> <h3 class="prt-card__title">Комплексные заказы</h3> <div class="prt-card__meta"> <span>Сборка корпусов</span> <span class="prt-card__meta-dot"></span> <span>от 5 дней</span> </div> </div> </a> </div> <!-- CTA с кнопкой "Оставить заявку" --> <div class="prt-cta prt-reveal prt-d6"> <p class="prt-cta__lead"></p> <p class="prt-cta__sub"></p> <a class="prt-btn" href="#rec3213771601"> <span class="prt-btn__text">Оставить заявку</span> <span aria-hidden="true" class="prt-btn__icon"> <svg viewbox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"></path></svg> </span> </a> </div> </div> </section> <script>
   (function () {
     'use strict';
 
@@ -3892,7 +3930,7 @@ html, body {
         transform: none;
       }
     }
-  </style> <div class="rv-block__container"> <div class="rv-block__header"> <div> <h2 class="rv-block__title">Что говорят <span class="rv-block__title-accent">клиенты</span> о нашей работе</h2> <p class="rv-block__subtitle">Реальные отзывы с 2ГИС — без редактуры и приукрашиваний. Каждый проект заканчивается обратной связью от заказчика.</p> </div> <div class="rv-block__summary"> <div class="rv-block__summary-score">4.9</div> <div class="rv-block__summary-text"> <div aria-label="5 из 5" class="rv-block__summary-stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-block__summary-label">на основе 79 оценок</span> </div> </div> </div> <div class="rv-block__grid"> <!-- Review 1 - Mitrich --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">М</div> <div class="rv-card__author"> <p class="rv-card__name">Митрич</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Уже не первый раз заказываю распил ЛДСП здесь. Нравится, что можно оформить всё онлайн и не тратить времени на поездки. Всегда чёткие размеры, приятные цены и вежливое общение.</p> </article> <!-- Review 2 - Maria Darpkunaite --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--green">MD</div> <div class="rv-card__author"> <p class="rv-card__name">Maria Darpkunaite</p> <span class="rv-card__count">8 отзывов</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__photo-wrap"> <img alt="Столешница в офисе крупно" loading="lazy" src="images/review_table_crop.png"/> <div aria-hidden="true" class="rv-card__preview"> <img alt="Полный вид столешницы" src="images/review_table_full.png"/> </div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">7 марта 2024</span> </div> <p class="rv-card__text">Заказываю распил не первый раз, это прекрасная возможность сэкономить на стоимости мебели, всегда быстро и качественно, идут на встречу клиенту. Удобно что можно взять домой образцы, упрощает муки выбора цвета.</p> </article> <!-- Review 3 - Aleksei Volin --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">АВ</div> <div class="rv-card__author"> <p class="rv-card__name">Алексей Волин</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Нужно было несколько радиусных деталей для проекта — выполнили идеально, геометрия точная, кромка ровная. Видно, что работают на хорошем оборудовании. Остался доволен.</p> </article> </div> <div class="rv-block__cta-wrap"> <a class="rv-block__cta" href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883/73.350829%2C55.026615?m=73.350829%2C55.026615%2F11.85" rel="noopener noreferrer" target="_blank"> <span class="rv-block__cta-icon">2</span> <span class="rv-block__cta-text"> <strong>Смотреть все отзывы</strong> <span>на странице 2ГИС</span> </span> <svg class="rv-block__cta-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </div> </div> <!-- nominify end --> </div> </div> 
+  </style> <div class="rv-block__container"> <div class="rv-block__header"> <div> <h2 class="rv-block__title">Что говорят <span class="rv-block__title-accent">клиенты</span> о нашей работе</h2> <p class="rv-block__subtitle">Реальные отзывы с 2ГИС — без редактуры и приукрашиваний. Каждый проект заканчивается обратной связью от заказчика.</p> </div> <div class="rv-block__summary"> <div class="rv-block__summary-score">4.9</div> <div class="rv-block__summary-text"> <div aria-label="5 из 5" class="rv-block__summary-stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-block__summary-label">на основе 79 оценок</span> </div> </div> </div> <div class="rv-block__grid"> <!-- Review 1 - Mitrich --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">М</div> <div class="rv-card__author"> <p class="rv-card__name">Митрич</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Уже не первый раз заказываю распил ЛДСП здесь. Нравится, что можно оформить всё онлайн и не тратить времени на поездки. Всегда чёткие размеры, приятные цены и вежливое общение.</p> </article> <!-- Review 2 - Maria Darpkunaite --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--green">MD</div> <div class="rv-card__author"> <p class="rv-card__name">Maria Darpkunaite</p> <span class="rv-card__count">8 отзывов</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__photo-wrap"> <img alt="Столешница в офисе крупно" loading="lazy" src="images/review_table_crop.png" width="810" height="598"/> <div aria-hidden="true" class="rv-card__preview"> <img alt="Полный вид столешницы" src="images/review_table_full.png" width="860" height="1116"/> </div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">7 марта 2024</span> </div> <p class="rv-card__text">Заказываю распил не первый раз, это прекрасная возможность сэкономить на стоимости мебели, всегда быстро и качественно, идут на встречу клиенту. Удобно что можно взять домой образцы, упрощает муки выбора цвета.</p> </article> <!-- Review 3 - Aleksei Volin --> <article class="rv-card"> <div class="rv-card__top"> <div aria-hidden="true" class="rv-card__avatar rv-card__avatar--blue">АВ</div> <div class="rv-card__author"> <p class="rv-card__name">Алексей Волин</p> <span class="rv-card__count">2 отзыва</span> </div> <div aria-label="Меню" class="rv-card__menu"><span></span></div> </div> <div class="rv-card__rating"> <div aria-label="5 из 5" class="rv-card__stars"> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> <svg class="rv-card__star" fill="#ff8c32" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg> </div> <span class="rv-card__date">11 марта 2026</span> </div> <p class="rv-card__text">Нужно было несколько радиусных деталей для проекта — выполнили идеально, геометрия точная, кромка ровная. Видно, что работают на хорошем оборудовании. Остался доволен.</p> </article> </div> <div class="rv-block__cta-wrap"> <a class="rv-block__cta" href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883/73.350829%2C55.026615?m=73.350829%2C55.026615%2F11.85" rel="noopener noreferrer" target="_blank"> <span class="rv-block__cta-icon">2</span> <span class="rv-block__cta-text"> <strong>Смотреть все отзывы</strong> <span>на странице 2ГИС</span> </span> <svg class="rv-block__cta-arrow" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><line x1="5" x2="19" y1="12" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg> </a> </div> </div> </div> <!-- nominify end --> </div> </div> 
 <div class="r t-rec" data-record-type="1370" id="rec3213771601" style="background-color:#f8f4ec;">
 <section class="exact-form-section" id="order-form" style="background-color:#f8f4ec;">
 <div class="exact-form-card" style="background:#ffffff; border:1px solid rgba(139,90,43,0.18); box-shadow:0 20px 50px rgba(74,44,26,0.08);">
@@ -3910,18 +3948,21 @@ html, body {
         Заполните форму — мы свяжемся с вами и обсудим детали.
       </p>
 <!-- Form -->
-<form id="exact-lead-form" onsubmit="event.preventDefault(); alert('Спасибо! Ваша заявка успешно принята. Мы свяжемся с вами в течение 15 минут.');">
+<form id="exact-lead-form" data-lead-form="lead" action="send.php" method="post" enctype="multipart/form-data">
 <!-- Row 1: Name and Phone -->
 <div class="exact-form-row">
-<input class="exact-form-input" placeholder="Как вас зовут" required="" type="text" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
-<input class="exact-form-input" placeholder="Телефон" required="" type="tel" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
+<label class="visually-hidden" for="lead-name">Как вас зовут</label>
+<input class="exact-form-input" id="lead-name" name="name" autocomplete="name" placeholder="Как вас зовут" required="" type="text" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
+<label class="visually-hidden" for="lead-phone">Номер телефона</label>
+<input class="exact-form-input" id="lead-phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="Телефон" required="" type="tel" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
 </div>
 <!-- Row 2: Email and Service Selection -->
 <div class="exact-form-row">
-<input class="exact-form-input" placeholder="Email (по желанию)" type="email" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
+<label class="visually-hidden" for="lead-email">Электронная почта, по желанию</label>
+<input class="exact-form-input" id="lead-email" name="email" autocomplete="email" placeholder="Email (по желанию)" type="email" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"/>
 <div class="exact-select-wrap">
-<span class="exact-select-badge">Какая услуга интересует</span>
-<select class="exact-form-select" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;">
+<span class="exact-select-badge" id="exact-service-badge">Какая услуга интересует</span>
+<select class="exact-form-select" id="exact-service-select" name="service" aria-labelledby="exact-service-badge" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;">
 <option selected="" value="raspil">Распил и кромление ЛДСП</option>
 <option value="kitchen">Кухня по индивидуальным размерам</option>
 <option value="wardrobe">Встроенный шкаф / гардеробная</option>
@@ -3933,7 +3974,8 @@ html, body {
 </div>
 <!-- Row 3: File Attachment Box (Matching screenshot) -->
 <div class="exact-file-box" id="raspil-file-box" onclick="handleFileBoxClick(event, 'exact-form-file', 'raspil-file-box')" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25);">
-<input id="exact-form-file" type="file" style="display:none;" accept=".pdf,.jpg,.jpeg,.png,.dwg,.doc,.docx,.xls,.xlsx,.zip,.rar" onchange="handleExactFileSelection(this, 'raspil-file-box')"/>
+<label class="visually-hidden" for="exact-form-file">Файл проекта</label>
+<input id="exact-form-file" name="file" type="file" style="display:none;" accept=".pdf,.jpg,.jpeg,.png,.dwg,.doc,.docx,.xls,.xlsx,.zip,.rar" onchange="handleExactFileSelection(this, 'raspil-file-box')"/>
 <div class="exact-file-left">
 <div class="exact-file-icon">
 <img alt="" onerror="this.innerHTML='📎';" src="images/attachment.svg"/>
@@ -3946,7 +3988,14 @@ html, body {
 <button type="button" class="exact-file-plus" id="raspil-file-box-btn" aria-label="Выбрать или удалить файл" onclick="handleFileBtnClick(event, 'exact-form-file', 'raspil-file-box')">+</button>
 </div>
 <!-- Row 4: Project Description -->
-<textarea class="exact-form-textarea" placeholder="Кратко о проекте" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"></textarea>
+<label class="visually-hidden" for="lead-comment">Кратко о проекте</label>
+<textarea class="exact-form-textarea" id="lead-comment" name="comment" placeholder="Кратко о проекте" style="background:#fdfbf7; border-color:rgba(139,90,43,0.25); color:#1c110a;"></textarea>
+<!-- Согласие на обработку персональных данных (152-ФЗ) -->
+<label class="lead-consent">
+<input type="checkbox" name="consent" value="1" required=""/>
+<span>Я согласен на <a href="privacy.html" target="_blank" rel="noopener noreferrer">обработку персональных данных</a></span>
+</label>
+<input type="text" name="website" class="lead-hp" tabindex="-1" autocomplete="off" aria-hidden="true"/>
 <!-- Row 5: Dark Bronze Submit Button with Heart Icon -->
 <div class="exact-form-submit-wrap">
 <button class="exact-form-btn-submit" type="submit" style="background:linear-gradient(135deg, #ff8a3c 0%, #e05206 100%);">
@@ -3964,15 +4013,15 @@ html, body {
 
 <footer class="site-footer">
 <div class="site-footer__inner">
-<div>
-<a class="site-header__brand" href="index.html" style="justify-self:flex-start; margin-bottom:14px;">
-<img alt="МОЙ МЕБЕЛЬНЫЙ" class="site-header__logo-img" src="images/logo_emblem_gold.png"/>
-<span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
-</a>
-<p class="site-footer__brand-p">
+      <div class="site-footer__col site-footer__col--brand">
+        <a class="site-header__brand" href="index.html">
+          <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ МЕБЕЛЬНЫЙ" width="24" height="27">
+          <span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
+        </a>
+        <p class="site-footer__brand-p">
           Собственное производство корпусной мебели и высокоточный раскрой ЛДСП в Омске на оборудовании SCM (Италия).
         </p>
-</div>
+      </div>
 <div class="site-footer__col">
 <h3>Услуги распила</h3>
 <ul class="site-footer__links">
@@ -4029,9 +4078,10 @@ html, body {
 </div>
 </div>
 <div class="site-footer__bottom">
-<div>©&nbsp;2026 «МОЙ&nbsp;мебельный». Все&nbsp;права защищены. Производство и&nbsp;офисы в&nbsp;Омске.</div>
+<div>©&nbsp;2026 «МОЙ&nbsp;мебельный». Все&nbsp;права защищены. Производство и&nbsp;офисы в&nbsp;Омске. <a href="privacy.html" style="color:#d4af6e; text-decoration:none;">Политика обработки персональных данных</a></div>
 <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
 <a href="https://2gis.ru/omsk/search/%D0%BC%D0%BE%D0%B9%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20/firm/70000001032737883" style="color:#ffaa33; text-decoration:none; font-weight:700;" target="_blank" rel="noopener noreferrer">★ 4.9 на 2ГИС</a>
+<a href="mailto:lamarty-raskroy@mail.ru" style="color:#d4af6e; text-decoration:none; font-weight:600;">lamarty-raskroy@mail.ru</a>
 <a href="https://vk.ru/moymb" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank" rel="noopener noreferrer">ВКонтакте</a>
 <a href="https://max.ru/u/f9LHodD0cOIgszpas1dHgwNF71_K6ZNa8acwM2Qd2jP5cNEV5h2IuPWM1lI" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank" rel="noopener noreferrer">MAX (26-я&nbsp;Северная)</a>
 <a href="https://max.ru/u/f9LHodD0cOKmed4l7_j3ZVtapP84ujcCO2oUlUYLp7i-jOAO23_xldLYmOY" style="color:#d4af6e; text-decoration:none; font-weight:600;" target="_blank" rel="noopener noreferrer">MAX (Герцена)</a>
@@ -4042,6 +4092,7 @@ html, body {
 (function() {
   const items = [];
   const edgePrices = { 'none': 0, '0.4': 45, '1.0': 60, '2.0': 85 };
+  var lastFocused = null;
 
   const matSelect = document.getElementById('calc-material-select');
   const lenInput = document.getElementById('calc-length-input');
@@ -4111,6 +4162,19 @@ html, body {
 
     const finalTotal = items.length > 0 ? Math.max(500, grandTotal) : 0;
     totalAmountEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
+
+    // если сумма деталей меньше минимального заказа — показываем, откуда разница
+    const minNote = document.getElementById('calc-min-note');
+    if (minNote) {
+      const surcharge = finalTotal - grandTotal;
+      if (surcharge > 0) {
+        minNote.innerText = 'Детали на ' + Math.round(grandTotal).toLocaleString('ru-RU')
+          + ' ₽ + доплата до минимального заказа ' + Math.round(surcharge).toLocaleString('ru-RU') + ' ₽';
+        minNote.style.display = 'block';
+      } else {
+        minNote.style.display = 'none';
+      }
+    }
 
     // Attach edit and delete handlers
     tbody.querySelectorAll('.saw-calc-btn-del').forEach(btn => {
@@ -4302,12 +4366,54 @@ html, body {
     if (m2InfoEl) m2InfoEl.innerText = 'Площадь: ' + totalArea.toFixed(2) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
     if (totalPriceEl) totalPriceEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
 
-    if (modal) modal.classList.add('is-open');
+    if (modal) {
+      lastFocused = document.activeElement;
+      modal.classList.add('is-open');
+      document.addEventListener('keydown', onModalKeydown);
+      var firstField = document.getElementById('calc-order-name');
+      if (firstField) { setTimeout(function() { firstField.focus(); }, 50); }
+    }
   };
+
+  // Esc закрывает окно, Tab не убегает за его пределы
+  function onModalKeydown(e) {
+    var modal = document.getElementById('calc-order-modal');
+    if (!modal || !modal.classList.contains('is-open')) return;
+
+    if (e.key === 'Escape' || e.keyCode === 27) {
+      e.preventDefault();
+      window.closeCalcModal();
+      return;
+    }
+    if (e.key !== 'Tab' && e.keyCode !== 9) return;
+
+    var focusable = modal.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([type="hidden"]):not([disabled]), select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+    var visible = Array.prototype.filter.call(focusable, function(el) {
+      return el.offsetWidth > 0 || el.offsetHeight > 0;
+    });
+    if (!visible.length) return;
+
+    var first = visible[0];
+    var last = visible[visible.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
 
   window.closeCalcModal = function() {
     var modal = document.getElementById('calc-order-modal');
     if (modal) modal.classList.remove('is-open');
+    document.removeEventListener('keydown', onModalKeydown);
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+      lastFocused = null;
+    }
   };
 
   window.handleCalcFileSelect = function(input) {
@@ -4331,19 +4437,12 @@ html, body {
     label.appendChild(document.createTextNode(' (' + (file.size / 1024 / 1024).toFixed(2) + ' МБ)'));
   };
 
-  window.submitCalcOrder = function(e) {
-    e.preventDefault();
-    var name = document.getElementById('calc-order-name').value;
-    var phone = document.getElementById('calc-order-phone').value;
-    
-    alert('Спасибо, ' + name + '! Ваш заказ на распил и спецификация деталей приняты. Мы свяжемся с вами по телефону ' + phone + ' в течение 15 минут.');
-    
-    window.closeCalcModal();
+  // Отправку формы берёт на себя js/lead-form.js (Telegram + почта).
+  // Здесь остаётся только очистка списка после успешной отправки.
+  window.clearCalcItems = function() {
     items.length = 0;
     renderTable();
-    document.getElementById('calc-dedicated-form').reset();
-    var statusEl = document.getElementById('calc-file-status');
-    if (statusEl) statusEl.innerText = 'Прикрепить карту раскроя / файл проекта';
+    hideError();
   };
 
   submitBtn.onclick = function() {
@@ -4853,4 +4952,32 @@ if (document.readyState === 'loading') {
 })();
 </script>
 
-</div></body> </html>
+</div>
+<script src="js/lead-form.js?v=1"></script>
+
+<!-- ===================================================================
+     ЯНДЕКС.МЕТРИКА — подключается в два шага:
+     1. Зарегистрируйте счётчик на metrika.yandex.ru и получите его номер.
+     2. Замените ВСТАВЬТЕ_НОМЕР_СЧЁТЧИКА на этот номер (в двух местах ниже)
+        и удалите строки с комментарием вокруг блока.
+     Цель "lead_sent" срабатывает сама после успешной отправки заявки —
+     её нужно только создать в интерфейсе Метрики с типом "JavaScript-событие".
+     ===================================================================
+<script type="text/javascript">
+  window.__ymCounterId = ВСТАВЬТЕ_НОМЕР_СЧЁТЧИКА;
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();
+  for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+  k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  ym(ВСТАВЬТЕ_НОМЕР_СЧЁТЧИКА, "init", {
+    clickmap: true,
+    trackLinks: true,
+    accurateTrackBounce: true,
+    webvisor: true
+  });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/ВСТАВЬТЕ_НОМЕР_СЧЁТЧИКА" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+-->
+</body> </html>

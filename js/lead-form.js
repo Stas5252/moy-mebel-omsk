@@ -69,6 +69,12 @@
     var data = new FormData(form);
     data.set('page', location.pathname.split('/').pop() || 'index.html');
 
+    // в заявку кладём название услуги, а не служебный код опции
+    var serviceSelect = form.querySelector('select[name="service"]');
+    if (serviceSelect && serviceSelect.selectedIndex >= 0) {
+      data.set('service', serviceSelect.options[serviceSelect.selectedIndex].text);
+    }
+
     if (form.getAttribute('data-lead-form') === 'calc') {
       var summary = collectCalcSummary();
       if (summary) { data.set('cart', summary); }
@@ -84,7 +90,11 @@
     setStatus(form, '', '');
 
     fetch(ENDPOINT, { method: 'POST', body: data })
-      .then(function (r) { return r.json().catch(function () { return { ok: false, error: 'Сервер ответил неожиданно' }; }); })
+      .then(function (r) {
+        return r.json().catch(function () {
+          return { ok: false, error: 'Заявка не ушла. Позвоните, пожалуйста: +7 (3812) 590-650' };
+        });
+      })
       .then(function (res) {
         if (res && res.ok) {
           setStatus(form, 'ok', 'Заявка принята. Мы свяжемся с вами в течение 15 минут.');

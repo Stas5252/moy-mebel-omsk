@@ -1,0 +1,138 @@
+# =============================================================================
+#  moymebelniy55.ru — настройки сервера (Apache)
+#  Сжатие, кэш, заголовки безопасности, редиректы, страница 404.
+#  Если хостинг на nginx — эти правила нужно перенести в конфиг nginx.
+# =============================================================================
+
+# --- Кодировка по умолчанию --------------------------------------------------
+AddDefaultCharset UTF-8
+
+# --- Стартовая страница ------------------------------------------------------
+DirectoryIndex index.html
+
+# --- Страница «не найдено» ---------------------------------------------------
+ErrorDocument 404 /404.html
+
+# --- Закрываем служебные файлы от посторонних --------------------------------
+<FilesMatch "^(config\.php|config\.sample\.php|\.htaccess|.*\.md|AGENTS\.md|CLAUDE\.md)$">
+  Require all denied
+</FilesMatch>
+
+# Каталог с резервными копиями заявок наружу не отдаём
+RedirectMatch 404 ^/leads/
+RedirectMatch 404 ^/\.autopilot/
+RedirectMatch 404 ^/_unused/
+RedirectMatch 404 ^/\.git/
+
+# =============================================================================
+#  ПЕРЕАДРЕСАЦИИ
+# =============================================================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # http -> https
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+  # www -> без www
+  RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+  RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+  # /index.html -> / (чтобы у главной был один адрес)
+  RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+  RewriteRule ^index\.html$ / [R=301,L]
+</IfModule>
+
+# =============================================================================
+#  ЗАГОЛОВКИ БЕЗОПАСНОСТИ
+# =============================================================================
+<IfModule mod_headers.c>
+  # Браузер не угадывает тип файла — берёт заявленный
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Сайт нельзя встроить в чужой iframe
+  Header always set X-Frame-Options "SAMEORIGIN"
+
+  # Не передаём полный адрес страницы на чужие сайты
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Отключаем то, что сайту не нужно
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
+
+  # Только https в течение года (включать после того, как https заработал)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+
+  # Откуда разрешено грузить ресурсы
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'"
+
+  # Шрифты — можно тянуть с поддомена
+  <FilesMatch "\.(woff2?|eot|ttf|otf)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# =============================================================================
+#  СЖАТИЕ
+# =============================================================================
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript text/javascript
+  AddOutputFilterByType DEFLATE application/json application/ld+json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml application/rss+xml
+</IfModule>
+
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json image/svg+xml
+</IfModule>
+
+# =============================================================================
+#  КЭШИРОВАНИЕ
+# =============================================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # HTML не кэшируем — правки должны быть видны сразу
+  ExpiresByType text/html                     "access plus 0 seconds"
+
+  # Статика с версией в адресе — на год
+  ExpiresByType text/css                      "access plus 1 year"
+  ExpiresByType application/javascript        "access plus 1 year"
+  ExpiresByType text/javascript               "access plus 1 year"
+
+  ExpiresByType image/jpeg                    "access plus 1 year"
+  ExpiresByType image/png                     "access plus 1 year"
+  ExpiresByType image/webp                    "access plus 1 year"
+  ExpiresByType image/svg+xml                 "access plus 1 year"
+  ExpiresByType image/x-icon                  "access plus 1 year"
+  ExpiresByType video/mp4                     "access plus 1 year"
+
+  ExpiresByType font/woff2                    "access plus 1 year"
+  ExpiresByType font/woff                     "access plus 1 year"
+  ExpiresByType application/font-woff2        "access plus 1 year"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|jpg|jpeg|png|webp|svg|ico|mp4|woff2?)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# --- Правильные типы для шрифтов и видео -------------------------------------
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType font/woff  .woff
+  AddType image/webp .webp
+  AddType image/svg+xml .svg
+  AddType video/mp4 .mp4
+</IfModule>
+
+# --- Ограничение размера загружаемого файла (20 МБ + запас) ------------------
+<IfModule mod_php.c>
+  php_value upload_max_filesize 24M
+  php_value post_max_size 26M
+</IfModule>

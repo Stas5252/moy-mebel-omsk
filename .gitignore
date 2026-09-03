@@ -8,3 +8,10 @@ Thumbs.db
 .vscode/
 .idea/
 .playwright-cli/
+
+# Файлы, не используемые ни одной страницей (перенесены при аудите)
+_unused/
+
+# Секреты приёма заявок
+config.php
+leads/

@@ -198,7 +198,7 @@ body {
 
 .site-header__loc-badge {
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 800 !important;
   letter-spacing: 0.6px !important;
   padding: 0 !important;
@@ -249,7 +249,7 @@ body {
 
 .site-header__loc-sub {
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 500 !important;
   color: #ffffff !important;
   opacity: 0.85 !important;
@@ -298,7 +298,7 @@ body {
     font-size: 12.5px !important;
   }
   .site-header__loc-sub {
-    font-size: 10px !important;
+    font-size: 12px !important;
   }
 }
 
@@ -595,12 +595,18 @@ body {
   grid-template-columns: 1fr 0.7fr 0.7fr 2.3fr;
   gap: 28px;
   margin-bottom: 40px;
+  align-items: stretch;
+}
+.site-footer__col {
+  display: flex;
+  flex-direction: column;
 }
 .site-footer__brand-p {
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-top: 14px;
+  line-height: 1.65;
+  margin: 0 !important;
   max-width: 320px;
+  font-size: 13px;
 }
 .site-footer__col h3,
 .site-footer__col h4 {
@@ -609,13 +615,27 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 16px;
+  line-height: 1 !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
 }
 .site-footer__links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+@media (min-width: 981px) {
+  .site-footer__links {
+    justify-content: space-between !important;
+    flex: 1 !important;
+  }
 }
 .site-footer__links a {
   color: var(--text-muted);
@@ -629,7 +649,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  margin-top: 8px;
+  margin: 0 !important;
   font-size: 13px;
   line-height: 1.4;
 }
@@ -650,14 +670,14 @@ body {
   gap: 8px;
 }
 .site-footer__card-label {
-  font-size: 11px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 700;
   color: #ff8a3c;
 }
 .site-footer__card-hours {
-  font-size: 11px;
+  font-size: 12px;
   color: #ffd991;
   font-weight: 500;
   white-space: nowrap;
@@ -755,10 +775,31 @@ body {
   transform: none !important;
   display: inline-flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  gap: 8px !important;
   text-decoration: none !important;
   color: #ffffff !important;
-  margin-bottom: 16px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  margin: 0 0 16px 0 !important;
+  padding: 0 !important;
+}
+
+.site-footer .site-header__brand .site-header__logo-img {
+  width: 20px !important;
+  height: 22px !important;
+  object-fit: contain !important;
+  display: block !important;
+  flex-shrink: 0 !important;
+}
+
+.site-footer .site-header__brand .site-header__brand-title {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  letter-spacing: 1px !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+  color: #ffffff !important;
+  white-space: nowrap !important;
 }
 
 /* === SMALL MOBILE FIXES (320px – 480px) === */
@@ -774,7 +815,7 @@ body {
     font-size: 13px !important;
   }
   .site-header__loc-sub {
-    font-size: 10.5px !important;
+    font-size: 12px !important;
   }
 }
 @media (max-width: 480px) {
@@ -940,8 +981,9 @@ html, body {
   top: 0;
   z-index: 10000;
   padding: 10px 18px;
-  background: #ff761a;
+  background: #0c0805;
   color: #ffffff;
+  border: 2px solid #ff761a;
   font-weight: 700;
   font-size: 14px;
   text-decoration: none;
@@ -990,4 +1032,77 @@ main:focus {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+
+/* ==========================================================================
+   ФОРМЫ ЗАЯВОК (добавлено при аудите)
+   Статус скрыт, пока форма не отправлена, — страница в покое выглядит как прежде.
+   ========================================================================== */
+
+/* Ловушка для спам-ботов: человек её не видит и не заполняет */
+.lead-hp {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Согласие на обработку персональных данных (обязательно по 152-ФЗ) */
+.lead-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 14px 0 4px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: inherit;
+  opacity: 0.85;
+  cursor: pointer;
+}
+.lead-consent input[type="checkbox"] {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  accent-color: #ff761a;
+  cursor: pointer;
+}
+.lead-consent a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.lead-consent a:hover {
+  color: #ff761a;
+}
+
+/* Ответ сервера после отправки */
+.lead-form-status {
+  display: none;
+  margin-top: 14px;
+  padding: 11px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.lead-form-status.is-ok {
+  background: rgba(61, 138, 76, 0.14);
+  border: 1px solid rgba(61, 138, 76, 0.45);
+  color: #2f7a41;
+}
+.lead-form-status.is-err {
+  background: rgba(190, 60, 40, 0.12);
+  border: 1px solid rgba(190, 60, 40, 0.45);
+  color: #b8382a;
+}
+/* внутри тёмной модалки калькулятора текст должен оставаться читаемым */
+.saw-modal-card .lead-form-status.is-ok {
+  color: #8fd99f;
+}
+.saw-modal-card .lead-form-status.is-err {
+  color: #ff9e8c;
 }
