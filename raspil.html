@@ -3358,19 +3358,21 @@ html, body {
       display: inline-block;
       font-style: italic;
       font-weight: 800;
-      background: linear-gradient(135deg, #ff8c32 0%, #ff6e28 50%, #ffa552 100%);
+      background: linear-gradient(135deg, #ff9238 0%, #ff6b1a 50%, #ffa347 100%);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent;
-      padding: 0 2px 6px;
+      -webkit-text-fill-color: transparent;
+      color: #ff761a;
+      padding: 0 12px 6px 4px;
+      margin-right: -8px;
       overflow: visible;
     }
 
     .rv-block__title-accent::after {
       content: '';
       position: absolute;
-      left: 2px;
-      right: 2px;
+      left: 4px;
+      right: 12px;
       bottom: 0;
       height: 3px;
       background: linear-gradient(90deg, #ff8c32, #ff6e28, #ffa552);
@@ -3905,7 +3907,7 @@ html, body {
 
     @media (max-width: 480px) {
       .rv-block__title { font-size: 1.5rem; line-height: 1.2; }
-      .rv-block__title-accent { padding: 0 1px 6px; }
+      .rv-block__title-accent { padding: 0 8px 6px 3px; margin-right: -5px; }
       .rv-block__summary { padding: 12px 16px; }
       .rv-block__summary-score { font-size: 1.5rem; }
       .rv-card__preview { width: 220px; height: 180px; }
