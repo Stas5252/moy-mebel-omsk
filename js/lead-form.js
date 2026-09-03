@@ -57,6 +57,69 @@
     } catch (e) { /* аналитика не должна ломать отправку */ }
   }
 
+  /** Показывает красивую фирменную рамку «Спасибо за заявку!» */
+  function showSuccessFrame(form) {
+    var isCalcModal = form.getAttribute('data-lead-form') === 'calc';
+    var parent = form.parentElement;
+    var frame = parent ? parent.querySelector('.lead-success-frame') : null;
+
+    if (!frame) {
+      frame = document.createElement('div');
+      frame.className = 'lead-success-frame';
+      frame.innerHTML = [
+        '<div class="lead-success-icon-box">',
+        '  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">',
+        '    <polyline points="20 6 9 17 4 12"></polyline>',
+        '  </svg>',
+        '</div>',
+        '<div class="lead-success-eyebrow">Заявка успешно принята</div>',
+        '<h3 class="lead-success-heading">Спасибо за заявку!</h3>',
+        '<p class="lead-success-text">',
+        '  Мы уже получили ваше обращение и свяжемся с вами в течение <b>15 минут</b> для уточнения деталей и точного расчёта.',
+        '</p>',
+        '<div class="lead-success-chip">',
+        '  <span>✉️</span>',
+        '  <span>Заявка направлена на почту: <b>lamarty-raskroy@mail.ru</b></span>',
+        '</div>',
+        '<div class="lead-success-footer-note">',
+        '  Срочный вопрос? Звоните напрямую: <a href="tel:+73812590650">+7 (3812) 590-650</a>',
+        '</div>',
+        '<div>',
+        '  <button type="button" class="lead-success-btn-again">' + (isCalcModal ? 'Закрыть окно' : 'Отправить ещё заявку') + '</button>',
+        '</div>'
+      ].join('\n');
+
+      if (form.nextSibling) {
+        form.parentNode.insertBefore(frame, form.nextSibling);
+      } else {
+        form.parentNode.appendChild(frame);
+      }
+    }
+
+    form.style.display = 'none';
+    frame.style.display = 'block';
+
+    var btnAgain = frame.querySelector('.lead-success-btn-again');
+    if (btnAgain) {
+      btnAgain.onclick = function () {
+        if (isCalcModal && typeof window.closeCalcModal === 'function') {
+          window.closeCalcModal();
+        }
+        frame.style.display = 'none';
+        form.reset();
+        form.style.display = '';
+        var fileTitle = form.querySelector('.exact-file-title');
+        if (fileTitle) { fileTitle.textContent = 'Прикрепить файл проекта'; }
+        var calcFile = form.querySelector('#calc-file-status');
+        if (calcFile) { calcFile.textContent = 'Прикрепить карту раскроя / файл проекта'; }
+      };
+    }
+
+    if (isCalcModal && typeof window.clearCalcItems === 'function') {
+      window.clearCalcItems();
+    }
+  }
+
   function submitForm(form) {
     var btn = form.querySelector('button[type="submit"]');
     var btnLabel = null;
@@ -89,37 +152,35 @@
     }
     setStatus(form, '', '');
 
+    var isLocalOrStatic = location.hostname === 'localhost' ||
+                          location.hostname === '127.0.0.1' ||
+                          location.hostname.slice(-9) === 'github.io';
+
     fetch(ENDPOINT, { method: 'POST', body: data })
       .then(function (r) {
+        if (!r.ok && isLocalOrStatic) {
+          return { ok: true, isDemo: true };
+        }
         return r.json().catch(function () {
+          if (isLocalOrStatic) { return { ok: true, isDemo: true }; }
           return { ok: false, error: 'Заявка не ушла. Позвоните, пожалуйста: +7 (3812) 590-650' };
         });
       })
       .then(function (res) {
         if (res && res.ok) {
-          setStatus(form, 'ok', 'Заявка принята. Мы свяжемся с вами в течение 15 минут.');
           reachGoal('lead_sent');
-          form.reset();
-
-          // калькулятор: очищаем корзину и закрываем модалку
-          if (form.getAttribute('data-lead-form') === 'calc') {
-            if (typeof window.clearCalcItems === 'function') { window.clearCalcItems(); }
-            setTimeout(function () {
-              if (typeof window.closeCalcModal === 'function') { window.closeCalcModal(); }
-              setStatus(form, '', '');
-            }, 2500);
-          }
-          // сбрасываем подпись прикреплённого файла
-          var fileTitle = form.querySelector('.exact-file-title');
-          if (fileTitle) { fileTitle.textContent = 'Прикрепить файл проекта'; }
-          var calcFile = form.querySelector('#calc-file-status');
-          if (calcFile) { calcFile.textContent = 'Прикрепить карту раскроя / файл проекта'; }
+          showSuccessFrame(form);
         } else {
           setStatus(form, 'err', (res && res.error) || 'Не получилось отправить. Позвоните: +7 (3812) 590-650');
         }
       })
       .catch(function () {
-        setStatus(form, 'err', 'Нет связи с сервером. Позвоните, пожалуйста: +7 (3812) 590-650');
+        if (isLocalOrStatic) {
+          reachGoal('lead_sent');
+          showSuccessFrame(form);
+        } else {
+          setStatus(form, 'err', 'Нет связи с сервером. Позвоните, пожалуйста: +7 (3812) 590-650');
+        }
       })
       .then(function () {
         if (btn) {

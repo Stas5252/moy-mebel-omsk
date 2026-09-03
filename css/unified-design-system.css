@@ -1106,3 +1106,168 @@ main:focus {
 .saw-modal-card .lead-form-status.is-err {
   color: #ff9e8c;
 }
+
+/* Красивая фирменная рамка «Спасибо за заявку!» */
+.lead-success-frame {
+  display: none;
+  position: relative;
+  margin: 10px 0;
+  padding: 36px 24px;
+  background: linear-gradient(145deg, #ffffff 0%, #fdfbf7 100%);
+  border: 2px solid #ff761a;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(255, 118, 26, 0.12), 0 4px 16px rgba(45, 27, 16, 0.06);
+  text-align: center;
+  animation: leadSuccessPop 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes leadSuccessPop {
+  0% { opacity: 0; transform: scale(0.96) translateY(12px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.lead-success-icon-box {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: rgba(255, 118, 26, 0.12);
+  border: 2px solid #ff761a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff761a;
+  box-shadow: 0 0 24px rgba(255, 118, 26, 0.25);
+  animation: leadSuccessPulse 2.5s infinite;
+}
+
+@keyframes leadSuccessPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(255, 118, 26, 0.25); }
+  50% { transform: scale(1.05); box-shadow: 0 0 32px rgba(255, 118, 26, 0.45); }
+}
+
+.lead-success-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #e05206;
+  background: rgba(255, 118, 26, 0.1);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.lead-success-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff761a;
+  box-shadow: 0 0 6px #ff761a;
+}
+
+.lead-success-heading {
+  font-size: 26px;
+  font-weight: 900;
+  color: #1c110a;
+  margin: 0 0 10px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.lead-success-text {
+  font-size: 15px;
+  color: #5c4533;
+  line-height: 1.5;
+  margin: 0 auto 18px;
+  max-width: 480px;
+}
+
+.lead-success-text b {
+  color: #1c110a;
+}
+
+.lead-success-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8f4ec;
+  border: 1px solid rgba(139, 90, 43, 0.2);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #4a2c1a;
+  margin-bottom: 20px;
+}
+
+.lead-success-footer-note {
+  font-size: 13px;
+  color: #8c7362;
+  margin-bottom: 20px;
+}
+
+.lead-success-footer-note a {
+  color: #ff761a;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lead-success-btn-again {
+  display: inline-block;
+  background: linear-gradient(135deg, #5c3218 0%, #3a1e0e 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lead-success-btn-again:hover {
+  background: linear-gradient(135deg, #ff761a 0%, #e05206 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(255, 118, 26, 0.3);
+}
+
+/* Стили для тёмной темы модалки калькулятора */
+.saw-modal-card .lead-success-frame {
+  background: linear-gradient(145deg, #24160d 0%, #170d06 100%);
+  border-color: rgba(212, 175, 110, 0.6);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 110, 0.15);
+}
+
+.saw-modal-card .lead-success-icon-box {
+  background: rgba(212, 175, 110, 0.15);
+  border-color: #d4af6e;
+  color: #ffd991;
+  box-shadow: 0 0 24px rgba(212, 175, 110, 0.3);
+}
+
+.saw-modal-card .lead-success-heading {
+  color: #ffffff;
+}
+
+.saw-modal-card .lead-success-text {
+  color: #d1bfae;
+}
+
+.saw-modal-card .lead-success-text b {
+  color: #ffd991;
+}
+
+.saw-modal-card .lead-success-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(212, 175, 110, 0.25);
+  color: #ffd991;
+}
+
+.saw-modal-card .lead-success-footer-note {
+  color: #a89485;
+}
