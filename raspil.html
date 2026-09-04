@@ -926,6 +926,24 @@ html, body {
   color: #ffffff !important;
 }
 
+/* Editing Row Style - dark gray while editing */
+.saw-calc-table tr.saw-calc-row-editing td {
+  background: #353230 !important;
+}
+.saw-calc-table tr.saw-calc-row-editing {
+  background: #353230 !important;
+  box-shadow: inset 0 0 0 1.5px #ff761a !important;
+}
+.saw-calc-btn-edit.is-active {
+  background: #554e48 !important;
+  color: #ffffff !important;
+  border-color: #8c8279 !important;
+}
+.saw-calc-btn-add.is-saving {
+  background: linear-gradient(135deg, #ff761a 0%, #d45000 100%) !important;
+  box-shadow: 0 6px 18px rgba(255, 118, 26, 0.45) !important;
+}
+
 /* Bottom Bar */
 .saw-calc-bottom-bar {
   display: flex !important;
@@ -4140,6 +4158,7 @@ html, body {
   const totalAmountEl = document.getElementById('calc-total-amount');
   const totalAreaNoteEl = document.getElementById('calc-total-area-note');
   const totalAreaValEl = document.getElementById('calc-total-m2-val');
+  let editingIndex = null;
 
   function roundAreaUp(m2) {
     if (!m2 || m2 <= 0) return 0;
@@ -4182,7 +4201,11 @@ html, body {
     items.forEach((item, idx) => {
       grandTotal += item.cost;
       totalAreaSum += (item.areaM2 || 0);
+      const isEditingThis = (editingIndex === idx);
       const tr = document.createElement('tr');
+      if (isEditingThis) {
+        tr.className = 'saw-calc-row-editing';
+      }
       const textureBadge = item.hasTexture ? ` <span style="display:inline-block; font-size:10px; font-weight:700; background:rgba(255,118,26,0.18); color:#ffaa33; border:1px solid rgba(255,118,26,0.4); border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle;">Текстура</span>` : '';
       const areaBadge = ` <span style="display:inline-block; font-size:11px; font-weight:700; background:rgba(255,170,51,0.12); color:#ffd991; border:1px solid rgba(255,170,51,0.3); border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;" title="Квадратура детали">${formatArea(item.areaM2 || 0)} м²</span>`;
       const unitCost = (item.count && item.count > 1) ? `<div style="font-size:11px; color:#c4b2a3; font-weight:500; margin-top:2px;">по ${Math.round(item.cost / item.count).toLocaleString('ru-RU')} ₽/шт.</div>` : '';
@@ -4197,7 +4220,7 @@ html, body {
         </td>
         <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽${unitCost}</td>
         <td>
-          <button type="button" class="saw-calc-btn-edit" data-idx="${idx}">✏️ Изменить</button>
+          <button type="button" class="saw-calc-btn-edit ${isEditingThis ? 'is-active' : ''}" data-idx="${idx}">${isEditingThis ? '✕ Отмена' : '✏️ Изменить'}</button>
           <button type="button" class="saw-calc-btn-del" data-idx="${idx}">✕</button>
         </td>
       `;
@@ -4225,10 +4248,39 @@ html, body {
       }
     }
 
+    function cancelEdit() {
+      editingIndex = null;
+      lenInput.value = '';
+      widInput.value = '';
+      if (countInput) countInput.value = '1';
+      edgeL1.value = 'none';
+      edgeL2.value = 'none';
+      edgeW1.value = 'none';
+      edgeW2.value = 'none';
+      if (textureInput) {
+        textureInput.checked = true;
+        updateTextureActive();
+      }
+      if (addBtn) {
+        addBtn.innerHTML = '<span>+</span> Добавить деталь';
+        addBtn.classList.remove('is-saving');
+      }
+      renderTable();
+    }
+
     // Attach edit and delete handlers
     tbody.querySelectorAll('.saw-calc-btn-del').forEach(btn => {
       btn.onclick = function() {
         const i = parseInt(this.getAttribute('data-idx'));
+        if (editingIndex === i) {
+          editingIndex = null;
+          if (addBtn) {
+            addBtn.innerHTML = '<span>+</span> Добавить деталь';
+            addBtn.classList.remove('is-saving');
+          }
+        } else if (editingIndex !== null && editingIndex > i) {
+          editingIndex--;
+        }
         items.splice(i, 1);
         renderTable();
       };
@@ -4237,7 +4289,15 @@ html, body {
     tbody.querySelectorAll('.saw-calc-btn-edit').forEach(btn => {
       btn.onclick = function() {
         const i = parseInt(this.getAttribute('data-idx'));
+        
+        // If clicking the currently editing row, cancel edit mode
+        if (editingIndex === i) {
+          cancelEdit();
+          return;
+        }
+
         const itm = items[i];
+        editingIndex = i;
         
         // Repopulate form inputs
         lenInput.value = itm.length;
@@ -4260,8 +4320,11 @@ html, body {
           }
         }
 
-        // Remove from list and re-render
-        items.splice(i, 1);
+        if (addBtn) {
+          addBtn.innerHTML = '<span>✓</span> Сохранить изменения';
+          addBtn.classList.add('is-saving');
+        }
+
         renderTable();
         lenInput.focus();
       };
@@ -4375,8 +4438,7 @@ html, body {
 
     const hasTexture = textureInput ? textureInput.checked : false;
     const itemTotalCost = Math.round(sawCutCost + edgeCost);
-
-    items.push({
+    const newItem = {
       length: L,
       width: W,
       count: Q,
@@ -4388,7 +4450,18 @@ html, body {
       edgeSummaryText: edgeSummaryText,
       edgeRoundedMeters: totalEdgeRoundedMeters,
       cost: itemTotalCost
-    });
+    };
+
+    if (editingIndex !== null && editingIndex >= 0 && editingIndex < items.length) {
+      items[editingIndex] = newItem;
+      editingIndex = null;
+      if (addBtn) {
+        addBtn.innerHTML = '<span>+</span> Добавить деталь';
+        addBtn.classList.remove('is-saving');
+      }
+    } else {
+      items.push(newItem);
+    }
 
     renderTable();
 
@@ -4410,6 +4483,11 @@ html, body {
   clearBtn.onclick = function() {
     if (items.length > 0 && confirm('Очистить весь список деталей?')) {
       items.length = 0;
+      editingIndex = null;
+      if (addBtn) {
+        addBtn.innerHTML = '<span>+</span> Добавить деталь';
+        addBtn.classList.remove('is-saving');
+      }
       renderTable();
       hideError();
     }
