@@ -614,7 +614,7 @@ html, body {
 /* Single Row Inputs Layout */
 .saw-calc-single-row {
   display: grid !important;
-  grid-template-columns: 2.2fr 1fr 1fr 1.3fr 1.3fr auto auto !important;
+  grid-template-columns: 2fr 1fr 1fr 0.8fr 1.25fr 1.25fr auto auto !important;
   gap: 12px !important;
   align-items: flex-end !important;
   margin-bottom: 12px !important;
@@ -799,7 +799,7 @@ html, body {
   font-weight: 600 !important;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
   .saw-calc-single-row {
     grid-template-columns: 1fr 1fr !important;
   }
@@ -1740,6 +1740,10 @@ html, body {
 <input id="calc-width-input" max="1830" min="50" placeholder="напр. 600" type="number"/>
 </div>
 <div class="saw-calc-col">
+<label for="calc-count-input">КОЛ-ВО, ШТ</label>
+<input id="calc-count-input" max="999" min="1" placeholder="1" type="number" value="1"/>
+</div>
+<div class="saw-calc-col">
 <label>═ КРОМКА ДЛИНА</label>
 <div class="saw-calc-dual-selects">
 <select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1" title="Длина сторона 1">
@@ -1823,6 +1827,7 @@ html, body {
 <tr>
 <th>#</th>
 <th>Деталь / Размеры</th>
+<th>Кол-во</th>
 <th>Материал</th>
 <th>Кромка</th>
 <th>Стоимость</th>
@@ -4117,6 +4122,7 @@ html, body {
   const matSelect = document.getElementById('calc-material-select');
   const lenInput = document.getElementById('calc-length-input');
   const widInput = document.getElementById('calc-width-input');
+  const countInput = document.getElementById('calc-count-input');
   const edgeL1 = document.getElementById('calc-edge-l1');
   const edgeL2 = document.getElementById('calc-edge-l2');
   const edgeW1 = document.getElementById('calc-edge-w1');
@@ -4162,16 +4168,18 @@ html, body {
       grandTotal += item.cost;
       const tr = document.createElement('tr');
       const textureBadge = item.hasTexture ? ` <span style="display:inline-block; font-size:10px; font-weight:700; background:rgba(255,118,26,0.18); color:#ffaa33; border:1px solid rgba(255,118,26,0.4); border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle;">Текстура</span>` : '';
+      const unitCost = (item.count && item.count > 1) ? `<div style="font-size:11px; color:#c4b2a3; font-weight:500; margin-top:2px;">по ${Math.round(item.cost / item.count).toLocaleString('ru-RU')} ₽/шт.</div>` : '';
 
       tr.innerHTML = `
         <td style="color:#ffaa33; font-weight:700;">${idx + 1}</td>
         <td><b>${item.length} × ${item.width} мм</b>${textureBadge}</td>
+        <td><span style="display:inline-block; font-weight:800; color:#ffd991; background:rgba(255,170,51,0.14); border:1px solid rgba(255,170,51,0.3); padding:3px 9px; border-radius:6px; font-size:13px;">${item.count || 1} шт.</span></td>
         <td><span style="color:#d1bfae;">${item.matName}</span></td>
         <td>
           <div style="font-size:12.5px; color:#ffd991; font-weight:600;">${item.edgeDesc}</div>
           <div style="font-size:11px; color:#ff9e58; font-weight:700; margin-top:2px;">Итого кромки: ${item.edgeSummaryText || (item.edgeRoundedMeters + ' м')}</div>
         </td>
-        <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽</td>
+        <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽${unitCost}</td>
         <td>
           <button type="button" class="saw-calc-btn-edit" data-idx="${idx}">✏️ Изменить</button>
           <button type="button" class="saw-calc-btn-del" data-idx="${idx}">✕</button>
@@ -4213,6 +4221,7 @@ html, body {
         // Repopulate form inputs
         lenInput.value = itm.length;
         widInput.value = itm.width;
+        if (countInput) countInput.value = itm.count || 1;
         edgeL1.value = itm.el1;
         edgeL2.value = itm.el2;
         edgeW1.value = itm.ew1;
@@ -4261,7 +4270,7 @@ html, body {
     if (errBox) errBox.style.display = 'none';
   }
 
-  [lenInput, widInput, edgeL1, edgeL2, edgeW1, edgeW2, matSelect].forEach(el => {
+  [lenInput, widInput, countInput, edgeL1, edgeL2, edgeW1, edgeW2, matSelect].forEach(el => {
     if (el) el.addEventListener('input', hideError);
     if (el) el.addEventListener('change', hideError);
   });
@@ -4270,6 +4279,7 @@ html, body {
     hideError();
     const L = parseFloat(lenInput.value);
     const W = parseFloat(widInput.value);
+    let Q = parseInt(countInput ? countInput.value : 1, 10);
 
     if (!L || L < 50 || L > 2720) {
       showError('Пожалуйста, укажите корректную длину детали (от 50 до 2720 мм)', lenInput);
@@ -4279,6 +4289,10 @@ html, body {
       showError('Пожалуйста, укажите корректную ширину детали (от 50 до 1830 мм)', widInput);
       return;
     }
+    if (isNaN(Q) || Q < 1 || Q > 999) {
+      showError('Пожалуйста, укажите количество деталей (от 1 до 999 шт.)', countInput);
+      return;
+    }
 
     const opt = matSelect.options[matSelect.selectedIndex];
     const matPriceM2 = parseFloat(opt.value);
@@ -4286,17 +4300,17 @@ html, body {
 
     // Calculate Area Cost
     const areaM2 = (L * W) / 1000000;
-    const sawCutCost = areaM2 * matPriceM2;
+    const sawCutCost = areaM2 * matPriceM2 * Q;
 
     // Calculate Edge Meters by Thickness
     const el1 = edgeL1.value, el2 = edgeL2.value;
     const ew1 = edgeW1.value, ew2 = edgeW2.value;
 
     const edgeLengths = { '0.4': 0, '1.0': 0, '2.0': 0 };
-    if (el1 !== 'none') edgeLengths[el1] += L / 1000;
-    if (el2 !== 'none') edgeLengths[el2] += L / 1000;
-    if (ew1 !== 'none') edgeLengths[ew1] += W / 1000;
-    if (ew2 !== 'none') edgeLengths[ew2] += W / 1000;
+    if (el1 !== 'none') edgeLengths[el1] += (L / 1000) * Q;
+    if (el2 !== 'none') edgeLengths[el2] += (L / 1000) * Q;
+    if (ew1 !== 'none') edgeLengths[ew1] += (W / 1000) * Q;
+    if (ew2 !== 'none') edgeLengths[ew2] += (W / 1000) * Q;
 
     let edgeCost = 0;
     let totalEdgeRoundedMeters = 0;
@@ -4343,6 +4357,7 @@ html, body {
     items.push({
       length: L,
       width: W,
+      count: Q,
       matName: matName,
       el1, el2, ew1, ew2,
       hasTexture: hasTexture,
@@ -4357,6 +4372,7 @@ html, body {
     // Reset ALL form inputs cleanly for the next item
     lenInput.value = '';
     widInput.value = '';
+    if (countInput) countInput.value = '1';
     edgeL1.value = 'none';
     edgeL2.value = 'none';
     edgeW1.value = 'none';
@@ -4386,9 +4402,12 @@ html, body {
     let totalArea = 0;
     let totalEdgeMeters = 0;
     let grandTotal = 0;
+    let totalPieces = 0;
 
     items.forEach(function(itm) {
-      totalArea += (itm.length * itm.width) / 1000000;
+      const cnt = itm.count || 1;
+      totalPieces += cnt;
+      totalArea += ((itm.length * itm.width) / 1000000) * cnt;
       totalEdgeMeters += itm.edgeRoundedMeters;
       grandTotal += itm.cost;
     });
@@ -4400,7 +4419,7 @@ html, body {
     var totalPriceEl = document.getElementById('calc-modal-total-price');
     var modal = document.getElementById('calc-order-modal');
 
-    if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + items.length + ' шт';
+    if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + totalPieces + ' шт';
     if (m2InfoEl) m2InfoEl.innerText = 'Площадь: ' + totalArea.toFixed(2) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
     if (totalPriceEl) totalPriceEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
 
