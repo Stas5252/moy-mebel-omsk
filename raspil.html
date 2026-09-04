@@ -1779,8 +1779,8 @@ html, body {
 </div>
 <div class="saw-calc-col">
 <label aria-hidden="true">&nbsp;</label>
-<label class="saw-calc-texture-btn" id="calc-texture-label" title="Направление текстуры">
-<input id="calc-texture-input" type="checkbox" aria-label="Учитывать направление текстуры"/>
+<label class="saw-calc-texture-btn is-active" id="calc-texture-label" title="Направление текстуры">
+<input id="calc-texture-input" type="checkbox" checked="" aria-label="Учитывать направление текстуры"/>
 <span class="saw-calc-texture-box"></span>
 <span>Текстура</span>
 </label>
@@ -4379,7 +4379,7 @@ html, body {
     edgeW2.value = 'none';
     matSelect.selectedIndex = 0;
     if (textureInput) {
-      textureInput.checked = false;
+      textureInput.checked = true;
       updateTextureActive();
     }
     lenInput.focus();
