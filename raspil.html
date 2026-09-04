@@ -944,6 +944,232 @@ html, body {
   box-shadow: 0 6px 18px rgba(255, 118, 26, 0.45) !important;
 }
 
+/* Custom Material Dropdown with Photo Preview */
+.saw-custom-select {
+  position: relative;
+  width: 100%;
+}
+.saw-custom-select-trigger {
+  width: 100% !important;
+  height: 46px !important;
+  background: #faf7f2 !important;
+  border: 1.5px solid #e0d5c8 !important;
+  border-radius: 9px !important;
+  padding: 0 10px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: all 0.2s ease !important;
+  box-sizing: border-box !important;
+  text-align: left !important;
+}
+.saw-custom-select-trigger:hover,
+.saw-custom-select.is-open .saw-custom-select-trigger {
+  border-color: #ff761a !important;
+  background: #ffffff !important;
+}
+.saw-custom-select.is-open .saw-custom-select-trigger {
+  box-shadow: 0 0 0 3px rgba(255, 118, 26, 0.18) !important;
+}
+.saw-custom-select-thumb {
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 5px !important;
+  object-fit: cover !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  flex-shrink: 0 !important;
+  background: #eee !important;
+}
+.saw-custom-select-name {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #1a1512 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  flex-grow: 1 !important;
+}
+.saw-custom-select-arrow {
+  font-size: 11px !important;
+  color: #8c7a6e !important;
+  transition: transform 0.2s ease !important;
+  flex-shrink: 0 !important;
+}
+.saw-custom-select.is-open .saw-custom-select-arrow {
+  transform: rotate(180deg) !important;
+  color: #ff761a !important;
+}
+
+.saw-custom-select-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 290px;
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff !important;
+  border: 1.5px solid #e5d7c8 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.2) !important;
+  z-index: 10000 !important;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  animation: sawSelectFadeIn 0.15s ease-out;
+}
+.saw-custom-select.is-open .saw-custom-select-menu {
+  display: flex !important;
+}
+@keyframes sawSelectFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.saw-custom-select-search-wrap {
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee2d5;
+  background: #faf7f2;
+}
+.saw-custom-select-search {
+  width: 100% !important;
+  height: 34px !important;
+  background: #ffffff !important;
+  border: 1px solid #dcd0c2 !important;
+  border-radius: 7px !important;
+  padding: 0 10px !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  color: #1a1512 !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+.saw-custom-select-search:focus {
+  border-color: #ff761a !important;
+}
+.saw-custom-select-list {
+  max-height: 290px;
+  overflow-y: auto;
+  padding: 4px 0;
+  overscroll-behavior: contain;
+}
+.saw-custom-select-list::-webkit-scrollbar {
+  width: 6px;
+}
+.saw-custom-select-list::-webkit-scrollbar-thumb {
+  background: #d4af6e;
+  border-radius: 4px;
+}
+
+.saw-custom-select-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  position: relative;
+  user-select: none;
+}
+.saw-custom-select-item:hover,
+.saw-custom-select-item.is-hovered {
+  background: #fff4ec !important;
+}
+.saw-custom-select-item.is-selected {
+  background: #faece1 !important;
+}
+.saw-custom-item-thumb {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px !important;
+  object-fit: cover !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  flex-shrink: 0 !important;
+  background: #eee !important;
+  transition: transform 0.15s ease !important;
+}
+.saw-custom-select-item:hover .saw-custom-item-thumb {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+.saw-custom-item-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex-grow: 1;
+}
+.saw-custom-item-name {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: #2a1f18 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.saw-custom-item-price {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  color: #ff761a !important;
+}
+
+/* Floating Hover Preview Card */
+.saw-mat-hover-preview {
+  position: fixed;
+  z-index: 999999;
+  background: #24160c;
+  border: 1.5px solid #ff8a3c;
+  border-radius: 12px;
+  padding: 8px;
+  width: 155px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.saw-mat-hover-preview.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.saw-mat-prev-img-wrap {
+  width: 100%;
+  height: 125px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #110904;
+}
+.saw-mat-prev-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.saw-mat-prev-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.saw-mat-prev-title {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.3 !important;
+}
+.saw-mat-prev-price {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  color: #ffd991 !important;
+}
+
 /* Bottom Bar */
 .saw-calc-bottom-bar {
   display: flex !important;
@@ -1720,40 +1946,53 @@ html, body {
 <div class="saw-calc-single-row">
 <div class="saw-calc-col">
 <label for="calc-material-select">МАТЕРИАЛ</label>
-<select id="calc-material-select">
-<option data-name="Венге Линум 16мм" selected="" value="850">Венге Линум 16мм</option>
-<option data-name="Венге соренто 16мм" value="850">Венге соренто 16мм</option>
-<option data-name="Дуб Атланта 16мм" value="850">Дуб Атланта 16мм</option>
-<option data-name="Ноче Экко 16мм" value="850">Ноче Экко 16мм</option>
-<option data-name="Ясень Анкор светлый 16мм" value="850">Ясень Анкор светлый 16мм</option>
-<option data-name="Бежевый шагрень 16мм" value="880">Бежевый шагрень 16мм</option>
-<option data-name="Бодега светлая 16мм" value="880">Бодега светлая 16мм</option>
-<option data-name="Бук Бавария светлый 16мм" value="880">Бук Бавария светлый 16мм</option>
-<option data-name="Выбеленное дерево 16мм" value="880">Выбеленное дерево 16мм</option>
-<option data-name="Вишня Оксфорд 16мм" value="880">Вишня Оксфорд 16мм</option>
-<option data-name="Дуб Мадура 16мм" value="880">Дуб Мадура 16мм</option>
-<option data-name="Дуб Вотан 16мм" value="880">Дуб Вотан 16мм</option>
-<option data-name="Дуб Девон 16мм" value="880">Дуб Девон 16мм</option>
-<option data-name="Дуб Сонома светлый 16мм" value="880">Дуб Сонома светлый 16мм</option>
-<option data-name="Джарра светлая 16мм" value="880">Джарра светлая 16мм</option>
-<option data-name="Джарра темная 16мм" value="880">Джарра темная 16мм</option>
-<option data-name="Катхульт 16мм" value="880">Катхульт 16мм</option>
-<option data-name="Капучино 16мм" value="880">Капучино 16мм</option>
-<option data-name="Ноче Гварнери 16мм" value="880">Ноче Гварнери 16мм</option>
-<option data-name="Каспий темный 16мм" value="880">Каспий темный 16мм</option>
-<option data-name="Клен танзау 16мм" value="880">Клен танзау 16мм</option>
-<option data-name="Сосна Санторини светлая 16мм" value="880">Сосна Санторини светлая 16мм</option>
-<option data-name="Ясень Шимо Светлый 16мм" value="880">Ясень Шимо Светлый 16мм</option>
-<option data-name="Ясень Шимо Темный 16мм" value="880">Ясень Шимо Темный 16мм</option>
-<option data-name="Белый шагрень 16мм" value="900">Белый шагрень 16мм</option>
-<option data-name="Дуб Ривьера 126 16мм" value="930">Дуб Ривьера 126 16мм</option>
-<option data-name="Дуб Рокпайл 16мм" value="930">Дуб Рокпайл 16мм</option>
-<option data-name="Серый шагрень 16мм" value="930">Серый шагрень 16мм</option>
-<option data-name="Алюминий 16мм" value="930">Алюминий 16мм</option>
-<option data-name="Титан 16мм" value="930">Титан 16мм</option>
-<option data-name="Черный 16мм" value="930">Черный 16мм</option>
-<option data-name="Дуб Каньон Монумент 16мм" value="930">Дуб Каньон Монумент 16мм</option>
+<select id="calc-material-select" style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; pointer-events: none;">
+<option data-name="Венге Линум 16мм" data-img="images/materials/basic_15.jpg" selected="" value="850">Венге Линум 16мм</option>
+<option data-name="Венге соренто 16мм" data-img="images/materials/basic_14.jpg" value="850">Венге соренто 16мм</option>
+<option data-name="Дуб Атланта 16мм" data-img="images/materials/basic_11.jpg" value="850">Дуб Атланта 16мм</option>
+<option data-name="Ноче Экко 16мм" data-img="images/materials/basic_20.jpg" value="850">Ноче Экко 16мм</option>
+<option data-name="Ясень Анкор светлый 16мм" data-img="images/materials/basic_12.jpg" value="850">Ясень Анкор светлый 16мм</option>
+<option data-name="Бежевый шагрень 16мм" data-img="images/materials/basic_6.jpg" value="880">Бежевый шагрень 16мм</option>
+<option data-name="Бодега светлая 16мм" data-img="images/materials/basic_18.jpg" value="880">Бодега светлая 16мм</option>
+<option data-name="Бук Бавария светлый 16мм" data-img="images/materials/basic_26.jpg" value="880">Бук Бавария светлый 16мм</option>
+<option data-name="Выбеленное дерево 16мм" data-img="images/materials/basic_17.jpg" value="880">Выбеленное дерево 16мм</option>
+<option data-name="Вишня Оксфорд 16мм" data-img="images/materials/basic_25.jpg" value="880">Вишня Оксфорд 16мм</option>
+<option data-name="Дуб Мадура 16мм" data-img="images/materials/basic_10.jpg" value="880">Дуб Мадура 16мм</option>
+<option data-name="Дуб Вотан 16мм" data-img="images/materials/basic_13.jpg" value="880">Дуб Вотан 16мм</option>
+<option data-name="Дуб Девон 16мм" data-img="images/materials/basic_21.jpg" value="880">Дуб Девон 16мм</option>
+<option data-name="Дуб Сонома светлый 16мм" data-img="images/materials/basic_31.jpg" value="880">Дуб Сонома светлый 16мм</option>
+<option data-name="Джарра светлая 16мм" data-img="images/materials/basic_7.jpg" value="880">Джарра светлая 16мм</option>
+<option data-name="Джарра темная 16мм" data-img="images/materials/basic_27.jpg" value="880">Джарра темная 16мм</option>
+<option data-name="Катхульт 16мм" data-img="images/materials/basic_16.jpg" value="880">Катхульт 16мм</option>
+<option data-name="Капучино 16мм" data-img="images/materials/basic_5.jpg" value="880">Капучино 16мм</option>
+<option data-name="Ноче Гварнери 16мм" data-img="images/materials/basic_19.jpg" value="880">Ноче Гварнери 16мм</option>
+<option data-name="Каспий темный 16мм" data-img="images/materials/basic_1.jpg" value="880">Каспий темный 16мм</option>
+<option data-name="Клен танзау 16мм" data-img="images/materials/basic_22.jpg" value="880">Клен танзау 16мм</option>
+<option data-name="Сосна Санторини светлая 16мм" data-img="images/materials/basic_29.jpg" value="880">Сосна Санторини светлая 16мм</option>
+<option data-name="Ясень Шимо Светлый 16мм" data-img="images/materials/basic_28.jpg" value="880">Ясень Шимо Светлый 16мм</option>
+<option data-name="Ясень Шимо Темный 16мм" data-img="images/materials/basic_9.jpg" value="880">Ясень Шимо Темный 16мм</option>
+<option data-name="Белый шагрень 16мм" data-img="images/materials/basic_23.jpg" value="900">Белый шагрень 16мм</option>
+<option data-name="Дуб Ривьера 126 16мм" data-img="images/materials/basic_32.jpg" value="930">Дуб Ривьера 126 16мм</option>
+<option data-name="Дуб Рокпайл 16мм" data-img="images/materials/basic_8.jpg" value="930">Дуб Рокпайл 16мм</option>
+<option data-name="Серый шагрень 16мм" data-img="images/materials/basic_3.jpg" value="930">Серый шагрень 16мм</option>
+<option data-name="Алюминий 16мм" data-img="images/materials/basic_2.jpg" value="930">Алюминий 16мм</option>
+<option data-name="Титан 16мм" data-img="images/materials/basic_4.jpg" value="930">Титан 16мм</option>
+<option data-name="Черный 16мм" data-img="images/materials/basic_24.jpg" value="930">Черный 16мм</option>
+<option data-name="Дуб Каньон Монумент 16мм" data-img="images/materials/basic_30.jpg" value="930">Дуб Каньон Монумент 16мм</option>
 </select>
+<div class="saw-custom-select" id="calc-material-custom-select">
+  <button type="button" class="saw-custom-select-trigger" id="calc-material-trigger" aria-haspopup="listbox" aria-expanded="false">
+    <img class="saw-custom-select-thumb" id="calc-material-trigger-img" src="images/materials/basic_15.jpg" alt="">
+    <span class="saw-custom-select-name" id="calc-material-trigger-name">Венге Линум 16мм</span>
+    <span class="saw-custom-select-arrow" aria-hidden="true">▾</span>
+  </button>
+  <div class="saw-custom-select-menu" id="calc-material-menu">
+    <div class="saw-custom-select-search-wrap">
+      <input type="text" class="saw-custom-select-search" id="calc-material-search" placeholder="Поиск декора..." autocomplete="off">
+    </div>
+    <div class="saw-custom-select-list" id="calc-material-list" role="listbox"></div>
+  </div>
+</div>
 </div>
 <div class="saw-calc-col">
 <label for="calc-length-input">ДЛИНА, ММ</label>
@@ -1875,6 +2114,15 @@ html, body {
 <span>✈</span> Отправить расчёт
           </button>
 </div>
+<!-- Floating Hover Preview Card for Materials -->
+<div class="saw-mat-hover-preview" id="calc-mat-hover-preview" aria-hidden="true">
+  <div class="saw-mat-prev-img-wrap">
+    <img class="saw-mat-prev-img" id="calc-mat-prev-img" src="" alt="">
+  </div>
+  <div class="saw-mat-prev-info">
+    <div class="saw-mat-prev-title" id="calc-mat-prev-title"></div>
+    <div class="saw-mat-prev-price" id="calc-mat-prev-price"></div>
+  </div>
 </div>
 </div>
 </section>
@@ -4187,6 +4435,202 @@ html, body {
     updateTextureActive();
   }
 
+  // --- CUSTOM MATERIAL SELECT WITH IMAGE THUMBNAILS & HOVER PREVIEW ---
+  const customSelect = document.getElementById('calc-material-custom-select');
+  const customTrigger = document.getElementById('calc-material-trigger');
+  const customTriggerImg = document.getElementById('calc-material-trigger-img');
+  const customTriggerName = document.getElementById('calc-material-trigger-name');
+  const customMenu = document.getElementById('calc-material-menu');
+  const customSearch = document.getElementById('calc-material-search');
+  const customList = document.getElementById('calc-material-list');
+  const hoverPreview = document.getElementById('calc-mat-hover-preview');
+  const hoverImg = document.getElementById('calc-mat-prev-img');
+  const hoverTitle = document.getElementById('calc-mat-prev-title');
+  const hoverPrice = document.getElementById('calc-mat-prev-price');
+
+  function syncCustomSelect() {
+    if (!matSelect) return;
+    const opt = matSelect.options[matSelect.selectedIndex];
+    if (!opt) return;
+    const img = opt.getAttribute('data-img') || '';
+    const name = opt.getAttribute('data-name') || opt.text;
+    if (customTriggerImg && img) customTriggerImg.src = img;
+    if (customTriggerName) customTriggerName.innerText = name;
+
+    if (customList) {
+      customList.querySelectorAll('.saw-custom-select-item').forEach((el, i) => {
+        el.classList.toggle('is-selected', i === matSelect.selectedIndex);
+      });
+    }
+  }
+
+  function showHoverPreview(item) {
+    if (!hoverPreview) return;
+    const img = item.getAttribute('data-img');
+    const name = item.getAttribute('data-name');
+    const price = item.getAttribute('data-price');
+    if (!img) return;
+
+    if (hoverImg) hoverImg.src = img;
+    if (hoverTitle) hoverTitle.innerText = name;
+    if (hoverPrice) hoverPrice.innerText = price + ' ₽/м²';
+
+    const rect = item.getBoundingClientRect();
+    const prevWidth = 170;
+    const prevHeight = 190;
+
+    let left = rect.right + 12;
+    if (left + prevWidth > window.innerWidth) {
+      left = rect.left - prevWidth - 12;
+    }
+    if (left < 10) {
+      left = 10;
+    }
+
+    let top = rect.top - 15;
+    if (top + prevHeight > window.innerHeight) {
+      top = window.innerHeight - prevHeight - 10;
+    }
+    if (top < 10) {
+      top = 10;
+    }
+
+    hoverPreview.style.left = left + 'px';
+    hoverPreview.style.top = top + 'px';
+    hoverPreview.classList.add('is-visible');
+  }
+
+  function hideHoverPreview() {
+    if (hoverPreview) {
+      hoverPreview.classList.remove('is-visible');
+    }
+  }
+
+  function openCustomSelect() {
+    if (!customSelect) return;
+    customSelect.classList.add('is-open');
+    if (customTrigger) customTrigger.setAttribute('aria-expanded', 'true');
+    if (customSearch) {
+      customSearch.value = '';
+      filterCustomOptions('');
+      setTimeout(() => customSearch.focus(), 60);
+    }
+  }
+
+  function closeCustomSelect() {
+    if (!customSelect) return;
+    customSelect.classList.remove('is-open');
+    if (customTrigger) customTrigger.setAttribute('aria-expanded', 'false');
+    hideHoverPreview();
+  }
+
+  function filterCustomOptions(query) {
+    if (!customList) return;
+    const q = (query || '').toLowerCase().trim();
+    customList.querySelectorAll('.saw-custom-select-item').forEach(item => {
+      const name = (item.getAttribute('data-name') || '').toLowerCase();
+      const match = !q || name.includes(q);
+      item.style.display = match ? 'flex' : 'none';
+    });
+  }
+
+  if (customSelect && matSelect && customList) {
+    customList.innerHTML = '';
+    Array.from(matSelect.options).forEach((opt, idx) => {
+      const item = document.createElement('div');
+      item.className = 'saw-custom-select-item' + (opt.selected ? ' is-selected' : '');
+      item.setAttribute('role', 'option');
+      item.setAttribute('data-idx', idx);
+      item.setAttribute('data-name', opt.getAttribute('data-name') || opt.text);
+      item.setAttribute('data-img', opt.getAttribute('data-img') || '');
+      item.setAttribute('data-price', opt.value);
+
+      item.innerHTML = `
+        <img class="saw-custom-item-thumb" src="${opt.getAttribute('data-img') || ''}" alt="" loading="lazy">
+        <div class="saw-custom-item-info">
+          <span class="saw-custom-item-name">${opt.getAttribute('data-name') || opt.text}</span>
+          <span class="saw-custom-item-price">${opt.value} ₽/м²</span>
+        </div>
+      `;
+
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        matSelect.selectedIndex = idx;
+        matSelect.dispatchEvent(new Event('change'));
+        syncCustomSelect();
+        closeCustomSelect();
+        if (customTrigger) customTrigger.focus();
+      });
+
+      item.addEventListener('mouseenter', () => {
+        showHoverPreview(item);
+      });
+      item.addEventListener('mouseleave', () => {
+        hideHoverPreview();
+      });
+
+      customList.appendChild(item);
+    });
+
+    if (customSearch) {
+      customSearch.addEventListener('input', (e) => {
+        filterCustomOptions(e.target.value);
+      });
+      customSearch.addEventListener('click', (e) => {
+        e.stopPropagation();
+      });
+    }
+
+    if (customTrigger) {
+      customTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (customSelect.classList.contains('is-open')) {
+          closeCustomSelect();
+        } else {
+          openCustomSelect();
+        }
+      });
+
+      customTrigger.addEventListener('mouseenter', () => {
+        if (!customSelect.classList.contains('is-open')) {
+          const opt = matSelect.options[matSelect.selectedIndex];
+          if (opt && opt.getAttribute('data-img')) {
+            showHoverPreview({
+              getAttribute: (attr) => {
+                if (attr === 'data-img') return opt.getAttribute('data-img');
+                if (attr === 'data-name') return opt.getAttribute('data-name') || opt.text;
+                if (attr === 'data-price') return opt.value;
+                return '';
+              },
+              getBoundingClientRect: () => customTrigger.getBoundingClientRect()
+            });
+          }
+        }
+      });
+      customTrigger.addEventListener('mouseleave', () => {
+        if (!customSelect.classList.contains('is-open')) {
+          hideHoverPreview();
+        }
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!customSelect.contains(e.target)) {
+        closeCustomSelect();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && customSelect.classList.contains('is-open')) {
+        closeCustomSelect();
+        if (customTrigger) customTrigger.focus();
+      }
+    });
+
+    matSelect.addEventListener('change', syncCustomSelect);
+    syncCustomSelect();
+  }
+
   function renderTable() {
     if (items.length === 0) {
       emptyState.style.display = 'flex';
@@ -4257,6 +4701,9 @@ html, body {
         addBtn.innerHTML = '<span>+</span> Добавить деталь';
         addBtn.classList.remove('is-saving');
       }
+      if (typeof syncCustomSelect === 'function') {
+        syncCustomSelect();
+      }
       renderTable();
     }
 
@@ -4310,6 +4757,9 @@ html, body {
             opt.selected = true;
             break;
           }
+        }
+        if (typeof syncCustomSelect === 'function') {
+          syncCustomSelect();
         }
 
         if (addBtn) {
