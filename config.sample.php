@@ -25,7 +25,7 @@ return array(
 
     // ---- Дублирование на почту ----
     'email_enabled' => true,
-    'email_to'      => 'lamarty-raskroy@mail.ru',
+    'email_to'      => '9088014000@mail.ru',
     // Адрес-отправитель должен быть на вашем домене, иначе письма уйдут в спам
     'email_from'    => 'site@moymebelniy55.ru',
     'email_subject' => 'Заявка с сайта moymebelniy55.ru',
