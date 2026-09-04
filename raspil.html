@@ -4392,7 +4392,7 @@ html, body {
 
     renderTable();
 
-    // Reset ALL form inputs cleanly for the next item
+    // Reset ALL form inputs cleanly for the next item (retain selected material)
     lenInput.value = '';
     widInput.value = '';
     if (countInput) countInput.value = '1';
@@ -4400,7 +4400,6 @@ html, body {
     edgeL2.value = 'none';
     edgeW1.value = 'none';
     edgeW2.value = 'none';
-    matSelect.selectedIndex = 0;
     if (textureInput) {
       textureInput.checked = true;
       updateTextureActive();
