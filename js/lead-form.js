@@ -44,7 +44,12 @@
       out.push(parts.join(' | '));
     }
     var total = document.getElementById('calc-total-amount');
-    if (total) { out.push('ИТОГО: ' + (total.innerText || '').trim()); }
+    var area = document.getElementById('calc-total-m2-val');
+    var totalLine = total ? ('ИТОГО: ' + (total.innerText || '').trim()) : '';
+    if (area && area.innerText && area.innerText.trim() !== '0 м²') {
+      totalLine += ' · Квадратура: ' + area.innerText.trim();
+    }
+    if (totalLine) { out.push(totalLine); }
     return out.join('\n');
   }
 

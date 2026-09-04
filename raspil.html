@@ -1843,6 +1843,7 @@ html, body {
 <div class="saw-calc-total-wrap">
 <span class="saw-calc-total-label">ИТОГО</span>
 <span class="saw-calc-total-amount" id="calc-total-amount">0 ₽</span>
+<span class="saw-calc-total-area" id="calc-total-area-note" style="display:none; font-size:14px; font-weight:700; color:#5c4738; margin-left:6px;">· Квадратура: <b id="calc-total-m2-val" style="color:#2d1b10;">0 м²</b></span>
 <span class="saw-calc-min-note" id="calc-min-note" style="display:none;"></span>
 </div>
 <div class="saw-calc-actions-wrap">
@@ -4137,6 +4138,18 @@ html, body {
   const tableWrap = document.getElementById('calc-table-wrap');
   const tbody = document.getElementById('calc-items-tbody');
   const totalAmountEl = document.getElementById('calc-total-amount');
+  const totalAreaNoteEl = document.getElementById('calc-total-area-note');
+  const totalAreaValEl = document.getElementById('calc-total-m2-val');
+
+  function roundAreaUp(m2) {
+    if (!m2 || m2 <= 0) return 0;
+    const clean = Math.round(m2 * 10000) / 10000;
+    return Math.ceil(clean * 10) / 10;
+  }
+
+  function formatArea(m2) {
+    return (Math.round(m2 * 10) / 10).toFixed(1).replace('.', ',');
+  }
 
   if (!addBtn) return;
 
@@ -4155,6 +4168,7 @@ html, body {
       emptyState.style.display = 'flex';
       tableWrap.style.display = 'none';
       totalAmountEl.innerText = '0 ₽';
+      if (totalAreaNoteEl) totalAreaNoteEl.style.display = 'none';
       return;
     }
 
@@ -4163,21 +4177,23 @@ html, body {
     tbody.innerHTML = '';
 
     let grandTotal = 0;
+    let totalAreaSum = 0;
 
     items.forEach((item, idx) => {
       grandTotal += item.cost;
+      totalAreaSum += (item.areaM2 || 0);
       const tr = document.createElement('tr');
       const textureBadge = item.hasTexture ? ` <span style="display:inline-block; font-size:10px; font-weight:700; background:rgba(255,118,26,0.18); color:#ffaa33; border:1px solid rgba(255,118,26,0.4); border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle;">Текстура</span>` : '';
+      const areaBadge = ` <span style="display:inline-block; font-size:11px; font-weight:700; background:rgba(255,170,51,0.12); color:#ffd991; border:1px solid rgba(255,170,51,0.3); border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;" title="Квадратура детали">${formatArea(item.areaM2 || 0)} м²</span>`;
       const unitCost = (item.count && item.count > 1) ? `<div style="font-size:11px; color:#c4b2a3; font-weight:500; margin-top:2px;">по ${Math.round(item.cost / item.count).toLocaleString('ru-RU')} ₽/шт.</div>` : '';
 
       tr.innerHTML = `
         <td style="color:#ffaa33; font-weight:700;">${idx + 1}</td>
-        <td><b>${item.length} × ${item.width} мм</b>${textureBadge}</td>
+        <td><b>${item.length} × ${item.width} мм</b>${textureBadge}${areaBadge}</td>
         <td><span style="display:inline-block; font-weight:800; color:#ffd991; background:rgba(255,170,51,0.14); border:1px solid rgba(255,170,51,0.3); padding:3px 9px; border-radius:6px; font-size:13px;">${item.count || 1} шт.</span></td>
         <td><span style="color:#d1bfae;">${item.matName}</span></td>
         <td>
           <div style="font-size:12.5px; color:#ffd991; font-weight:600;">${item.edgeDesc}</div>
-          <div style="font-size:11px; color:#ff9e58; font-weight:700; margin-top:2px;">Итого кромки: ${item.edgeSummaryText || (item.edgeRoundedMeters + ' м')}</div>
         </td>
         <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽${unitCost}</td>
         <td>
@@ -4190,6 +4206,11 @@ html, body {
 
     const finalTotal = items.length > 0 ? Math.max(500, grandTotal) : 0;
     totalAmountEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
+
+    if (totalAreaNoteEl && totalAreaValEl) {
+      totalAreaValEl.innerText = formatArea(totalAreaSum) + ' м²';
+      totalAreaNoteEl.style.display = 'inline';
+    }
 
     // если сумма деталей меньше минимального заказа — показываем, откуда разница
     const minNote = document.getElementById('calc-min-note');
@@ -4298,9 +4319,10 @@ html, body {
     const matPriceM2 = parseFloat(opt.value);
     const matName = opt.getAttribute('data-name') || opt.text;
 
-    // Calculate Area Cost
-    const areaM2 = (L * W) / 1000000;
-    const sawCutCost = areaM2 * matPriceM2 * Q;
+    // Calculate Area Cost (округление квадратуры вверх до 1 знака: 0.35 -> 0.4, 0.36 -> 0.4)
+    const rawAreaM2 = ((L * W) / 1000000) * Q;
+    const roundedAreaM2 = roundAreaUp(rawAreaM2);
+    const sawCutCost = roundedAreaM2 * matPriceM2;
 
     // Calculate Edge Meters by Thickness
     const el1 = edgeL1.value, el2 = edgeL2.value;
@@ -4358,6 +4380,7 @@ html, body {
       length: L,
       width: W,
       count: Q,
+      areaM2: roundedAreaM2,
       matName: matName,
       el1, el2, ew1, ew2,
       hasTexture: hasTexture,
@@ -4407,7 +4430,7 @@ html, body {
     items.forEach(function(itm) {
       const cnt = itm.count || 1;
       totalPieces += cnt;
-      totalArea += ((itm.length * itm.width) / 1000000) * cnt;
+      totalArea += (itm.areaM2 || 0);
       totalEdgeMeters += itm.edgeRoundedMeters;
       grandTotal += itm.cost;
     });
@@ -4420,7 +4443,7 @@ html, body {
     var modal = document.getElementById('calc-order-modal');
 
     if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + totalPieces + ' шт';
-    if (m2InfoEl) m2InfoEl.innerText = 'Площадь: ' + totalArea.toFixed(2) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
+    if (m2InfoEl) m2InfoEl.innerText = 'Квадратура: ' + formatArea(totalArea) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
     if (totalPriceEl) totalPriceEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
 
     if (modal) {
