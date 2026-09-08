@@ -670,50 +670,15 @@ html, body {
   gap: 6px !important;
 }
 
-.saw-calc-edge-box {
-  display: flex !important;
-  align-items: center !important;
+.saw-calc-dual-selects select {
+  width: 100% !important;
+  height: 46px !important;
   background: #faf7f2 !important;
   border: 1.5px solid #e0d5c8 !important;
   border-radius: 9px !important;
-  height: 46px !important;
-  overflow: hidden !important;
-  transition: all 0.2s ease !important;
-  position: relative !important;
-}
-
-.saw-calc-edge-box:focus-within {
-  border-color: #ff761a !important;
-  background: #ffffff !important;
-  box-shadow: 0 0 0 3px rgba(255, 118, 26, 0.15) !important;
-}
-
-.saw-calc-edge-tag {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  height: 100% !important;
-  padding: 0 7px !important;
-  background: #f0e5d8 !important;
-  border-right: 1.5px solid #e0d5c8 !important;
-  color: #e65c00 !important;
+  padding: 0 18px 0 8px !important;
   font-family: 'Montserrat', sans-serif !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.5px !important;
-  flex-shrink: 0 !important;
-  user-select: none !important;
-}
-
-.saw-calc-edge-box select {
-  flex: 1 1 auto !important;
-  width: 100% !important;
-  height: 100% !important;
-  border: none !important;
-  background: transparent !important;
-  padding: 0 18px 0 6px !important;
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
   color: #1a1512 !important;
   outline: none !important;
@@ -723,8 +688,15 @@ html, body {
   appearance: none !important;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%237a6e65' d='M0 0l4 5 4-5z'/%3E%3C/svg%3E") !important;
   background-repeat: no-repeat !important;
-  background-position: right 6px center !important;
+  background-position: right 7px center !important;
   background-size: 8px 5px !important;
+  transition: all 0.2s ease !important;
+}
+
+.saw-calc-dual-selects select:focus {
+  border-color: #ff761a !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 118, 26, 0.15) !important;
 }
 
 /* Texture Pill Toggle Button */
@@ -998,35 +970,20 @@ html, body {
   box-shadow: 0 6px 18px rgba(255, 118, 26, 0.45) !important;
 }
 
-/* Edge Banding Badges & Two-tier Table Headers */
+/* Edge Banding Badges & Table Edge Formatting */
 .saw-calc-table {
   min-width: 780px !important;
 }
-.saw-th-edge-group {
-  text-align: center !important;
-  border-bottom: 1px solid rgba(212, 175, 110, 0.25) !important;
-  background: #20130a !important;
-  color: #ffaa33 !important;
-  font-size: 11px !important;
-  letter-spacing: 0.8px !important;
-  padding: 8px 10px !important;
-}
-.saw-th-subedge {
-  text-align: center !important;
-  background: #26170e !important;
-  color: #ffd991 !important;
-  font-size: 11.5px !important;
-  font-weight: 800 !important;
-  padding: 6px 8px !important;
-  border-bottom: 1px solid rgba(212, 175, 110, 0.2) !important;
-}
 .saw-edge-badge {
-  display: inline-block;
-  min-width: 48px;
-  padding: 2.5px 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 44px;
+  padding: 3px 8px;
   font-size: 11.5px;
   font-weight: 700;
-  border-radius: 5px;
+  border-radius: 6px;
   text-align: center;
   white-space: nowrap;
 }
@@ -1037,8 +994,12 @@ html, body {
 }
 .saw-edge-badge.is-none {
   color: #827468;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(212, 175, 110, 0.2);
+  min-width: 28px;
+  padding: 2px 6px;
 }
 
 /* Custom Material Dropdown with Photo Preview */
@@ -1307,6 +1268,20 @@ html, body {
   font-size: 14px !important;
   font-weight: 700 !important;
   color: #5c4738 !important;
+}
+.saw-calc-total-edges {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #5c4738 !important;
+}
+.saw-calc-total-edges b {
+  color: #d45000 !important;
+  font-weight: 800 !important;
+  margin-left: 4px !important;
 }
 
 .saw-calc-actions-wrap {
@@ -2106,47 +2081,35 @@ html, body {
 <div class="saw-calc-col">
 <label>КРОМКА ДЛИНА</label>
 <div class="saw-calc-dual-selects">
-  <div class="saw-calc-edge-box">
-    <span class="saw-calc-edge-tag">L1</span>
-    <select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1 (L1)" title="Длина сторона 1 (L1)">
-      <option value="none">Без</option>
-      <option value="0.4">0.4 мм</option>
-      <option value="1.0">1.0 мм</option>
-      <option value="2.0">2.0 мм</option>
-    </select>
-  </div>
-  <div class="saw-calc-edge-box">
-    <span class="saw-calc-edge-tag">L2</span>
-    <select id="calc-edge-l2" aria-label="Кромка по длине, сторона 2 (L2)" title="Длина сторона 2 (L2)">
-      <option value="none">Без</option>
-      <option value="0.4">0.4 мм</option>
-      <option value="1.0">1.0 мм</option>
-      <option value="2.0">2.0 мм</option>
-    </select>
-  </div>
+  <select id="calc-edge-l1" aria-label="Кромка длина, сторона 1" title="Длина сторона 1">
+    <option value="none">Без</option>
+    <option value="0.4">0.4 мм</option>
+    <option value="1.0">1.0 мм</option>
+    <option value="2.0">2.0 мм</option>
+  </select>
+  <select id="calc-edge-l2" aria-label="Кромка длина, сторона 2" title="Длина сторона 2">
+    <option value="none">Без</option>
+    <option value="0.4">0.4 мм</option>
+    <option value="1.0">1.0 мм</option>
+    <option value="2.0">2.0 мм</option>
+  </select>
 </div>
 </div>
 <div class="saw-calc-col">
 <label>КРОМКА ШИРИНА</label>
 <div class="saw-calc-dual-selects">
-  <div class="saw-calc-edge-box">
-    <span class="saw-calc-edge-tag">W1</span>
-    <select id="calc-edge-w1" aria-label="Кромка по ширине, сторона 1 (W1)" title="Ширина сторона 1 (W1)">
-      <option value="none">Без</option>
-      <option value="0.4">0.4 мм</option>
-      <option value="1.0">1.0 мм</option>
-      <option value="2.0">2.0 мм</option>
-    </select>
-  </div>
-  <div class="saw-calc-edge-box">
-    <span class="saw-calc-edge-tag">W2</span>
-    <select id="calc-edge-w2" aria-label="Кромка по ширине, сторона 2 (W2)" title="Ширина сторона 2 (W2)">
-      <option value="none">Без</option>
-      <option value="0.4">0.4 мм</option>
-      <option value="1.0">1.0 мм</option>
-      <option value="2.0">2.0 мм</option>
-    </select>
-  </div>
+  <select id="calc-edge-w1" aria-label="Кромка ширина, сторона 1" title="Ширина сторона 1">
+    <option value="none">Без</option>
+    <option value="0.4">0.4 мм</option>
+    <option value="1.0">1.0 мм</option>
+    <option value="2.0">2.0 мм</option>
+  </select>
+  <select id="calc-edge-w2" aria-label="Кромка ширина, сторона 2" title="Ширина сторона 2">
+    <option value="none">Без</option>
+    <option value="0.4">0.4 мм</option>
+    <option value="1.0">1.0 мм</option>
+    <option value="2.0">2.0 мм</option>
+  </select>
 </div>
 </div>
 <div class="saw-calc-col">
@@ -2197,20 +2160,14 @@ html, body {
 <table class="saw-calc-table">
 <thead>
 <tr>
-<th rowspan="2" style="width:36px; text-align:center; vertical-align:middle;">#</th>
-<th rowspan="2" style="vertical-align:middle;">Деталь / Размеры</th>
-<th rowspan="2" style="text-align:center; vertical-align:middle;">Кол-во</th>
-<th rowspan="2" style="vertical-align:middle;">Материал</th>
-<th colspan="2" class="saw-th-edge-group">Кромка Длина</th>
-<th colspan="2" class="saw-th-edge-group">Кромка Ширина</th>
-<th rowspan="2" style="text-align:right; vertical-align:middle;">Стоимость</th>
-<th rowspan="2" style="text-align:center; width:130px; vertical-align:middle;">Действия</th>
-</tr>
-<tr>
-<th class="saw-th-subedge" title="Кромка: Длина сторона 1 (L1)">L1</th>
-<th class="saw-th-subedge" title="Кромка: Длина сторона 2 (L2)">L2</th>
-<th class="saw-th-subedge" title="Кромка: Ширина сторона 1 (W1)">W1</th>
-<th class="saw-th-subedge" title="Кромка: Ширина сторона 2 (W2)">W2</th>
+<th style="width:36px; text-align:center;">#</th>
+<th>Деталь / Размеры</th>
+<th style="text-align:center; width:80px;">Кол-во</th>
+<th>Материал</th>
+<th style="text-align:center; width:150px;">Кромка длина</th>
+<th style="text-align:center; width:150px;">Кромка ширина</th>
+<th style="text-align:right; width:110px;">Стоимость</th>
+<th style="text-align:center; width:130px;">Действия</th>
 </tr>
 </thead>
 <tbody id="calc-items-tbody"></tbody>
@@ -2223,6 +2180,7 @@ html, body {
 <span class="saw-calc-total-label">ИТОГО</span>
 <span class="saw-calc-total-amount" id="calc-total-amount">0&nbsp;₽</span>
 <span class="saw-calc-total-area" id="calc-total-area-note" style="display:none; margin-left:6px;">·&nbsp;Квадратура:&nbsp;<b id="calc-total-m2-val" style="color:#2d1b10; margin-left:4px;">0&nbsp;м²</b></span>
+<span class="saw-calc-total-edges" id="calc-total-edges-note" style="display:none; margin-left:8px;">·&nbsp;Кромка:&nbsp;<b id="calc-total-edges-val"></b></span>
 </div>
 <div class="saw-calc-actions-wrap">
 <button class="saw-calc-btn-clear" id="calc-clear-btn" type="button">Очистить список</button>
@@ -2346,44 +2304,20 @@ html, body {
     top: -12%; left: -8%;
     width: 520px; height: 520px;
     background: radial-gradient(circle, rgba(255, 107, 26, 0.35) 0%, rgba(255, 107, 26, 0) 70%);
-    animation: chDrift 22s ease-in-out infinite;
   }
   .ch-about__blob--2 {
     bottom: -18%; right: -10%;
     width: 620px; height: 620px;
     background: radial-gradient(circle, rgba(255, 170, 90, 0.22) 0%, rgba(255, 170, 90, 0) 70%);
-    animation: chDrift2 28s ease-in-out infinite;
   }
   .ch-about__blob--3 {
     top: 40%; left: 55%;
     width: 360px; height: 360px;
     background: radial-gradient(circle, rgba(255, 220, 170, 0.10) 0%, rgba(255, 220, 170, 0) 70%);
-    animation: chDrift 34s ease-in-out infinite reverse;
-  }
-  @keyframes chDrift {
-    0%, 100% { transform: translate(0,0) scale(1); }
-    50%      { transform: translate(60px, 40px) scale(1.08); }
-  }
-  @keyframes chDrift2 {
-    0%, 100% { transform: translate(0,0) scale(1); }
-    50%      { transform: translate(-80px, -50px) scale(1.1); }
   }
 
   .ch-about__grain {
-    position: absolute; inset: -50%;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 10 0 0 0 0.85  0 0 0 0 0.7  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    opacity: 0.14;
-    mix-blend-mode: overlay;
-    animation: chGrain 1.6s steps(6) infinite;
-    pointer-events: none;
-  }
-  @keyframes chGrain {
-    0%   { transform: translate(0,0); }
-    20%  { transform: translate(-3%, 2%); }
-    40%  { transform: translate(2%, -3%); }
-    60%  { transform: translate(-2%, -2%); }
-    80%  { transform: translate(3%, 1%); }
-    100% { transform: translate(0,0); }
+    display: none !important;
   }
 
   .ch-about__lines {
@@ -2391,27 +2325,11 @@ html, body {
     background-image:
       linear-gradient(115deg, transparent 0%, transparent 49.4%, rgba(255, 235, 210, 0.06) 49.5%, rgba(255, 235, 210, 0.06) 50.6%, transparent 50.7%, transparent 100%);
     background-size: 60px 60px;
-    animation: chSlide 18s linear infinite;
-    opacity: 0.7;
+    opacity: 0.5;
   }
-  @keyframes chSlide { from { background-position: 0 0; } to { background-position: 60px 60px; } }
 
   .ch-about__spark {
-    position: absolute; width: 3px; height: 3px;
-    border-radius: 50%;
-    background: var(--ch-orange);
-    box-shadow: 0 0 10px rgba(255, 138, 61, 0.9), 0 0 20px rgba(255, 107, 26, 0.5);
-    opacity: 0; animation: chSpark 5s ease-in-out infinite;
-  }
-  .ch-about__spark:nth-child(1) { top: 12%; left: 22%; animation-delay: 0.2s; }
-  .ch-about__spark:nth-child(2) { top: 28%; left: 78%; animation-delay: 1.1s; }
-  .ch-about__spark:nth-child(3) { top: 60%; left: 12%; animation-delay: 2.4s; }
-  .ch-about__spark:nth-child(4) { top: 74%; left: 64%; animation-delay: 3.2s; }
-  .ch-about__spark:nth-child(5) { top: 44%; left: 48%; animation-delay: 4.1s; }
-  .ch-about__spark:nth-child(6) { top: 86%; left: 34%; animation-delay: 0.7s; }
-  @keyframes chSpark {
-    0%, 100% { opacity: 0; transform: scale(0.6); }
-    50%      { opacity: 1; transform: scale(1.4); }
+    display: none !important;
   }
 
   /* ============ CONTAINER ============ */
@@ -2543,14 +2461,14 @@ html, body {
   .ch-about__card:last-child { border-right: none; }
   .ch-about__card:hover {
     background: var(--ch-card-bg-hover);
-    transform: translateY(-10px);
-    box-shadow: 0 22px 40px rgba(255, 107, 26, 0.18);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(255, 107, 26, 0.2);
   }
   .ch-about__card:hover .ch-about__icon-box {
     background: var(--ch-orange);
     color: #fff;
-    transform: scale(1.08) rotate(4deg);
-    box-shadow: 0 14px 28px rgba(255, 107, 26, 0.45);
+    transform: scale(1.04);
+    box-shadow: 0 10px 20px rgba(255, 107, 26, 0.35);
     border-color: var(--ch-orange);
   }
   .ch-about__card:hover .ch-about__icon-box svg { stroke: #fff; }
@@ -2563,11 +2481,7 @@ html, body {
     border: 1px solid rgba(255, 107, 26, 0.35);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 28px;
-    transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                color 0.3s ease,
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.3s ease;
+    transition: all 0.3s ease;
   }
   .ch-about__icon-box svg {
     width: 30px; height: 30px;
@@ -2593,15 +2507,11 @@ html, body {
 
   /* ============ REVEAL ============ */
   .ch-reveal {
-    opacity: 0; transform: translateY(40px);
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
-  .ch-reveal.ch-is-in { opacity: 1; transform: translateY(0); }
-  .ch-delay-1 { transition-delay: 0.1s; }
-  .ch-delay-2 { transition-delay: 0.22s; }
-  .ch-delay-3 { transition-delay: 0.34s; }
-  .ch-delay-4 { transition-delay: 0.46s; }
+  .ch-reveal.ch-is-in { opacity: 1; transform: none; }
 
   /* ============ RESPONSIVE ============ */
   @media (max-width: 1200px) {
@@ -4751,11 +4661,15 @@ html, body {
   }
 
   function renderTable() {
+    const edgesNoteEl = document.getElementById('calc-total-edges-note');
+    const edgesValEl = document.getElementById('calc-total-edges-val');
+
     if (items.length === 0) {
       emptyState.style.display = 'flex';
       tableWrap.style.display = 'none';
       totalAmountEl.innerHTML = '0&nbsp;₽';
       if (totalAreaNoteEl) totalAreaNoteEl.style.display = 'none';
+      if (edgesNoteEl) edgesNoteEl.style.display = 'none';
       return;
     }
 
@@ -4765,10 +4679,21 @@ html, body {
 
     let grandTotal = 0;
     let totalAreaSum = 0;
+    const totalEdgeMeters = { '0.4': 0, '1.0': 0, '2.0': 0 };
 
     items.forEach((item, idx) => {
       grandTotal += item.cost;
       totalAreaSum += (item.areaM2 || 0);
+
+      const L = item.length;
+      const W = item.width;
+      const Q = item.count || 1;
+
+      if (item.el1 && item.el1 !== 'none') totalEdgeMeters[item.el1] += (L / 1000) * Q;
+      if (item.el2 && item.el2 !== 'none') totalEdgeMeters[item.el2] += (L / 1000) * Q;
+      if (item.ew1 && item.ew1 !== 'none') totalEdgeMeters[item.ew1] += (W / 1000) * Q;
+      if (item.ew2 && item.ew2 !== 'none') totalEdgeMeters[item.ew2] += (W / 1000) * Q;
+
       const isEditingThis = (editingIndex === idx);
       const tr = document.createElement('tr');
       if (isEditingThis) {
@@ -4778,11 +4703,22 @@ html, body {
       const areaBadge = ` <span style="display:inline-block; font-size:11px; font-weight:700; background:rgba(255,170,51,0.12); color:#ffd991; border:1px solid rgba(255,170,51,0.3); border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;" title="Квадратура детали">${formatArea(item.areaM2 || 0)} м²</span>`;
       const unitCost = (item.count && item.count > 1) ? `<div style="font-size:11px; color:#c4b2a3; font-weight:500; margin-top:2px;">по ${Math.round(item.cost / item.count).toLocaleString('ru-RU')} ₽/шт.</div>` : '';
 
-      const formatEdgeBadge = (val) => {
-        if (!val || val === 'none') {
-          return `<span class="saw-edge-badge is-none" title="Без кромки">—</span>`;
+      const renderEdgeSide = (v1, v2, p1, p2) => {
+        const has1 = v1 && v1 !== 'none';
+        const has2 = v2 && v2 !== 'none';
+        if (!has1 && !has2) {
+          return '<span class="saw-edge-badge is-none" title="Без кромки">—</span>';
         }
-        return `<span class="saw-edge-badge is-active" title="Кромка ${val} мм">${val} мм</span>`;
+        if (has1 && has2 && v1 === v2) {
+          return `<span class="saw-edge-badge is-active" title="${p1} и ${p2}: ${v1} мм">${v1} мм <span style="font-size:10px; opacity:0.85;">(2 ст.)</span></span>`;
+        }
+        const b1 = has1 
+          ? `<span class="saw-edge-badge is-active" title="${p1}: ${v1} мм"><small style="font-size:10px; opacity:0.75; margin-right:2px;">${p1}:</small>${v1} мм</span>` 
+          : `<span class="saw-edge-badge is-none" title="${p1}: без кромки"><small style="font-size:10px; opacity:0.6; margin-right:2px;">${p1}:</small>—</span>`;
+        const b2 = has2 
+          ? `<span class="saw-edge-badge is-active" title="${p2}: ${v2} мм"><small style="font-size:10px; opacity:0.75; margin-right:2px;">${p2}:</small>${v2} мм</span>` 
+          : `<span class="saw-edge-badge is-none" title="${p2}: без кромки"><small style="font-size:10px; opacity:0.6; margin-right:2px;">${p2}:</small>—</span>`;
+        return `<div style="display:inline-flex; align-items:center; justify-content:center; gap:4px; flex-wrap:nowrap;">${b1} ${b2}</div>`;
       };
 
       tr.innerHTML = `
@@ -4790,10 +4726,8 @@ html, body {
         <td><b>${item.length} × ${item.width} мм</b>${textureBadge}${areaBadge}</td>
         <td style="text-align:center;"><span style="display:inline-block; font-weight:800; color:#ffd991; background:rgba(255,170,51,0.14); border:1px solid rgba(255,170,51,0.3); padding:3px 9px; border-radius:6px; font-size:13px;">${item.count || 1} шт.</span></td>
         <td><span style="color:#d1bfae;">${item.matName}</span></td>
-        <td style="text-align:center; border-left:1px solid rgba(212,175,110,0.15);">${formatEdgeBadge(item.el1)}</td>
-        <td style="text-align:center; border-right:1px solid rgba(212,175,110,0.15);">${formatEdgeBadge(item.el2)}</td>
-        <td style="text-align:center;">${formatEdgeBadge(item.ew1)}</td>
-        <td style="text-align:center; border-right:1px solid rgba(212,175,110,0.15);">${formatEdgeBadge(item.ew2)}</td>
+        <td style="text-align:center;">${renderEdgeSide(item.el1, item.el2, 'L1', 'L2')}</td>
+        <td style="text-align:center;">${renderEdgeSide(item.ew1, item.ew2, 'W1', 'W2')}</td>
         <td style="font-weight:800; color:#ffaa33; font-size:15px; text-align:right;">${item.cost.toLocaleString('ru-RU')} ₽${unitCost}</td>
         <td style="text-align:center;">
           <button type="button" class="saw-calc-btn-edit ${isEditingThis ? 'is-active' : ''}" data-idx="${idx}">${isEditingThis ? '✕ Отмена' : '✏️ Изменить'}</button>
@@ -4809,6 +4743,27 @@ html, body {
     if (totalAreaNoteEl && totalAreaValEl) {
       totalAreaValEl.innerHTML = formatArea(totalAreaSum) + '&nbsp;м²';
       totalAreaNoteEl.style.display = 'inline-flex';
+    }
+
+    const edgeBreakdownParts = [];
+    if (totalEdgeMeters['0.4'] > 0) {
+      edgeBreakdownParts.push(`0.4 мм: ${Math.ceil(totalEdgeMeters['0.4'])} м`);
+    }
+    if (totalEdgeMeters['1.0'] > 0) {
+      const m10 = Math.ceil((totalEdgeMeters['1.0'] * 1.20) / 5) * 5;
+      edgeBreakdownParts.push(`1.0 мм: ${m10} м`);
+    }
+    if (totalEdgeMeters['2.0'] > 0) {
+      edgeBreakdownParts.push(`2.0 мм: ${Math.ceil(totalEdgeMeters['2.0'])} м`);
+    }
+
+    if (edgesNoteEl && edgesValEl) {
+      if (edgeBreakdownParts.length > 0) {
+        edgesValEl.innerHTML = edgeBreakdownParts.join('&nbsp;·&nbsp;');
+        edgesNoteEl.style.display = 'inline-flex';
+      } else {
+        edgesNoteEl.style.display = 'none';
+      }
     }
 
     function cancelEdit() {
@@ -5069,17 +5024,35 @@ html, body {
     }
     
     let totalArea = 0;
-    let totalEdgeMeters = 0;
     let grandTotal = 0;
     let totalPieces = 0;
+    const totalEdgeMeters = { '0.4': 0, '1.0': 0, '2.0': 0 };
 
     items.forEach(function(itm) {
       const cnt = itm.count || 1;
       totalPieces += cnt;
       totalArea += (itm.areaM2 || 0);
-      totalEdgeMeters += itm.edgeRoundedMeters;
       grandTotal += itm.cost;
+
+      const L = itm.length;
+      const W = itm.width;
+      if (itm.el1 && itm.el1 !== 'none') totalEdgeMeters[itm.el1] += (L / 1000) * cnt;
+      if (itm.el2 && itm.el2 !== 'none') totalEdgeMeters[itm.el2] += (L / 1000) * cnt;
+      if (itm.ew1 && itm.ew1 !== 'none') totalEdgeMeters[itm.ew1] += (W / 1000) * cnt;
+      if (itm.ew2 && itm.ew2 !== 'none') totalEdgeMeters[itm.ew2] += (W / 1000) * cnt;
     });
+
+    const edgeModalParts = [];
+    if (totalEdgeMeters['0.4'] > 0) {
+      edgeModalParts.push('0.4 мм — ' + Math.ceil(totalEdgeMeters['0.4']) + ' м');
+    }
+    if (totalEdgeMeters['1.0'] > 0) {
+      const m10 = Math.ceil((totalEdgeMeters['1.0'] * 1.20) / 5) * 5;
+      edgeModalParts.push('1.0 мм — ' + m10 + ' м');
+    }
+    if (totalEdgeMeters['2.0'] > 0) {
+      edgeModalParts.push('2.0 мм — ' + Math.ceil(totalEdgeMeters['2.0']) + ' м');
+    }
 
     const finalTotal = Math.max(500, grandTotal);
 
@@ -5089,7 +5062,10 @@ html, body {
     var modal = document.getElementById('calc-order-modal');
 
     if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + totalPieces + ' шт';
-    if (m2InfoEl) m2InfoEl.innerText = 'Квадратура: ' + formatArea(totalArea) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
+    if (m2InfoEl) {
+      const edgeStr = edgeModalParts.length > 0 ? (' · Кромка: ' + edgeModalParts.join(', ')) : '';
+      m2InfoEl.innerText = 'Квадратура: ' + formatArea(totalArea) + ' м²' + edgeStr;
+    }
     if (totalPriceEl) totalPriceEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
 
     var itemsListEl = document.getElementById('calc-modal-items-list');
@@ -5098,12 +5074,12 @@ html, body {
         itemsListEl.style.display = 'block';
         var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
         itemsListEl.innerHTML = items.map(function(itm, i) {
-          return '<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(212,175,110,0.12); gap:8px;">' +
+          return '<div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(212,175,110,0.12); gap:8px;">' +
             '<div>' +
               '<b>#' + (i + 1) + '</b> ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) · <span style="color:#d1bfae;">' + itm.matName + '</span>' +
-              '<div style="font-size:11px; color:#ffd991; margin-top:3px;">' +
-                'Кромка длина: <b>L1:</b> ' + fE(itm.el1) + ', <b>L2:</b> ' + fE(itm.el2) + ' · ' +
-                'ширина: <b>W1:</b> ' + fE(itm.ew1) + ', <b>W2:</b> ' + fE(itm.ew2) +
+              '<div style="font-size:11.5px; color:#ffd991; margin-top:3px;">' +
+                'Длина: <b>L1:</b> ' + fE(itm.el1) + ', <b>L2:</b> ' + fE(itm.el2) + ' · ' +
+                'Ширина: <b>W1:</b> ' + fE(itm.ew1) + ', <b>W2:</b> ' + fE(itm.ew2) +
               '</div>' +
             '</div>' +
             '<div style="font-weight:700; color:#ffaa33; white-space:nowrap; font-size:13px;">' + itm.cost.toLocaleString('ru-RU') + ' ₽</div>' +

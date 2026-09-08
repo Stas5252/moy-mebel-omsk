@@ -50,9 +50,13 @@
         out.push('------------------------------------------------------------');
         var total = document.getElementById('calc-total-amount');
         var area = document.getElementById('calc-total-m2-val');
+        var edges = document.getElementById('calc-total-edges-val');
         var totalLine = total ? ('ИТОГО: ' + (total.innerText || '').trim()) : '';
         if (area && area.innerText && area.innerText.trim() !== '0 м²') {
           totalLine += ' · Квадратура: ' + area.innerText.trim();
+        }
+        if (edges && edges.innerText && edges.innerText.trim()) {
+          totalLine += ' · Кромка: ' + edges.innerText.trim();
         }
         if (totalLine) { out.push(totalLine); }
         return out.join('\n');
@@ -73,9 +77,13 @@
     }
     var totalEl = document.getElementById('calc-total-amount');
     var areaEl = document.getElementById('calc-total-m2-val');
+    var edgesEl = document.getElementById('calc-total-edges-val');
     var tLine = totalEl ? ('ИТОГО: ' + (totalEl.innerText || '').trim()) : '';
     if (areaEl && areaEl.innerText && areaEl.innerText.trim() !== '0 м²') {
       tLine += ' · Квадратура: ' + areaEl.innerText.trim();
+    }
+    if (edgesEl && edgesEl.innerText && edgesEl.innerText.trim()) {
+      tLine += ' · Кромка: ' + edgesEl.innerText.trim();
     }
     if (tLine) { fallbackOut.push(tLine); }
     return fallbackOut.join('\n');
