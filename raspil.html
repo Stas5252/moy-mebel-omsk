@@ -614,8 +614,8 @@ html, body {
 /* Single Row Inputs Layout */
 .saw-calc-single-row {
   display: grid !important;
-  grid-template-columns: 2fr 1fr 1fr 0.8fr 1.25fr 1.25fr auto auto !important;
-  gap: 12px !important;
+  grid-template-columns: minmax(180px, 1.9fr) minmax(80px, 0.85fr) minmax(80px, 0.85fr) minmax(65px, 0.65fr) minmax(170px, 1.55fr) minmax(170px, 1.55fr) auto auto !important;
+  gap: 10px !important;
   align-items: flex-end !important;
   margin-bottom: 12px !important;
   background: #ffffff !important;
@@ -670,9 +670,61 @@ html, body {
   gap: 6px !important;
 }
 
-.saw-calc-dual-selects select {
-  padding: 0 6px !important;
+.saw-calc-edge-box {
+  display: flex !important;
+  align-items: center !important;
+  background: #faf7f2 !important;
+  border: 1.5px solid #e0d5c8 !important;
+  border-radius: 9px !important;
+  height: 46px !important;
+  overflow: hidden !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.saw-calc-edge-box:focus-within {
+  border-color: #ff761a !important;
+  background: #ffffff !important;
+  box-shadow: 0 0 0 3px rgba(255, 118, 26, 0.15) !important;
+}
+
+.saw-calc-edge-tag {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 100% !important;
+  padding: 0 7px !important;
+  background: #f0e5d8 !important;
+  border-right: 1.5px solid #e0d5c8 !important;
+  color: #e65c00 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.5px !important;
+  flex-shrink: 0 !important;
+  user-select: none !important;
+}
+
+.saw-calc-edge-box select {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 18px 0 6px !important;
+  font-family: 'Montserrat', sans-serif !important;
   font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #1a1512 !important;
+  outline: none !important;
+  cursor: pointer !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath fill='%237a6e65' d='M0 0l4 5 4-5z'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 6px center !important;
+  background-size: 8px 5px !important;
 }
 
 /* Texture Pill Toggle Button */
@@ -799,14 +851,16 @@ html, body {
   font-weight: 600 !important;
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 1220px) {
   .saw-calc-single-row {
     grid-template-columns: 1fr 1fr !important;
+    gap: 14px 12px !important;
   }
 }
 @media (max-width: 600px) {
   .saw-calc-single-row {
     grid-template-columns: 1fr !important;
+    gap: 12px !important;
   }
 }
 @media (max-width: 480px) {
@@ -2050,37 +2104,49 @@ html, body {
 <input id="calc-count-input" max="999" min="1" placeholder="1" type="number" value="1"/>
 </div>
 <div class="saw-calc-col">
-<label>КРОМКА ДЛИНА <span style="font-size:11px; color:#ff761a; font-weight:800; margin-left:2px;">(L1 · L2)</span></label>
+<label>КРОМКА ДЛИНА</label>
 <div class="saw-calc-dual-selects">
-<select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1 (L1)" title="Длина сторона 1 (L1)">
-<option value="none">L1: Без</option>
-<option value="0.4">L1: 0.4 мм</option>
-<option value="1.0">L1: 1.0 мм</option>
-<option value="2.0">L1: 2.0 мм</option>
-</select>
-<select id="calc-edge-l2" aria-label="Кромка по длине, сторона 2 (L2)" title="Длина сторона 2 (L2)">
-<option value="none">L2: Без</option>
-<option value="0.4">L2: 0.4 мм</option>
-<option value="1.0">L2: 1.0 мм</option>
-<option value="2.0">L2: 2.0 мм</option>
-</select>
+  <div class="saw-calc-edge-box">
+    <span class="saw-calc-edge-tag">L1</span>
+    <select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1 (L1)" title="Длина сторона 1 (L1)">
+      <option value="none">Без</option>
+      <option value="0.4">0.4 мм</option>
+      <option value="1.0">1.0 мм</option>
+      <option value="2.0">2.0 мм</option>
+    </select>
+  </div>
+  <div class="saw-calc-edge-box">
+    <span class="saw-calc-edge-tag">L2</span>
+    <select id="calc-edge-l2" aria-label="Кромка по длине, сторона 2 (L2)" title="Длина сторона 2 (L2)">
+      <option value="none">Без</option>
+      <option value="0.4">0.4 мм</option>
+      <option value="1.0">1.0 мм</option>
+      <option value="2.0">2.0 мм</option>
+    </select>
+  </div>
 </div>
 </div>
 <div class="saw-calc-col">
-<label>КРОМКА ШИРИНА <span style="font-size:11px; color:#ff761a; font-weight:800; margin-left:2px;">(W1 · W2)</span></label>
+<label>КРОМКА ШИРИНА</label>
 <div class="saw-calc-dual-selects">
-<select id="calc-edge-w1" aria-label="Кромка по ширине, сторона 1 (W1)" title="Ширина сторона 1 (W1)">
-<option value="none">W1: Без</option>
-<option value="0.4">W1: 0.4 мм</option>
-<option value="1.0">W1: 1.0 мм</option>
-<option value="2.0">W1: 2.0 мм</option>
-</select>
-<select id="calc-edge-w2" aria-label="Кромка по ширине, сторона 2 (W2)" title="Ширина сторона 2 (W2)">
-<option value="none">W2: Без</option>
-<option value="0.4">W2: 0.4 мм</option>
-<option value="1.0">W2: 1.0 мм</option>
-<option value="2.0">W2: 2.0 мм</option>
-</select>
+  <div class="saw-calc-edge-box">
+    <span class="saw-calc-edge-tag">W1</span>
+    <select id="calc-edge-w1" aria-label="Кромка по ширине, сторона 1 (W1)" title="Ширина сторона 1 (W1)">
+      <option value="none">Без</option>
+      <option value="0.4">0.4 мм</option>
+      <option value="1.0">1.0 мм</option>
+      <option value="2.0">2.0 мм</option>
+    </select>
+  </div>
+  <div class="saw-calc-edge-box">
+    <span class="saw-calc-edge-tag">W2</span>
+    <select id="calc-edge-w2" aria-label="Кромка по ширине, сторона 2 (W2)" title="Ширина сторона 2 (W2)">
+      <option value="none">Без</option>
+      <option value="0.4">0.4 мм</option>
+      <option value="1.0">1.0 мм</option>
+      <option value="2.0">2.0 мм</option>
+    </select>
+  </div>
 </div>
 </div>
 <div class="saw-calc-col">
