@@ -944,6 +944,49 @@ html, body {
   box-shadow: 0 6px 18px rgba(255, 118, 26, 0.45) !important;
 }
 
+/* Edge Banding Badges & Two-tier Table Headers */
+.saw-calc-table {
+  min-width: 780px !important;
+}
+.saw-th-edge-group {
+  text-align: center !important;
+  border-bottom: 1px solid rgba(212, 175, 110, 0.25) !important;
+  background: #20130a !important;
+  color: #ffaa33 !important;
+  font-size: 11px !important;
+  letter-spacing: 0.8px !important;
+  padding: 8px 10px !important;
+}
+.saw-th-subedge {
+  text-align: center !important;
+  background: #26170e !important;
+  color: #ffd991 !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  padding: 6px 8px !important;
+  border-bottom: 1px solid rgba(212, 175, 110, 0.2) !important;
+}
+.saw-edge-badge {
+  display: inline-block;
+  min-width: 48px;
+  padding: 2.5px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  border-radius: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+.saw-edge-badge.is-active {
+  background: rgba(255, 170, 51, 0.18);
+  color: #ffd991;
+  border: 1px solid rgba(255, 170, 51, 0.4);
+}
+.saw-edge-badge.is-none {
+  color: #827468;
+  font-size: 13px;
+  font-weight: 600;
+}
+
 /* Custom Material Dropdown with Photo Preview */
 .saw-custom-select {
   position: relative;
@@ -2007,36 +2050,36 @@ html, body {
 <input id="calc-count-input" max="999" min="1" placeholder="1" type="number" value="1"/>
 </div>
 <div class="saw-calc-col">
-<label>КРОМКА ДЛИНА</label>
+<label>КРОМКА ДЛИНА <span style="font-size:11px; color:#ff761a; font-weight:800; margin-left:2px;">(L1 · L2)</span></label>
 <div class="saw-calc-dual-selects">
-<select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1" title="Длина сторона 1">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм</option>
-<option value="1.0">1.0 мм</option>
-<option value="2.0">2.0 мм</option>
+<select id="calc-edge-l1" aria-label="Кромка по длине, сторона 1 (L1)" title="Длина сторона 1 (L1)">
+<option value="none">L1: Без</option>
+<option value="0.4">L1: 0.4 мм</option>
+<option value="1.0">L1: 1.0 мм</option>
+<option value="2.0">L1: 2.0 мм</option>
 </select>
-<select id="calc-edge-l2" aria-label="Кромка по длине, сторона 2" title="Длина сторона 2">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм</option>
-<option value="1.0">1.0 мм</option>
-<option value="2.0">2.0 мм</option>
+<select id="calc-edge-l2" aria-label="Кромка по длине, сторона 2 (L2)" title="Длина сторона 2 (L2)">
+<option value="none">L2: Без</option>
+<option value="0.4">L2: 0.4 мм</option>
+<option value="1.0">L2: 1.0 мм</option>
+<option value="2.0">L2: 2.0 мм</option>
 </select>
 </div>
 </div>
 <div class="saw-calc-col">
-<label>КРОМКА ШИРИНА</label>
+<label>КРОМКА ШИРИНА <span style="font-size:11px; color:#ff761a; font-weight:800; margin-left:2px;">(W1 · W2)</span></label>
 <div class="saw-calc-dual-selects">
-<select id="calc-edge-w1" aria-label="Кромка по ширине, сторона 1" title="Ширина сторона 1">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм</option>
-<option value="1.0">1.0 мм</option>
-<option value="2.0">2.0 мм</option>
+<select id="calc-edge-w1" aria-label="Кромка по ширине, сторона 1 (W1)" title="Ширина сторона 1 (W1)">
+<option value="none">W1: Без</option>
+<option value="0.4">W1: 0.4 мм</option>
+<option value="1.0">W1: 1.0 мм</option>
+<option value="2.0">W1: 2.0 мм</option>
 </select>
-<select id="calc-edge-w2" aria-label="Кромка по ширине, сторона 2" title="Ширина сторона 2">
-<option value="none">Без</option>
-<option value="0.4">0.4 мм</option>
-<option value="1.0">1.0 мм</option>
-<option value="2.0">2.0 мм</option>
+<select id="calc-edge-w2" aria-label="Кромка по ширине, сторона 2 (W2)" title="Ширина сторона 2 (W2)">
+<option value="none">W2: Без</option>
+<option value="0.4">W2: 0.4 мм</option>
+<option value="1.0">W2: 1.0 мм</option>
+<option value="2.0">W2: 2.0 мм</option>
 </select>
 </div>
 </div>
@@ -2088,13 +2131,20 @@ html, body {
 <table class="saw-calc-table">
 <thead>
 <tr>
-<th>#</th>
-<th>Деталь / Размеры</th>
-<th>Кол-во</th>
-<th>Материал</th>
-<th>Кромка</th>
-<th>Стоимость</th>
-<th>Действия</th>
+<th rowspan="2" style="width:36px; text-align:center; vertical-align:middle;">#</th>
+<th rowspan="2" style="vertical-align:middle;">Деталь / Размеры</th>
+<th rowspan="2" style="text-align:center; vertical-align:middle;">Кол-во</th>
+<th rowspan="2" style="vertical-align:middle;">Материал</th>
+<th colspan="2" class="saw-th-edge-group">Кромка Длина</th>
+<th colspan="2" class="saw-th-edge-group">Кромка Ширина</th>
+<th rowspan="2" style="text-align:right; vertical-align:middle;">Стоимость</th>
+<th rowspan="2" style="text-align:center; width:130px; vertical-align:middle;">Действия</th>
+</tr>
+<tr>
+<th class="saw-th-subedge" title="Кромка: Длина сторона 1 (L1)">L1</th>
+<th class="saw-th-subedge" title="Кромка: Длина сторона 2 (L2)">L2</th>
+<th class="saw-th-subedge" title="Кромка: Ширина сторона 1 (W1)">W1</th>
+<th class="saw-th-subedge" title="Кромка: Ширина сторона 2 (W2)">W2</th>
 </tr>
 </thead>
 <tbody id="calc-items-tbody"></tbody>
@@ -2142,6 +2192,9 @@ html, body {
       </div>
       <div class="saw-modal-summary-price" id="calc-modal-total-price">0 ₽</div>
     </div>
+
+    <!-- Items breakdown in modal -->
+    <div id="calc-modal-items-list" style="display:none; max-height:160px; overflow-y:auto; margin:10px 0 16px 0; background:rgba(20,12,7,0.5); border:1px solid rgba(212,175,110,0.2); border-radius:8px; padding:8px 12px; font-size:12px; color:#f0e5d8;"></div>
 
     <!-- Direct Order Form -->
     <form id="calc-dedicated-form" data-lead-form="calc" action="send.php" method="post" enctype="multipart/form-data">
@@ -4659,16 +4712,24 @@ html, body {
       const areaBadge = ` <span style="display:inline-block; font-size:11px; font-weight:700; background:rgba(255,170,51,0.12); color:#ffd991; border:1px solid rgba(255,170,51,0.3); border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;" title="Квадратура детали">${formatArea(item.areaM2 || 0)} м²</span>`;
       const unitCost = (item.count && item.count > 1) ? `<div style="font-size:11px; color:#c4b2a3; font-weight:500; margin-top:2px;">по ${Math.round(item.cost / item.count).toLocaleString('ru-RU')} ₽/шт.</div>` : '';
 
+      const formatEdgeBadge = (val) => {
+        if (!val || val === 'none') {
+          return `<span class="saw-edge-badge is-none" title="Без кромки">—</span>`;
+        }
+        return `<span class="saw-edge-badge is-active" title="Кромка ${val} мм">${val} мм</span>`;
+      };
+
       tr.innerHTML = `
-        <td style="color:#ffaa33; font-weight:700;">${idx + 1}</td>
+        <td style="color:#ffaa33; font-weight:700; text-align:center;">${idx + 1}</td>
         <td><b>${item.length} × ${item.width} мм</b>${textureBadge}${areaBadge}</td>
-        <td><span style="display:inline-block; font-weight:800; color:#ffd991; background:rgba(255,170,51,0.14); border:1px solid rgba(255,170,51,0.3); padding:3px 9px; border-radius:6px; font-size:13px;">${item.count || 1} шт.</span></td>
+        <td style="text-align:center;"><span style="display:inline-block; font-weight:800; color:#ffd991; background:rgba(255,170,51,0.14); border:1px solid rgba(255,170,51,0.3); padding:3px 9px; border-radius:6px; font-size:13px;">${item.count || 1} шт.</span></td>
         <td><span style="color:#d1bfae;">${item.matName}</span></td>
-        <td>
-          <div style="font-size:12.5px; color:#ffd991; font-weight:600;">${item.edgeDesc}</div>
-        </td>
-        <td style="font-weight:800; color:#ffaa33; font-size:15px;">${item.cost.toLocaleString('ru-RU')} ₽${unitCost}</td>
-        <td>
+        <td style="text-align:center; border-left:1px solid rgba(212,175,110,0.15);">${formatEdgeBadge(item.el1)}</td>
+        <td style="text-align:center; border-right:1px solid rgba(212,175,110,0.15);">${formatEdgeBadge(item.el2)}</td>
+        <td style="text-align:center;">${formatEdgeBadge(item.ew1)}</td>
+        <td style="text-align:center; border-right:1px solid rgba(212,175,110,0.15);">${formatEdgeBadge(item.ew2)}</td>
+        <td style="font-weight:800; color:#ffaa33; font-size:15px; text-align:right;">${item.cost.toLocaleString('ru-RU')} ₽${unitCost}</td>
+        <td style="text-align:center;">
           <button type="button" class="saw-calc-btn-edit ${isEditingThis ? 'is-active' : ''}" data-idx="${idx}">${isEditingThis ? '✕ Отмена' : '✏️ Изменить'}</button>
           <button type="button" class="saw-calc-btn-del" data-idx="${idx}">✕</button>
         </td>
@@ -4965,6 +5026,29 @@ html, body {
     if (m2InfoEl) m2InfoEl.innerText = 'Квадратура: ' + formatArea(totalArea) + ' м² · Кромка: ' + totalEdgeMeters + ' м';
     if (totalPriceEl) totalPriceEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
 
+    var itemsListEl = document.getElementById('calc-modal-items-list');
+    if (itemsListEl) {
+      if (items.length > 0) {
+        itemsListEl.style.display = 'block';
+        var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
+        itemsListEl.innerHTML = items.map(function(itm, i) {
+          return '<div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid rgba(212,175,110,0.12); gap:8px;">' +
+            '<div>' +
+              '<b>#' + (i + 1) + '</b> ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) · <span style="color:#d1bfae;">' + itm.matName + '</span>' +
+              '<div style="font-size:11px; color:#ffd991; margin-top:3px;">' +
+                'Кромка длина: <b>L1:</b> ' + fE(itm.el1) + ', <b>L2:</b> ' + fE(itm.el2) + ' · ' +
+                'ширина: <b>W1:</b> ' + fE(itm.ew1) + ', <b>W2:</b> ' + fE(itm.ew2) +
+              '</div>' +
+            '</div>' +
+            '<div style="font-weight:700; color:#ffaa33; white-space:nowrap; font-size:13px;">' + itm.cost.toLocaleString('ru-RU') + ' ₽</div>' +
+          '</div>';
+        }).join('');
+      } else {
+        itemsListEl.style.display = 'none';
+        itemsListEl.innerHTML = '';
+      }
+    }
+
     if (modal) {
       lastFocused = document.activeElement;
       modal.classList.add('is-open');
@@ -5038,6 +5122,10 @@ html, body {
 
   // Отправку формы берёт на себя js/lead-form.js (Telegram + почта).
   // Здесь остаётся только очистка списка после успешной отправки.
+  window.getCalcItems = function() {
+    return items;
+  };
+
   window.clearCalcItems = function() {
     items.length = 0;
     renderTable();

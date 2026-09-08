@@ -29,28 +29,56 @@
     box.style.display = message ? 'block' : 'none';
   }
 
-  /** Собирает состав калькулятора распила в текст для заявки. */
+  /** Собирает состав калькулятора распила в текст для заявки (с разбивкой L1, L2, W1, W2). */
   function collectCalcSummary() {
+    if (typeof window.getCalcItems === 'function') {
+      var items = window.getCalcItems();
+      if (items && items.length) {
+        var out = [];
+        out.push('Детали на производство (раскрой и кромление):');
+        out.push('------------------------------------------------------------');
+        var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
+        for (var i = 0; i < items.length; i++) {
+          var itm = items[i];
+          out.push(
+            (i + 1) + '. ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) — ' + itm.matName +
+            (itm.hasTexture ? ' [текстура]' : '') + ' · ' + (itm.areaM2 || 0) + ' м²\n' +
+            '   Кромка: L1: ' + fE(itm.el1) + ' | L2: ' + fE(itm.el2) + ' | W1: ' + fE(itm.ew1) + ' | W2: ' + fE(itm.ew2) + '\n' +
+            '   Стоимость: ' + itm.cost.toLocaleString('ru-RU') + ' ₽'
+          );
+        }
+        out.push('------------------------------------------------------------');
+        var total = document.getElementById('calc-total-amount');
+        var area = document.getElementById('calc-total-m2-val');
+        var totalLine = total ? ('ИТОГО: ' + (total.innerText || '').trim()) : '';
+        if (area && area.innerText && area.innerText.trim() !== '0 м²') {
+          totalLine += ' · Квадратура: ' + area.innerText.trim();
+        }
+        if (totalLine) { out.push(totalLine); }
+        return out.join('\n');
+      }
+    }
+
     var tbody = document.getElementById('calc-items-tbody');
     if (!tbody || !tbody.rows.length) { return ''; }
-    var out = [];
-    for (var i = 0; i < tbody.rows.length; i++) {
-      var cells = tbody.rows[i].cells;
+    var fallbackOut = [];
+    for (var r = 0; r < tbody.rows.length; r++) {
+      var cells = tbody.rows[r].cells;
       var parts = [];
       for (var c = 0; c < cells.length - 1; c++) {
         var t = (cells[c].innerText || '').replace(/\s+/g, ' ').trim();
         if (t) { parts.push(t); }
       }
-      out.push(parts.join(' | '));
+      fallbackOut.push(parts.join(' | '));
     }
-    var total = document.getElementById('calc-total-amount');
-    var area = document.getElementById('calc-total-m2-val');
-    var totalLine = total ? ('ИТОГО: ' + (total.innerText || '').trim()) : '';
-    if (area && area.innerText && area.innerText.trim() !== '0 м²') {
-      totalLine += ' · Квадратура: ' + area.innerText.trim();
+    var totalEl = document.getElementById('calc-total-amount');
+    var areaEl = document.getElementById('calc-total-m2-val');
+    var tLine = totalEl ? ('ИТОГО: ' + (totalEl.innerText || '').trim()) : '';
+    if (areaEl && areaEl.innerText && areaEl.innerText.trim() !== '0 м²') {
+      tLine += ' · Квадратура: ' + areaEl.innerText.trim();
     }
-    if (totalLine) { out.push(totalLine); }
-    return out.join('\n');
+    if (tLine) { fallbackOut.push(tLine); }
+    return fallbackOut.join('\n');
   }
 
   function reachGoal(name) {
