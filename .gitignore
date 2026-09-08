@@ -1,0 +1,17 @@
+# Client draft media and raw videos
+фотки и видео с правками и тем что хочет клиент/
+images/portal_video.mp4
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.playwright-cli/
+
+# Файлы, не используемые ни одной страницей (перенесены при аудите)
+_unused/
+
+# Секреты приёма заявок
+config.php
+leads/

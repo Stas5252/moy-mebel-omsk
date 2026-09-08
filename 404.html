@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страница не найдена | МОЙ МЕБЕЛЬНЫЙ</title>
+  <meta name="robots" content="noindex, follow">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=3">
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg?v=3">
+  <link rel="shortcut icon" href="/images/favicon.ico?v=3">
+
+  <link rel="stylesheet" href="/css/montserrat.css">
+  <link rel="stylesheet" href="/css/unified-design-system.css">
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #0c0805;
+      color: #e8ddd2;
+      font-family: 'Montserrat', -apple-system, 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .nf {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 64px clamp(16px, 5vw, 32px) 80px;
+    }
+
+    .nf__code {
+      font-size: clamp(64px, 14vw, 132px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #ff761a;
+      text-shadow: 0 8px 40px rgba(255, 118, 26, 0.35);
+    }
+
+    .nf__title {
+      font-size: clamp(20px, 3.4vw, 28px);
+      font-weight: 800;
+      color: #ffffff;
+      margin: 14px 0 10px;
+      line-height: 1.25;
+    }
+
+    .nf__text {
+      max-width: 460px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #b3a191;
+      margin-bottom: 30px;
+    }
+
+    .nf__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .nf__btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 11px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nf__btn:hover { transform: translateY(-2px); }
+
+    .nf__btn--main {
+      background: linear-gradient(135deg, #ff761a 0%, #db4c00 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 24px rgba(255, 118, 26, 0.4);
+    }
+    .nf__btn--ghost {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #e8ddd2;
+    }
+
+    .nf__phones {
+      margin-top: 34px;
+      font-size: 14px;
+      color: #9c8a7a;
+    }
+    .nf__phones a {
+      color: #ffaa33;
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-block;
+      padding: 4px 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="nf" id="content">
+    <div class="nf__code">404</div>
+    <h1 class="nf__title">Такой страницы у нас нет</h1>
+    <p class="nf__text">
+      Возможно, в адресе опечатка или страница переехала.
+      Загляните в основные разделы — там всё на месте.
+    </p>
+
+    <div class="nf__links">
+      <a class="nf__btn nf__btn--main" href="/raspil.html">Распил ЛДСП</a>
+      <a class="nf__btn nf__btn--ghost" href="/mebel.html">Мебель на заказ</a>
+      <a class="nf__btn nf__btn--ghost" href="/">На главную</a>
+    </div>
+
+    <p class="nf__phones">
+      Или просто позвоните:
+      <a href="tel:+73812590650">+7 (3812) 590-650</a> ·
+      <a href="tel:+73812480153">+7 (3812) 48-01-53</a>
+    </p>
+  </main>
+
+</body>
+</html>
