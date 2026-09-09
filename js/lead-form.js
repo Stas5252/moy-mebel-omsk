@@ -119,7 +119,7 @@
         '  Мы получили ваши данные и свяжемся с вами для уточнения деталей.',
         '</p>',
         '<div class="lead-success-footer-note">',
-        '  Срочный вопрос? Звоните напрямую: <a href="tel:+73812590650">+7 (3812) 590-650</a>',
+        '  Срочный вопрос? Звоните напрямую: <a href="tel:+73812494545">+7 (3812) 49-45-45</a>',
         '</div>',
         '<div>',
         '  <button type="button" class="lead-success-btn-again">' + (isCalcModal ? 'Закрыть окно' : 'Отправить ещё заявку') + '</button>',
@@ -200,7 +200,7 @@
         }
         return r.json().catch(function () {
           if (isLocalOrStatic) { return { ok: true, isDemo: true }; }
-          return { ok: false, error: 'Заявка не ушла. Позвоните, пожалуйста: +7 (3812) 590-650' };
+          return { ok: false, error: 'Заявка не ушла. Позвоните, пожалуйста: +7 (3812) 49-45-45' };
         });
       })
       .then(function (res) {
@@ -208,7 +208,7 @@
           reachGoal('lead_sent');
           showSuccessFrame(form);
         } else {
-          setStatus(form, 'err', (res && res.error) || 'Не получилось отправить. Позвоните: +7 (3812) 590-650');
+          setStatus(form, 'err', (res && res.error) || 'Не получилось отправить. Позвоните: +7 (3812) 49-45-45');
         }
       })
       .catch(function () {
@@ -216,7 +216,7 @@
           reachGoal('lead_sent');
           showSuccessFrame(form);
         } else {
-          setStatus(form, 'err', 'Нет связи с сервером. Позвоните, пожалуйста: +7 (3812) 590-650');
+          setStatus(form, 'err', 'Нет связи с сервером. Позвоните, пожалуйста: +7 (3812) 49-45-45');
         }
       })
       .then(function () {

@@ -92,19 +92,17 @@ try {
                 if (-not $mime) { $mime = "application/octet-stream" }
                 $res.ContentType = $mime
                 $res.StatusCode = 200
-                $fs = [System.IO.File]::OpenRead($target)
-                $res.ContentLength64 = $fs.Length
-                $fs.CopyTo($res.OutputStream)
-                $fs.Close()
+                $bytes = [System.IO.File]::ReadAllBytes($target)
+                $res.ContentLength64 = $bytes.Length
+                $res.OutputStream.Write($bytes, 0, $bytes.Length)
             } else {
                 $notFoundPath = Join-Path $root "404.html"
                 if (Test-Path $notFoundPath) {
                     $res.StatusCode = 404
                     $res.ContentType = "text/html; charset=utf-8"
-                    $fs = [System.IO.File]::OpenRead($notFoundPath)
-                    $res.ContentLength64 = $fs.Length
-                    $fs.CopyTo($res.OutputStream)
-                    $fs.Close()
+                    $bytes = [System.IO.File]::ReadAllBytes($notFoundPath)
+                    $res.ContentLength64 = $bytes.Length
+                    $res.OutputStream.Write($bytes, 0, $bytes.Length)
                 } else {
                     $res.StatusCode = 404
                     $err = [System.Text.Encoding]::UTF8.GetBytes("404 Not Found")
