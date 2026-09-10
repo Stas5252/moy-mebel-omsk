@@ -3,27 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Политика конфиденциальности и обработки персональных данных | МОЙ МЕБЕЛЬНЫЙ Омск</title>
-  <meta name="description" content="Официальная политика ИП Крицкий Николай Владимирович в отношении обработки персональных данных в соответствии с 152-ФЗ РФ. Собственное производство мебели и распил ЛДСП в Омске.">
+  <title>Политика конфиденциальности и обработки персональных данных | МОЙ МЕБЕЛЬНЫЙ</title>
+  <meta name="description" content="Политика в отношении обработки персональных данных ИП Крицкий Николай Владимирович (г. Омск) в соответствии с 152-ФЗ РФ.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://moymebelniy55.ru/privacy.html">
 
-  <!-- Open Graph -->
   <meta property="og:locale" content="ru_RU">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="МОЙ МЕБЕЛЬНЫЙ">
-  <meta property="og:title" content="Политика обработки персональных данных | МОЙ МЕБЕЛЬНЫЙ">
-  <meta property="og:description" content="Официальная политика ИП Крицкий Николай Владимирович в отношении обработки персональных данных в соответствии с 152-ФЗ РФ.">
+  <meta property="og:title" content="Политика в отношении обработки персональных данных | МОЙ МЕБЕЛЬНЫЙ">
+  <meta property="og:description" content="Политика в отношении обработки персональных данных ИП Крицкий Николай Владимирович (г. Омск).">
   <meta property="og:url" content="https://stas5252.github.io/moy-mebel-omsk/privacy.html">
   <meta property="og:image" content="https://stas5252.github.io/moy-mebel-omsk/images/og-preview.png">
-  <meta property="og:image:secure_url" content="https://stas5252.github.io/moy-mebel-omsk/images/og-preview.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Политика обработки персональных данных | МОЙ МЕБЕЛЬНЫЙ">
-  <meta name="twitter:description" content="Официальная политика ИП Крицкий Николай Владимирович в отношении обработки персональных данных в соответствии с 152-ФЗ РФ.">
-  <meta name="twitter:image" content="https://stas5252.github.io/moy-mebel-omsk/images/og-preview.png">
 
   <link rel="icon" type="image/svg+xml" href="images/favicon.svg?v=5">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png?v=5">
@@ -35,400 +26,186 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="css/montserrat.css">
   <link rel="stylesheet" href="css/unified-design-system.css?v=20260904_2020">
 
   <style>
-    :root {
-      --bg-dark: #0c0805;
-      --bg-card: #140d08;
-      --bg-card-glass: rgba(20, 13, 8, 0.9);
-      --border-gold: rgba(212, 175, 110, 0.22);
-      --c-amber: #ff761a;
-      --c-amber-bright: #ff9e58;
-      --c-text-main: #f0e6dc;
-      --c-text-muted: #b8a698;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--c-text-main);
-      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.65;
-      overflow-x: hidden;
+    /* Чистый белый фон и строгое оформление документа */
+    html, body {
+      background-color: #ffffff !important;
+      color: #1a1a1a !important;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    .policy-breadcrumbs-bar {
-      max-width: 1320px;
-      width: 100%;
+    .doc-main {
+      flex: 1;
+      background-color: #ffffff;
+      padding: 32px 20px 70px;
+    }
+
+    .doc-container {
+      max-width: 900px;
       margin: 0 auto;
-      padding: 24px 20px 14px;
+      background: #ffffff;
     }
-    .policy-breadcrumbs {
+
+    .doc-top-bar {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--c-text-muted);
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      border-bottom: 1px solid #e5e7eb;
     }
-    .policy-breadcrumbs a {
-      color: var(--c-amber-bright);
+
+    .doc-back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #ea580c;
       text-decoration: none;
-      transition: color 0.2s;
+      font-size: 14px;
+      font-weight: 700;
+      transition: color 0.2s ease;
     }
-    .policy-breadcrumbs a:hover { color: #ffffff; }
-    .policy-breadcrumbs .sep { opacity: 0.5; }
-
-    .policy-hero {
-      max-width: 1320px;
-      width: 100%;
-      margin: 0 auto 36px;
-      padding: 0 20px;
+    .doc-back-link:hover {
+      color: #c2410c;
+      text-decoration: underline;
     }
 
-    .policy-hero__card {
-      background: linear-gradient(135deg, rgba(34, 20, 12, 0.95) 0%, rgba(20, 13, 8, 0.98) 100%);
-      border: 1px solid var(--border-gold);
-      border-radius: 24px;
-      padding: clamp(28px, 4vw, 44px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .policy-hero__card::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: -80px;
-      width: 380px;
-      height: 380px;
-      background: radial-gradient(circle, rgba(255, 118, 26, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .policy-eyebrow {
+    .doc-download-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--c-amber-bright);
-      background: rgba(255, 118, 26, 0.12);
-      border: 1px solid rgba(255, 118, 26, 0.3);
-      padding: 6px 14px;
-      border-radius: 30px;
-      margin-bottom: 18px;
-    }
-
-    .policy-title {
-      font-size: clamp(24px, 3.2vw, 38px);
-      font-weight: 900;
-      color: #ffffff;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      letter-spacing: -0.01em;
-    }
-
-    .policy-subtitle {
-      font-size: clamp(14px, 1.2vw, 17px);
-      color: var(--c-text-muted);
-      margin-bottom: 26px;
-    }
-
-    .policy-actions-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding-top: 20px;
-      border-top: 1px solid rgba(212, 175, 110, 0.15);
-    }
-
-    .policy-btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: linear-gradient(135deg, #ff9e58 0%, #ff6b1a 50%, #d44e00 100%);
-      color: #ffffff !important;
-      font-weight: 800;
-      font-size: 14px;
-      text-decoration: none;
-      padding: 14px 28px;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(255, 118, 26, 0.4);
-      transition: all 0.25s ease;
-    }
-    .policy-btn-download:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(255, 118, 26, 0.55);
-      background: linear-gradient(135deg, #ffa86b 0%, #ff782b 50%, #e0580a 100%);
-    }
-    .policy-btn-download svg { flex-shrink: 0; }
-
-    .policy-meta-badge {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 13px;
-      color: var(--c-text-muted);
-    }
-    .policy-meta-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 10px #4ade80;
-      display: inline-block;
-    }
-
-    .policy-layout {
-      max-width: 1320px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 0 20px 80px;
-      display: grid;
-      grid-template-columns: 310px 1fr;
-      gap: 36px;
-      align-items: start;
-    }
-
-    @media (max-width: 980px) {
-      .policy-layout { grid-template-columns: 1fr; }
-    }
-
-    .policy-sidebar {
-      position: sticky;
-      top: 96px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .policy-sidebar__card {
-      background: var(--bg-card-glass);
-      border: 1px solid var(--border-gold);
-      border-radius: 20px;
-      padding: 24px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
-    }
-
-    .policy-sidebar__title {
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--c-amber-bright);
-      margin-bottom: 16px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(212, 175, 110, 0.15);
-    }
-
-    .policy-toc {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      max-height: calc(100vh - 320px);
-      overflow-y: auto;
-      padding-right: 6px;
-    }
-    .policy-toc::-webkit-scrollbar { width: 4px; }
-    .policy-toc::-webkit-scrollbar-thumb {
-      background: rgba(212, 175, 110, 0.3);
-      border-radius: 4px;
-    }
-
-    .policy-toc-link {
-      color: #cfbfb2;
-      text-decoration: none;
-      font-size: 13px;
-      line-height: 1.4;
-      display: block;
-      padding: 6px 10px;
+      background: #f8fafc;
+      color: #0f172a;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
       transition: all 0.2s ease;
     }
-    .policy-toc-link:hover {
-      color: #ffffff;
-      background: rgba(255, 118, 26, 0.12);
-      transform: translateX(4px);
+    .doc-download-btn:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+      color: #000000;
     }
 
-    .operator-info-box {
-      font-size: 13px;
-      color: var(--c-text-muted);
-      line-height: 1.6;
-    }
-    .operator-info-box strong {
-      color: #ffffff;
-      display: block;
-      margin-bottom: 6px;
-      font-size: 14px;
-    }
-    .operator-info-item { margin-top: 10px; }
-    .operator-info-item a {
-      color: var(--c-amber-bright);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .operator-info-item a:hover { text-decoration: underline; }
-
-    .policy-content-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 24px;
-      padding: clamp(24px, 4vw, 48px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    }
-
-    .policy-section {
-      margin-bottom: 40px;
-      scroll-margin-top: 100px;
-    }
-
-    .policy-section__title {
-      font-size: clamp(19px, 2vw, 24px);
+    .doc-title {
+      font-size: clamp(24px, 3.2vw, 32px);
       font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 18px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(212, 175, 110, 0.15);
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
+      color: #111827;
+      line-height: 1.25;
+      margin-bottom: 8px;
     }
-    .policy-num { color: var(--c-amber); }
 
-    .policy-paragraph {
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--c-text-main);
+    .doc-subtitle {
+      font-size: 14.5px;
+      color: #6b7280;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid #111827;
+    }
+
+    .doc-sec-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #111827;
+      margin-top: 36px;
       margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e5e7eb;
     }
 
-    .policy-subpoint { color: #e4d7ca; }
-    .policy-subpoint-num {
-      color: var(--c-amber-bright);
-      margin-right: 4px;
-    }
-
-    .policy-list {
-      list-style: none;
-      margin: 14px 0 20px 0;
-      padding-left: 0;
-    }
-
-    .policy-list-item {
-      position: relative;
-      padding-left: 28px;
-      margin-bottom: 12px;
-      font-size: 14.5px;
+    .doc-p {
+      font-size: 15px;
       line-height: 1.7;
-      color: #d8c8b9;
-    }
-    .policy-list-item::before {
-      content: '—';
-      position: absolute;
-      left: 6px;
-      color: var(--c-amber-bright);
-      font-weight: 700;
+      color: #27272a;
+      margin-bottom: 12px;
+      text-align: justify;
     }
 
-    .policy-link {
-      color: var(--c-amber-bright);
+    .doc-subpoint {
+      color: #09090b;
+    }
+
+    .doc-list {
+      margin: 10px 0 16px 24px;
+      padding: 0;
+    }
+
+    .doc-list-item {
+      font-size: 15px;
+      line-height: 1.65;
+      color: #27272a;
+      margin-bottom: 8px;
+    }
+
+    .doc-link {
+      color: #ea580c;
       text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: color 0.2s;
     }
-    .policy-link:hover { color: #ffffff; }
+    .doc-link:hover { color: #c2410c; }
 
-    .policy-table-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(212, 175, 110, 0.25);
-      border-radius: 16px;
-      padding: 22px;
-      margin: 18px 0 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .policy-card-row {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .policy-card-row:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-
-    @media (max-width: 680px) {
-      .policy-card-row { grid-template-columns: 1fr; gap: 6px; }
-    }
-
-    .policy-card-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--c-amber-bright);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .policy-card-val {
-      font-size: 14.5px;
-      color: #ffffff;
-      line-height: 1.6;
-    }
-
-    .policy-operator-box {
-      margin-top: 48px;
-      padding: 28px;
-      background: linear-gradient(135deg, rgba(255, 118, 26, 0.08) 0%, rgba(212, 175, 110, 0.04) 100%);
-      border: 1px solid rgba(212, 175, 110, 0.35);
-      border-radius: 18px;
-    }
-    .policy-operator-box h3 {
-      font-size: 18px;
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-    .policy-operator-box p {
+    /* Таблица статьи 6 */
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
       font-size: 14px;
-      color: var(--c-text-muted);
-      line-height: 1.7;
+    }
+    .doc-table th, .doc-table td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .doc-table th {
+      background-color: #f8fafc;
+      color: #0f172a;
+      font-weight: 700;
+      width: 30%;
+    }
+    .doc-table td {
+      color: #334155;
+      background-color: #ffffff;
+    }
+
+    /* Реквизиты оператора */
+    .doc-requisites {
+      margin-top: 40px;
+      padding: 22px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+    }
+    .doc-requisites h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .doc-requisites p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #475569;
+      margin: 0;
     }
 
     @media print {
-      body { background: #ffffff !important; color: #000000 !important; }
-      .site-header, .site-footer, .policy-breadcrumbs-bar, .policy-sidebar, .policy-actions-row, .scroll-to-top {
-        display: none !important;
-      }
-      .policy-layout { display: block !important; padding: 0 !important; }
-      .policy-content-card, .policy-hero__card {
-        border: none !important;
-        background: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-        color: #000000 !important;
-      }
-      .policy-section__title { color: #000000 !important; border-color: #cccccc !important; }
-      .policy-paragraph, .policy-list-item, .policy-card-val { color: #222222 !important; }
+      .site-header, .site-footer, .doc-top-bar, .scroll-to-top { display: none !important; }
+      .doc-main { padding: 0 !important; }
+      .doc-container { max-width: 100% !important; }
     }
   </style>
 </head>
@@ -485,239 +262,150 @@
     </div>
   </header>
 
-  <main id="content">
-    <!-- BREADCRUMBS -->
-    <div class="policy-breadcrumbs-bar">
-      <div class="policy-breadcrumbs">
-        <a href="index.html">Главная</a>
-        <span class="sep">/</span>
-        <span>Политика конфиденциальности</span>
+  <main class="doc-main" id="content">
+    <div class="doc-container">
+      <div class="doc-top-bar">
+        <a href="index.html" class="doc-back-link">← На главную</a>
+        <a href="docs/Politika_v_otnoshenii_obrabotki_personalnyh_dannyh.docx" class="doc-download-btn" download="Политика_в_отношении_обработки_персональных_данных.docx">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Скачать документ (.docx)</span>
+        </a>
       </div>
-    </div>
 
-    <!-- HERO SECTION -->
-    <section class="policy-hero">
-      <div class="policy-hero__card">
-        <div class="policy-eyebrow">
-          <span>⚖</span> 152-ФЗ РФ · Официальный документ
-        </div>
-        <h1 class="policy-title">Политика в отношении обработки персональных данных</h1>
-        <p class="policy-subtitle">
-          Оператор: Индивидуальный предприниматель Крицкий Николай Владимирович · г. Омск
+      <h1 class="doc-title">Политика в отношении обработки персональных данных</h1>
+      <div class="doc-subtitle">Индивидуальный предприниматель Крицкий Николай Владимирович · г. Омск</div>
+
+      <h2 class="doc-sec-title" id="sec-1">1. Общие положения</h2>
+      <p class="doc-p">Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. № 152-ФЗ «О персональных данных» (далее — Закон о персональных данных) и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые  ИП Крицкий Николай Владимирович (далее — Оператор).</p>
+      <p class="doc-p"><strong class="doc-subpoint">1.1.</strong> Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
+      <p class="doc-p"><strong class="doc-subpoint">1.2.</strong> Настоящая политика Оператора в отношении обработки персональных данных (далее — Политика) применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта https://www.moymebel55.ru.</p>
+      <h2 class="doc-sec-title" id="sec-2">2. Основные понятия, используемые в Политике</h2>
+      <p class="doc-p"><strong class="doc-subpoint">2.1.</strong> Автоматизированная обработка персональных данных — обработка персональных данных с помощью средств вычислительной техники.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.2.</strong> Блокирование персональных данных — временное прекращение обработки персональных данных (за исключением случаев, если обработка необходима для уточнения персональных данных).</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.3.</strong> Веб-сайт — совокупность графических и информационных материалов, а также программ для ЭВМ и баз данных, обеспечивающих их доступность в сети интернет по сетевому адресу https://www.moymebel55.ru.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.4.</strong> Информационная система персональных данных — совокупность содержащихся в базах данных персональных данных и обеспечивающих их обработку информационных технологий и технических средств.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.5.</strong> Обезличивание персональных данных — действия, в результате которых невозможно определить без использования дополнительной информации принадлежность персональных данных конкретному Пользователю или иному субъекту персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.6.</strong> Обработка персональных данных — любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.7.</strong> Оператор — государственный орган, муниципальный орган, юридическое или физическое лицо, самостоятельно или совместно с другими лицами организующие и/или осуществляющие обработку персональных данных, а также определяющие цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.8.</strong> Персональные данные — любая информация, относящаяся прямо или косвенно к определенному или определяемому Пользователю веб-сайта https://www.moymebel55.ru.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.9.</strong> Персональные данные, разрешенные субъектом персональных данных для распространения, — персональные данные, доступ неограниченного круга лиц к которым предоставлен субъектом персональных данных путем дачи согласия на обработку персональных данных, разрешенных субъектом персональных данных для распространения в порядке, предусмотренном Законом о персональных данных (далее — персональные данные, разрешенные для распространения).</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.10.</strong> Пользователь — любой посетитель веб-сайта https://www.moymebel55.ru.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.11.</strong> Предоставление персональных данных — действия, направленные на раскрытие персональных данных определенному лицу или определенному кругу лиц.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.12.</strong> Распространение персональных данных — любые действия, направленные на раскрытие персональных данных неопределенному кругу лиц (передача персональных данных) или на ознакомление с персональными данными неограниченного круга лиц, в том числе обнародование персональных данных в средствах массовой информации, размещение в информационно-телекоммуникационных сетях или предоставление доступа к персональным данным каким-либо иным способом.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.13.</strong> Трансграничная передача персональных данных — передача персональных данных на территорию иностранного государства органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу.</p>
+      <p class="doc-p"><strong class="doc-subpoint">2.14.</strong> Уничтожение персональных данных — любые действия, в результате которых персональные данные уничтожаются безвозвратно с невозможностью дальнейшего восстановления содержания персональных данных в информационной системе персональных данных и/или уничтожаются материальные носители персональных данных.</p>
+      <h2 class="doc-sec-title" id="sec-3">3. Основные права и обязанности Оператора</h2>
+      <p class="doc-p"><strong class="doc-subpoint">3.1.</strong> Оператор имеет право:</p>
+      <ul class="doc-list">
+        <li class="doc-list-item">получать от субъекта персональных данных достоверные информацию и/или документы, содержащие персональные данные;</li>
+        <li class="doc-list-item">в случае отзыва субъектом персональных данных согласия на обработку персональных данных, а также, направления обращения с требованием о прекращении обработки персональных данных, Оператор вправе продолжить обработку персональных данных без согласия субъекта персональных данных при наличии оснований, указанных в Законе о персональных данных;</li>
+        <li class="doc-list-item">самостоятельно определять состав и перечень мер, необходимых и достаточных для обеспечения выполнения обязанностей, предусмотренных Законом о персональных данных и принятыми в соответствии с ним нормативными правовыми актами, если иное не предусмотрено Законом о персональных данных или другими федеральными законами.</li>
+      </ul>
+      <p class="doc-p"><strong class="doc-subpoint">3.2.</strong> Оператор обязан:</p>
+      <ul class="doc-list">
+        <li class="doc-list-item">предоставлять субъекту персональных данных по его просьбе информацию, касающуюся обработки его персональных данных;</li>
+        <li class="doc-list-item">организовывать обработку персональных данных в порядке, установленном действующим законодательством РФ;</li>
+        <li class="doc-list-item">отвечать на обращения и запросы субъектов персональных данных и их законных представителей в соответствии с требованиями Закона о персональных данных;</li>
+        <li class="doc-list-item">сообщать в уполномоченный орган по защите прав субъектов персональных данных по запросу этого органа необходимую информацию в течение 30 дней с даты получения такого запроса;</li>
+        <li class="doc-list-item">публиковать или иным образом обеспечивать неограниченный доступ к настоящей Политике в отношении обработки персональных данных;</li>
+        <li class="doc-list-item">принимать правовые, организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа к ним, уничтожения, изменения, блокирования, копирования, предоставления, распространения персональных данных, а также от иных неправомерных действий в отношении персональных данных;</li>
+        <li class="doc-list-item">прекратить передачу (распространение, предоставление, доступ) персональных данных, прекратить обработку и уничтожить персональные данные в порядке и случаях, предусмотренных Законом о персональных данных;</li>
+        <li class="doc-list-item">исполнять иные обязанности, предусмотренные Законом о персональных данных.</li>
+      </ul>
+      <h2 class="doc-sec-title" id="sec-4">4. Основные права и обязанности субъектов персональных данных</h2>
+      <p class="doc-p"><strong class="doc-subpoint">4.1.</strong> Субъекты персональных данных имеют право:</p>
+      <ul class="doc-list">
+        <li class="doc-list-item">получать информацию, касающуюся обработки его персональных данных, за исключением случаев, предусмотренных федеральными законами. Сведения предоставляются субъекту персональных данных Оператором в доступной форме, и в них не должны содержаться персональные данные, относящиеся к другим субъектам персональных данных, за исключением случаев, когда имеются законные основания для раскрытия таких персональных данных. Перечень информации и порядок ее получения установлен Законом о персональных данных;</li>
+        <li class="doc-list-item">требовать от оператора уточнения его персональных данных, их блокирования или уничтожения в случае, если персональные данные являются неполными, устаревшими, неточными, незаконно полученными или не являются необходимыми для заявленной цели обработки, а также принимать предусмотренные законом меры по защите своих прав;</li>
+        <li class="doc-list-item">выдвигать условие предварительного согласия при обработке персональных данных в целях продвижения на рынке товаров, работ и услуг;</li>
+        <li class="doc-list-item">на отзыв согласия на обработку персональных данных, а также, на направление требования о прекращении обработки персональных данных;</li>
+        <li class="doc-list-item">обжаловать в уполномоченный орган по защите прав субъектов персональных данных или в судебном порядке неправомерные действия или бездействие Оператора при обработке его персональных данных;</li>
+        <li class="doc-list-item">на осуществление иных прав, предусмотренных законодательством РФ.</li>
+      </ul>
+      <p class="doc-p"><strong class="doc-subpoint">4.2.</strong> Субъекты персональных данных обязаны:</p>
+      <ul class="doc-list">
+        <li class="doc-list-item">предоставлять Оператору достоверные данные о себе;</li>
+        <li class="doc-list-item">сообщать Оператору об уточнении (обновлении, изменении) своих персональных данных.</li>
+      </ul>
+      <p class="doc-p"><strong class="doc-subpoint">4.3.</strong> Лица, передавшие Оператору недостоверные сведения о себе, либо сведения о другом субъекте персональных данных без согласия последнего, несут ответственность в соответствии с законодательством РФ.</p>
+      <h2 class="doc-sec-title" id="sec-5">5. Принципы обработки персональных данных</h2>
+      <p class="doc-p"><strong class="doc-subpoint">5.1.</strong> Обработка персональных данных осуществляется на законной и справедливой основе.</p>
+      <p class="doc-p"><strong class="doc-subpoint">5.2.</strong> Обработка персональных данных ограничивается достижением конкретных, заранее определенных и законных целей. Не допускается обработка персональных данных, несовместимая с целями сбора персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">5.3.</strong> Не допускается объединение баз данных, содержащих персональные данные, обработка которых осуществляется в целях, несовместимых между собой.</p>
+      <p class="doc-p"><strong class="doc-subpoint">5.4.</strong> Обработке подлежат только персональные данные, которые отвечают целям их обработки.</p>
+      <p class="doc-p"><strong class="doc-subpoint">5.5.</strong> Содержание и объем обрабатываемых персональных данных соответствуют заявленным целям обработки. Не допускается избыточность обрабатываемых персональных данных по отношению к заявленным целям их обработки.</p>
+      <p class="doc-p"><strong class="doc-subpoint">5.6.</strong> При обработке персональных данных обеспечивается точность персональных данных, их достаточность, а в необходимых случаях и актуальность по отношению к целям обработки персональных данных. Оператор принимает необходимые меры и/или обеспечивает их принятие по удалению или уточнению неполных или неточных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">5.7.</strong> Хранение персональных данных осуществляется в форме, позволяющей определить субъекта персональных данных, не дольше, чем этого требуют цели обработки персональных данных, если срок хранения персональных данных не установлен федеральным законом, договором, стороной которого, выгодоприобретателем или поручителем по которому является субъект персональных данных. Обрабатываемые персональные данные уничтожаются либо обезличиваются по достижении целей обработки или в случае утраты необходимости в достижении этих целей, если иное не предусмотрено федеральным законом.</p>
+      <h2 class="doc-sec-title" id="sec-6">6. Цели обработки персональных данных</h2>
+      <table class="doc-table">
+        <tr>
+          <th>Цель обработки</th>
+          <td>Заключение, исполнение и прекращение гражданско-правовых договоров</td>
+        </tr>
+        <tr>
+          <th>Персональные данные</th>
+          <td>Номера телефонов, имя</td>
+        </tr>
+        <tr>
+          <th>Правовые основания</th>
+          <td>Федеральный закон «Об информации, информационных технологиях и о защите информации» от 27.07.2006 № 149-ФЗ</td>
+        </tr>
+        <tr>
+          <th>Виды обработки</th>
+          <td>Сбор, запись, систематизация, накопление, хранение, уничтожение и обезличивание персональных данных</td>
+        </tr>
+      </table>
+      <h2 class="doc-sec-title" id="sec-7">7. Условия обработки персональных данных</h2>
+      <p class="doc-p"><strong class="doc-subpoint">7.1.</strong> Обработка персональных данных осуществляется с согласия субъекта персональных данных на обработку его персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">7.2.</strong> Обработка персональных данных необходима для достижения целей, предусмотренных международным договором Российской Федерации или законом, для осуществления возложенных законодательством Российской Федерации на оператора функций, полномочий и обязанностей.</p>
+      <p class="doc-p"><strong class="doc-subpoint">7.3.</strong> Обработка персональных данных необходима для осуществления правосудия, исполнения судебного акта, акта другого органа или должностного лица, подлежащих исполнению в соответствии с законодательством Российской Федерации об исполнительном производстве.</p>
+      <p class="doc-p"><strong class="doc-subpoint">7.4.</strong> Обработка персональных данных необходима для исполнения договора, стороной которого либо выгодоприобретателем или поручителем по которому является субъект персональных данных, а также для заключения договора по инициативе субъекта персональных данных или договора, по которому субъект персональных данных будет являться выгодоприобретателем или поручителем.</p>
+      <p class="doc-p"><strong class="doc-subpoint">7.5.</strong> Обработка персональных данных необходима для осуществления прав и законных интересов оператора или третьих лиц либо для достижения общественно значимых целей при условии, что при этом не нарушаются права и свободы субъекта персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">7.6.</strong> Осуществляется обработка персональных данных, доступ неограниченного круга лиц к которым предоставлен субъектом персональных данных либо по его просьбе (далее — общедоступные персональные данные).</p>
+      <p class="doc-p"><strong class="doc-subpoint">7.7.</strong> Осуществляется обработка персональных данных, подлежащих опубликованию или обязательному раскрытию в соответствии с федеральным законом.</p>
+      <h2 class="doc-sec-title" id="sec-8">8. Порядок сбора, хранения, передачи и других видов обработки персональных данных</h2>
+      <p class="doc-p">Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.1.</strong> Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к персональным данным неуполномоченных лиц.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.2.</strong> Персональные данные Пользователя никогда, ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства либо в случае, если субъектом персональных данных дано согласие Оператору на передачу данных третьему лицу для исполнения обязательств по гражданско-правовому договору.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.3.</strong> В случае выявления неточностей в персональных данных, Пользователь может актуализировать их самостоятельно, путем направления Оператору уведомление на адрес электронной почты Оператора moymebel55.ru с пометкой «Актуализация персональных данных».</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.4.</strong> Срок обработки персональных данных определяется достижением целей, для которых были собраны персональные данные, если иной срок не предусмотрен договором или действующим законодательством.</p>
+      <p class="doc-p">Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты на электронный адрес Оператора moymebel55.ru с пометкой «Отзыв согласия на обработку персональных данных».</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.5.</strong> Вся информация, которая собирается сторонними сервисами, в том числе платежными системами, средствами связи и другими поставщиками услуг, хранится и обрабатывается указанными лицами (Операторами) в соответствии с их Пользовательским соглашением и Политикой конфиденциальности. Субъект персональных данных и/или с указанными документами. Оператор не несет ответственность за действия третьих лиц, в том числе указанных в настоящем пункте поставщиков услуг.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.6.</strong> Установленные субъектом персональных данных запреты на передачу (кроме предоставления доступа), а также на обработку или условия обработки (кроме получения доступа) персональных данных, разрешенных для распространения, не действуют в случаях обработки персональных данных в государственных, общественных и иных публичных интересах, определенных законодательством РФ.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.7.</strong> Оператор при обработке персональных данных обеспечивает конфиденциальность персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.8.</strong> Оператор осуществляет хранение персональных данных в форме, позволяющей определить субъекта персональных данных, не дольше, чем этого требуют цели обработки персональных данных, если срок хранения персональных данных не установлен федеральным законом, договором, стороной которого, выгодоприобретателем или поручителем по которому является субъект персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">8.9.</strong> Условием прекращения обработки персональных данных может являться достижение целей обработки персональных данных, истечение срока действия согласия субъекта персональных данных, отзыв согласия субъектом персональных данных или требование о прекращении обработки персональных данных, а также выявление неправомерной обработки персональных данных.</p>
+      <h2 class="doc-sec-title" id="sec-9">9. Перечень действий, производимых Оператором с полученными персональными данными</h2>
+      <p class="doc-p"><strong class="doc-subpoint">9.1.</strong> Оператор осуществляет сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление и уничтожение персональных данных.</p>
+      <p class="doc-p"><strong class="doc-subpoint">9.2.</strong> Оператор осуществляет автоматизированную обработку персональных данных с получением и/или передачей полученной информации по информационно-телекоммуникационным сетям или без таковой.</p>
+      <h2 class="doc-sec-title" id="sec-10">10. Трансграничная передача персональных данных</h2>
+      <p class="doc-p"><strong class="doc-subpoint">10.1.</strong> Оператор до начала осуществления деятельности по трансграничной передаче персональных данных обязан уведомить уполномоченный орган по защите прав субъектов персональных данных о своем намерении осуществлять трансграничную передачу персональных данных (такое уведомление направляется отдельно от уведомления о намерении осуществлять обработку персональных данных).</p>
+      <p class="doc-p"><strong class="doc-subpoint">10.2.</strong> Оператор до подачи вышеуказанного уведомления, обязан получить от органов власти иностранного государства, иностранных физических лиц, иностранных юридических лиц, которым планируется трансграничная передача персональных данных, соответствующие сведения.</p>
+      <h2 class="doc-sec-title" id="sec-11">11. Конфиденциальность персональных данных</h2>
+      <p class="doc-p">Оператор и иные лица, получившие доступ к персональным данным, обязаны не раскрывать третьим лицам и не распространять персональные данные без согласия субъекта персональных данных, если иное не предусмотрено федеральным законом.</p>
+      <h2 class="doc-sec-title" id="sec-12">12. Заключительные положения</h2>
+      <p class="doc-p"><strong class="doc-subpoint">12.1.</strong> Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору с помощью электронной почты <a href="mailto:9088014000@mail.ru" class="doc-link">9088014000@mail.ru</a></p>
+      <p class="doc-p"><strong class="doc-subpoint">12.2.</strong> В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
+
+      <div class="doc-requisites">
+        <h3>Реквизиты и контакты Оператора</h3>
+        <p>
+          <strong>Индивидуальный предприниматель Крицкий Николай Владимирович</strong><br>
+          Сайт: <a href="https://moymebelniy55.ru" class="doc-link">https://moymebelniy55.ru</a><br>
+          Электронная почта: <a href="mailto:9088014000@mail.ru" class="doc-link">9088014000@mail.ru</a><br>
+          Телефоны: <a href="tel:+73812494545" class="doc-link">+7 (3812) 49-45-45</a>, <a href="tel:+79088014000" class="doc-link">+7-908-801-40-00</a><br>
+          Адрес производства: г. Омск, ул. 26-я Северная, 13А/9<br>
+          Адрес салона: г. Омск, ул. Герцена, 36
         </p>
-
-        <div class="policy-actions-row">
-          <a href="docs/Politika_v_otnoshenii_obrabotki_personalnyh_dannyh.docx" class="policy-btn-download" download="Политика_в_отношении_обработки_персональных_данных.docx">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>Скачать оригинал документа (.docx)</span>
-          </a>
-
-          <div class="policy-meta-badge">
-            <span class="policy-meta-dot"></span>
-            <span>Редакция от 2026 г. · Действует бессрочно</span>
-          </div>
-        </div>
       </div>
-    </section>
-
-    <!-- CONTENT GRID -->
-    <div class="policy-layout">
-      <!-- SIDEBAR -->
-      <aside class="policy-sidebar">
-        <div class="policy-sidebar__card">
-          <h2 class="policy-sidebar__title">Разделы документа</h2>
-          <ul class="policy-toc">
-            <li><a href="#sec-1" class="policy-toc-link">1. Общие положения</a></li>
-            <li><a href="#sec-2" class="policy-toc-link">2. Основные понятия, используемые в Политике</a></li>
-            <li><a href="#sec-3" class="policy-toc-link">3. Основные права и обязанности Оператора</a></li>
-            <li><a href="#sec-4" class="policy-toc-link">4. Основные права и обязанности субъектов персональных данных</a></li>
-            <li><a href="#sec-5" class="policy-toc-link">5. Принципы обработки персональных данных</a></li>
-            <li><a href="#sec-6" class="policy-toc-link">6. Цели обработки персональных данных</a></li>
-            <li><a href="#sec-7" class="policy-toc-link">7. Условия обработки персональных данных</a></li>
-            <li><a href="#sec-8" class="policy-toc-link">8. Порядок сбора, хранения, передачи и других видов обработки персональных данных</a></li>
-            <li><a href="#sec-9" class="policy-toc-link">9. Перечень действий, производимых Оператором с полученными персональными данными</a></li>
-            <li><a href="#sec-10" class="policy-toc-link">10. Трансграничная передача персональных данных</a></li>
-            <li><a href="#sec-11" class="policy-toc-link">11. Конфиденциальность персональных данных</a></li>
-            <li><a href="#sec-12" class="policy-toc-link">12. Заключительные положения</a></li>
-          </ul>
-        </div>
-
-        <div class="policy-sidebar__card operator-info-box">
-          <h2 class="policy-sidebar__title">Контакты оператора</h2>
-          <strong>ИП Крицкий Николай Владимирович</strong>
-          <div class="operator-info-item">
-            По вопросам обработки данных:<br>
-            <a href="mailto:9088014000@mail.ru">9088014000@mail.ru</a>
-          </div>
-          <div class="operator-info-item">
-            Телефон цеха / офиса:<br>
-            <a href="tel:+73812494545">+7 (3812) 49-45-45</a>
-          </div>
-          <div class="operator-info-item">
-            Адрес: г. Омск, ул. 26-я Северная, 13А/9
-          </div>
-        </div>
-      </aside>
-
-      <!-- POLICY DOCUMENT CARD -->
-      <article class="policy-content-card">
-        <section class="policy-section" id="sec-1">
-          <h2 class="policy-section__title"><span class="policy-num">1.</span> Общие положения</h2>
-          <p class="policy-paragraph">Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006. № 152-ФЗ «О персональных данных» (далее — Закон о персональных данных) и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных, предпринимаемые  ИП Крицкий Николай Владимирович (далее — Оператор).</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">1.1.</strong> Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">1.2.</strong> Настоящая политика Оператора в отношении обработки персональных данных (далее — Политика) применяется ко всей информации, которую Оператор может получить о посетителях веб-сайта https://www.moymebel55.ru.</p>
-        </section>
-        <section class="policy-section" id="sec-2">
-          <h2 class="policy-section__title"><span class="policy-num">2.</span> Основные понятия, используемые в Политике</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.1.</strong> Автоматизированная обработка персональных данных — обработка персональных данных с помощью средств вычислительной техники.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.2.</strong> Блокирование персональных данных — временное прекращение обработки персональных данных (за исключением случаев, если обработка необходима для уточнения персональных данных).</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.3.</strong> Веб-сайт — совокупность графических и информационных материалов, а также программ для ЭВМ и баз данных, обеспечивающих их доступность в сети интернет по сетевому адресу https://www.moymebel55.ru.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.4.</strong> Информационная система персональных данных — совокупность содержащихся в базах данных персональных данных и обеспечивающих их обработку информационных технологий и технических средств.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.5.</strong> Обезличивание персональных данных — действия, в результате которых невозможно определить без использования дополнительной информации принадлежность персональных данных конкретному Пользователю или иному субъекту персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.6.</strong> Обработка персональных данных — любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.7.</strong> Оператор — государственный орган, муниципальный орган, юридическое или физическое лицо, самостоятельно или совместно с другими лицами организующие и/или осуществляющие обработку персональных данных, а также определяющие цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.8.</strong> Персональные данные — любая информация, относящаяся прямо или косвенно к определенному или определяемому Пользователю веб-сайта https://www.moymebel55.ru.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.9.</strong> Персональные данные, разрешенные субъектом персональных данных для распространения, — персональные данные, доступ неограниченного круга лиц к которым предоставлен субъектом персональных данных путем дачи согласия на обработку персональных данных, разрешенных субъектом персональных данных для распространения в порядке, предусмотренном Законом о персональных данных (далее — персональные данные, разрешенные для распространения).</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.10.</strong> Пользователь — любой посетитель веб-сайта https://www.moymebel55.ru.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.11.</strong> Предоставление персональных данных — действия, направленные на раскрытие персональных данных определенному лицу или определенному кругу лиц.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.12.</strong> Распространение персональных данных — любые действия, направленные на раскрытие персональных данных неопределенному кругу лиц (передача персональных данных) или на ознакомление с персональными данными неограниченного круга лиц, в том числе обнародование персональных данных в средствах массовой информации, размещение в информационно-телекоммуникационных сетях или предоставление доступа к персональным данным каким-либо иным способом.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.13.</strong> Трансграничная передача персональных данных — передача персональных данных на территорию иностранного государства органу власти иностранного государства, иностранному физическому или иностранному юридическому лицу.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">2.14.</strong> Уничтожение персональных данных — любые действия, в результате которых персональные данные уничтожаются безвозвратно с невозможностью дальнейшего восстановления содержания персональных данных в информационной системе персональных данных и/или уничтожаются материальные носители персональных данных.</p>
-        </section>
-        <section class="policy-section" id="sec-3">
-          <h2 class="policy-section__title"><span class="policy-num">3.</span> Основные права и обязанности Оператора</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">3.1.</strong> Оператор имеет право:</p>
-        <ul class="policy-list">
-          <li class="policy-list-item">получать от субъекта персональных данных достоверные информацию и/или документы, содержащие персональные данные;</li>
-          <li class="policy-list-item">в случае отзыва субъектом персональных данных согласия на обработку персональных данных, а также, направления обращения с требованием о прекращении обработки персональных данных, Оператор вправе продолжить обработку персональных данных без согласия субъекта персональных данных при наличии оснований, указанных в Законе о персональных данных;</li>
-          <li class="policy-list-item">самостоятельно определять состав и перечень мер, необходимых и достаточных для обеспечения выполнения обязанностей, предусмотренных Законом о персональных данных и принятыми в соответствии с ним нормативными правовыми актами, если иное не предусмотрено Законом о персональных данных или другими федеральными законами.</li>
-        </ul>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">3.2.</strong> Оператор обязан:</p>
-        <ul class="policy-list">
-          <li class="policy-list-item">предоставлять субъекту персональных данных по его просьбе информацию, касающуюся обработки его персональных данных;</li>
-          <li class="policy-list-item">организовывать обработку персональных данных в порядке, установленном действующим законодательством РФ;</li>
-          <li class="policy-list-item">отвечать на обращения и запросы субъектов персональных данных и их законных представителей в соответствии с требованиями Закона о персональных данных;</li>
-          <li class="policy-list-item">сообщать в уполномоченный орган по защите прав субъектов персональных данных по запросу этого органа необходимую информацию в течение 30 дней с даты получения такого запроса;</li>
-          <li class="policy-list-item">публиковать или иным образом обеспечивать неограниченный доступ к настоящей Политике в отношении обработки персональных данных;</li>
-          <li class="policy-list-item">принимать правовые, организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа к ним, уничтожения, изменения, блокирования, копирования, предоставления, распространения персональных данных, а также от иных неправомерных действий в отношении персональных данных;</li>
-          <li class="policy-list-item">прекратить передачу (распространение, предоставление, доступ) персональных данных, прекратить обработку и уничтожить персональные данные в порядке и случаях, предусмотренных Законом о персональных данных;</li>
-          <li class="policy-list-item">исполнять иные обязанности, предусмотренные Законом о персональных данных.</li>
-        </ul>
-        </section>
-        <section class="policy-section" id="sec-4">
-          <h2 class="policy-section__title"><span class="policy-num">4.</span> Основные права и обязанности субъектов персональных данных</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">4.1.</strong> Субъекты персональных данных имеют право:</p>
-        <ul class="policy-list">
-          <li class="policy-list-item">получать информацию, касающуюся обработки его персональных данных, за исключением случаев, предусмотренных федеральными законами. Сведения предоставляются субъекту персональных данных Оператором в доступной форме, и в них не должны содержаться персональные данные, относящиеся к другим субъектам персональных данных, за исключением случаев, когда имеются законные основания для раскрытия таких персональных данных. Перечень информации и порядок ее получения установлен Законом о персональных данных;</li>
-          <li class="policy-list-item">требовать от оператора уточнения его персональных данных, их блокирования или уничтожения в случае, если персональные данные являются неполными, устаревшими, неточными, незаконно полученными или не являются необходимыми для заявленной цели обработки, а также принимать предусмотренные законом меры по защите своих прав;</li>
-          <li class="policy-list-item">выдвигать условие предварительного согласия при обработке персональных данных в целях продвижения на рынке товаров, работ и услуг;</li>
-          <li class="policy-list-item">на отзыв согласия на обработку персональных данных, а также, на направление требования о прекращении обработки персональных данных;</li>
-          <li class="policy-list-item">обжаловать в уполномоченный орган по защите прав субъектов персональных данных или в судебном порядке неправомерные действия или бездействие Оператора при обработке его персональных данных;</li>
-          <li class="policy-list-item">на осуществление иных прав, предусмотренных законодательством РФ.</li>
-        </ul>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">4.2.</strong> Субъекты персональных данных обязаны:</p>
-        <ul class="policy-list">
-          <li class="policy-list-item">предоставлять Оператору достоверные данные о себе;</li>
-          <li class="policy-list-item">сообщать Оператору об уточнении (обновлении, изменении) своих персональных данных.</li>
-        </ul>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">4.3.</strong> Лица, передавшие Оператору недостоверные сведения о себе, либо сведения о другом субъекте персональных данных без согласия последнего, несут ответственность в соответствии с законодательством РФ.</p>
-        </section>
-        <section class="policy-section" id="sec-5">
-          <h2 class="policy-section__title"><span class="policy-num">5.</span> Принципы обработки персональных данных</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.1.</strong> Обработка персональных данных осуществляется на законной и справедливой основе.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.2.</strong> Обработка персональных данных ограничивается достижением конкретных, заранее определенных и законных целей. Не допускается обработка персональных данных, несовместимая с целями сбора персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.3.</strong> Не допускается объединение баз данных, содержащих персональные данные, обработка которых осуществляется в целях, несовместимых между собой.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.4.</strong> Обработке подлежат только персональные данные, которые отвечают целям их обработки.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.5.</strong> Содержание и объем обрабатываемых персональных данных соответствуют заявленным целям обработки. Не допускается избыточность обрабатываемых персональных данных по отношению к заявленным целям их обработки.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.6.</strong> При обработке персональных данных обеспечивается точность персональных данных, их достаточность, а в необходимых случаях и актуальность по отношению к целям обработки персональных данных. Оператор принимает необходимые меры и/или обеспечивает их принятие по удалению или уточнению неполных или неточных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">5.7.</strong> Хранение персональных данных осуществляется в форме, позволяющей определить субъекта персональных данных, не дольше, чем этого требуют цели обработки персональных данных, если срок хранения персональных данных не установлен федеральным законом, договором, стороной которого, выгодоприобретателем или поручителем по которому является субъект персональных данных. Обрабатываемые персональные данные уничтожаются либо обезличиваются по достижении целей обработки или в случае утраты необходимости в достижении этих целей, если иное не предусмотрено федеральным законом.</p>
-        </section>
-        <section class="policy-section" id="sec-6">
-          <h2 class="policy-section__title"><span class="policy-num">6.</span> Цели обработки персональных данных</h2>
-          <div class="policy-table-card">
-            <div class="policy-card-row">
-              <div class="policy-card-label">Цель обработки</div>
-              <div class="policy-card-val">Заключение, исполнение и прекращение гражданско-правовых договоров</div>
-            </div>
-            <div class="policy-card-row">
-              <div class="policy-card-label">Персональные данные</div>
-              <div class="policy-card-val">Номера телефонов, имя</div>
-            </div>
-            <div class="policy-card-row">
-              <div class="policy-card-label">Правовые основания</div>
-              <div class="policy-card-val">Федеральный закон «Об информации, информационных технологиях и о защите информации» от 27.07.2006 № 149-ФЗ</div>
-            </div>
-            <div class="policy-card-row">
-              <div class="policy-card-label">Виды обработки</div>
-              <div class="policy-card-val">Сбор, запись, систематизация, накопление, хранение, уничтожение и обезличивание персональных данных</div>
-            </div>
-          </div>
-        </section>
-        <section class="policy-section" id="sec-7">
-          <h2 class="policy-section__title"><span class="policy-num">7.</span> Условия обработки персональных данных</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.1.</strong> Обработка персональных данных осуществляется с согласия субъекта персональных данных на обработку его персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.2.</strong> Обработка персональных данных необходима для достижения целей, предусмотренных международным договором Российской Федерации или законом, для осуществления возложенных законодательством Российской Федерации на оператора функций, полномочий и обязанностей.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.3.</strong> Обработка персональных данных необходима для осуществления правосудия, исполнения судебного акта, акта другого органа или должностного лица, подлежащих исполнению в соответствии с законодательством Российской Федерации об исполнительном производстве.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.4.</strong> Обработка персональных данных необходима для исполнения договора, стороной которого либо выгодоприобретателем или поручителем по которому является субъект персональных данных, а также для заключения договора по инициативе субъекта персональных данных или договора, по которому субъект персональных данных будет являться выгодоприобретателем или поручителем.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.5.</strong> Обработка персональных данных необходима для осуществления прав и законных интересов оператора или третьих лиц либо для достижения общественно значимых целей при условии, что при этом не нарушаются права и свободы субъекта персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.6.</strong> Осуществляется обработка персональных данных, доступ неограниченного круга лиц к которым предоставлен субъектом персональных данных либо по его просьбе (далее — общедоступные персональные данные).</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">7.7.</strong> Осуществляется обработка персональных данных, подлежащих опубликованию или обязательному раскрытию в соответствии с федеральным законом.</p>
-        </section>
-        <section class="policy-section" id="sec-8">
-          <h2 class="policy-section__title"><span class="policy-num">8.</span> Порядок сбора, хранения, передачи и других видов обработки персональных данных</h2>
-          <p class="policy-paragraph">Безопасность персональных данных, которые обрабатываются Оператором, обеспечивается путем реализации правовых, организационных и технических мер, необходимых для выполнения в полном объеме требований действующего законодательства в области защиты персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.1.</strong> Оператор обеспечивает сохранность персональных данных и принимает все возможные меры, исключающие доступ к персональным данным неуполномоченных лиц.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.2.</strong> Персональные данные Пользователя никогда, ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства либо в случае, если субъектом персональных данных дано согласие Оператору на передачу данных третьему лицу для исполнения обязательств по гражданско-правовому договору.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.3.</strong> В случае выявления неточностей в персональных данных, Пользователь может актуализировать их самостоятельно, путем направления Оператору уведомление на адрес электронной почты Оператора moymebel55.ru с пометкой «Актуализация персональных данных».</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.4.</strong> Срок обработки персональных данных определяется достижением целей, для которых были собраны персональные данные, если иной срок не предусмотрен договором или действующим законодательством.</p>
-          <p class="policy-paragraph">Пользователь может в любой момент отозвать свое согласие на обработку персональных данных, направив Оператору уведомление посредством электронной почты на электронный адрес Оператора moymebel55.ru с пометкой «Отзыв согласия на обработку персональных данных».</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.5.</strong> Вся информация, которая собирается сторонними сервисами, в том числе платежными системами, средствами связи и другими поставщиками услуг, хранится и обрабатывается указанными лицами (Операторами) в соответствии с их Пользовательским соглашением и Политикой конфиденциальности. Субъект персональных данных и/или с указанными документами. Оператор не несет ответственность за действия третьих лиц, в том числе указанных в настоящем пункте поставщиков услуг.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.6.</strong> Установленные субъектом персональных данных запреты на передачу (кроме предоставления доступа), а также на обработку или условия обработки (кроме получения доступа) персональных данных, разрешенных для распространения, не действуют в случаях обработки персональных данных в государственных, общественных и иных публичных интересах, определенных законодательством РФ.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.7.</strong> Оператор при обработке персональных данных обеспечивает конфиденциальность персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.8.</strong> Оператор осуществляет хранение персональных данных в форме, позволяющей определить субъекта персональных данных, не дольше, чем этого требуют цели обработки персональных данных, если срок хранения персональных данных не установлен федеральным законом, договором, стороной которого, выгодоприобретателем или поручителем по которому является субъект персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">8.9.</strong> Условием прекращения обработки персональных данных может являться достижение целей обработки персональных данных, истечение срока действия согласия субъекта персональных данных, отзыв согласия субъектом персональных данных или требование о прекращении обработки персональных данных, а также выявление неправомерной обработки персональных данных.</p>
-        </section>
-        <section class="policy-section" id="sec-9">
-          <h2 class="policy-section__title"><span class="policy-num">9.</span> Перечень действий, производимых Оператором с полученными персональными данными</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">9.1.</strong> Оператор осуществляет сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление и уничтожение персональных данных.</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">9.2.</strong> Оператор осуществляет автоматизированную обработку персональных данных с получением и/или передачей полученной информации по информационно-телекоммуникационным сетям или без таковой.</p>
-        </section>
-        <section class="policy-section" id="sec-10">
-          <h2 class="policy-section__title"><span class="policy-num">10.</span> Трансграничная передача персональных данных</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">10.1.</strong> Оператор до начала осуществления деятельности по трансграничной передаче персональных данных обязан уведомить уполномоченный орган по защите прав субъектов персональных данных о своем намерении осуществлять трансграничную передачу персональных данных (такое уведомление направляется отдельно от уведомления о намерении осуществлять обработку персональных данных).</p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">10.2.</strong> Оператор до подачи вышеуказанного уведомления, обязан получить от органов власти иностранного государства, иностранных физических лиц, иностранных юридических лиц, которым планируется трансграничная передача персональных данных, соответствующие сведения.</p>
-        </section>
-        <section class="policy-section" id="sec-11">
-          <h2 class="policy-section__title"><span class="policy-num">11.</span> Конфиденциальность персональных данных</h2>
-          <p class="policy-paragraph">Оператор и иные лица, получившие доступ к персональным данным, обязаны не раскрывать третьим лицам и не распространять персональные данные без согласия субъекта персональных данных, если иное не предусмотрено федеральным законом.</p>
-        </section>
-        <section class="policy-section" id="sec-12">
-          <h2 class="policy-section__title"><span class="policy-num">12.</span> Заключительные положения</h2>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">12.1.</strong> Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его персональных данных, обратившись к Оператору с помощью электронной почты <a href="mailto:9088014000@mail.ru" class="policy-link">9088014000@mail.ru</a></p>
-          <p class="policy-paragraph policy-subpoint"><strong class="policy-subpoint-num">12.2.</strong> В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.</p>
-        </section>
-
-        <!-- OPERATOR REQUISITES SUMMARY BOX -->
-        <div class="policy-operator-box">
-          <h3>Реквизиты и контакты Оператора</h3>
-          <p>
-            <strong>Индивидуальный предприниматель Крицкий Николай Владимирович</strong><br>
-            Сайт: <a href="https://moymebelniy55.ru" class="policy-link">https://moymebelniy55.ru</a><br>
-            Электронная почта для обращений: <a href="mailto:9088014000@mail.ru" class="policy-link">9088014000@mail.ru</a><br>
-            Телефон: <a href="tel:+73812494545" class="policy-link">+7 (3812) 49-45-45</a>, <a href="tel:+79088014000" class="policy-link">+7-908-801-40-00</a><br>
-            Адрес производства: г. Омск, ул. 26-я Северная, 13А/9<br>
-            Адрес салона: г. Омск, ул. Герцена, 36
-          </p>
-        </div>
-      </article>
     </div>
   </main>
 
-  <!-- UNIFIED MASTER FOOTER -->
+  <!-- UNIFIED MASTER FOOTER (4 ПОЛНЫЕ КОЛОНКИ СТРОГО ПО СЕТКЕ) -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="site-footer__col site-footer__col--brand">
@@ -725,18 +413,28 @@
           <img class="site-header__logo-img" src="images/logo_emblem_gold.png" alt="МОЙ МЕБЕЛЬНЫЙ" width="24" height="27">
           <span class="site-header__brand-title">МОЙ МЕБЕЛЬНЫЙ</span>
         </a>
-        <p class="site-footer__tagline">
-          Собственное производство мебели на заказ и высокоточный распил ЛДСП в Омске на оборудовании SCM.
+        <p class="site-footer__brand-p" style="margin-top: 14px;">
+          Собственное производство корпусной мебели на заказ и высокоточный распил ЛДСП в Омске на оборудовании SCM.
         </p>
       </div>
 
       <div class="site-footer__col">
-        <h3>Услуги</h3>
+        <h3>Услуги распила</h3>
         <ul class="site-footer__links">
-          <li><a href="raspil.html">Распил и кромление ЛДСП</a></li>
-          <li><a href="mebel.html">Кухни на заказ</a></li>
-          <li><a href="mebel.html">Шкафы-купе и гардеробные</a></li>
-          <li><a href="mebel.html">Мебель в стиле Loft</a></li>
+          <li><a href="raspil.html#rec3089023401">Онлайн-калькулятор</a></li>
+          <li><a href="raspil.html#rec3089027501">Оборудование SCM</a></li>
+          <li><a href="raspil.html#rec3089013901">Услуги распила</a></li>
+          <li><a href="raspil.html#rec3147085901">Отзывы 2ГИС (4.9)</a></li>
+        </ul>
+      </div>
+
+      <div class="site-footer__col">
+        <h3>Мебель на заказ</h3>
+        <ul class="site-footer__links">
+          <li><a href="mebel.html#categories">Кухни по размерам</a></li>
+          <li><a href="mebel.html#categories">Встроенные шкафы</a></li>
+          <li><a href="mebel.html#categories">Гардеробные системы</a></li>
+          <li><a href="mebel.html#categories">Мебель в стиле Loft</a></li>
         </ul>
       </div>
 
@@ -791,7 +489,7 @@
     </div>
   </footer>
 
-  <!-- SCROLL TO TOP FLOATING BUTTON -->
+  <!-- SCROLL TO TOP BUTTON -->
   <button class="scroll-to-top" id="scrollToTopBtn" aria-label="Наверх" title="Наверх">
     <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15"></polyline>
