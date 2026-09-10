@@ -161,6 +161,13 @@
     var btn = form.querySelector('button[type="submit"]');
     var btnLabel = null;
 
+    var consent = form.querySelector('input[name="consent"]');
+    if (consent && !consent.checked) {
+      setStatus(form, 'err', 'Пожалуйста, подтвердите согласие на обработку персональных данных');
+      consent.focus();
+      return;
+    }
+
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
@@ -236,6 +243,15 @@
         e.preventDefault();
         submitForm(form);
       });
+
+      var consent = form.querySelector('input[name="consent"]');
+      if (consent) {
+        consent.addEventListener('change', function () {
+          if (consent.checked) {
+            setStatus(form, '', '');
+          }
+        });
+      }
     });
   }
 

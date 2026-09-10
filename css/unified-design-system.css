@@ -1264,3 +1264,70 @@ main:focus {
 .saw-modal-card .lead-success-footer-note {
   color: #a89485;
 }
+
+/* ==========================================================================
+   PERSONAL DATA PROCESSING CONSENT (152-ФЗ)
+   ========================================================================== */
+.exact-form-consent {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+.saw-modal-consent {
+  margin-top: 14px;
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.form-consent-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  max-width: 540px;
+  text-align: left;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.form-consent-checkbox {
+  width: 17px;
+  height: 17px;
+  min-width: 17px;
+  min-height: 17px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #ff761a;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.form-consent-text {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #7d6e63;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.saw-modal-consent .form-consent-text {
+  color: #b5a499;
+}
+
+.form-consent-text a {
+  color: #ff761a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.form-consent-text a:hover {
+  color: #ff9e58;
+}
+
