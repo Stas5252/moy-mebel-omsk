@@ -198,7 +198,7 @@ if (!$telegramOk && !$mailOk) {
     if (!is_dir($dir)) { @mkdir($dir, 0750, true); }
     @file_put_contents($dir . '/' . date('Y-m-d_His') . '_' . substr(md5($text), 0, 6) . '.txt', $text);
     error_log('send.php: заявка не ушла ни в Telegram, ни на почту — сохранена в /leads');
-    reply(false, 'Не получилось отправить заявку. Позвоните, пожалуйста: +7 (3812) 590-650');
+    reply(false, 'Не получилось отправить заявку. Позвоните, пожалуйста: +7 (3812) 49-45-45');
 }
 
 reply(true);
