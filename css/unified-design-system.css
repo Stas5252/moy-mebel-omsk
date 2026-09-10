@@ -1282,38 +1282,43 @@ main:focus {
   margin-bottom: 6px;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
 }
 
 .form-consent-label {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   cursor: pointer;
   user-select: none;
-  max-width: 540px;
+  max-width: 100%;
   text-align: left;
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 12.5px;
+  line-height: 1.4;
 }
 
 .form-consent-checkbox {
-  width: 17px;
-  height: 17px;
-  min-width: 17px;
-  min-height: 17px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
   margin: 0;
   cursor: pointer;
   accent-color: #ff761a;
   border-radius: 4px;
   flex-shrink: 0;
+  position: relative;
+  top: -0.5px;
 }
 
 .form-consent-text {
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 12.5px;
+  line-height: 1.4;
   color: #7d6e63;
   font-family: 'Montserrat', sans-serif;
+  white-space: nowrap;
 }
 
 .saw-modal-consent .form-consent-text {
@@ -1329,6 +1334,19 @@ main:focus {
 
 .form-consent-text a:hover {
   color: #ff9e58;
+}
+
+@media (max-width: 639px) {
+  .form-consent-label {
+    align-items: flex-start;
+  }
+  .form-consent-checkbox {
+    top: 2px;
+  }
+  .form-consent-text {
+    white-space: normal;
+    text-align: left;
+  }
 }
 
 /* ==========================================================================
