@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * НАСТРОЙКИ ПРИЁМА ЗАЯВОК
  *
@@ -27,13 +27,13 @@ return array(
     'email_enabled' => true,
     'email_to'      => '9088014000@mail.ru',
     // Адрес-отправитель должен быть на вашем домене, иначе письма уйдут в спам
-    'email_from'    => 'site@moymebelniy55.ru',
-    'email_subject' => 'Заявка с сайта moymebelniy55.ru',
+    'email_from'    => 'site@moymebel55.ru',
+    'email_subject' => 'Заявка с сайта moymebel55.ru',
 
     // ---- Ограничения ----
     'max_file_mb'   => 20,
     'allowed_ext'   => array('pdf','dxf','dwg','csv','xls','xlsx','doc','docx','jpg','jpeg','png','zip','rar','txt'),
 
     // Разрешённый источник запросов (защита от отправки формы с чужих сайтов)
-    'allowed_origins' => array('https://moymebelniy55.ru', 'https://www.moymebelniy55.ru'),
+    'allowed_origins' => array('https://moymebel55.ru', 'https://www.moymebel55.ru'),
 );

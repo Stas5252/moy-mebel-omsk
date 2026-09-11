@@ -1,6 +1,6 @@
-<?php
+﻿<?php
 /**
- * Приём заявок с сайта moymebelniy55.ru
+ * Приём заявок с сайта moymebel55.ru
  *
  * Отправляет заявку в Telegram и дублирует на почту.
  * Настройки — в config.php (создайте его из config.sample.php).
@@ -27,7 +27,7 @@ $defaultCfg = array(
     'telegram_chat_id' => '',
     'email_enabled'    => true,
     'email_to'         => '9088014000@mail.ru',
-    'email_from'       => 'site@moymebelniy55.ru',
+    'email_from'       => 'site@moymebel55.ru',
     'email_subject'    => 'Заявка с сайта МОЙ МЕБЕЛЬНЫЙ',
     'max_file_mb'      => 20,
     'allowed_ext'      => array('pdf','dxf','dwg','csv','xls','xlsx','doc','docx','jpg','jpeg','png','zip','rar','txt'),

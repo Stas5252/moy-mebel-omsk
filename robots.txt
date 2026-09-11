@@ -1,3 +1,3 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
-Sitemap: https://moymebelniy55.ru/sitemap.xml
+Sitemap: https://moymebel55.ru/sitemap.xml
