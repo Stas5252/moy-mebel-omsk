@@ -8,7 +8,7 @@
 (function () {
   'use strict';
 
-  var ENDPOINT = 'send.php';
+  var ENDPOINT = '/send.php';
 
   function findStatusBox(form) {
     var box = form.querySelector('.lead-form-status');

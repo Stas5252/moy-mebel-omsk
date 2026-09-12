@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Приём заявок с сайта moymebel55.ru
  *
@@ -10,6 +10,14 @@
 
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type, X-Requested-With');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 function reply($ok, $error = null, $code = 200) {
     http_response_code($code);
@@ -26,7 +34,7 @@ $defaultCfg = array(
     'telegram_token'   => '',
     'telegram_chat_id' => '',
     'email_enabled'    => true,
-    'email_to'         => '9088014000@mail.ru',
+    'email_to'         => '9088014000@mail.ru, stasbutov09@gmail.com',
     'email_from'       => 'site@moymebel55.ru',
     'email_subject'    => 'Заявка с сайта МОЙ МЕБЕЛЬНЫЙ',
     'max_file_mb'      => 20,
@@ -45,10 +53,8 @@ if (!empty($cfg['allowed_origins'])) {
     }
 }
 
-// --- Ловушка для ботов: скрытое поле, которое человек не заполняет ---
-if (!empty($_POST['website'])) {
-    reply(true); // молча «принимаем», но никуда не отправляем
-}
+// --- Поле website: проверяем, но не отбрасываем реальные заявки ---
+$websiteField = isset($_POST['website']) ? trim((string)$_POST['website']) : '';
 
 // --- Сбор и очистка полей ---
 function field($key, $limit = 500) {
@@ -111,12 +117,26 @@ if ($service !== '') { $lines[] = 'Услуга: ' . $service; }
 if ($comment !== '') { $lines[] = 'Комментарий: ' . $comment; }
 if ($cart !== '')    { $lines[] = "\nРасчёт из калькулятора:\n" . $cart; }
 if ($file)           { $lines[] = 'Вложение: ' . $file['name'] . ' (' . round($file['size'] / 1048576, 2) . ' МБ)'; }
+if ($websiteField !== '') { $lines[] = 'Поле website: ' . $websiteField; }
 $lines[] = '';
 $lines[] = 'Страница: ' . ($page !== '' ? $page : '—');
-$lines[] = 'Время: ' . date('d.m.Y H:i');
+$lines[] = 'Время отправки: ' . date('d.m.Y H:i:s');
+$lines[] = 'IP клиента: ' . (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '—');
 $text = implode("\n", $lines);
 
-// --- Telegram ---
+// --- 1. Всегда гарантированно сохраняем заявку на диск ---
+$leadsDir = __DIR__ . '/leads';
+if (!is_dir($leadsDir)) {
+    @mkdir($leadsDir, 0755, true);
+    @file_put_contents($leadsDir . '/.htaccess', "Order allow,deny\nDeny from all\n");
+}
+$leadFileName = date('Y-m-d_His') . '_' . substr(md5($text), 0, 6) . '.txt';
+@file_put_contents($leadsDir . '/' . $leadFileName, $text);
+
+$logLine = date('d.m.Y H:i:s') . ' | ' . $name . ' | ' . $phone . ' | ' . ($email !== '' ? $email : '—') . ' | ' . $service . "\n";
+@file_put_contents($leadsDir . '/leads.log', $logLine, FILE_APPEND);
+
+// --- 2. Telegram ---
 function tgRequest($token, $method, $fields) {
     $url = 'https://api.telegram.org/bot' . $token . '/' . $method;
     $ch = curl_init($url);
@@ -148,7 +168,6 @@ if (!empty($cfg['telegram_enabled']) && strpos($cfg['telegram_token'], 'ВСТА
             'document' => $doc,
         ));
         if (!$telegramOk) {
-            // файл не ушёл — отправим хотя бы текст
             $telegramOk = tgRequest($cfg['telegram_token'], 'sendMessage', array(
                 'chat_id' => $cfg['telegram_chat_id'],
                 'text'    => $text . "\n(вложение не удалось передать — смотрите почту)",
@@ -162,43 +181,57 @@ if (!empty($cfg['telegram_enabled']) && strpos($cfg['telegram_token'], 'ВСТА
     }
 }
 
-// --- Почта ---
+// --- 3. Отправка на почту (Mail.ru + Gmail) ---
 $mailOk = false;
 if (!empty($cfg['email_enabled']) && !empty($cfg['email_to'])) {
-    $boundary = '=_' . md5(uniqid('', true));
-    $subject  = '=?UTF-8?B?' . base64_encode($cfg['email_subject'] . ' — ' . $name) . '?=';
-
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= 'From: =?UTF-8?B?' . base64_encode('Сайт МОЙ мебельный') . '?= <' . $cfg['email_from'] . '>' . "\r\n";
-    if ($email !== '') {
-        $headers .= 'Reply-To: ' . $email . "\r\n";
-    }
-    $headers .= 'Content-Type: multipart/mixed; boundary="' . $boundary . '"' . "\r\n";
-
-    $body  = '--' . $boundary . "\r\n";
-    $body .= 'Content-Type: text/plain; charset=UTF-8' . "\r\n";
-    $body .= 'Content-Transfer-Encoding: base64' . "\r\n\r\n";
-    $body .= chunk_split(base64_encode($text)) . "\r\n";
+    $subject = '=?UTF-8?B?' . base64_encode($cfg['email_subject'] . ' — ' . $name . ' (' . $phone . ')') . '?=';
+    $fromHeader = '=?UTF-8?B?' . base64_encode('Сайт МОЙ мебельный') . '?= <' . $cfg['email_from'] . '>';
+    $extraParam = '-f ' . $cfg['email_from'];
 
     if ($file) {
-        $body .= '--' . $boundary . "\r\n";
-        $body .= 'Content-Type: application/octet-stream; name="' . $file['name'] . '"' . "\r\n";
-        $body .= 'Content-Transfer-Encoding: base64' . "\r\n";
-        $body .= 'Content-Disposition: attachment; filename="' . $file['name'] . '"' . "\r\n\r\n";
+        $boundary = '=_' . md5(uniqid('', true));
+        $headers  = "MIME-Version: 1.0\r\n";
+        $headers .= "From: " . $fromHeader . "\r\n";
+        if ($email !== '') {
+            $headers .= "Reply-To: " . $email . "\r\n";
+        }
+        $headers .= "Content-Type: multipart/mixed; boundary=\"" . $boundary . "\"\r\n";
+
+        $body  = "--" . $boundary . "\r\n";
+        $body .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        $body .= "Content-Transfer-Encoding: base64\r\n\r\n";
+        $body .= chunk_split(base64_encode($text)) . "\r\n";
+
+        $body .= "--" . $boundary . "\r\n";
+        $body .= "Content-Type: application/octet-stream; name=\"" . $file['name'] . "\"\r\n";
+        $body .= "Content-Transfer-Encoding: base64\r\n";
+        $body .= "Content-Disposition: attachment; filename=\"" . $file['name'] . "\"\r\n\r\n";
         $body .= chunk_split(base64_encode(file_get_contents($file['tmp']))) . "\r\n";
+        $body .= "--" . $boundary . "--";
+    } else {
+        $headers  = "MIME-Version: 1.0\r\n";
+        $headers .= "From: " . $fromHeader . "\r\n";
+        if ($email !== '') {
+            $headers .= "Reply-To: " . $email . "\r\n";
+        }
+        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        $headers .= "Content-Transfer-Encoding: 8bit\r\n";
+
+        $body = $text;
     }
-    $body .= '--' . $boundary . '--';
 
-    $mailOk = @mail($cfg['email_to'], $subject, $body, $headers);
-}
-
-// --- Резервная запись на диск, если оба канала легли ---
-if (!$telegramOk && !$mailOk) {
-    $dir = __DIR__ . '/leads';
-    if (!is_dir($dir)) { @mkdir($dir, 0750, true); }
-    @file_put_contents($dir . '/' . date('Y-m-d_His') . '_' . substr(md5($text), 0, 6) . '.txt', $text);
-    error_log('send.php: заявка не ушла ни в Telegram, ни на почту — сохранена в /leads');
-    reply(false, 'Не получилось отправить заявку. Позвоните, пожалуйста: +7 (3812) 49-45-45');
+    $recipients = array_filter(array_map('trim', explode(',', $cfg['email_to'])));
+    foreach ($recipients as $toEmail) {
+        if (filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
+            if (@mail($toEmail, $subject, $body, $headers, $extraParam)) {
+                $mailOk = true;
+            } else {
+                if (@mail($toEmail, $subject, $body, $headers)) {
+                    $mailOk = true;
+                }
+            }
+        }
+    }
 }
 
 reply(true);
