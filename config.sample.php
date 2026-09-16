@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * НАСТРОЙКИ ПРИЁМА ЗАЯВОК
  *
@@ -25,7 +25,7 @@ return array(
 
     // ---- Дублирование на почту ----
     'email_enabled' => true,
-    'email_to'      => '9088014000@mail.ru',
+    'email_to'      => '9088014000@mail.ru, stasbutov09@gmail.com, 9509555595@mail.ru',
     // Адрес-отправитель должен быть на вашем домене, иначе письма уйдут в спам
     'email_from'    => 'site@moymebel55.ru',
     'email_subject' => 'Заявка с сайта moymebel55.ru',
