@@ -38,20 +38,33 @@
         out.push('Детали на производство (раскрой и кромление):');
         out.push('------------------------------------------------------------');
         var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
+        var fArea = function(m2) {
+          if (!m2 || m2 <= 0) return '0 м²';
+          if (m2 < 0.01) return (Math.round(m2 * 1000) / 1000).toFixed(3).replace('.', ',') + ' м²';
+          var s = (Math.round(m2 * 100) / 100).toFixed(2).replace('.', ',');
+          if (s.endsWith(',00')) s = s.slice(0, -3);
+          else if (s.endsWith('0') && s.includes(',')) s = s.slice(0, -1);
+          return s + ' м²';
+        };
         for (var i = 0; i < items.length; i++) {
           var itm = items[i];
+          var a = (itm.rawAreaM2 !== undefined ? itm.rawAreaM2 : (itm.areaM2 || 0));
           out.push(
             (i + 1) + '. ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) — ' + itm.matName +
-            (itm.hasTexture ? ' [текстура]' : '') + ' · ' + (itm.areaM2 || 0) + ' м²\n' +
+            (itm.hasTexture ? ' [текстура]' : '') + ' · ' + fArea(a) + '\n' +
             '   Кромка: L1: ' + fE(itm.el1) + ' | L2: ' + fE(itm.el2) + ' | W1: ' + fE(itm.ew1) + ' | W2: ' + fE(itm.ew2) + '\n' +
             '   Стоимость: ' + itm.cost.toLocaleString('ru-RU') + ' ₽'
           );
         }
         out.push('------------------------------------------------------------');
         var total = document.getElementById('calc-total-amount');
+        var minNote = document.getElementById('calc-min-order-note');
         var area = document.getElementById('calc-total-m2-val');
         var edges = document.getElementById('calc-total-edges-val');
         var totalLine = total ? ('ИТОГО: ' + (total.innerText || '').trim()) : '';
+        if (minNote && minNote.style.display !== 'none' && minNote.innerText) {
+          totalLine += ' (' + minNote.innerText.replace(/\s+/g, ' ').trim() + ')';
+        }
         if (area && area.innerText && area.innerText.trim() !== '0 м²') {
           totalLine += ' · Квадратура: ' + area.innerText.trim();
         }
