@@ -4571,8 +4571,9 @@ html, body {
 
   function formatArea(m2) {
     if (!m2 || m2 <= 0) return '0';
-    if (m2 < 0.01) return (Math.round(m2 * 1000) / 1000).toFixed(3).replace('.', ',');
-    var s = (Math.round(m2 * 100) / 100).toFixed(2).replace('.', ',');
+    var val = typeof m2 === 'string' ? parseFloat(m2.replace(',', '.')) : Number(m2);
+    if (isNaN(val) || val <= 0) return '0';
+    var s = (Math.round(val * 100) / 100).toFixed(2).replace('.', ',');
     if (s.endsWith(',00')) s = s.slice(0, -3);
     else if (s.endsWith('0') && s.includes(',')) s = s.slice(0, -1);
     return s;
@@ -5099,6 +5100,7 @@ html, body {
 
     // Точная физическая площадь детали (в м²) без искусственного завышения на каждой строке
     const rawAreaM2 = ((L * W) / 1000000) * Q;
+    const cleanAreaM2 = Math.round(rawAreaM2 * 100) / 100;
 
     // Сбор кромки по сторонам (L1, L2, W1, W2) в метрах
     const el1 = edgeL1.value, el2 = edgeL2.value;
@@ -5125,7 +5127,7 @@ html, body {
       width: W,
       count: Q,
       rawAreaM2: rawAreaM2,
-      areaM2: rawAreaM2,
+      areaM2: cleanAreaM2,
       matName: matName,
       matPriceM2: matPriceM2,
       el1: el1,
@@ -5862,7 +5864,7 @@ if (document.readyState === 'loading') {
 </script>
 
 </div>
-<script src="js/lead-form.js?v=1"></script>
+<script src="js/lead-form.js?v=20261022"></script>
 
 <!-- ===================================================================
      ЯНДЕКС.МЕТРИКА — подключается в два шага:

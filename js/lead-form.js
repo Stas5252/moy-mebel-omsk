@@ -40,15 +40,16 @@
         var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
         var fArea = function(m2) {
           if (!m2 || m2 <= 0) return '0 м²';
-          if (m2 < 0.01) return (Math.round(m2 * 1000) / 1000).toFixed(3).replace('.', ',') + ' м²';
-          var s = (Math.round(m2 * 100) / 100).toFixed(2).replace('.', ',');
+          var val = typeof m2 === 'string' ? parseFloat(m2.replace(',', '.')) : Number(m2);
+          if (isNaN(val) || val <= 0) return '0 м²';
+          var s = (Math.round(val * 100) / 100).toFixed(2).replace('.', ',');
           if (s.endsWith(',00')) s = s.slice(0, -3);
           else if (s.endsWith('0') && s.includes(',')) s = s.slice(0, -1);
           return s + ' м²';
         };
         for (var i = 0; i < items.length; i++) {
           var itm = items[i];
-          var a = (itm.rawAreaM2 !== undefined ? itm.rawAreaM2 : (itm.areaM2 || 0));
+          var a = (itm.areaM2 !== undefined ? itm.areaM2 : (itm.rawAreaM2 || 0));
           out.push(
             (i + 1) + '. ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) — ' + itm.matName +
             (itm.hasTexture ? ' [текстура]' : '') + ' · ' + fArea(a) + '\n' +
