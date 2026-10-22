@@ -42,10 +42,7 @@
           if (!m2 || m2 <= 0) return '0 м²';
           var val = typeof m2 === 'string' ? parseFloat(m2.replace(',', '.')) : Number(m2);
           if (isNaN(val) || val <= 0) return '0 м²';
-          var s = (Math.round(val * 100) / 100).toFixed(2).replace('.', ',');
-          if (s.endsWith(',00')) s = s.slice(0, -3);
-          else if (s.endsWith('0') && s.includes(',')) s = s.slice(0, -1);
-          return s + ' м²';
+          return (Math.round(val * 10) / 10).toFixed(1).replace('.', ',') + ' м²';
         };
         for (var i = 0; i < items.length; i++) {
           var itm = items[i];
