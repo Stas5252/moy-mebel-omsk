@@ -31,6 +31,21 @@
 
   /** Собирает состав калькулятора распила в текст для заявки (с разбивкой L1, L2, W1, W2). */
   function collectCalcSummary() {
+    // 1. Приоритет: Единый генератор отчёта калькулятора
+    if (typeof window.getCalcLeadSummary === 'function') {
+      var summary = window.getCalcLeadSummary();
+      if (summary) return summary;
+    }
+
+    // 2. Если есть функция расчёта и список деталей
+    if (typeof window.calculateOrderState === 'function' && typeof window.formatSawCalcLead === 'function' && typeof window.getCalcItems === 'function') {
+      var itms = window.getCalcItems();
+      if (itms && itms.length) {
+        return window.formatSawCalcLead(window.calculateOrderState(itms));
+      }
+    }
+
+    // 3. Fallback: по структуре items
     if (typeof window.getCalcItems === 'function') {
       var items = window.getCalcItems();
       if (items && items.length) {
@@ -42,22 +57,26 @@
           if (!m2 || m2 <= 0) return '0 м²';
           var val = typeof m2 === 'string' ? parseFloat(m2.replace(',', '.')) : Number(m2);
           if (isNaN(val) || val <= 0) return '0 м²';
-          return (Math.round(val * 10) / 10).toFixed(1).replace('.', ',') + ' м²';
+          var s = (Math.round(val * 100) / 100).toFixed(2).replace('.', ',');
+          if (s.endsWith(',00')) s = s.slice(0, -3);
+          else if (s.endsWith('0') && s.includes(',')) s = s.slice(0, -1);
+          return s + ' м²';
         };
         for (var i = 0; i < items.length; i++) {
           var itm = items[i];
           var a = (itm.areaM2 !== undefined ? itm.areaM2 : (itm.rawAreaM2 || 0));
           out.push(
             (i + 1) + '. ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) — ' + itm.matName +
-            (itm.hasTexture ? ' [текстура]' : '') + ' · ' + fArea(a) + '\n' +
+            (itm.hasTexture ? ' [текстура]' : '') + ' · ' + (itm.formattedArea || fArea(a)) + '\n' +
             '   Кромка: L1: ' + fE(itm.el1) + ' | L2: ' + fE(itm.el2) + ' | W1: ' + fE(itm.ew1) + ' | W2: ' + fE(itm.ew2) + '\n' +
-            '   Стоимость: ' + itm.cost.toLocaleString('ru-RU') + ' ₽'
+            '   Стоимость: ' + (itm.cost ? itm.cost.toLocaleString('ru-RU') : '0') + ' ₽'
           );
         }
         out.push('------------------------------------------------------------');
         var total = document.getElementById('calc-total-amount');
         var minNote = document.getElementById('calc-min-order-note');
         var area = document.getElementById('calc-total-m2-val');
+        var edgesNote = document.getElementById('calc-total-edges-note');
         var edges = document.getElementById('calc-total-edges-val');
         var totalLine = total ? ('ИТОГО: ' + (total.innerText || '').trim()) : '';
         if (minNote && minNote.style.display !== 'none' && minNote.innerText) {
@@ -66,9 +85,8 @@
         if (area && area.innerText && area.innerText.trim() !== '0 м²') {
           totalLine += ' · Квадратура: ' + area.innerText.trim();
         }
-        if (edges && edges.innerText && edges.innerText.trim()) {
-          totalLine += ' · Кромка: ' + edges.innerText.trim();
-        }
+        var hasVisibleEdges = edgesNote && edgesNote.style.display !== 'none' && edges && edges.innerText && edges.innerText.trim();
+        totalLine += ' · Кромка: ' + (hasVisibleEdges ? edges.innerText.trim() : 'Без кромки');
         if (totalLine) { out.push(totalLine); }
         return out.join('\n');
       }
@@ -88,14 +106,14 @@
     }
     var totalEl = document.getElementById('calc-total-amount');
     var areaEl = document.getElementById('calc-total-m2-val');
+    var edgesNoteEl = document.getElementById('calc-total-edges-note');
     var edgesEl = document.getElementById('calc-total-edges-val');
     var tLine = totalEl ? ('ИТОГО: ' + (totalEl.innerText || '').trim()) : '';
     if (areaEl && areaEl.innerText && areaEl.innerText.trim() !== '0 м²') {
       tLine += ' · Квадратура: ' + areaEl.innerText.trim();
     }
-    if (edgesEl && edgesEl.innerText && edgesEl.innerText.trim()) {
-      tLine += ' · Кромка: ' + edgesEl.innerText.trim();
-    }
+    var hasVisibleEdgesFallback = edgesNoteEl && edgesNoteEl.style.display !== 'none' && edgesEl && edgesEl.innerText && edgesEl.innerText.trim();
+    tLine += ' · Кромка: ' + (hasVisibleEdgesFallback ? edgesEl.innerText.trim() : 'Без кромки');
     if (tLine) { fallbackOut.push(tLine); }
     return fallbackOut.join('\n');
   }

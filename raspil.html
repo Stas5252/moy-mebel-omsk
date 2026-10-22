@@ -4569,22 +4569,227 @@ html, body {
   const totalAreaValEl = document.getElementById('calc-total-m2-val');
   let editingIndex = null;
 
-  function roundAreaUp(m2) {
-    if (!m2 || m2 <= 0) return 0;
-    const clean = Math.round(m2 * 10000) / 10000;
-    return Math.ceil(clean * 10) / 10;
-  }
+  // --- ЦЕНТРАЛИЗОВАННЫЙ КАЛЬКУЛЯТОР ЗАКАЗА (ЕДИНЫЙ ИСТОЧНИК ИСТИНЫ) ---
+  const EDGE_PRICES = {
+    '0.4': 45,
+    '1.0': 60,
+    '2.0': 85
+  };
+  const MIN_ORDER_PRICE = 500;
 
-  function formatArea(m2) {
+  function formatAreaValue(m2) {
     if (!m2 || m2 <= 0) return '0';
     var val = typeof m2 === 'string' ? parseFloat(m2.replace(',', '.')) : Number(m2);
     if (isNaN(val) || val <= 0) return '0';
-    return (Math.round(val * 10) / 10).toFixed(1).replace('.', ',');
+    var s = (Math.round(val * 100) / 100).toFixed(2).replace('.', ',');
+    if (s.endsWith(',00')) s = s.slice(0, -3);
+    else if (s.endsWith('0') && s.includes(',')) s = s.slice(0, -1);
+    return s;
+  }
+
+  function formatAreaBadgeText(m2) {
+    if (!m2 || m2 <= 0) return '0 м²';
+    return formatAreaValue(m2) + ' м²';
+  }
+
+  function calculateSawOrder(rawItems) {
+    const list = rawItems || [];
+    if (list.length === 0) {
+      return {
+        items: [],
+        totalPieces: 0,
+        rawTotalArea: 0,
+        formattedArea: '0 м²',
+        totalMatCost: 0,
+        totalEdgeMeters: { '0.4': 0, '1.0': 0, '2.0': 0 },
+        billedEdgeMeters: { '0.4': 0, '1.0': 0, '2.0': 0 },
+        orderEdgeCosts: { '0.4': 0, '1.0': 0, '2.0': 0 },
+        totalEdgeCost: 0,
+        hasEdges: false,
+        edgeBreakdownParts: [],
+        edgeSummaryText: 'Без кромки',
+        subtotal: 0,
+        baseOrderTotal: 0,
+        finalTotal: 0,
+        isMinOrderApplied: false,
+        minOrderNote: ''
+      };
+    }
+
+    let totalPieces = 0;
+    let rawTotalArea = 0;
+    let totalMatCost = 0;
+    const totalEdgeMeters = { '0.4': 0, '1.0': 0, '2.0': 0 };
+
+    const processedItems = list.map(item => {
+      const L = parseFloat(item.length) || 0;
+      const W = parseFloat(item.width) || 0;
+      const Q = parseInt(item.count || 1, 10) || 1;
+      const matPrice = parseFloat(item.matPriceM2) || 850;
+
+      // 1. Фактическая площадь: (L_mm * W_mm * Q) / 1 000 000
+      const rawArea = (L * W * Q) / 1000000;
+      rawTotalArea += rawArea;
+      totalPieces += Q;
+
+      const matCost = rawArea * matPrice;
+      totalMatCost += matCost;
+
+      const el1 = item.el1 || 'none';
+      const el2 = item.el2 || 'none';
+      const ew1 = item.ew1 || 'none';
+      const ew2 = item.ew2 || 'none';
+
+      const itemEdgeLengths = { '0.4': 0, '1.0': 0, '2.0': 0 };
+      if (el1 !== 'none') itemEdgeLengths[el1] += (L / 1000) * Q;
+      if (el2 !== 'none') itemEdgeLengths[el2] += (L / 1000) * Q;
+      if (ew1 !== 'none') itemEdgeLengths[ew1] += (W / 1000) * Q;
+      if (ew2 !== 'none') itemEdgeLengths[ew2] += (W / 1000) * Q;
+
+      ['0.4', '1.0', '2.0'].forEach(t => {
+        totalEdgeMeters[t] += itemEdgeLengths[t];
+      });
+
+      const activeEdges = [el1, el2, ew1, ew2].filter(e => e && e !== 'none');
+      let edgeDesc = 'Без кромки';
+      if (activeEdges.length > 0) {
+        const counts = {};
+        activeEdges.forEach(th => { counts[th] = (counts[th] || 0) + 1; });
+        edgeDesc = Object.keys(counts).map(th => `${th} мм (${counts[th]})`).join(' · ');
+      }
+
+      return {
+        length: L,
+        width: W,
+        count: Q,
+        rawAreaM2: rawArea,
+        areaM2: rawArea,
+        formattedArea: formatAreaBadgeText(rawArea),
+        matPriceM2: matPrice,
+        matName: item.matName || 'ЛДСП 16мм',
+        hasTexture: !!item.hasTexture,
+        el1: el1,
+        el2: el2,
+        ew1: ew1,
+        ew2: ew2,
+        edgeLengths: itemEdgeLengths,
+        edgeDesc: edgeDesc,
+        cost: 0
+      };
+    });
+
+    // 2. Оплачиваемый метраж и стоимость кромки по нормам цеха:
+    // - 0.4 мм: 45 ₽/м, кратна 1 метру
+    // - 1.0 мм: 60 ₽/м, +20% к длине и кратна 5 метрам
+    // - 2.0 мм: 85 ₽/м, кратна 1 метру
+    const billedEdgeMeters = { '0.4': 0, '1.0': 0, '2.0': 0 };
+    const orderEdgeCosts = { '0.4': 0, '1.0': 0, '2.0': 0 };
+    const edgeBreakdownParts = [];
+
+    if (totalEdgeMeters['0.4'] > 0) {
+      billedEdgeMeters['0.4'] = Math.ceil(totalEdgeMeters['0.4']);
+      orderEdgeCosts['0.4'] = billedEdgeMeters['0.4'] * EDGE_PRICES['0.4'];
+      edgeBreakdownParts.push(`0.4 мм: ${billedEdgeMeters['0.4']} м`);
+    }
+    if (totalEdgeMeters['1.0'] > 0) {
+      const allowance10 = totalEdgeMeters['1.0'] * 1.20;
+      billedEdgeMeters['1.0'] = Math.ceil(allowance10 / 5) * 5;
+      orderEdgeCosts['1.0'] = billedEdgeMeters['1.0'] * EDGE_PRICES['1.0'];
+      edgeBreakdownParts.push(`1.0 мм: ${billedEdgeMeters['1.0']} м (кратно 5 м)`);
+    }
+    if (totalEdgeMeters['2.0'] > 0) {
+      billedEdgeMeters['2.0'] = Math.ceil(totalEdgeMeters['2.0']);
+      orderEdgeCosts['2.0'] = billedEdgeMeters['2.0'] * EDGE_PRICES['2.0'];
+      edgeBreakdownParts.push(`2.0 мм: ${billedEdgeMeters['2.0']} м`);
+    }
+
+    const totalEdgeCost = orderEdgeCosts['0.4'] + orderEdgeCosts['1.0'] + orderEdgeCosts['2.0'];
+    const hasEdges = (totalEdgeCost > 0);
+    const edgeSummaryText = edgeBreakdownParts.length > 0 ? edgeBreakdownParts.join(' · ') : 'Без кромки';
+
+    // 3. Итоговая стоимость
+    const subtotal = totalMatCost + totalEdgeCost;
+    const baseOrderTotal = Math.round(subtotal);
+    const finalTotal = processedItems.length > 0 ? Math.max(MIN_ORDER_PRICE, baseOrderTotal) : 0;
+    const isMinOrderApplied = (processedItems.length > 0 && baseOrderTotal < MIN_ORDER_PRICE);
+    const minOrderNote = isMinOrderApplied
+      ? `⚡ Мин. заказ в цехе: 500 ₽ (расчёт: ${baseOrderTotal} ₽)`
+      : '';
+
+    // 4. Распределение стоимости по строкам (сумма строк строго равна baseOrderTotal)
+    let remainingOrderSum = baseOrderTotal;
+    processedItems.forEach((item, idx) => {
+      if (idx === processedItems.length - 1) {
+        item.cost = remainingOrderSum;
+      } else {
+        const itemMat = item.rawAreaM2 * item.matPriceM2;
+        let itemEdge = 0;
+        ['0.4', '1.0', '2.0'].forEach(t => {
+          if (totalEdgeMeters[t] > 0 && item.edgeLengths[t] > 0) {
+            itemEdge += (item.edgeLengths[t] / totalEdgeMeters[t]) * orderEdgeCosts[t];
+          }
+        });
+        item.cost = Math.round(itemMat + itemEdge);
+        remainingOrderSum -= item.cost;
+      }
+    });
+
+    return {
+      items: processedItems,
+      totalPieces: totalPieces,
+      rawTotalArea: rawTotalArea,
+      formattedArea: formatAreaBadgeText(rawTotalArea),
+      totalMatCost: totalMatCost,
+      totalEdgeMeters: totalEdgeMeters,
+      billedEdgeMeters: billedEdgeMeters,
+      orderEdgeCosts: orderEdgeCosts,
+      totalEdgeCost: totalEdgeCost,
+      hasEdges: hasEdges,
+      edgeBreakdownParts: edgeBreakdownParts,
+      edgeSummaryText: edgeSummaryText,
+      subtotal: subtotal,
+      baseOrderTotal: baseOrderTotal,
+      finalTotal: finalTotal,
+      isMinOrderApplied: isMinOrderApplied,
+      minOrderNote: minOrderNote
+    };
+  }
+
+  function formatSawCalcLead(state) {
+    if (!state || !state.items || !state.items.length) return '';
+    var out = [];
+    out.push('Детали на производство (раскрой и кромление):');
+    out.push('------------------------------------------------------------');
+    var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
+
+    for (var i = 0; i < state.items.length; i++) {
+      var itm = state.items[i];
+      out.push(
+        (i + 1) + '. ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) — ' + itm.matName +
+        (itm.hasTexture ? ' [текстура]' : '') + ' · ' + itm.formattedArea + '\n' +
+        '   Кромка: L1: ' + fE(itm.el1) + ' | L2: ' + fE(itm.el2) + ' | W1: ' + fE(itm.ew1) + ' | W2: ' + fE(itm.ew2) + '\n' +
+        '   Стоимость: ' + itm.cost.toLocaleString('ru-RU') + ' ₽'
+      );
+    }
+    out.push('------------------------------------------------------------');
+    var totalLine = 'ИТОГО: ' + state.finalTotal.toLocaleString('ru-RU') + ' ₽';
+    if (state.isMinOrderApplied) {
+      totalLine += ' (' + state.minOrderNote + ')';
+    }
+    if (state.rawTotalArea > 0) {
+      totalLine += ' · Квадратура: ' + state.formattedArea;
+    }
+    totalLine += ' · Кромка: ' + (state.hasEdges ? state.edgeSummaryText : 'Без кромки');
+    out.push(totalLine);
+    return out.join('\n');
+  }
+
+  function formatArea(m2) {
+    return formatAreaValue(m2);
   }
 
   function formatAreaBadge(m2) {
-    if (!m2 || m2 <= 0) return '0 м²';
-    return formatArea(m2) + ' м²';
+    return formatAreaBadgeText(m2);
   }
 
   if (!addBtn) return;
@@ -4805,8 +5010,13 @@ html, body {
       tableWrap.style.display = 'none';
       totalAmountEl.innerHTML = '0&nbsp;₽';
       if (totalAreaNoteEl) totalAreaNoteEl.style.display = 'none';
+      if (totalAreaValEl) totalAreaValEl.innerHTML = '0&nbsp;м²';
       if (edgesNoteEl) edgesNoteEl.style.display = 'none';
-      if (minOrderNoteEl) minOrderNoteEl.style.display = 'none';
+      if (edgesValEl) edgesValEl.innerHTML = '';
+      if (minOrderNoteEl) {
+        minOrderNoteEl.innerHTML = '';
+        minOrderNoteEl.style.display = 'none';
+      }
       return;
     }
 
@@ -4814,36 +5024,17 @@ html, body {
     tableWrap.style.display = 'block';
     tbody.innerHTML = '';
 
-    let grandTotal = 0;
-    let totalAreaSum = 0;
-    const totalBilledEdges = { '0.4': 0, '1.0': 0, '2.0': 0 };
+    const state = calculateSawOrder(items);
 
-    items.forEach((item) => {
-      grandTotal += item.cost;
-      totalAreaSum += (item.areaM2 || 0);
-
-      ['0.4', '1.0', '2.0'].forEach(t => {
-        if (item.billedEdges && item.billedEdges[t]) {
-          totalBilledEdges[t] += item.billedEdges[t];
-        } else if (item.edgeLengths && item.edgeLengths[t] > 0) {
-          totalBilledEdges[t] += Math.ceil(item.edgeLengths[t]);
-        }
-      });
+    // Sync calculated fields to items
+    state.items.forEach((calcItm, idx) => {
+      items[idx].cost = calcItm.cost;
+      items[idx].rawAreaM2 = calcItm.rawAreaM2;
+      items[idx].areaM2 = calcItm.rawAreaM2;
+      items[idx].formattedArea = calcItm.formattedArea;
+      items[idx].edgeLengths = calcItm.edgeLengths;
+      items[idx].edgeDesc = calcItm.edgeDesc;
     });
-
-    const edgeBreakdownParts = [];
-    if (totalBilledEdges['0.4'] > 0) {
-      edgeBreakdownParts.push(`0.4 мм: ${totalBilledEdges['0.4']} м`);
-    }
-    if (totalBilledEdges['1.0'] > 0) {
-      edgeBreakdownParts.push(`1.0 мм: ${totalBilledEdges['1.0']} м`);
-    }
-    if (totalBilledEdges['2.0'] > 0) {
-      edgeBreakdownParts.push(`2.0 мм: ${totalBilledEdges['2.0']} м`);
-    }
-
-    const finalTotal = items.length > 0 ? Math.max(500, grandTotal) : 0;
-    const isMinOrderApplied = (items.length > 0 && grandTotal < 500);
 
     // Отрисовка строк таблицы
     items.forEach((item, idx) => {
@@ -4853,7 +5044,7 @@ html, body {
         tr.className = 'saw-calc-row-editing';
       }
       const textureBadge = item.hasTexture ? ` <span style="display:inline-block; font-size:10px; font-weight:700; background:rgba(255,118,26,0.18); color:#ffaa33; border:1px solid rgba(255,118,26,0.4); border-radius:4px; padding:1px 5px; margin-left:4px; vertical-align:middle;">Текстура</span>` : '';
-      const areaBadge = ` <span style="display:inline-block; font-size:11px; font-weight:700; background:rgba(255,170,51,0.12); color:#ffd991; border:1px solid rgba(255,170,51,0.3); border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;" title="Квадратура детали">${formatAreaBadge(item.rawAreaM2 || item.areaM2 || 0)}</span>`;
+      const areaBadge = ` <span style="display:inline-block; font-size:11px; font-weight:700; background:rgba(255,170,51,0.12); color:#ffd991; border:1px solid rgba(255,170,51,0.3); border-radius:4px; padding:1px 6px; margin-left:4px; vertical-align:middle;" title="Квадратура детали">${item.formattedArea}</span>`;
       const unitCost = (item.count && item.count > 1) ? `<div style="font-size:11px; color:#c4b2a3; font-weight:500; margin-top:2px;">по ${Math.round(item.cost / item.count).toLocaleString('ru-RU')} ₽/шт.</div>` : '';
 
       const renderEdgeSide = (v1, v2, p1, p2) => {
@@ -4893,27 +5084,29 @@ html, body {
     });
 
     // 5. Итоги в нижней панели
-    totalAmountEl.innerHTML = finalTotal.toLocaleString('ru-RU').replace(/\s/g, '&nbsp;') + '&nbsp;₽';
+    totalAmountEl.innerHTML = state.finalTotal.toLocaleString('ru-RU').replace(/\s/g, '&nbsp;') + '&nbsp;₽';
 
     if (totalAreaNoteEl && totalAreaValEl) {
-      totalAreaValEl.innerHTML = formatArea(totalAreaSum) + '&nbsp;м²';
+      totalAreaValEl.innerHTML = state.formattedArea.replace(/\s/g, '&nbsp;');
       totalAreaNoteEl.style.display = 'inline-flex';
     }
 
     if (edgesNoteEl && edgesValEl) {
-      if (edgeBreakdownParts.length > 0) {
-        edgesValEl.innerHTML = edgeBreakdownParts.join('&nbsp;·&nbsp;');
+      if (state.hasEdges) {
+        edgesValEl.innerHTML = state.edgeBreakdownParts.join('&nbsp;·&nbsp;');
         edgesNoteEl.style.display = 'inline-flex';
       } else {
+        edgesValEl.innerHTML = '';
         edgesNoteEl.style.display = 'none';
       }
     }
 
     if (minOrderNoteEl) {
-      if (isMinOrderApplied) {
-        minOrderNoteEl.innerHTML = `⚡ Мин. заказ в цехе: 500&nbsp;₽ (расчёт: ${grandTotal}&nbsp;₽)`;
+      if (state.isMinOrderApplied) {
+        minOrderNoteEl.innerHTML = `⚡ Мин. заказ в цехе: 500&nbsp;₽ (расчёт: ${state.baseOrderTotal}&nbsp;₽)`;
         minOrderNoteEl.style.display = 'inline-flex';
       } else {
+        minOrderNoteEl.innerHTML = '';
         minOrderNoteEl.style.display = 'none';
       }
     }
@@ -5058,80 +5251,21 @@ html, body {
     const matPriceM2 = parseFloat(opt.value);
     const matName = opt.getAttribute('data-name') || opt.text;
 
-    // Calculate Area Cost (округление квадратуры вверх до 1 знака: 0.35 -> 0.4, 0.36 -> 0.4)
-    const rawAreaM2 = ((L * W) / 1000000) * Q;
-    const roundedAreaM2 = roundAreaUp(rawAreaM2);
-    const sawCutCost = roundedAreaM2 * matPriceM2;
-
-    // Сбор кромки по сторонам (L1, L2, W1, W2) в метрах
     const el1 = edgeL1.value, el2 = edgeL2.value;
     const ew1 = edgeW1.value, ew2 = edgeW2.value;
-
-    const edgeLengths = { '0.4': 0, '1.0': 0, '2.0': 0 };
-    if (el1 !== 'none') edgeLengths[el1] += (L / 1000) * Q;
-    if (el2 !== 'none') edgeLengths[el2] += (L / 1000) * Q;
-    if (ew1 !== 'none') edgeLengths[ew1] += (W / 1000) * Q;
-    if (ew2 !== 'none') edgeLengths[ew2] += (W / 1000) * Q;
-
-    let edgeCost = 0;
-    const billedEdges = { '0.4': 0, '1.0': 0, '2.0': 0 };
-    const edgeSummaryParts = [];
-
-    // 0.4 мм: 45 ₽/м, кратна 1 метру
-    if (edgeLengths['0.4'] > 0) {
-      const m04 = Math.ceil(edgeLengths['0.4']);
-      billedEdges['0.4'] = m04;
-      edgeCost += m04 * (edgePrices['0.4'] || 45);
-      edgeSummaryParts.push(`0.4 мм: ${m04} м`);
-    }
-
-    // 1.0 мм: 60 ₽/м, +20% к длине и кратна 5 метрам
-    if (edgeLengths['1.0'] > 0) {
-      const allowance10 = edgeLengths['1.0'] * 1.20;
-      const m10 = Math.ceil(allowance10 / 5) * 5;
-      billedEdges['1.0'] = m10;
-      edgeCost += m10 * (edgePrices['1.0'] || 60);
-      edgeSummaryParts.push(`1.0 мм: ${m10} м (+20%, кратно 5 м)`);
-    }
-
-    // 2.0 мм: 85 ₽/м, кратна 1 метру
-    if (edgeLengths['2.0'] > 0) {
-      const m20 = Math.ceil(edgeLengths['2.0']);
-      billedEdges['2.0'] = m20;
-      edgeCost += m20 * (edgePrices['2.0'] || 85);
-      edgeSummaryParts.push(`2.0 мм: ${m20} м`);
-    }
-
-    const activeEdges = [el1, el2, ew1, ew2].filter(e => e !== 'none');
-    let edgeDesc = 'Без кромки';
-    if (activeEdges.length > 0) {
-      const counts = {};
-      activeEdges.forEach(th => { counts[th] = (counts[th] || 0) + 1; });
-      edgeDesc = Object.keys(counts).map(th => `${th} мм (${counts[th]})`).join(' · ');
-    }
-
-    const edgeSummaryText = edgeSummaryParts.length > 0 ? edgeSummaryParts.join(' · ') : '0 м';
     const hasTexture = textureInput ? textureInput.checked : false;
-    const itemTotalCost = Math.round(sawCutCost + edgeCost);
 
     const newItem = {
       length: L,
       width: W,
       count: Q,
-      rawAreaM2: rawAreaM2,
-      areaM2: roundedAreaM2,
       matName: matName,
       matPriceM2: matPriceM2,
       el1: el1,
       el2: el2,
       ew1: ew1,
       ew2: ew2,
-      edgeLengths: edgeLengths,
-      billedEdges: billedEdges,
-      hasTexture: hasTexture,
-      edgeDesc: edgeDesc,
-      edgeSummaryText: edgeSummaryText,
-      cost: itemTotalCost
+      hasTexture: hasTexture
     };
 
     if (editingIndex !== null && editingIndex >= 0 && editingIndex < items.length) {
@@ -5181,39 +5315,7 @@ html, body {
       return;
     }
     
-    let totalArea = 0;
-    let grandTotal = 0;
-    let totalPieces = 0;
-    const totalBilledEdges = { '0.4': 0, '1.0': 0, '2.0': 0 };
-
-    items.forEach(function(itm) {
-      const cnt = itm.count || 1;
-      totalPieces += cnt;
-      totalArea += (itm.areaM2 || 0);
-      grandTotal += itm.cost;
-
-      ['0.4', '1.0', '2.0'].forEach(function(t) {
-        if (itm.billedEdges && itm.billedEdges[t]) {
-          totalBilledEdges[t] += itm.billedEdges[t];
-        } else if (itm.edgeLengths && itm.edgeLengths[t] > 0) {
-          totalBilledEdges[t] += Math.ceil(itm.edgeLengths[t]);
-        }
-      });
-    });
-
-    const edgeModalParts = [];
-    if (totalBilledEdges['0.4'] > 0) {
-      edgeModalParts.push('0.4 мм — ' + totalBilledEdges['0.4'] + ' м');
-    }
-    if (totalBilledEdges['1.0'] > 0) {
-      edgeModalParts.push('1.0 мм — ' + totalBilledEdges['1.0'] + ' м');
-    }
-    if (totalBilledEdges['2.0'] > 0) {
-      edgeModalParts.push('2.0 мм — ' + totalBilledEdges['2.0'] + ' м');
-    }
-
-    const finalTotal = Math.max(500, grandTotal);
-    const isMinOrderApplied = (grandTotal < 500);
+    const state = calculateSawOrder(items);
 
     var partsCountEl = document.getElementById('calc-modal-parts-count');
     var m2InfoEl = document.getElementById('calc-modal-m2-info');
@@ -5221,27 +5323,27 @@ html, body {
     var totalPriceEl = document.getElementById('calc-modal-total-price');
     var modal = document.getElementById('calc-order-modal');
 
-    if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + totalPieces + ' шт';
+    if (partsCountEl) partsCountEl.innerText = 'Деталей в заказе: ' + state.totalPieces + ' шт';
     if (m2InfoEl) {
-      const edgeStr = edgeModalParts.length > 0 ? (' · Кромка: ' + edgeModalParts.join(', ')) : '';
-      m2InfoEl.innerText = 'Квадратура: ' + formatArea(totalArea) + ' м²' + edgeStr;
+      const edgeStr = state.hasEdges ? (' · Кромка: ' + state.edgeBreakdownParts.join(', ')) : ' · Кромка: Без кромки';
+      m2InfoEl.innerText = 'Квадратура: ' + state.formattedArea + edgeStr;
     }
     if (minNoteEl) {
-      if (isMinOrderApplied) {
-        minNoteEl.innerText = '⚡ Применена минимальная стоимость заказа в цехе: 500 ₽ (расчёт по деталям: ' + grandTotal + ' ₽)';
+      if (state.isMinOrderApplied) {
+        minNoteEl.innerText = '⚡ Применена минимальная стоимость заказа в цехе: 500 ₽ (расчёт по деталям: ' + state.baseOrderTotal + ' ₽)';
         minNoteEl.style.display = 'block';
       } else {
         minNoteEl.style.display = 'none';
       }
     }
-    if (totalPriceEl) totalPriceEl.innerText = finalTotal.toLocaleString('ru-RU') + ' ₽';
+    if (totalPriceEl) totalPriceEl.innerText = state.finalTotal.toLocaleString('ru-RU') + ' ₽';
 
     var itemsListEl = document.getElementById('calc-modal-items-list');
     if (itemsListEl) {
-      if (items.length > 0) {
+      if (state.items.length > 0) {
         itemsListEl.style.display = 'block';
         var fE = function(v) { return (v && v !== 'none') ? (v + ' мм') : '—'; };
-        itemsListEl.innerHTML = items.map(function(itm, i) {
+        itemsListEl.innerHTML = state.items.map(function(itm, i) {
           return '<div style="display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid rgba(212,175,110,0.12); gap:8px;">' +
             '<div>' +
               '<b>#' + (i + 1) + '</b> ' + itm.length + ' × ' + itm.width + ' мм (' + (itm.count || 1) + ' шт.) · <span style="color:#d1bfae;">' + itm.matName + '</span>' +
@@ -5331,13 +5433,25 @@ html, body {
   };
 
   // Отправку формы берёт на себя js/lead-form.js (Telegram + почта).
-  // Здесь остаётся только очистка списка после успешной отправки.
+  // Экспортируем функции расчёта и состав для лид-формы
   window.getCalcItems = function() {
     return items;
   };
 
+  window.calculateOrderState = calculateSawOrder;
+  window.formatSawCalcLead = formatSawCalcLead;
+  window.getCalcLeadSummary = function() {
+    if (!items || !items.length) return '';
+    return formatSawCalcLead(calculateSawOrder(items));
+  };
+
   window.clearCalcItems = function() {
     items.length = 0;
+    editingIndex = null;
+    if (addBtn) {
+      addBtn.innerHTML = '<span>+</span> Добавить деталь';
+      addBtn.classList.remove('is-saving');
+    }
     renderTable();
     hideError();
   };
